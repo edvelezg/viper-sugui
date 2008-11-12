@@ -1,0 +1,64 @@
+This is the Lemur Bitmap Index C++ library.
+Daniel Lemire, July 2007
+
+ For USAGE, see doc/index.html
+
+Goals
+-----
+
+Multidimensional Sequential Access Indexing (MuSAI), of which bitmap indexes are
+an example, is a competitive approach when indexing multidimensional data.
+The competition here is "random access indexing" techniques such as
+b-trees, r-trees and so on.
+
+Arguably, when the data is sufficiently high dimensional, nothing can
+really beat scanning, unless some specific assumptions are made regarding
+the data distribution. This means that MuSAI techniques really can be
+optimal.
+
+From a scientific point of view, MuSAI techniques rely on either of
+the two following  ideas:
+
+- You are allowed to reorganize the data, possibly by using more storage, so
+that, given a given specific query, you have to visit a small amount of data.
+Unary indexes used to support equality queries are a good example.
+Compression techniques can help make sure you reduce IO costs further.
+
+- If you can prune quickly most of the data, then you can greatly speed
+up the queries, even if you need to work harder to prune the few remaining
+false negatives. (That's what binning applied to bitmap indexes does.)
+
+The challenges are as follows:
+
+
+- Support for high dimensional OLAP: the case where you have thousands on 
+dimensions (columns) is rarely addressed in the literature. Is it possible
+to build bitmap indexes that fare well in this special case?
+
+- Support for very high cardinalities. Suppose you have a dimension (column)
+with millions of attribute values. That is the case when processing text, for
+example.  
+
+
+
+In the background, there is the fact that
+ WAH-based bitmap indexes are considered state-of-the-art. Can we design
+a new system, maybe building on top of WAH, which significantly improve 
+WAH-based bitmap indexes?
+
+Howto
+-----
+Dependencies: you need to have QDBM installed.
+
+Type "make" and run "./unittesting". That's it. For USAGE, see doc/index.html
+
+
+Other bitmap index implementations
+----------------------------------
+
+- FastBit, by the creators of WAH, is a library with a nice web site. 
+Alas WAH is patented and it does not look like FastBit is available for download.
+
+- Postgresql supports in-memory bitmap indexing over some temporary tables.
+
+- Oracle has good and mature bitmap indexing, possibly using BBC compression.

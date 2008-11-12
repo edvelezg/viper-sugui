@@ -1,0 +1,207 @@
+// !$*UTF8*$!
+{
+	118FCBAABA162BA17933C789 /* main.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1263, 683}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 192}";
+			sepNavWindowFrame = "{{15, 62}, {1322, 811}}";
+		};
+	};
+	4340A90363EF6A5C8FB4B1C9 /* convertdialog.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {859, 1512}}";
+			sepNavSelRange = "{2372, 93}";
+			sepNavVisRange = "{1934, 1955}";
+			sepNavWindowFrame = "{{97, -68}, {918, 811}}";
+		};
+	};
+	91B15E841AA80083484172DE /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = A627787A0EC9BA640021B017 /* seismic-unix */;
+		activeTarget = CC852FDB072F4512278507EF /* seismic-unix */;
+		codeSenseManager = A627789D0EC9BA7C0021B017 /* Code sense */;
+		executables = (
+			A627787A0EC9BA640021B017 /* seismic-unix */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					707,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.XCSCMDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					645,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_SCM_ColumnID,
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 248198384;
+			PBXWorkspaceStateSaveDate = 248198384;
+		};
+		perUserProjectItems = {
+			A64FBFE20ECB33B60043F40D = A64FBFE20ECB33B60043F40D /* PBXTextBookmark */;
+			A6A38E230ECA48DB009C4D07 = A6A38E230ECA48DB009C4D07 /* PBXTextBookmark */;
+			A6A38E270ECA48DB009C4D07 = A6A38E270ECA48DB009C4D07 /* PBXTextBookmark */;
+			A6A38E290ECA48DB009C4D07 = A6A38E290ECA48DB009C4D07 /* PBXTextBookmark */;
+		};
+		sourceControlManager = A627789C0EC9BA7C0021B017 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	A627787A0EC9BA640021B017 /* seismic-unix */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = "seismic-unix";
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+	};
+	A627789C0EC9BA7C0021B017 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryName = "viper-sugui";
+		};
+	};
+	A627789D0EC9BA7C0021B017 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	A64FBFE20ECB33B60043F40D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A64FBFE30ECB33B60043F40D /* subcalls.c */;
+		name = "subcalls.c: 24";
+		rLen = 0;
+		rLoc = 860;
+		rType = 0;
+		vrLen = 1605;
+		vrLoc = 0;
+	};
+	A64FBFE30ECB33B60043F40D /* subcalls.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = subcalls.c;
+		path = /opt/SU/src/par/lib/subcalls.c;
+		sourceTree = "<absolute>";
+	};
+	A6A38E230ECA48DB009C4D07 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A6A38E240ECA48DB009C4D07 /* ximage.c */;
+		name = "ximage.c: 241";
+		rLen = 0;
+		rLoc = 9691;
+		rType = 0;
+		vrLen = 1302;
+		vrLoc = 9283;
+	};
+	A6A38E240ECA48DB009C4D07 /* ximage.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = ximage.c;
+		path = /opt/SU/src/xplot/main/ximage.c;
+		sourceTree = "<absolute>";
+	};
+	A6A38E270ECA48DB009C4D07 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A6A38E280ECA48DB009C4D07 /* ximage.c */;
+		name = "ximage.c: 241";
+		rLen = 0;
+		rLoc = 9691;
+		rType = 0;
+		vrLen = 1302;
+		vrLoc = 9283;
+	};
+	A6A38E280ECA48DB009C4D07 /* ximage.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = ximage.c;
+		path = /opt/SU/src/xplot/main/ximage.c;
+		sourceTree = "<absolute>";
+	};
+	A6A38E290ECA48DB009C4D07 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A6A38E2A0ECA48DB009C4D07 /* subcalls.c */;
+		name = "subcalls.c: 243";
+		rLen = 0;
+		rLoc = 6254;
+		rType = 0;
+		vrLen = 804;
+		vrLoc = 5861;
+	};
+	A6A38E2A0ECA48DB009C4D07 /* subcalls.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = subcalls.c;
+		path = /opt/SU/src/par/lib/subcalls.c;
+		sourceTree = "<absolute>";
+	};
+	B142C83DF5AC7A05C3DC6A8A /* convertdialog.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {859, 683}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 551}";
+			sepNavWindowFrame = "{{15, 67}, {918, 811}}";
+		};
+	};
+	CC852FDB072F4512278507EF /* seismic-unix */ = {
+		activeExec = 0;
+		executables = (
+			A627787A0EC9BA640021B017 /* seismic-unix */,
+		);
+	};
+}
