@@ -20,6 +20,7 @@ private slots:
     void processFinished(int exitCode, QProcess::ExitStatus exitStatus);
     void processError(QProcess::ProcessError error);
 
+
 private:
     QProcess process;
     QString targetFile;

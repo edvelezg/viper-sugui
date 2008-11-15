@@ -1,7 +1,5 @@
 #include <QtGui>
-
 #include "convertdialog.h"
-#include <cstdlib>
 
 ConvertDialog::ConvertDialog(QWidget *parent)
     : QDialog(parent)
@@ -51,15 +49,22 @@ void ConvertDialog::convertImage()
                  + targetFormatComboBox->currentText().toLower();
     buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     outputTextEdit->clear();
+	
+	QFile file("script.txt");
+	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+		return;
+	
+	QTextStream out(&file);
+	out << "#!/bin/bash\n";
+	out << "/opt/SU/bin/ximage n1=100 < /Users/Naix/Documents/Projects/seismic-unix/vel.out" << endl;
 
     QStringList args;
-	args << "n1=100";
-	args << "< /Users/Naix/Documents/Projects/seismic-unix/vel.out";
+	args << "script.txt";
 
-	//	if (enhanceCheckBox->isChecked())
-//        args << "-enhance";
-//    if (monochromeCheckBox->isChecked())
-//        args << "-monochrome";
+	if (enhanceCheckBox->isChecked())
+        args << "-enhance";
+    if (monochromeCheckBox->isChecked())
+        args << "-monochrome";
 	
     //args << sourceFile << targetFile;
 //	::system("xlogo -v");
@@ -69,11 +74,8 @@ void ConvertDialog::convertImage()
 	process.setEnvironment(env);
 	env << "CWPROOT=/opt/SU"; 
 	env << "PATH=$PATH:/opt/SU/bin"; 
-	::system("/opt/SU/bin/ximage n1=100 < /Users/Naix/Documents/Projects/seismic-unix/vel.out");
-//	::system("/opt/SU/bin/ximage n1=100 < Documents/Projects/seismic-unix/vel.out");
-//	process.start("/opt/SU/bin/ximage", args);
-//	process.start("/opt/SU/bin/ximage n1=100 < /Users/Naix/Documents/Projects/seismic-unix/vel.out");
-//	process.start("/opt/SU/bin/ximage n1=100 < /Users/Naix/Documents/Projects/seismic-unix/vel.out");
+	process.start("sh", args);
+	// process.start("/Users/Naix/Tmp/viper-sugui/script.sh");
 //	process.start("/opt/SU/src/demos/Synthetic/Finite_Difference/Sufdmod2/XDemo3");
 }
 
