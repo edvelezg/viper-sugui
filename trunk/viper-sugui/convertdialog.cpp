@@ -53,7 +53,7 @@ void ConvertDialog::convertImage()
 	QFile file("script.txt");
 	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
 		return;
-	
+	// I just added this line to test some things 
 	QTextStream out(&file);
 	out << "#!/bin/bash\n";
 	out << "/opt/SU/bin/ximage n1=100 < /Users/Naix/Documents/Projects/seismic-unix/vel.out" << endl;
