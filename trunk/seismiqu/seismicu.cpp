@@ -85,7 +85,7 @@ void SeismicU::runScript()
     QStringList args;
     args << "script.txt";
     outputTextEdit->append(args.at(0));
-    process.setWorkingDirectory("/Users/Naix/Tmp/repotmp/seismicu");
+    process.setWorkingDirectory( QDir::currentDirPath() );
     outputTextEdit->append(process.workingDirectory());
 
     // Setting the Environment for Seismic Unix
