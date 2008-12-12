@@ -37,8 +37,6 @@ void SeismicU::runScript()
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
 
-    QString text = spinBox->text();
-
     QTextStream out(&file);
     out << "# /bin/sh                                                                               " << endl;
     out << "# Sufdmod2 --- example script for sufdmod2                                              " << endl;
@@ -86,7 +84,7 @@ void SeismicU::runScript()
     args << "script.txt";
     outputTextEdit->append(args.at(0));
     process.setWorkingDirectory( QDir::currentDirPath() );
-    outputTextEdit->append(process.workingDirectory());
+    outputTextEdit->append( QDir::currentDirPath() );
 
     // Setting the Environment for Seismic Unix
     QStringList env = QProcess::systemEnvironment();
