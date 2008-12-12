@@ -1,0 +1,8 @@
+script.txt
+qrc_seismiqu.cpp
+moc_mainwindow.cpp
+seismiqu.pro
+moc_seismicu.cpp
+.csvsignore
+Makefile
+seismiqu.app
