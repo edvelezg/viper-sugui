@@ -6,3 +6,7 @@ moc_seismicu.cpp
 .csvsignore
 Makefile
 seismiqu.app
+release
+debug
+Makefile.Release
+Makefile.Debug
