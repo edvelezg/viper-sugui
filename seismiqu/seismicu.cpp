@@ -83,8 +83,8 @@ void SeismicU::runScript()
     QStringList args;
     args << "script.txt";
     outputTextEdit->append(args.at(0));
-    process.setWorkingDirectory( QDir::currentDirPath() );
-    outputTextEdit->append( QDir::currentDirPath() );
+    process.setWorkingDirectory( QDir::current().currentPath() );
+    outputTextEdit->append( QDir::current().currentPath() );
 
     // Setting the Environment for Seismic Unix
     QStringList env = QProcess::systemEnvironment();
