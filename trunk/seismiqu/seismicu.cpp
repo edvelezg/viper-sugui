@@ -17,7 +17,6 @@ SeismicU::SeismicU(QWidget *parent)
     buttonBox->button(QDialogButtonBox::Ok);
     convertButton->setText(tr("&Run"));
     convertButton->setEnabled(true);
-    outputTextEdit->append("Lol" );
 
     connect(convertButton, SIGNAL(clicked()),
             this, SLOT(runScript()));
