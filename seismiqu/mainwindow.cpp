@@ -44,9 +44,11 @@ void MainWindow::newFile()
     if (!suDialog) {
         suDialog = new SeismicU;
     }
+    this->setCentralWidget( suDialog );
     suDialog->show();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+    suDialog->hide();
 }
