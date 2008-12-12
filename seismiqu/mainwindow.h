@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+class SeismicU;
 class QAction;
 
 class MainWindow : public QMainWindow 
@@ -27,6 +28,7 @@ private:
     QToolBar *fileToolBar;
     QAction *exitAction;
     QAction *newAction;
+    SeismicU *suDialog;
 };
 
 #endif

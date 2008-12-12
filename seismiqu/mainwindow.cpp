@@ -1,11 +1,13 @@
 #include <QtGui>
 #include "mainwindow.h"
+#include "seismicu.h"
 
 MainWindow::MainWindow()
 {
     createActions();
     createMenus();
     createToolBars();
+    suDialog=0; // Initializing as null, so that it is only initialized one time;
 }
 
 void MainWindow::createActions()
@@ -27,11 +29,6 @@ void MainWindow::createMenus()
 {
     fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(newAction);
-
-//  separatorAction = fileMenu->addSeparator();
-//  for (int i = 0; i < MaxRecentFiles; ++i)
-//      fileMenu->addAction(recentFileActions[i]);
-//  fileMenu->addSeparator();
     fileMenu->addAction(exitAction);
 }
 
@@ -44,6 +41,10 @@ void MainWindow::createToolBars()
 
 void MainWindow::newFile()
 {
+    if (!suDialog) {
+        suDialog = new SeismicU;
+    }
+    suDialog->show();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
