@@ -5,6 +5,7 @@
 
 class SeismicU;
 class QAction;
+class ConvertDialog;
 
 class MainWindow : public QMainWindow 
 {
@@ -18,6 +19,7 @@ protected:
 
 private slots:
     void newFile();
+    void openFile();
 
 private:
     void createActions();
@@ -28,7 +30,9 @@ private:
     QToolBar *fileToolBar;
     QAction *exitAction;
     QAction *newAction;
+    QAction *openAction;
     SeismicU *suDialog;
+    ConvertDialog *dialog;
 };
 
 #endif
