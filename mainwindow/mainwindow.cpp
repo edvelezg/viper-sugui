@@ -30,10 +30,12 @@ void MainWindow::createToolBars()
 
 void MainWindow::newFile()
 {
+    stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::saveFile()
 {
+    stackedWidget->setCurrentIndex(1);
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
