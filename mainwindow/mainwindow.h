@@ -16,14 +16,12 @@ protected:
 
 private slots:
     void newFile();
+    void saveFile();
 
 private:
     void createActions();
     void createToolBars();
-
-    QAction *exitAction;
-    QAction *newAction;
-
+    
     QToolBar *fileToolBar;
 };
 
