@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "ui_mainwindow.h"
+#include <QProcess>
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -17,11 +18,13 @@ protected:
 private slots:
     void newFile();
     void saveFile();
+    void convertImage();
 
 private:
     void createActions();
     void createToolBars();
-    
+    QProcess process;
+    QString targetFile;
     QToolBar *fileToolBar;
 };
 
