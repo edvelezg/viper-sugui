@@ -9,7 +9,7 @@ MainWindow::MainWindow()
 
     QPushButton *convertButton =
             buttonBox->button(QDialogButtonBox::Ok);
-    convertButton->setText(tr("&Convert"));
+    convertButton->setText(tr("&Correr"));
 
     connect(convertButton, SIGNAL(clicked()),
             this, SLOT(convertImage()));
@@ -65,8 +65,8 @@ void MainWindow::convertImage()
     out << "HEIGHTOFF1=50                                                                           " << endl;
     out << "HEIGHTOFF2=530                                                                          " << endl;
     out << "                                                                                        " << endl;
-    out << "n1=100 d1=5 f1=0.0 label1=\"Depth (km)\"                                                " << endl;
-    out << "n2=100 d2=5 f2=0.0 label2=\"Distance (km)\"                                             " << endl;
+    out << "n1=100 d1=5 f1=0.0 label1=\"Profundidad (km)\"                                                " << endl;
+    out << "n2=100 d2=5 f2=0.0 label2=\"Distancia (km)\"                                             " << endl;
 
 	out << qPrintable(QString("xs=%1 zs=%2 hsz=50 vsx=250 verbose=2 ")
 														.arg(spinBox->text()).arg(spinBox_2->text())) << endl;
