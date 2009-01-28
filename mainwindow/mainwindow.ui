@@ -55,7 +55,7 @@
              <item>
               <widget class="QLabel" name="label_2" >
                <property name="text" >
-                <string>D&amp;epth</string>
+                <string>&amp;Profundidad</string>
                </property>
                <property name="buddy" >
                 <cstring>spinBox_2</cstring>
