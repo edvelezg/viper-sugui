@@ -12,13 +12,11 @@ class MainWindow : public QMainWindow, private Ui::MainWindow
 public:
     MainWindow();
 
-protected:
-    void closeEvent(QCloseEvent *event);
-
 private slots:
     void newFile();
     void saveFile();
-    void convertImage();
+    void runSimulation();
+    void on_browseButton_clicked();
 
 private:
     void createActions();

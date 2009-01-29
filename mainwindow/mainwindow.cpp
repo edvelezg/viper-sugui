@@ -12,28 +12,46 @@ MainWindow::MainWindow()
     convertButton->setText(tr("&Correr"));
 
     connect(convertButton, SIGNAL(clicked()),
-            this, SLOT(convertImage()));
+            this, SLOT(runSimulation()));
+    
+    convertButton->setEnabled(false);
 }
 
 void MainWindow::createActions()
 {
-    action_New->setIcon(QIcon(":/images/new.png"));
-    action_New->setShortcut(QKeySequence::New);
-    action_New->setStatusTip(tr("Create a new * file"));
-    connect(action_New, SIGNAL(triggered()), this, SLOT(newFile()));
+    actionNew->setIcon(QIcon(":/images/new.png"));
+    actionNew->setShortcut(QKeySequence::New);
+    actionNew->setStatusTip(tr("Crear una nueva Simulacion"));
+    connect(actionNew, SIGNAL(triggered()), this, SLOT(newFile()));
 
     actionSave->setIcon(QIcon(":/images/save.png"));
     actionSave->setShortcut(QKeySequence::Save);
-    actionSave->setStatusTip(tr("Save a * file"));
+    actionSave->setStatusTip(tr("Guardar una Simulacion"));
     connect(actionSave, SIGNAL(triggered()), this, SLOT(saveFile()));
 }
 
 void MainWindow::createToolBars()
 {
-    fileToolBar = addToolBar(tr("&File"));
-    fileToolBar->addAction(action_New);
+    fileToolBar = addToolBar(tr("&Archivo"));
+    fileToolBar->addAction(actionNew);
     fileToolBar->addAction(actionSave);
 }
+
+void MainWindow::on_browseButton_clicked()
+{
+    QString initialName = sourceFileEdit->text();
+    if (initialName.isEmpty())
+        initialName = QDir::homePath();
+    QString fileName =
+            QFileDialog::getOpenFileName(this, tr("Choose File"),
+                                         initialName);
+    fileName = QDir::toNativeSeparators(fileName);
+    if (!fileName.isEmpty()) {
+        sourceFileEdit->setText(fileName);
+        buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+    }
+}
+
 
 void MainWindow::newFile()
 {
@@ -45,19 +63,16 @@ void MainWindow::saveFile()
     stackedWidget->setCurrentIndex(1);
 }
 
-void MainWindow::convertImage()
+void MainWindow::runSimulation()
 {
     textEdit->clear();
-    QFile file("script.txt");
+    QFile file("script.sh");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
 	
 	// Stuff to write to the script
     QTextStream out(&file);
     out << "# /bin/sh                                                                               " << endl;
-    out << "# Sufdmod2 --- example script for sufdmod2                                              " << endl;
-    out << "# finite-difference modeling: part 1, the movie                                         " << endl;
-    out << "# Author: John Stockwell                                                                " << endl;
     out << "WIDTH=450                                                                               " << endl;
     out << "HEIGHT=450                                                                              " << endl;
     out << "WIDTHOFF1=10                                                                            " << endl;
@@ -111,8 +126,4 @@ void MainWindow::convertImage()
     env << "PATH=$PATH:/opt/SU/bin";
 
     process.start("sh", args);
-}
-
-void MainWindow::closeEvent(QCloseEvent *event)
-{
 }
