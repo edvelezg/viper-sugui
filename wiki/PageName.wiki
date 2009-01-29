@@ -1,4 +1,4 @@
-#Proposito de este Proyecto
+#Viper SuGUI
 
 = Introduccion =
 
