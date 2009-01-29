@@ -1,0 +1,14 @@
+#Proposito de este Proyecto
+
+= Introduccion =
+
+Las Ondas Electromagneticas, tienen una velocidad que es constante e independiente de la energia que estas lleven. 
+
+Ondas Mecanicas, son ondas cuya velocidad depende de la energia que llevan. Las ondas sismicas son un tipo de onda mecanica, en este sentido.
+
+
+= Objetivos =
+
+La idea general del proyecto es construir una interfaz de usurio que permita facilitar la usabilidad de programas del paquete Seismic Unix.
+
+Hay que buscar formas de mejorar la interpretacion de las simulaciones que se pueden realizar con el paquete Seismic Unix.
