@@ -66,6 +66,12 @@ void MainWindow::saveFile()
 void MainWindow::runSimulation()
 {
     textEdit->clear();
+
+    QString sourceFile = sourceFileEdit->text();
+//  targetFile = QFileInfo(sourceFile).path() + QDir::separator()
+//               + QFileInfo(sourceFile).baseName() + "."
+//               + targetFormatComboBox->currentText().toLower();
+
     QFile file("script.sh");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
@@ -90,7 +96,8 @@ void MainWindow::runSimulation()
     out << "tmax=.4 mt=5 fpeak=35 fmax=40                                                           " << endl;
     out << "                                                                                        " << endl;
     out << "makevel nx=$n2 nz=$n1 v000=3000 >vel.out                                                " << endl;
-    out << "unif2 tfile=model.out                                                                   " << endl;
+    out << qPrintable(QString("unif2 < %1 n1=$n1 n2=$n2 method=spline > vel.out	 ")
+														.arg(sourceFile)) << endl;
     out << "unif2 < model.out n1=$n1 n2=$n2 method=spline > vel.out								 	" << endl;
     out << "                                                                                        " << endl;
     out << "ximage < vel.out wbox=$WIDTH hbox=$HEIGHT xbox=$WIDTHOFF2 title=\"Wavespeed Profile\" \\" << endl;
