@@ -4,7 +4,9 @@
 
 Las Ondas Electromagneticas, tienen una velocidad que es constante e independiente de la energia que estas lleven. 
 
-Ondas Mecanicas, son ondas cuya velocidad depende de la energia que llevan. Las ondas sismicas son un tipo de onda mecanica, en este sentido.
+Ondas Mecanicas, son ondas cuya velocidad depende de la energia que llevan.
+
+Las ondas sismicas son un tipo de onda mecanica, pero su velocidad es una funcion de las propiedades del medio tales como densidad, rigididez, salinidad (en el caso marino)...etc. De hecho la velocidad sismica normalmente crece con la profundidad. 
 
 
 = Objetivos =
