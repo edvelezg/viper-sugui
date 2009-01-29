@@ -2,7 +2,7 @@
 
 ==Introduccion==
 
-# Las Ondas Electromagneticas, tienen una velocidad que es constante e independiente de la energia que estas lleven.
+Las Ondas Electromagneticas, tienen una velocidad que es constante e independiente de la energia que estas lleven.
 
 Ondas Mecanicas, son ondas cuya velocidad depende de la energia que llevan. (Esto es Cuestionable)
 
