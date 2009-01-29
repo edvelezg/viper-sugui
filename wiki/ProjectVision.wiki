@@ -2,14 +2,11 @@
 
 ==Introduccion==
 
-Las Ondas Electromagneticas, tienen una velocidad que es constante e independiente de la energia que estas lleven.
-
-Ondas Mecanicas, son ondas cuya velocidad depende de la energia que llevan. (Esto es Cuestionable)
-
-Las ondas sismicas son un tipo de onda mecanica, pero su velocidad es una funcion de las propiedades del medio tales como densidad, rigididez, salinidad (en el caso marino)...etc. De hecho la velocidad sismica normalmente crece con la profundidad.
+*Las Ondas Electromagneticas, tienen una velocidad que es constante e independiente de la energia que estas lleven.
+*Ondas Mecanicas, son ondas cuya velocidad depende de la energia que llevan. (Esto es Cuestionable)
+*Las ondas sismicas son un tipo de onda mecanica, pero su velocidad es una funcion de las propiedades del medio tales como densidad, rigididez, salinidad (en el caso marino)...etc. De hecho la velocidad sismica normalmente crece con la profundidad.
 
 ==Objetivos==
 
-La idea general del proyecto es construir una interfaz de usurio que permita facilitar la usabilidad de programas del paquete Seismic Unix.
-
-Hay que buscar formas de mejorar la interpretacion de las simulaciones que se pueden realizar con el paquete Seismic Unix. 
+*La idea general del proyecto es construir una interfaz de usurio que permita facilitar la usabilidad de un tipo de simulacion realizable en el paquete Seismic Unix.
+*Hay que buscar formas de mejorar la interpretacion de las simulaciones que se pueden realizar con el paquete Seismic Unix. 
