@@ -20,13 +20,19 @@ private slots:
     void on_browseButton_clicked();
 
 private:
+    void setCurrentFile(const QString &fileName);
     bool saveFile(const QString &fileName);
+    void updateRecentFileActions();
+    QString strippedName(const QString &fullFileName);
     void createActions();
     void createToolBars();
     QProcess process;
+    int distancia;
+    int profundidad;
     QString sourceFile;
     QString curFile;
     QToolBar *fileToolBar;
+    QStringList recentFiles;
 };
 
 #endif

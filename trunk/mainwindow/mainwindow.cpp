@@ -1,9 +1,11 @@
 #include <QtGui>
+#include <iostream>
 #include "mainwindow.h"
 
 MainWindow::MainWindow()
 {
     setupUi( this );
+
     createActions();
     createToolBars();
 
@@ -56,6 +58,7 @@ void MainWindow::on_browseButton_clicked()
 
 void MainWindow::newFile()
 {
+    setCurrentFile( "" );
     stackedWidget->setCurrentIndex(0);
 }
 
@@ -158,14 +161,64 @@ bool MainWindow::saveFile(const QString &fileName)
        return false;
    }
 
+
+   distancia =  spinBox->text().toInt();
+   profundidad =  spinBox_2->text().toInt();
+   std::cout << distancia << " " << profundidad << endl;
+
    QTextStream out(&file);
 
-   out << qPrintable(QString("MODEL_FILE=%1").arg(sourceFile)) << endl;
-   out << "WIDTH=450                         " << endl;
-   out << "HEIGHT=450                        " << endl;
-   out << "WIDTHOFF1=10                      " << endl;
+   out << qPrintable(QString("MODEL=%1").arg(sourceFile)) << endl;
+   out << qPrintable(QString("DISTANCIA=%1").arg(distancia)) << endl;
+   out << qPrintable(QString("PROFUNDIDAD=%1").arg(profundidad)) << endl;
 
+   setCurrentFile( fileName );
 
-   curFile = fileName;
    return true;
+}
+
+void MainWindow::setCurrentFile(const QString &fileName)
+{
+    curFile = fileName;
+    setWindowModified(false);
+
+    QString shownName = tr("Untitled");
+    if (!curFile.isEmpty()) {
+        shownName = strippedName(curFile);
+//      recentFiles.removeAll(curFile);
+//      recentFiles.prepend(curFile);
+//      updateRecentFileActions();
+    }
+
+    setWindowTitle(tr("%1[*] - %2").arg(shownName)
+                                   .arg(tr("Simulacion")));
+}
+
+//void MainWindow::updateRecentFileActions()
+//{
+//    QMutableStringListIterator i(recentFiles);
+//    while (i.hasNext()) {
+//        if (!QFile::exists(i.next()))
+//            i.remove();
+//    }
+//
+//    for (int j = 0; j < MaxRecentFiles; ++j) {
+//        if (j < recentFiles.count()) {
+//            QString text = tr("&%1 %2")
+//                           .arg(j + 1)
+//                           .arg(strippedName(recentFiles[j]));
+//            recentFileActions[j]->setText(text);
+//            recentFileActions[j]->setData(recentFiles[j]);
+//            recentFileActions[j]->setVisible(true);
+//        } else {
+//            recentFileActions[j]->setVisible(false);
+//        }
+//    }
+//    separatorAction->setVisible(!recentFiles.isEmpty());
+//}
+//
+
+QString MainWindow::strippedName(const QString &fullFileName)
+{
+    return QFileInfo(fullFileName).fileName();
 }
