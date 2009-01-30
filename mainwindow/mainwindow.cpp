@@ -27,7 +27,7 @@ void MainWindow::createActions()
     actionSave->setIcon(QIcon(":/images/save.png"));
     actionSave->setShortcut(QKeySequence::Save);
     actionSave->setStatusTip(tr("Guardar una Simulacion"));
-    connect(actionSave, SIGNAL(triggered()), this, SLOT(saveFile()));
+    connect(actionSave, SIGNAL(triggered()), this, SLOT(save()));
 }
 
 void MainWindow::createToolBars()
@@ -49,6 +49,7 @@ void MainWindow::on_browseButton_clicked()
     if (!fileName.isEmpty()) {
         sourceFileEdit->setText(fileName);
         buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+        sourceFile = sourceFileEdit->text();
     }
 }
 
@@ -58,19 +59,9 @@ void MainWindow::newFile()
     stackedWidget->setCurrentIndex(0);
 }
 
-void MainWindow::saveFile()
-{
-    stackedWidget->setCurrentIndex(1);
-}
-
 void MainWindow::runSimulation()
 {
     textEdit->clear();
-
-    QString sourceFile = sourceFileEdit->text();
-//  targetFile = QFileInfo(sourceFile).path() + QDir::separator()
-//               + QFileInfo(sourceFile).baseName() + "."
-//               + targetFormatComboBox->currentText().toLower();
 
     QFile file("script.sh");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -133,4 +124,48 @@ void MainWindow::runSimulation()
     env << "PATH=$PATH:/opt/SU/bin";
 
     process.start("sh", args);
+}
+
+bool MainWindow::save()
+{
+    if (curFile.isEmpty()) {
+        return saveAs();
+    } else {
+        return saveFile(curFile);
+    }
+}
+
+
+bool MainWindow::saveAs()
+{
+    QString fileName = QFileDialog::getSaveFileName(this,
+                               tr("Guardar Simulacion"), ".",
+                               tr("Simulaciones Viper (*.svp)"));
+    if (fileName.isEmpty())
+        return false;
+
+    return saveFile(fileName);
+}
+
+bool MainWindow::saveFile(const QString &fileName)
+{
+   QFile file(fileName);
+   if (!file.open(QIODevice::WriteOnly)) {
+       QMessageBox::warning(this, tr("Simulacion"),
+                            tr("No puedo escribir el archivo %1:\n%2.")
+                            .arg(file.fileName())
+                            .arg(file.errorString()));
+       return false;
+   }
+
+   QTextStream out(&file);
+
+   out << qPrintable(QString("MODEL_FILE=%1").arg(sourceFile)) << endl;
+   out << "WIDTH=450                         " << endl;
+   out << "HEIGHT=450                        " << endl;
+   out << "WIDTHOFF1=10                      " << endl;
+
+
+   curFile = fileName;
+   return true;
 }
