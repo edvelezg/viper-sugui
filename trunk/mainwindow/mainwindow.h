@@ -14,15 +14,18 @@ public:
 
 private slots:
     void newFile();
-    void saveFile();
+    bool save();
+    bool saveAs();
     void runSimulation();
     void on_browseButton_clicked();
 
 private:
+    bool saveFile(const QString &fileName);
     void createActions();
     void createToolBars();
     QProcess process;
-    QString targetFile;
+    QString sourceFile;
+    QString curFile;
     QToolBar *fileToolBar;
 };
 
