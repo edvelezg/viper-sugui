@@ -2,7 +2,7 @@
 ----
 ==Introduccion==
 
-Hay muchos tipos de ondas sismicas pero practicamente, se distinguen 4 tipos:
+Hay muchos tipos de ondas sismicas pero en la practica se distinguen 4 tipos:
 
 Ondas Compresionales P (o primarias).
 Ondas Transversales S (o secundarias).
@@ -17,7 +17,7 @@ Las ondas sismicas se clasifican en "body waves", pues estas viajan hacia el int
 
 En las "body waves" se distinguen 2 tipos de ondas, las ondas P, y las ondas S.
 
-Velocidad de las Ondas Sismicas.
+===Velocidad de las Ondas Sismicas.===
 
 Las ondas sismicas viajan rapido, a velocidades dentro de los kilometros por segundo. La velocidad precisa de la onda sismica depende de varios factores, donde el mas importante es la composicion de la roca. Gracias a esto, es posible tener una idea de la composicion o el conjunto de composiciones de el planeta. 
 
@@ -25,7 +25,7 @@ Es importante notar, que este proceso no siempre es facil, pues tambien ocurre q
 
 Debemos tener en mente que la velocidad de las ondas sismicas dependeran de la composicion, la temperatura y la presion.
 
-Ondas Compresionales P (o Primarias)
+===Ondas Compresionales P (o Primarias)===
 
 Las ondas P son las primeras ondas en llegar, pues estas son las que mas rapido viajan, su nombre de hecho es por el echo de ser las primeras en llegar.  Sus velocidades, tipicamente varian entre ~1 y ~14 km/seg. Los valores mas lentos generalmente corresponden, a sus velocidades a medida que viajan en el agua, y las velocidades mas altas se obtienen a medida que estas se aproximan a la base del manto de la tierra.
 
@@ -38,10 +38,10 @@ El modulus nos permite medir que tan facil o dificil es deformar el material. Po
 Las ondas P, son ondas de sonido, solo que en sismica estamos interesados en ondas que estan por debajo del rango del oido humano. La vibracion causada por ondas P es un cambio en el volumen, alternando compresion a expansion en la direccion en que la onda esta viajando. Las ondas P viajan a traves de todo tipo de medios incluyendo solidos, liquidos, o gas.
 
 
-Ondas Compresionals S ( o Secundarias )
+===Ondas Compresionals S ( o Secundarias )===
 Las ondas S son ondas mas lentas que las P, pero estas no cambian el volumen del material en el que se propagan, y ademas vibran el material en la direccion "transversa" o perpendicular a la direccion de propagacion.
 
-Ondas en un Sismograma.
+===Ondas en un Sismograma.===
 
 Las diferencia de velocidades de las ondas tiene una profunda influencia en la naturaleza de los sismogramas. Pues el tiempo que demora una onda en viajar es igual a la velocidad a la que la onda ha viajado dividido por la velocidad promedio de la onda cuando se movie durante su transmision. Se espera que las ondas mas rapidas deben llegar primero.
 
@@ -67,4 +67,3 @@ Una refleccion sismica ocurre cuando una onda incide en un cambio en el tipo de 
 La idea general del proyecto es construir una interfaz de usurio que permita facilitar la usabilidad de un tipo de simulacion realizable en el paquete Seismic Unix.
 
 Hay que buscar formas de mejorar la interpretacion de las simulaciones que se pueden realizar con el paquete Seismic Unix. 
-
