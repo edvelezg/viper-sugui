@@ -66,6 +66,12 @@ void MainWindow::runSimulation()
 {
     textEdit->clear();
 
+    QString sourceFile = sourceFileEdit->text();
+    textEdit->append(sourceFile);
+//  targetFile = QFileInfo(sourceFile).path() + QDir::separator()
+//               + QFileInfo(sourceFile).baseName() + "."
+//               + targetFormatComboBox->currentText().toLower();
+
     QFile file("script.sh");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
@@ -80,8 +86,8 @@ void MainWindow::runSimulation()
     out << "HEIGHTOFF1=50                                                                           " << endl;
     out << "HEIGHTOFF2=530                                                                          " << endl;
     out << "                                                                                        " << endl;
-    out << "n1=100 d1=5 f1=0.0 label1=\"Profundidad (km)\"                                                " << endl;
-    out << "n2=100 d2=5 f2=0.0 label2=\"Distancia (km)\"                                             " << endl;
+    out << "n1=100 d1=5 f1=0.0 label1=\"Profundidad (km)\"                                          " << endl;
+    out << "n2=100 d2=5 f2=0.0 label2=\"Distancia (km)\"                                            " << endl;
 
 	out << qPrintable(QString("xs=%1 zs=%2 hsz=50 vsx=250 verbose=2 ")
 														.arg(spinBox->text()).arg(spinBox_2->text())) << endl;
@@ -90,10 +96,7 @@ void MainWindow::runSimulation()
     out << "tmax=.4 mt=5 fpeak=35 fmax=40                                                           " << endl;
     out << "                                                                                        " << endl;
     out << "makevel nx=$n2 nz=$n1 v000=3000 >vel.out                                                " << endl;
-    out << qPrintable(QString("unif2 < %1 n1=$n1 n2=$n2 method=spline > vel.out	 ")
-														.arg(sourceFile)) << endl;
-    out << "unif2 < model.out n1=$n1 n2=$n2 method=spline > vel.out								 	" << endl;
-    out << "                                                                                        " << endl;
+    out << qPrintable(QString("unif2 < %1 n1=$n1 n2=$n2 method=spline > vel.out	 ").arg(sourceFile))  << endl;
     out << "ximage < vel.out wbox=$WIDTH hbox=$HEIGHT xbox=$WIDTHOFF2 title=\"Wavespeed Profile\" \\" << endl;
     out << " n1=$n1 n2=$n2 legend=1 lheight=150 units=\"wave speed\" &								" << endl;
     out << "                                                                                        " << endl;
@@ -114,7 +117,7 @@ void MainWindow::runSimulation()
 
     // Setting the arguments for sh.
     QStringList args;
-    args << "script.txt";
+    args << "script.sh";
     textEdit->append(args.at(0));
     process.setWorkingDirectory( QDir::current().currentPath() );
     textEdit->append( QDir::current().currentPath() );
