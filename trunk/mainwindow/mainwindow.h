@@ -17,6 +17,9 @@ private slots:
     bool save();
     bool saveAs();
     void runSimulation();
+    void runXimage();
+    void defineVelocityModel();
+    void definePropagationModel();
     void on_browseButton_clicked();
 
 private:
