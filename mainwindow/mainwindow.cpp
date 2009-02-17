@@ -13,8 +13,19 @@ MainWindow::MainWindow()
             buttonBox->button(QDialogButtonBox::Ok);
     convertButton->setText(tr("&Correr"));
 
+    QPushButton *ximageButton =
+            buttonBox_2->button(QDialogButtonBox::Ok);
+    ximageButton->setText(tr("&Ver Modelo"));
+
     connect(convertButton, SIGNAL(clicked()),
             this, SLOT(runSimulation()));
+
+    connect(ximageButton, SIGNAL(clicked()),
+            this, SLOT(runXimage()));
+
+    connect(actionModeloDePropagacion, SIGNAL( triggered() ),  this,  SLOT( definePropagationModel() ));
+
+    connect(actionModeloDeVelocidad, SIGNAL( triggered() ),  this,  SLOT( defineVelocityModel() ));
     
     convertButton->setEnabled(false);
 }
@@ -59,48 +70,101 @@ void MainWindow::on_browseButton_clicked()
 void MainWindow::newFile()
 {
     setCurrentFile( "" );
+}
+
+
+void MainWindow::defineVelocityModel()
+{
+    stackedWidget->setCurrentIndex(1);
+}
+
+
+void MainWindow::definePropagationModel()
+{
     stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::runSimulation()
 {
-    textEdit->clear();
+//  textEdit->clear();
 
-    QString sourceFile = sourceFileEdit->text();
-    textEdit->append(sourceFile);
+//  QString sourceFile = sourceFileEdit->text();
+    textEdit->append("Hello everyone!!!");
 
     // QFile file("script.sh");
     // if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     //     return;
 	
     // Setting the Environment for Seismic Unix
-    QStringList env = QProcess::systemEnvironment();
-
-    env << "CWPROOT=/opt/SU";
-    env << "PATH=$PATH:/opt/SU/bin";
-
-    process.setEnvironment(env);
-    process2.setEnvironment(env);
+//  QStringList env = QProcess::systemEnvironment();
+//
+//  env << "CWPROOT=/opt/SU";
+//  env << "PATH=$PATH:/opt/SU/bin";
+//
+//  process.setEnvironment(env);
+//  process2.setEnvironment(env);
 
     // Setting the arguments for unif2.
-    QStringList args;
-	args << "n1=100" << "n2=100" << "method=spline" << "label1='Depth (m)'" << "label2='Distance (m)'";
-    textEdit->append(args.at(0));
-	process2.setStandardInputFile("model.out");
-	process2.setStandardOutputFile("vel.out");
-    process2.setWorkingDirectory( QDir::current().currentPath() );
-	process2.start("unif2", args);
-	process2.waitForFinished();
-	args.clear();
+//  QStringList args;
+//  args << "n1=100" << "n2=100" << "method=spline" << "label1='Depth (m)'" << "label2='Distance (m)'";
+//  textEdit->append(args.at(0));
+//  process2.setStandardInputFile("model.out");
+//  process2.setStandardOutputFile("vel.out");
+//  process2.setWorkingDirectory( QDir::current().currentPath() );
+//  process2.start("unif2", args);
+//  process2.waitForFinished();
+//  args.clear();
 
     // Setting the arguments for ximage.
-    args << "n1=100" << "n2=100" << "d1=5" << "d2=5" << "legend=1";
-    textEdit->append(args.at(0));
-	process.setStandardInputFile("vel.out");
-    process.setWorkingDirectory( QDir::current().currentPath() );
-    textEdit->append( QDir::current().currentPath() );
+//  args << "n1=100" << "n2=100" << "d1=5" << "d2=5" << "legend=1";
+//  textEdit->append(args.at(0));
+//  process.setStandardInputFile("vel.out");
+//  process.setWorkingDirectory( QDir::current().currentPath() );
+//  textEdit->append( QDir::current().currentPath() );
+//
+//  process.start("ximage", args);
+}
 
-    process.start("ximage", args);
+
+void MainWindow::runXimage()
+{
+//  textEdit->clear();
+//
+//  QString sourceFile = sourceFileEdit->text();
+    textEdit_2->append("Hi everybody!!!");
+
+    // QFile file("script.sh");
+    // if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    //     return;
+	
+    // Setting the Environment for Seismic Unix
+//  QStringList env = QProcess::systemEnvironment();
+//
+//  env << "CWPROOT=/opt/SU";
+//  env << "PATH=$PATH:/opt/SU/bin";
+//
+//  process.setEnvironment(env);
+//  process2.setEnvironment(env);
+//
+//  // Setting the arguments for unif2.
+//  QStringList args;
+//  args << "n1=100" << "n2=100" << "method=spline" << "label1='Depth (m)'" << "label2='Distance (m)'";
+//  textEdit->append(args.at(0));
+//  process2.setStandardInputFile("model.out");
+//  process2.setStandardOutputFile("vel.out");
+//  process2.setWorkingDirectory( QDir::current().currentPath() );
+//  process2.start("unif2", args);
+//  process2.waitForFinished();
+//  args.clear();
+//
+//  // Setting the arguments for ximage.
+//  args << "n1=100" << "n2=100" << "d1=5" << "d2=5" << "legend=1";
+//  textEdit->append(args.at(0));
+//  process.setStandardInputFile("vel.out");
+//  process.setWorkingDirectory( QDir::current().currentPath() );
+//  textEdit->append( QDir::current().currentPath() );
+//
+//  process.start("ximage", args);
 }
 
 bool MainWindow::save()
@@ -159,38 +223,13 @@ void MainWindow::setCurrentFile(const QString &fileName)
     QString shownName = tr("Untitled");
     if (!curFile.isEmpty()) {
         shownName = strippedName(curFile);
-//      recentFiles.removeAll(curFile);
+        recentFiles.removeAll(curFile);
 //      recentFiles.prepend(curFile);
 //      updateRecentFileActions();
     }
-
     setWindowTitle(tr("%1[*] - %2").arg(shownName)
                                    .arg(tr("Simulacion")));
 }
-
-//void MainWindow::updateRecentFileActions()
-//{
-//    QMutableStringListIterator i(recentFiles);
-//    while (i.hasNext()) {
-//        if (!QFile::exists(i.next()))
-//            i.remove();
-//    }
-//
-//    for (int j = 0; j < MaxRecentFiles; ++j) {
-//        if (j < recentFiles.count()) {
-//            QString text = tr("&%1 %2")
-//                           .arg(j + 1)
-//                           .arg(strippedName(recentFiles[j]));
-//            recentFileActions[j]->setText(text);
-//            recentFileActions[j]->setData(recentFiles[j]);
-//            recentFileActions[j]->setVisible(true);
-//        } else {
-//            recentFileActions[j]->setVisible(false);
-//        }
-//    }
-//    separatorAction->setVisible(!recentFiles.isEmpty());
-//}
-//
 
 QString MainWindow::strippedName(const QString &fullFileName)
 {

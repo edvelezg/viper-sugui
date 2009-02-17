@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>512</width>
-    <height>597</height>
+    <width>383</width>
+    <height>487</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -17,7 +17,7 @@
     <item row="0" column="0" >
      <widget class="QStackedWidget" name="stackedWidget" >
       <property name="currentIndex" >
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page" >
        <layout class="QGridLayout" name="gridLayout_2" >
@@ -136,10 +136,6 @@
             </layout>
            </item>
           </layout>
-          <zorder>sourceFileLabel</zorder>
-          <zorder>sourceFileEdit</zorder>
-          <zorder>browseButton</zorder>
-          <zorder>sourceFileEdit</zorder>
          </widget>
         </item>
         <item row="2" column="0" >
@@ -156,14 +152,156 @@
       </widget>
       <widget class="QWidget" name="page_2" >
        <layout class="QGridLayout" name="gridLayout_5" >
+        <item row="2" column="0" >
+         <widget class="QTextEdit" name="textEdit_2" />
+        </item>
+        <item row="3" column="0" >
+         <widget class="QDialogButtonBox" name="buttonBox_2" >
+          <property name="standardButtons" >
+           <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="0" >
          <widget class="QGroupBox" name="groupBox_2" >
           <property name="title" >
-           <string>Geometry</string>
+           <string>Distancia Maxima</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3" >
+           <item row="0" column="0" >
+            <layout class="QHBoxLayout" name="horizontalLayout_6" >
+             <item>
+              <widget class="QLabel" name="label_3" >
+               <property name="text" >
+                <string> Numero de Muestras</string>
+               </property>
+               <property name="buddy" >
+                <cstring>spinBox</cstring>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="n1SpinBox" >
+               <property name="maximum" >
+                <number>1000</number>
+               </property>
+               <property name="singleStep" >
+                <number>100</number>
+               </property>
+               <property name="value" >
+                <number>200</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_4" >
+               <property name="text" >
+                <string>Distancia</string>
+               </property>
+               <property name="buddy" >
+                <cstring>spinBox_2</cstring>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="distanceSpinBox" >
+               <property name="maximum" >
+                <number>1000</number>
+               </property>
+               <property name="singleStep" >
+                <number>100</number>
+               </property>
+               <property name="value" >
+                <number>200</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer" >
+               <property name="orientation" >
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0" >
+                <size>
+                 <width>413</width>
+                 <height>17</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QGroupBox" name="groupBox_4" >
+          <property name="title" >
+           <string>Profundidad Maxima</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_4" >
            <item row="0" column="0" >
-            <widget class="QTextEdit" name="textEdit_2" />
+            <layout class="QHBoxLayout" name="horizontalLayout_7" >
+             <item>
+              <widget class="QLabel" name="label_5" >
+               <property name="text" >
+                <string>Numero de Muestras</string>
+               </property>
+               <property name="buddy" >
+                <cstring>spinBox</cstring>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="n2SpinBox" >
+               <property name="maximum" >
+                <number>1000</number>
+               </property>
+               <property name="singleStep" >
+                <number>100</number>
+               </property>
+               <property name="value" >
+                <number>200</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_6" >
+               <property name="text" >
+                <string>Profundidad</string>
+               </property>
+               <property name="buddy" >
+                <cstring>spinBox_2</cstring>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="depthSpinBox" >
+               <property name="maximum" >
+                <number>1000</number>
+               </property>
+               <property name="singleStep" >
+                <number>100</number>
+               </property>
+               <property name="value" >
+                <number>200</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer" >
+               <property name="orientation" >
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0" >
+                <size>
+                 <width>413</width>
+                 <height>17</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -173,15 +311,13 @@
      </widget>
     </item>
    </layout>
-   <zorder>groupBox_3</zorder>
-   <zorder>stackedWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar" >
    <property name="geometry" >
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>512</width>
+     <width>383</width>
      <height>22</height>
     </rect>
    </property>
@@ -192,7 +328,15 @@
     <addaction name="actionNew" />
     <addaction name="actionSave" />
    </widget>
+   <widget class="QMenu" name="menu_Editar" >
+    <property name="title" >
+     <string>&amp;Ir a</string>
+    </property>
+    <addaction name="actionModeloDeVelocidad" />
+    <addaction name="actionModeloDePropagacion" />
+   </widget>
    <addaction name="menu_File" />
+   <addaction name="menu_Editar" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
   <action name="actionNew" >
@@ -203,6 +347,16 @@
   <action name="actionSave" >
    <property name="text" >
     <string>&amp;Guardar</string>
+   </property>
+  </action>
+  <action name="actionModeloDeVelocidad" >
+   <property name="text" >
+    <string>&amp;Modelo de Velocidad</string>
+   </property>
+  </action>
+  <action name="actionModeloDePropagacion" >
+   <property name="text" >
+    <string>Modelo de Propagacion</string>
    </property>
   </action>
  </widget>
