@@ -26,6 +26,7 @@ private:
     QString strippedName(const QString &fullFileName);
     void createActions();
     void createToolBars();
+    QProcess process2;
     QProcess process;
     int distancia;
     int profundidad;
