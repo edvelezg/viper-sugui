@@ -9,25 +9,25 @@ MainWindow::MainWindow()
     createActions();
     createToolBars();
 
-    QPushButton *convertButton =
-            buttonBox->button(QDialogButtonBox::Ok);
-    convertButton->setText(tr("&Correr"));
+    QPushButton *simulateButton =
+            propagationModelButtonBox->button(QDialogButtonBox::Ok);
+    simulateButton->setText(tr("&Correr"));
 
     QPushButton *ximageButton =
-            buttonBox_2->button(QDialogButtonBox::Ok);
+            velocityModelButtonBox->button(QDialogButtonBox::Ok);
     ximageButton->setText(tr("&Ver Modelo"));
 
-    connect(convertButton, SIGNAL(clicked()),
+    connect(simulateButton, SIGNAL(clicked()),
             this, SLOT(runSimulation()));
 
     connect(ximageButton, SIGNAL(clicked()),
             this, SLOT(runXimage()));
 
-    connect(actionModeloDePropagacion, SIGNAL( triggered() ),  this,  SLOT( definePropagationModel() ));
+    connect(actionPropagationModel, SIGNAL( triggered() ),  this,  SLOT( definePropagationModel() ));
 
-    connect(actionModeloDeVelocidad, SIGNAL( triggered() ),  this,  SLOT( defineVelocityModel() ));
+    connect(actionVelocityModel, SIGNAL( triggered() ),  this,  SLOT( defineVelocityModel() ));
     
-    convertButton->setEnabled(false);
+    simulateButton->setEnabled(false);
 }
 
 void MainWindow::createActions()
@@ -61,7 +61,7 @@ void MainWindow::on_browseButton_clicked()
     fileName = QDir::toNativeSeparators(fileName);
     if (!fileName.isEmpty()) {
         sourceFileEdit->setText(fileName);
-        buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+        propagationModelButtonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
         sourceFile = sourceFileEdit->text();
     }
 }
@@ -89,7 +89,7 @@ void MainWindow::runSimulation()
 //  textEdit->clear();
 
 //  QString sourceFile = sourceFileEdit->text();
-    textEdit->append("Hello everyone!!!");
+//  propagationModelTextEdit->append("Hello everyone!!!");
 
     // QFile file("script.sh");
     // if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -105,7 +105,15 @@ void MainWindow::runSimulation()
 //  process2.setEnvironment(env);
 
     // Setting the arguments for unif2.
-//  QStringList args;
+
+
+    QStringList args;
+    args << "n1=100" << "n2=100" << "method=spline" << "label1='Depth (m)'" << "label2='Distance (m)'";
+
+    for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
+        propagationModelTextEdit->append(*it);
+    }
+
 //  args << "n1=100" << "n2=100" << "method=spline" << "label1='Depth (m)'" << "label2='Distance (m)'";
 //  textEdit->append(args.at(0));
 //  process2.setStandardInputFile("model.out");
@@ -128,10 +136,39 @@ void MainWindow::runSimulation()
 
 void MainWindow::runXimage()
 {
-//  textEdit->clear();
-//
+    velocityModelTextEdit->clear();
+
+    QString n1 = n1SpinBox->text();
+    QString n2 = n2SpinBox->text();
+    QString d1 = d1SpinBox->text();
+    QString d2 = d2SpinBox->text();
+
 //  QString sourceFile = sourceFileEdit->text();
-    textEdit_2->append("Hi everybody!!!");
+    velocityModelTextEdit->append("unif2");
+
+    QStringList args;
+    args << "n1=" + n1 
+         << "n2=" + n2
+        ;
+
+    for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
+        velocityModelTextEdit->append(*it);
+    }
+
+
+    args.clear();
+
+    velocityModelTextEdit->append("ximage");
+
+    args << "n1=" + n1 
+         << "n2=" + n2
+         << "d1=" + d1
+         << "d2=" + d2
+        ;
+
+    for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
+        velocityModelTextEdit->append(*it);
+    }
 
     // QFile file("script.sh");
     // if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -200,9 +237,8 @@ bool MainWindow::saveFile(const QString &fileName)
    }
 
 
-   distancia =  spinBox->text().toInt();
-   profundidad =  spinBox_2->text().toInt();
-   std::cout << distancia << " " << profundidad << endl;
+   distancia =  xsSpinBox->text().toInt();
+   profundidad =  zsSpinBox->text().toInt();
 
    QTextStream out(&file);
 
