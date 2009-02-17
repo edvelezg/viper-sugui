@@ -35,12 +35,12 @@
                 <string>&amp;Distancia</string>
                </property>
                <property name="buddy" >
-                <cstring>spinBox</cstring>
+                <cstring>xsSpinBox</cstring>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox" >
+              <widget class="QSpinBox" name="xsSpinBox" >
                <property name="maximum" >
                 <number>1000</number>
                </property>
@@ -58,12 +58,12 @@
                 <string>&amp;Profundidad</string>
                </property>
                <property name="buddy" >
-                <cstring>spinBox_2</cstring>
+                <cstring>zsSpinBox</cstring>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox_2" >
+              <widget class="QSpinBox" name="zsSpinBox" >
                <property name="maximum" >
                 <number>1000</number>
                </property>
@@ -139,10 +139,10 @@
          </widget>
         </item>
         <item row="2" column="0" >
-         <widget class="QTextEdit" name="textEdit" />
+         <widget class="QTextEdit" name="propagationModelTextEdit" />
         </item>
         <item row="3" column="0" >
-         <widget class="QDialogButtonBox" name="buttonBox" >
+         <widget class="QDialogButtonBox" name="propagationModelButtonBox" >
           <property name="standardButtons" >
            <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
           </property>
@@ -153,10 +153,10 @@
       <widget class="QWidget" name="page_2" >
        <layout class="QGridLayout" name="gridLayout_5" >
         <item row="2" column="0" >
-         <widget class="QTextEdit" name="textEdit_2" />
+         <widget class="QTextEdit" name="velocityModelTextEdit" />
         </item>
         <item row="3" column="0" >
-         <widget class="QDialogButtonBox" name="buttonBox_2" >
+         <widget class="QDialogButtonBox" name="velocityModelButtonBox" >
           <property name="standardButtons" >
            <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
           </property>
@@ -176,7 +176,7 @@
                 <string> Numero de Muestras</string>
                </property>
                <property name="buddy" >
-                <cstring>spinBox</cstring>
+                <cstring>xsSpinBox</cstring>
                </property>
               </widget>
              </item>
@@ -186,10 +186,10 @@
                 <number>1000</number>
                </property>
                <property name="singleStep" >
-                <number>100</number>
+                <number>10</number>
                </property>
                <property name="value" >
-                <number>200</number>
+                <number>100</number>
                </property>
               </widget>
              </item>
@@ -199,20 +199,20 @@
                 <string>Distancia</string>
                </property>
                <property name="buddy" >
-                <cstring>spinBox_2</cstring>
+                <cstring>zsSpinBox</cstring>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="distanceSpinBox" >
+              <widget class="QSpinBox" name="d1SpinBox" >
                <property name="maximum" >
-                <number>1000</number>
+                <number>50</number>
                </property>
                <property name="singleStep" >
-                <number>100</number>
+                <number>1</number>
                </property>
                <property name="value" >
-                <number>200</number>
+                <number>5</number>
                </property>
               </widget>
              </item>
@@ -248,7 +248,7 @@
                 <string>Numero de Muestras</string>
                </property>
                <property name="buddy" >
-                <cstring>spinBox</cstring>
+                <cstring>xsSpinBox</cstring>
                </property>
               </widget>
              </item>
@@ -258,10 +258,10 @@
                 <number>1000</number>
                </property>
                <property name="singleStep" >
-                <number>100</number>
+                <number>10</number>
                </property>
                <property name="value" >
-                <number>200</number>
+                <number>100</number>
                </property>
               </widget>
              </item>
@@ -271,20 +271,20 @@
                 <string>Profundidad</string>
                </property>
                <property name="buddy" >
-                <cstring>spinBox_2</cstring>
+                <cstring>zsSpinBox</cstring>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="depthSpinBox" >
+              <widget class="QSpinBox" name="d2SpinBox" >
                <property name="maximum" >
-                <number>1000</number>
+                <number>50</number>
                </property>
                <property name="singleStep" >
-                <number>100</number>
+                <number>1</number>
                </property>
                <property name="value" >
-                <number>200</number>
+                <number>5</number>
                </property>
               </widget>
              </item>
@@ -332,8 +332,8 @@
     <property name="title" >
      <string>&amp;Ir a</string>
     </property>
-    <addaction name="actionModeloDeVelocidad" />
-    <addaction name="actionModeloDePropagacion" />
+    <addaction name="actionVelocityModel" />
+    <addaction name="actionPropagationModel" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Editar" />
@@ -349,12 +349,12 @@
     <string>&amp;Guardar</string>
    </property>
   </action>
-  <action name="actionModeloDeVelocidad" >
+  <action name="actionVelocityModel" >
    <property name="text" >
     <string>&amp;Modelo de Velocidad</string>
    </property>
   </action>
-  <action name="actionModeloDePropagacion" >
+  <action name="actionPropagationModel" >
    <property name="text" >
     <string>Modelo de Propagacion</string>
    </property>
