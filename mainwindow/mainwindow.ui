@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>383</width>
+    <width>450</width>
     <height>487</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
     <item row="0" column="0" >
      <widget class="QStackedWidget" name="stackedWidget" >
       <property name="currentIndex" >
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page" >
        <layout class="QGridLayout" name="gridLayout_2" >
@@ -317,7 +317,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>383</width>
+     <width>450</width>
      <height>22</height>
     </rect>
    </property>
