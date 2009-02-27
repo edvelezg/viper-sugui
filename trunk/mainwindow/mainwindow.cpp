@@ -1,10 +1,13 @@
 #include <QtGui>
 #include <iostream>
 #include "mainwindow.h"
+#include "VelocityModel.h"
 
 MainWindow::MainWindow()
 {
     setupUi( this );
+
+	vm = new VelocityModel();
 
     createActions();
     createToolBars();
@@ -164,10 +167,16 @@ void MainWindow::runXimage()
 	
     velocityModelTextEdit->clear();
 
+    // QString n1 = n1SpinBox->text();
     QString n1 = n1SpinBox->text();
     QString n2 = n2SpinBox->text();
     QString d1 = d1SpinBox->text();
     QString d2 = d2SpinBox->text();
+
+	vm->setN1(n1.toInt());
+	// vm->setN2(n2.toInt());
+	// vm->setD1(d1.toInt());
+	// vm->setD2(d2.toInt());	
 
 //  QString sourceFile = sourceFileEdit->text();
 	// Setting arguments for unif2
@@ -177,10 +186,12 @@ void MainWindow::runXimage()
 	       	<< "n2=" + n2
 	        << "method=spline"
 	        ;
+    velocityModelTextEdit->append("vm->getN1()");
+    velocityModelTextEdit->append(QString::number(vm->getN1()));
 
-    for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
-        velocityModelTextEdit->append(*it);
-    }
+    // for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
+    //       velocityModelTextEdit->append(*it);
+    //   }
 
 	// Process unif2.
 	process2.setStandardInputFile("model.out");

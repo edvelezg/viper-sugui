@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "ui_mainwindow.h"
 #include <QProcess>
+#include "VelocityModel.h"
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -37,6 +38,8 @@ private:
     QString curFile;
     QToolBar *fileToolBar;
     QStringList recentFiles;
+	VelocityModel *vm;
+
 };
 
 #endif
