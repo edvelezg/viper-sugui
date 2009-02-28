@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include "ui_mainwindow.h"
 #include <QProcess>
-#include "VelocityModel.h"
+#include "velocitymodel.h"
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {

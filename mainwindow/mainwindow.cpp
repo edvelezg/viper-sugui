@@ -1,7 +1,7 @@
 #include <QtGui>
 #include <iostream>
 #include "mainwindow.h"
-#include "VelocityModel.h"
+#include "velocitymodel.h"
 
 MainWindow::MainWindow()
 {
@@ -163,31 +163,27 @@ void MainWindow::runXimage()
  	env << "PATH=$PATH:/opt/SU/bin";
  	process.setEnvironment(env);
 	process2.setEnvironment(env);
-
 	
     velocityModelTextEdit->clear();
 
-    // QString n1 = n1SpinBox->text();
-    QString n1 = n1SpinBox->text();
-    QString n2 = n2SpinBox->text();
-    QString d1 = d1SpinBox->text();
-    QString d2 = d2SpinBox->text();
+	vm->setN1(n1SpinBox->text());
+	vm->setN2(n2SpinBox->text());
+	vm->setD1(d1SpinBox->text());
+	vm->setD2(d2SpinBox->text());
 
-	vm->setN1(n1.toInt());
-	// vm->setN2(n2.toInt());
-	// vm->setD1(d1.toInt());
-	// vm->setD2(d2.toInt());	
-
-//  QString sourceFile = sourceFileEdit->text();
 	// Setting arguments for unif2
     velocityModelTextEdit->append("unif2");
     QStringList args;
-    args 	<< "n1=" + n1 
-	       	<< "n2=" + n2
+	args 	<< "n1=" + vm->getN1()
+	       	<< "n2=" + vm->getN2()
 	        << "method=spline"
 	        ;
-    velocityModelTextEdit->append("vm->getN1()");
-    velocityModelTextEdit->append(QString::number(vm->getN1()));
+    velocityModelTextEdit->append("Getting stuff from VM");
+    velocityModelTextEdit->append(	vm->getN1()		);
+    velocityModelTextEdit->append(	vm->getN2()		);
+    velocityModelTextEdit->append(	vm->getD1()		);
+    velocityModelTextEdit->append(	vm->getD2()		);
+    velocityModelTextEdit->append(	vm->getMethod()	);
 
     // for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
     //       velocityModelTextEdit->append(*it);
@@ -204,21 +200,20 @@ void MainWindow::runXimage()
 	
 	// Setting arguments for ximage
     velocityModelTextEdit->append("ximage");
-    args	<< "n1=" + n1 
-         	<< "n2=" + n2
-         	<< "d1=" + d1
-         	<< "d2=" + d2
+	args	<< "n1=" + vm->getN1() 
+         	<< "n2=" + vm->getN2()
+         	<< "d1=" + vm->getD1()
+         	<< "d2=" + vm->getD2()
          	<< "legend=1"
         	;
 
-    for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
-        velocityModelTextEdit->append(*it);
-    }
+    // for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
+    //     velocityModelTextEdit->append(*it);
+    // }
 
 	process.setStandardInputFile("vel.out");
 	process.setWorkingDirectory( QDir::current().currentPath() );
 	process.start("ximage", args);
-
 }
 
 bool MainWindow::save()
