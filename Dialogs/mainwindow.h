@@ -3,40 +3,44 @@
 
 #include <QMainWindow>
 #include "ui_mainwindow.h"
-#include <QProcess>
-#include "velocitymodel.h"
+
+class Geometry;
+class ModelParams;
+class VelocityModel;
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
-    Q_OBJECT
+    Q_OBJECT 
 
 public:
     MainWindow();
 
 private slots:
     void newFile();
+    void open();
     bool save();
     bool saveAs();
-    void runSimulation();
-    void runXimage();
-    void defineVelocityModel();
-    void definePropagationModel();
-    void on_browseButton_clicked();
+    void about();
+    void sizeSettings();
+    void modelParams();
 
 private:
+    void createActions();
+    void createToolBars();
+    bool okToContinue();
     void setCurrentFile(const QString &fileName);
     bool saveFile(const QString &fileName);
     void updateRecentFileActions();
     QString strippedName(const QString &fullFileName);
-    void createActions();
-    void createToolBars();
-    QProcess process2;
-    QProcess process;
+
     QString sourceFile;
     QString curFile;
+
     QToolBar *fileToolBar;
-    QStringList recentFiles;
-	VelocityModel *vm;
+
+    Geometry *dlgGeometry;
+    ModelParams *dlgModParams;
+    VelocityModel *vm;
 
 };
 

@@ -107,9 +107,7 @@ void MainWindow::runSimulation()
     out << "                                                                                        " << endl;
     out << "n1=100 d1=5 f1=0.0 label1=\"Profundidad (km)\"                                                " << endl;
     out << "n2=100 d2=5 f2=0.0 label2=\"Distancia (km)\"                                             " << endl;
-
-        out << qPrintable(QString("xs=%1 zs=%2 hsz=50 vsx=250 verbose=2 ")
-                                                                                                                .arg(xsSpinBox->text()).arg(zsSpinBox->text())) << endl;
+        out << qPrintable(QString("xs=%1 zs=%2 hsz=50 vsx=250 verbose=2 ").arg(xsSpinBox->text()).arg(zsSpinBox->text())) << endl;
 
     out << "vsfile=\"vseis.out\" ssfile=\"sseis.out\" hsfile=\"hseis.out\"                          " << endl;
     out << "tmax=.4 mt=5 fpeak=35 fmax=40                                                           " << endl;
