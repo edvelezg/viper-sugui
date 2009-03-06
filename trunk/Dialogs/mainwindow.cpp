@@ -38,6 +38,9 @@ void MainWindow::createActions()
     actionAbout->setStatusTip(tr("Sobre este programa"));
     connect(actionAbout, SIGNAL(triggered()), this, SLOT(about()));
 
+    actionRun->setStatusTip(tr("Correr una Simulacion"));
+    connect(actionRun, SIGNAL(triggered()), this, SLOT(run()));
+
     connect(actionSizeSettings, SIGNAL(triggered()),
             this, SLOT(sizeSettings()));
     connect(actionModelParams, SIGNAL(triggered()),
@@ -77,6 +80,41 @@ void MainWindow::sizeSettings()
         textEdit->append( "heightoff2: " + heightoff2 );
     }
 
+}
+
+void MainWindow::run()
+{
+	// Setting the Environment for Seismic Unix
+	QStringList env = QProcess::systemEnvironment();
+ 	env << "CWPROOT=/opt/SU";
+ 	env << "PATH=$PATH:/opt/SU/bin";
+ 	ximage.setEnvironment(env);
+	unif2.setEnvironment(env);
+  	
+    QStringList args;
+	args 	<< "n1=" + vm->getN1()
+	       	<< "n2=" + vm->getN2()
+	        << "method=spline"
+	        ;
+	
+	// Process ximage.
+	unif2.setStandardInputFile("model.out");
+	unif2.setStandardOutputFile("vel.out");
+	unif2.setWorkingDirectory( QDir::current().currentPath() );
+	unif2.start("unif2", args);
+	unif2.waitForFinished();
+	
+	args.clear();
+    
+	args	<< "n1=" + vm->getN1() 
+         	<< "n2=" + vm->getN2()
+         	<< "d1=" + vm->getD1()
+         	<< "d2=" + vm->getD2()
+         	<< "legend=1"
+        	;
+	ximage.setStandardInputFile("vel.out");
+	ximage.setWorkingDirectory( QDir::current().currentPath() );
+	ximage.start("ximage", args);	
 }
 
 void MainWindow::modelParams()
@@ -134,7 +172,7 @@ void MainWindow::newFile()
     }
 }
 
-void MainWindow::open()
+wvoid MainWindow::open()
 {
     if (okToContinue()) {
         QString fileName = QFileDialog::getOpenFileName(this,

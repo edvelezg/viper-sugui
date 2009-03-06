@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QProcess>
 #include "ui_mainwindow.h"
 
 class Geometry;
@@ -21,6 +22,7 @@ private slots:
     bool save();
     bool saveAs();
     void about();
+    void run();
     void sizeSettings();
     void modelParams();
 
@@ -33,6 +35,8 @@ private:
     void updateRecentFileActions();
     QString strippedName(const QString &fullFileName);
 
+    QProcess unif2;
+    QProcess ximage;
     QString sourceFile;
     QString curFile;
 
