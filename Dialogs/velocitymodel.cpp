@@ -16,15 +16,16 @@ VelocityModel::VelocityModel() {
     velocities.push_back( "3600" );
 }
 
-QString VelocityModel::getN1()					                { 	return n1;				}
-QString VelocityModel::getN2()					                { 	return n2;				}	
-QString VelocityModel::getD1()					                { 	return d1;				}	
-QString VelocityModel::getD2()					                { 	return d2;				}
-QString VelocityModel::getCmap()   		                        {   return cmap;            } 
-QString VelocityModel::getLegend()   		                    {   return legend;          } 
-QString VelocityModel::getTitulo()   		                    {   return titulo;          } 
-QString VelocityModel::getMethod()				                { 	return method;			}
-QVector<QString> VelocityModel::getVelocities()				    { 	return velocities;		}
+QString VelocityModel::getN1()					                { 	return n1;						}
+QString VelocityModel::getN2()					                { 	return n2;						}	
+QString VelocityModel::getD1()					                { 	return d1;					 	}	
+QString VelocityModel::getD2()					                { 	return d2;						}
+QString VelocityModel::getCmap()   		                        {   return cmap;        		    } 
+QString VelocityModel::getLegend()   		                    {   return legend;      		    } 
+QString VelocityModel::getTitulo()   		                    {   return titulo;      		    } 
+QString VelocityModel::getMethod()				                { 	return method;					}
+QString VelocityModel::getModelFile()				            { 	return modelFile;				}
+QVector<QString> VelocityModel::getVelocities()				    { 	return velocities;				}
                                         		
 void VelocityModel::setN1(QString n1)   		                {	this->n1 = n1;			        }
 void VelocityModel::setN2(QString n2)   		                {	this->n2 = n2;			        }	
@@ -34,6 +35,7 @@ void VelocityModel::setCmap(QString cmap)   		            {   this->cmap = cmap;
 void VelocityModel::setLegend(QString legend)   		        {   this->legend = legend;          } 
 void VelocityModel::setTitulo(QString titulo)   		        {   this->titulo = titulo;          } 
 void VelocityModel::setMethod(QString method)	                {	this->method = method; 	        }
+void VelocityModel::setModelFile(QString modelFile)	            {	this->modelFile = modelFile; 	}
 void VelocityModel::setVelocities(QVector<QString> velocities)	{	this->velocities = velocities; 	}
 
 bool VelocityModel::writeFile(const QString &fileName)
@@ -57,6 +59,7 @@ bool VelocityModel::writeFile(const QString &fileName)
     out << qPrintable(QString("%1").arg(legend)) << endl; 
     out << qPrintable(QString("%1").arg(titulo)) << endl; 
     out << qPrintable(QString("%1").arg(method)) << endl; 
+    out << qPrintable(QString("%1").arg(modelFile)) << endl; 
 
     return true;
 }
@@ -74,6 +77,17 @@ bool VelocityModel::readFile(const QString &fileName)
     }
 
     QTextStream in(&file);
+
+    in >> n1;
+    in >> n2; 
+    in >> d1; 
+    in >> d2; 
+    in >> cmap; 
+    in >> legend; 
+    in >> titulo; 
+    in >> method; 
+    in >> modelFile; 
+
     return true;
 }
 

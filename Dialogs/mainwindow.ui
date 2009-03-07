@@ -83,6 +83,8 @@
     <property name="title" >
      <string>&amp;Modelo de Velocidad</string>
     </property>
+    <addaction name="actionCreateModel" />
+    <addaction name="actionLoadModel" />
     <addaction name="actionEditModel" />
     <addaction name="actionModelParams" />
     <addaction name="actionPreview" />
@@ -186,6 +188,19 @@
    </property>
    <property name="shortcut" >
     <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionCreateModel" >
+   <property name="text" >
+    <string>Crear Modelo</string>
+   </property>
+  </action>
+  <action name="actionLoadModel" >
+   <property name="text" >
+    <string>Cargar Modelo</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+O</string>
    </property>
   </action>
  </widget>

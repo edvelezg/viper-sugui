@@ -18,6 +18,7 @@ public:
 	QString getLegend();
 	QString getTitulo();
 	QString getMethod();
+	QString getModelFile();
 	QVector<QString> getVelocities();
 
 	void setN1(QString);
@@ -28,6 +29,7 @@ public:
 	void setLegend(QString);
 	void setTitulo(QString);
 	void setMethod(QString);
+	void setModelFile(QString);
 	void setVelocities(QVector<QString>);
 
     bool writeFile(const QString &fileName);
@@ -44,6 +46,7 @@ private:
 	QString legend;
 	QString titulo;
 	QString method;
+	QString modelFile;
 
 	QVector<QString> velocities;
 };

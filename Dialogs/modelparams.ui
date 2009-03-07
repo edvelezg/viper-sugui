@@ -8,8 +8,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>306</width>
-    <height>375</height>
+    <width>424</width>
+    <height>489</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -300,22 +300,12 @@
          <widget class="QComboBox" name="cbColor" >
           <item>
            <property name="text" >
-            <string>Grises</string>
-           </property>
-          </item>
-          <item>
-           <property name="text" >
             <string>Color</string>
            </property>
           </item>
           <item>
            <property name="text" >
-            <string>RGB0</string>
-           </property>
-          </item>
-          <item>
-           <property name="text" >
-            <string>HSV1</string>
+            <string>Grises</string>
            </property>
           </item>
          </widget>

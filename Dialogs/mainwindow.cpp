@@ -3,6 +3,7 @@
 #include "geometry.h"
 #include "modelparams.h"
 #include "velocitymodel.h"
+#include "loadmodel.h"
 
 MainWindow::MainWindow() {
     setupUi( this );   
@@ -10,6 +11,7 @@ MainWindow::MainWindow() {
     vm = new VelocityModel();
     dlgGeometry  = 0;
     dlgModParams = 0;
+	dlgLoadModel = 0;
     createActions();
     createToolBars();
 
@@ -40,6 +42,9 @@ void MainWindow::createActions()
 
     actionRun->setStatusTip(tr("Correr una Simulacion"));
     connect(actionRun, SIGNAL(triggered()), this, SLOT(run()));
+
+    actionLoadModel->setStatusTip(tr("Carcar Modelo de Velocidad"));
+    connect(actionLoadModel, SIGNAL(triggered()), this, SLOT(loadModel()));
 
     connect(actionSizeSettings, SIGNAL(triggered()),
             this, SLOT(sizeSettings()));
@@ -80,6 +85,35 @@ void MainWindow::sizeSettings()
         textEdit->append( "heightoff2: " + heightoff2 );
     }
 
+    tabWidget->setCurrentIndex(1);
+}
+
+void MainWindow::loadModel()
+{
+    // textEdit->clear();
+    if (!dlgLoadModel) {
+        dlgLoadModel = new LoadModel( this );
+    } else {
+        dlgLoadModel->show();
+    }
+
+    if (dlgLoadModel->exec()) {
+		textEdit->append("source file:" + dlgLoadModel->getModelFile());
+		vm->setModelFile(dlgLoadModel->getModelFile());
+        // QString width      = (dlgLoadModel->sbWidth)->text();
+        // QString height     = (dlgLoadModel->sbHeight)->text();
+        // QString widthoff1  = (dlgLoadModel->sbWidthOff1)->text();
+        // QString widthoff2  = (dlgLoadModel->sbWidthOff2)->text();
+        // QString heightoff1 = (dlgLoadModel->sbHeightOff1)->text();
+        // QString heightoff2 = (dlgLoadModel->sbHeightOff2)->text();
+        // textEdit->append( "width: "      + width );
+        // textEdit->append( "height: "     + height );
+        // textEdit->append( "widthoff1: "  + widthoff1 );
+        // textEdit->append( "widthoff1: "  + widthoff1 );
+        // textEdit->append( "heightoff1: " + heightoff1 );
+        // textEdit->append( "heightoff2: " + heightoff2 );
+    }
+
 }
 
 void MainWindow::run()
@@ -90,28 +124,38 @@ void MainWindow::run()
  	env << "PATH=$PATH:/opt/SU/bin";
  	ximage.setEnvironment(env);
 	unif2.setEnvironment(env);
-  	
+
+	// Process unif2.
     QStringList args;
-	args 	<< "n1=" + vm->getN1()
-	       	<< "n2=" + vm->getN2()
-	        << "method=spline"
+	args 	<< "n1=" 		+ vm->getN1()
+	       	<< "n2=" 		+ vm->getN2()
+			<< "method=" 	+ vm->getMethod()
 	        ;
 	
-	// Process ximage.
-	unif2.setStandardInputFile("model.out");
+	// print it out
+	for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
+		textEdit->append(*it); 
+	}
+
+	unif2.setStandardInputFile(vm->getModelFile());
 	unif2.setStandardOutputFile("vel.out");
 	unif2.setWorkingDirectory( QDir::current().currentPath() );
 	unif2.start("unif2", args);
 	unif2.waitForFinished();
 	
 	args.clear();
-    
-	args	<< "n1=" + vm->getN1() 
-         	<< "n2=" + vm->getN2()
-         	<< "d1=" + vm->getD1()
-         	<< "d2=" + vm->getD2()
-         	<< "legend=1"
-        	;
+	
+    // Process ximage.
+	args	<< "n1="	 	+ vm->getN1() 
+         	<< "n2=" 		+ vm->getN2()
+         	<< "d1=" 		+ vm->getD1()
+         	<< "d2=" 		+ vm->getD2()
+			<< "legend=" 	+ vm->getLegend()
+			<< "cmap=" 		+ vm->getCmap()
+		    << "label=" 	+ vm->getTitulo()
+    	    << "method=" 	+ vm->getMethod()
+			;
+
 	ximage.setStandardInputFile("vel.out");
 	ximage.setWorkingDirectory( QDir::current().currentPath() );
 	ximage.start("ximage", args);	
@@ -136,8 +180,12 @@ void MainWindow::modelParams()
         vm->setN2((dlgModParams->sbN2)->text());        
         vm->setD1((dlgModParams->sbD1)->text());        
         vm->setD2((dlgModParams->sbD2)->text());        
-
-        vm->setCmap((dlgModParams->cbColor)->currentText());        
+		
+		if ((dlgModParams->cbColor)->currentText() == "Color") {
+        	vm->setCmap("hue");        
+		}	else {
+			vm->setCmap("gray");
+		}		
 
         if((dlgModParams->chkLeyenda)->isChecked()) {
             vm->setLegend("1");        
@@ -147,9 +195,6 @@ void MainWindow::modelParams()
 
         vm->setTitulo((dlgModParams->leTitulo)->text());        
 
-//      textEdit->append( "vel1:"    +   vm->getN1()       );
-//      textEdit->append( "vel2:"    +   vm->getN2()       );
-//      textEdit->append( "vel3:"    +   vm->getD1()       );
         textEdit->append( "n1:"      +   vm->getN1() );
         textEdit->append( "n2:"      +   vm->getN2() );
         textEdit->append( "d1:"      +   vm->getD1() );
@@ -172,14 +217,14 @@ void MainWindow::newFile()
     }
 }
 
-wvoid MainWindow::open()
+void MainWindow::open()
 {
     if (okToContinue()) {
         QString fileName = QFileDialog::getOpenFileName(this,
                                    tr("Open Simulation"), ".",
                                    tr("Simulation Viper(*.svp)"));
-//      if (!fileName.isEmpty())
-//          loadFile(fileName);
+     if (!fileName.isEmpty())
+         loadFile(fileName);
     }
 }
 
@@ -233,6 +278,22 @@ bool MainWindow::saveFile(const QString &fileName)
    }
    setCurrentFile( fileName );
    vm->writeFile( fileName );
+
+   return true;
+}
+
+bool MainWindow::loadFile(const QString &fileName)
+{
+   QFile file(fileName);
+   if (!file.open(QIODevice::ReadOnly)) {
+       QMessageBox::warning(this, tr("Simulacion"),
+                            tr("No puedo escribir el archivo %1:\n%2.")
+                            .arg(file.fileName())
+                            .arg(file.errorString()));
+       return false;
+   }
+   setCurrentFile( fileName );
+   vm->readFile( fileName );
 
    return true;
 }
