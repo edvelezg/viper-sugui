@@ -6,12 +6,15 @@
 
 #include "ui_modelparams.h"
 
+class VelocityModel;
+
 class ModelParams : public QDialog, public Ui::ModelDialog
 {
     Q_OBJECT
 
 public:
     ModelParams(QWidget *parent = 0);
+	void getParams(VelocityModel &vm);
 
 };
 

@@ -9,12 +9,6 @@ LoadModel::LoadModel(QWidget *parent)
 
     connect(propagationModelButtonBox->button(QDialogButtonBox::Ok), SIGNAL(clicked()), this, SLOT(accept()));
     connect(propagationModelButtonBox->button(QDialogButtonBox::Cancel), SIGNAL(clicked()), this, SLOT(reject()));
-
-    QPushButton *simulateButton =
-            propagationModelButtonBox->button(QDialogButtonBox::Ok);
-    simulateButton->setText(tr("&Correr"));
-
-    connect(simulateButton, SIGNAL(clicked()), this, SLOT(runSimulation()));
 }
 
 void LoadModel::on_browseButton_clicked()

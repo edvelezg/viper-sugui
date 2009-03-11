@@ -10,6 +10,13 @@ class VelocityModel
 public:
 	VelocityModel ();
 
+	QString getWidth	 ();
+	QString getHeight	 ();	
+	QString getWidthOff1 ();	
+	QString getHeightOff1();
+	QString getWidthOff2 ();
+	QString getHeightOff2();
+
 	QString getN1();
 	QString getN2();	
 	QString getD1();	
@@ -20,6 +27,13 @@ public:
 	QString getMethod();
 	QString getModelFile();
 	QVector<QString> getVelocities();
+
+	void setWidth	 (QString);
+	void setHeight	 (QString);	
+	void setWidthOff1 (QString);	
+	void setHeightOff1(QString);
+	void setWidthOff2 (QString);
+	void setHeightOff2(QString);
 
 	void setN1(QString);
 	void setN2(QString);	
@@ -38,16 +52,23 @@ public:
 	void clear();
 		
 private:
-	QString n1;
-	QString n2;
-	QString d1;
-	QString d2;
-	QString cmap;
-	QString legend;
-	QString titulo;
-	QString method;
-	QString modelFile;
+	QString width		;			// Tamaño de ventana
+	QString height		;         // Tamaño de ventana
+	QString widthoff1	;      // Tamaño de ventana
+	QString heightoff1	;     // Tamaño de ventana
+	QString widthoff2	;      // Tamaño de ventana
+	QString heightoff2	;     // Tamaño de ventana
 
+	QString n1			;				// Parametros de Velocidad
+	QString n2			;             // Parametros de Velocidad
+	QString d1			;             // Parametros de Velocidad
+	QString d2			;             // Parametros de Velocidad
+	QString cmap		;           // Parametros de Velocidad
+	QString legend		;         // Parametros de Velocidad
+	QString titulo		;         // Parametros de Velocidad
+	QString method		;         // Parametros de Velocidad
+	QString modelFile	;      // Parametros de Velocidad
+	
 	QVector<QString> velocities;
 };
 
