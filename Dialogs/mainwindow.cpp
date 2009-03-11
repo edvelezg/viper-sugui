@@ -12,7 +12,7 @@ MainWindow::MainWindow() {
     dlgGeometry  = 0;
     dlgModParams = 0;
 	dlgLoadModel = 0;
-    createActions();
+    createActions() ;
     createToolBars();
 
     setWindowIcon(QIcon(":/images/icon.png"));
@@ -71,18 +71,21 @@ void MainWindow::sizeSettings()
     }
 
     if (dlgGeometry->exec()) {
-        QString width      = (dlgGeometry->sbWidth)->text();
-        QString height     = (dlgGeometry->sbHeight)->text();
-        QString widthoff1  = (dlgGeometry->sbWidthOff1)->text();
-        QString widthoff2  = (dlgGeometry->sbWidthOff2)->text();
-        QString heightoff1 = (dlgGeometry->sbHeightOff1)->text();
-        QString heightoff2 = (dlgGeometry->sbHeightOff2)->text();
-        textEdit->append( "width: "      + width );
-        textEdit->append( "height: "     + height );
-        textEdit->append( "widthoff1: "  + widthoff1 );
-        textEdit->append( "widthoff1: "  + widthoff1 );
-        textEdit->append( "heightoff1: " + heightoff1 );
-        textEdit->append( "heightoff2: " + heightoff2 );
+	    setWindowModified(true);
+
+		vm->setWidth	 	( (dlgGeometry->sbWidth)->text()      	);
+		vm->setHeight	 	( (dlgGeometry->sbHeight)->text()     	);
+		vm->setWidthOff1 	( (dlgGeometry->sbWidthOff1)->text()  	);
+		vm->setHeightOff1	( (dlgGeometry->sbHeightOff1)->text()  	);
+		vm->setWidthOff2 	( (dlgGeometry->sbWidthOff2)->text() 	);
+		vm->setHeightOff2	( (dlgGeometry->sbHeightOff2)->text() 	);
+	                                                              	
+		textEdit->append	( "width: "      + vm->getWidth	 	()	);
+        textEdit->append	( "height: "     + vm->getHeight	()	); 
+        textEdit->append	( "widthoff1: "  + vm->getWidthOff1 ()	); 
+        textEdit->append	( "widthoff1: "  + vm->getHeightOff1()	); 
+        textEdit->append	( "heightoff1: " + vm->getWidthOff2 ()	); 
+        textEdit->append	( "heightoff2: " + vm->getHeightOff2()	); 
     }
 
     tabWidget->setCurrentIndex(1);
@@ -100,24 +103,13 @@ void MainWindow::loadModel()
     if (dlgLoadModel->exec()) {
 		textEdit->append("source file:" + dlgLoadModel->getModelFile());
 		vm->setModelFile(dlgLoadModel->getModelFile());
-        // QString width      = (dlgLoadModel->sbWidth)->text();
-        // QString height     = (dlgLoadModel->sbHeight)->text();
-        // QString widthoff1  = (dlgLoadModel->sbWidthOff1)->text();
-        // QString widthoff2  = (dlgLoadModel->sbWidthOff2)->text();
-        // QString heightoff1 = (dlgLoadModel->sbHeightOff1)->text();
-        // QString heightoff2 = (dlgLoadModel->sbHeightOff2)->text();
-        // textEdit->append( "width: "      + width );
-        // textEdit->append( "height: "     + height );
-        // textEdit->append( "widthoff1: "  + widthoff1 );
-        // textEdit->append( "widthoff1: "  + widthoff1 );
-        // textEdit->append( "heightoff1: " + heightoff1 );
-        // textEdit->append( "heightoff2: " + heightoff2 );
     }
 
 }
 
 void MainWindow::run()
 {
+	textEdit->clear();
 	// Setting the Environment for Seismic Unix
 	QStringList env = QProcess::systemEnvironment();
  	env << "CWPROOT=/opt/SU";
@@ -154,7 +146,15 @@ void MainWindow::run()
 			<< "cmap=" 		+ vm->getCmap()
 		    << "label=" 	+ vm->getTitulo()
     	    << "method=" 	+ vm->getMethod()
+    	    << "wbox=" 		+ vm->getWidth()
+    	    << "hbox=" 		+ vm->getHeight()
+    	    << "xbox=" 		+ vm->getWidthOff2()
+    	    << "ybox=" 		+ vm->getHeightOff2()
 			;
+			
+	for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
+        textEdit->append(*it); 
+	}
 
 	ximage.setStandardInputFile("vel.out");
 	ximage.setWorkingDirectory( QDir::current().currentPath() );
@@ -164,22 +164,28 @@ void MainWindow::run()
 void MainWindow::modelParams()
 {
     textEdit->clear();
+	
     if (!dlgModParams) {
         dlgModParams = new ModelParams( this );
     } else {
         dlgModParams->show();
     }
-
+	
+	dlgModParams->getParams(*vm);
+	
     if (dlgModParams->exec()) {
         setWindowModified(true);
-        QString vel1       = (dlgModParams->sbVel1)->text();
-        QString vel2       = (dlgModParams->sbVel2)->text();
-        QString vel3       = (dlgModParams->sbVel3)->text();
-                           
-        vm->setN1((dlgModParams->sbN1)->text());        
-        vm->setN2((dlgModParams->sbN2)->text());        
-        vm->setD1((dlgModParams->sbD1)->text());        
-        vm->setD2((dlgModParams->sbD2)->text());        
+		
+		double distance  = (dlgModParams->sbDistance)->text().toDouble();
+		double depth = (dlgModParams->sbDepth)->text().toDouble();
+		
+		QString d1 = QString::number((depth/100.0));
+		QString d2 = QString::number((distance/100.0));
+				
+        vm->setN1("100");        
+        vm->setN2("100");        
+        vm->setD1(d1);        
+        vm->setD2(d2);        
 		
 		if ((dlgModParams->cbColor)->currentText() == "Color") {
         	vm->setCmap("hue");        
@@ -193,18 +199,19 @@ void MainWindow::modelParams()
             vm->setLegend("0");        
         }
 
+		vm->setMethod((dlgModParams->cbMethod)->currentText());
+
         vm->setTitulo((dlgModParams->leTitulo)->text());        
 
-        textEdit->append( "n1:"      +   vm->getN1() );
-        textEdit->append( "n2:"      +   vm->getN2() );
-        textEdit->append( "d1:"      +   vm->getD1() );
-        textEdit->append( "d2:"      +   vm->getD2() );
-        textEdit->append( "cmap:"    +   vm->getCmap()   );
-        textEdit->append( "legend:"  +   vm->getLegend()   );
-        textEdit->append( "titulo:"  +   vm->getTitulo()   );
+        textEdit->append( "n1:"      +   vm->getN1() 		);
+        textEdit->append( "n2:"      +   vm->getN2() 		);
+        textEdit->append( "d1:"      +   vm->getD1() 		);
+        textEdit->append( "d2:"      +   vm->getD2() 		);
+        textEdit->append( "cmap:"    +   vm->getCmap()   	);
+        textEdit->append( "legend:"  +   vm->getLegend()   	);
+        textEdit->append( "titulo:"  +   vm->getTitulo()   	);
 
         tabWidget->setCurrentIndex(0);
-
     }
 }
 
@@ -323,8 +330,8 @@ void MainWindow::about()
 {
     QMessageBox::about(this, tr("Sobre Viper SUGUI"),
             tr("<h2>Viper SuGui 1.1</h2>"
-               "<p>Copyright &copy; 2009 EAFIT."
-               "<p>Viper es una pequenha aplicacion que ayuda en la "
-               "elaboracion de simulacion de propagacionde ondas sismicas"
+               "<p>Copyright &copy; 2009 Eduardo Gutarra."
+               "<p>Viper es una pequeña aplicacion que ayuda en la "
+               "elaboración de simulaciones de propagación de ondas sismicas"
                "utilizando un modelo de velocidad. "));
 }

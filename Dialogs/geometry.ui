@@ -8,18 +8,158 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>230</width>
-    <height>193</height>
+    <width>354</width>
+    <height>312</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Geometria de Ventana</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_3" >
-   <item row="0" column="0" >
+  <layout class="QFormLayout" name="formLayout" >
+   <item row="1" column="1" >
+    <spacer name="horizontalSpacer_2" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="0" >
+    <widget class="QGroupBox" name="groupBox_2" >
+     <property name="title" >
+      <string>Geometria de la &amp;Propagacion</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout" >
+      <item row="2" column="0" >
+       <widget class="QLabel" name="label_4" >
+        <property name="text" >
+         <string>Ancho</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" >
+       <widget class="QSpinBox" name="sbWidth_2" >
+        <property name="minimum" >
+         <number>10</number>
+        </property>
+        <property name="maximum" >
+         <number>2048</number>
+        </property>
+        <property name="singleStep" >
+         <number>100</number>
+        </property>
+        <property name="value" >
+         <number>500</number>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2" >
+       <widget class="QLabel" name="label_3" >
+        <property name="text" >
+         <string>Altura</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3" >
+       <widget class="QSpinBox" name="sbHeight_2" >
+        <property name="minimum" >
+         <number>10</number>
+        </property>
+        <property name="maximum" >
+         <number>2048</number>
+        </property>
+        <property name="singleStep" >
+         <number>100</number>
+        </property>
+        <property name="value" >
+         <number>500</number>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0" >
+       <widget class="QLabel" name="label_7" >
+        <property name="text" >
+         <string>Posicion &amp;X</string>
+        </property>
+        <property name="buddy" >
+         <cstring>sbWidthOff1</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1" >
+       <widget class="QSpinBox" name="sbWidthOff1" >
+        <property name="minimum" >
+         <number>10</number>
+        </property>
+        <property name="maximum" >
+         <number>2048</number>
+        </property>
+        <property name="singleStep" >
+         <number>100</number>
+        </property>
+        <property name="value" >
+         <number>50</number>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="3" >
+       <widget class="QSpinBox" name="sbHeightOff1" >
+        <property name="minimum" >
+         <number>10</number>
+        </property>
+        <property name="maximum" >
+         <number>2048</number>
+        </property>
+        <property name="singleStep" >
+         <number>100</number>
+        </property>
+        <property name="value" >
+         <number>530</number>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="2" >
+       <widget class="QLabel" name="label_8" >
+        <property name="text" >
+         <string>Posicion &amp;Y</string>
+        </property>
+        <property name="buddy" >
+         <cstring>sbHeightOff1</cstring>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="1" >
+    <spacer name="horizontalSpacer" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="4" column="0" >
+    <widget class="QDialogButtonBox" name="buttonBox" >
+     <property name="standardButtons" >
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" >
     <widget class="QGroupBox" name="groupBox" >
      <property name="title" >
-      <string>&amp;Parametros del Tamaño de Ventana</string>
+      <string>&amp;Geometria del Modelo de Velocidad</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2" >
       <item row="0" column="0" >
@@ -68,46 +208,17 @@
         </property>
        </widget>
       </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="1" column="0" >
-    <widget class="QGroupBox" name="groupBox_2" >
-     <property name="title" >
-      <string>&amp;Ubicacion de la Ventana</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout" >
-      <item row="0" column="0" >
+      <item row="2" column="0" >
        <widget class="QLabel" name="label_5" >
         <property name="text" >
-         <string>Ancho 1</string>
+         <string>Posicion &amp;X</string>
+        </property>
+        <property name="buddy" >
+         <cstring>sbWidthOff2</cstring>
         </property>
        </widget>
       </item>
-      <item row="0" column="1" >
-       <widget class="QSpinBox" name="sbWidthOff1" >
-        <property name="minimum" >
-         <number>10</number>
-        </property>
-        <property name="maximum" >
-         <number>2048</number>
-        </property>
-        <property name="singleStep" >
-         <number>100</number>
-        </property>
-        <property name="value" >
-         <number>10</number>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3" >
-       <widget class="QLabel" name="label_6" >
-        <property name="text" >
-         <string>Ancho 2</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4" >
+      <item row="2" column="1" >
        <widget class="QSpinBox" name="sbWidthOff2" >
         <property name="minimum" >
          <number>10</number>
@@ -123,37 +234,17 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0" >
-       <widget class="QLabel" name="label_7" >
+      <item row="2" column="3" >
+       <widget class="QLabel" name="label_6" >
         <property name="text" >
-         <string>Atura 1</string>
+         <string>Posicion &amp;Y</string>
+        </property>
+        <property name="buddy" >
+         <cstring>sbHeightOff2</cstring>
         </property>
        </widget>
       </item>
-      <item row="1" column="1" >
-       <widget class="QSpinBox" name="sbHeightOff1" >
-        <property name="minimum" >
-         <number>10</number>
-        </property>
-        <property name="maximum" >
-         <number>2048</number>
-        </property>
-        <property name="singleStep" >
-         <number>100</number>
-        </property>
-        <property name="value" >
-         <number>50</number>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3" >
-       <widget class="QLabel" name="label_8" >
-        <property name="text" >
-         <string>Altura 2</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="4" >
+      <item row="2" column="4" >
        <widget class="QSpinBox" name="sbHeightOff2" >
         <property name="minimum" >
          <number>10</number>
@@ -165,18 +256,11 @@
          <number>100</number>
         </property>
         <property name="value" >
-         <number>530</number>
+         <number>10</number>
         </property>
        </widget>
       </item>
      </layout>
-    </widget>
-   </item>
-   <item row="3" column="0" >
-    <widget class="QDialogButtonBox" name="buttonBox" >
-     <property name="standardButtons" >
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
     </widget>
    </item>
    <item row="2" column="0" >
@@ -186,34 +270,21 @@
      </property>
      <property name="sizeHint" stdset="0" >
       <size>
-       <width>20</width>
-       <height>40</height>
+       <width>321</width>
+       <height>13</height>
       </size>
      </property>
     </spacer>
    </item>
-   <item row="0" column="1" >
-    <spacer name="horizontalSpacer_2" >
+   <item row="5" column="0" >
+    <spacer name="verticalSpacer_2" >
      <property name="orientation" >
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0" >
       <size>
-       <width>40</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="1" column="1" >
-    <spacer name="horizontalSpacer" >
-     <property name="orientation" >
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0" >
-      <size>
-       <width>40</width>
-       <height>20</height>
+       <width>321</width>
+       <height>48</height>
       </size>
      </property>
     </spacer>
