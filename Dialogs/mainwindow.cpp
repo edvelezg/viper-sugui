@@ -53,6 +53,16 @@ void MainWindow::createActions()
 }
 
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (okToContinue()) {
+//      writeSettings();
+        event->accept();
+    } else {
+        event->ignore();
+    }
+}
+
 void MainWindow::createToolBars()
 {
     fileToolBar = addToolBar(tr("&Archivo"));
@@ -244,7 +254,7 @@ void MainWindow::open()
     if (okToContinue()) {
         QString fileName = QFileDialog::getOpenFileName(this,
                                    tr("Open Simulation"), ".",
-                                   tr("Simulation Viper(*.svp)"));
+                                   tr("Viper Simulation File(*.vsf)"));
      if (!fileName.isEmpty())
          loadFile(fileName);
     }
@@ -281,7 +291,7 @@ bool MainWindow::saveAs()
 {
     QString fileName = QFileDialog::getSaveFileName(this,
                                tr("Guardar Simulacion"), ".",
-                               tr("Simulaciones Viper (*.svp)"));
+                               tr("Viper Simulation File (*.vsf)"));
     if (fileName.isEmpty())
         return false;
 
@@ -346,7 +356,7 @@ void MainWindow::about()
     QMessageBox::about(this, tr("Sobre Viper SUGUI"),
             tr("<h2>Viper SuGui 1.1</h2>"
                "<p>Copyright &copy; 2009 Eduardo Gutarra."
-               "<p>Viper es una pequeña aplicacion que ayuda en la "
-               "elaboración de simulaciones de propagación de ondas sismicas"
+               "<p>Viper es una peque�a aplicacion que ayuda en la "
+               "elaboracion de simulaciones de propagacion de Ondas Sismicas P"
                "utilizando un modelo de velocidad. "));
 }
