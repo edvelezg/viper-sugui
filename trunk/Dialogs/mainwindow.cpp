@@ -80,12 +80,12 @@ void MainWindow::sizeSettings()
 		vm->setWidthOff2 	( (dlgGeometry->sbWidthOff2)->text() 	);
 		vm->setHeightOff2	( (dlgGeometry->sbHeightOff2)->text() 	);
 	                                                              	
-		textEdit->append	( "width: "      + vm->getWidth	 	()	);
-        textEdit->append	( "height: "     + vm->getHeight	()	); 
-        textEdit->append	( "widthoff1: "  + vm->getWidthOff1 ()	); 
-        textEdit->append	( "widthoff1: "  + vm->getHeightOff1()	); 
-        textEdit->append	( "heightoff1: " + vm->getWidthOff2 ()	); 
-        textEdit->append	( "heightoff2: " + vm->getHeightOff2()	); 
+		textEdit_2->append	( "width: "      + vm->getWidth	 	()	);
+        textEdit_2->append	( "height: "     + vm->getHeight	()	); 
+        textEdit_2->append	( "widthoff1: "  + vm->getWidthOff1 ()	); 
+        textEdit_2->append	( "widthoff1: "  + vm->getHeightOff1()	); 
+        textEdit_2->append	( "heightoff1: " + vm->getWidthOff2 ()	); 
+        textEdit_2->append	( "heightoff2: " + vm->getHeightOff2()	); 
     }
 
     tabWidget->setCurrentIndex(1);
@@ -117,8 +117,19 @@ void MainWindow::run()
  	ximage.setEnvironment(env);
 	unif2.setEnvironment(env);
 
-	// Process unif2.
+
     QStringList args;
+    if (vm->getModelFile() == "") {
+        args << "tfile=model.out";
+        vm->setModelFile("model.out");
+    }
+
+	unif2.start("unif2", args);
+	unif2.waitForFinished();
+
+    args.clear();
+
+	// Process unif2.
 	args 	<< "n1=" 		+ vm->getN1()
 	       	<< "n2=" 		+ vm->getN2()
 			<< "method=" 	+ vm->getMethod()
@@ -129,6 +140,7 @@ void MainWindow::run()
 		textEdit->append(*it); 
 	}
 
+    
 	unif2.setStandardInputFile(vm->getModelFile());
 	unif2.setStandardOutputFile("vel.out");
 	unif2.setWorkingDirectory( QDir::current().currentPath() );
@@ -144,7 +156,7 @@ void MainWindow::run()
          	<< "d2=" 		+ vm->getD2()
 			<< "legend=" 	+ vm->getLegend()
 			<< "cmap=" 		+ vm->getCmap()
-		    << "label=" 	+ vm->getTitulo()
+		    << "title=" 	+ vm->getTitulo()
     	    << "method=" 	+ vm->getMethod()
     	    << "wbox=" 		+ vm->getWidth()
     	    << "hbox=" 		+ vm->getHeight()

@@ -6,14 +6,23 @@
 #include "velocitymodel.h"
 
 VelocityModel::VelocityModel() {
-	this->n1 = "100";
-	this->n2 = "100";
-	this->d1 = "5";
-	this->d2 = "5";
-	this->method = "spline";
-    velocities.push_back( "2900" );
-    velocities.push_back( "3300" );
-    velocities.push_back( "3600" );
+
+        this->width         = "450"                 ;
+        this->height        = "450"                 ;
+        this->widthoff1     = "10"                  ;
+        this->heightoff1    = "500"                 ;
+        this->widthoff2     = "50"                  ;
+        this->heightoff2    = "530"                 ;
+                                                    ;
+        this->n1            = "100"                 ;
+        this->n2            = "100"                 ;
+        this->d1            = "5"                   ;
+        this->d2            = "5"                   ;
+        this->cmap          = "gray"                ;
+        this->legend        = "0"                   ;
+        this->titulo        = "Modelo de Velocidad" ;
+        this->method        = "spline"              ;
+        this->modelFile     = ""                    ;
 }
 
 QString VelocityModel::getWidth	     ()					        { 	return width	 ;				}
@@ -120,12 +129,20 @@ bool VelocityModel::readFile(const QString &fileName)
 }
 
 void VelocityModel::clear() {
-	this->n1 = "100";
-	this->n2 = "100";
-	this->d1 = "5";
-	this->d2 = "5";
-	this->method = "spline";
-    velocities.push_back( "2900" );
-    velocities.push_back( "3300" );
-    velocities.push_back( "3600" );
+    this->width         = "450"                 ;
+    this->height        = "450"                 ;
+    this->widthoff1     = "10"                  ;
+    this->heightoff1    = "500"                 ;
+    this->widthoff2     = "50"                  ;
+    this->heightoff2    = "530"                 ;
+                                                ;
+    this->n1            = "100"                 ;
+    this->n2            = "100"                 ;
+    this->d1            = "5"                   ;
+    this->d2            = "5"                   ;
+    this->cmap          = "gray"                ;
+    this->legend        = "0"                   ;
+    this->titulo        = "Modelo de Velocidad" ;
+    this->method        = "spline"              ;
+    this->modelFile     = ""                    ;
 }
