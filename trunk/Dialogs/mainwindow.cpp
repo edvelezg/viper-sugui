@@ -122,12 +122,10 @@ void MainWindow::run()
     if (vm->getModelFile() == "") {
         args << "tfile=model.out";
         vm->setModelFile("model.out");
+		unif2.start("unif2", args);
+		unif2.waitForFinished();
+		args.clear();
     }
-
-	unif2.start("unif2", args);
-	unif2.waitForFinished();
-
-    args.clear();
 
 	// Process unif2.
 	args 	<< "n1=" 		+ vm->getN1()
