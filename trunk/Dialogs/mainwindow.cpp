@@ -70,6 +70,8 @@ void MainWindow::sizeSettings()
         dlgGeometry->show();
     }
 
+	dlgGeometry->getParams(*vm);
+
     if (dlgGeometry->exec()) {
 	    setWindowModified(true);
 
@@ -80,28 +82,85 @@ void MainWindow::sizeSettings()
 		vm->setWidthOff2 	( (dlgGeometry->sbWidthOff2)->text() 	);
 		vm->setHeightOff2	( (dlgGeometry->sbHeightOff2)->text() 	);
 	                                                              	
-		textEdit_2->append	( "width: "      + vm->getWidth	 	()	);
-        textEdit_2->append	( "height: "     + vm->getHeight	()	); 
-        textEdit_2->append	( "widthoff1: "  + vm->getWidthOff1 ()	); 
-        textEdit_2->append	( "widthoff1: "  + vm->getHeightOff1()	); 
-        textEdit_2->append	( "heightoff1: " + vm->getWidthOff2 ()	); 
-        textEdit_2->append	( "heightoff2: " + vm->getHeightOff2()	); 
+		textEdit->append	( "width: "      + vm->getWidth	 	()	);
+        textEdit->append	( "height: "     + vm->getHeight	()	); 
+        textEdit->append	( "widthoff1: "  + vm->getWidthOff1 ()	); 
+        textEdit->append	( "widthoff1: "  + vm->getHeightOff1()	); 
+        textEdit->append	( "heightoff1: " + vm->getWidthOff2 ()	); 
+        textEdit->append	( "heightoff2: " + vm->getHeightOff2()	); 
     }
 
-    tabWidget->setCurrentIndex(1);
+    tabWidget->setCurrentIndex(0);
+}
+
+
+void MainWindow::modelParams()
+{
+    textEdit_2->clear();
+	
+    if (!dlgModParams) {
+        dlgModParams = new ModelParams( this );
+    } else {
+        dlgModParams->show();
+    }
+	
+	dlgModParams->getParams(*vm);
+	
+    if (dlgModParams->exec()) {
+        setWindowModified(true);
+		
+		double distance  = (dlgModParams->sbDistance)->text().toDouble();
+		double depth = (dlgModParams->sbDepth)->text().toDouble();
+		
+		QString d1 = QString::number((depth/100.0));
+		QString d2 = QString::number((distance/100.0));
+				
+        vm->setN1("100");        
+        vm->setN2("100");        
+        vm->setD1(d1);        
+        vm->setD2(d2);        
+		
+		if ((dlgModParams->cbColor)->currentText() == "Color") {
+        	vm->setCmap("hue");        
+		}	else {
+			vm->setCmap("gray");
+		}		
+
+        if((dlgModParams->chkLeyenda)->isChecked()) {
+            vm->setLegend("1");        
+        } else {
+            vm->setLegend("0");        
+        }
+
+		vm->setMethod((dlgModParams->cbMethod)->currentText());
+
+        vm->setTitulo((dlgModParams->leTitulo)->text());        
+
+        textEdit_2->append( "n1:"      +   vm->getN1() 		);
+        textEdit_2->append( "n2:"      +   vm->getN2() 		);
+        textEdit_2->append( "d1:"      +   vm->getD1() 		);
+        textEdit_2->append( "d2:"      +   vm->getD2() 		);
+        textEdit_2->append( "cmap:"    +   vm->getCmap()   	);
+        textEdit_2->append( "legend:"  +   vm->getLegend()   	);
+        textEdit_2->append( "titulo:"  +   vm->getTitulo()   	);
+
+        tabWidget->setCurrentIndex(1);
+    }
 }
 
 void MainWindow::loadModel()
 {
-    // textEdit->clear();
+    textEdit_2->clear();
     if (!dlgLoadModel) {
         dlgLoadModel = new LoadModel( this );
     } else {
         dlgLoadModel->show();
     }
 
+    dlgLoadModel->getParams( *vm );
     if (dlgLoadModel->exec()) {
-		textEdit->append("source file:" + dlgLoadModel->getModelFile());
+	    setWindowModified(true);
+		textEdit_2->append("source file:" + dlgLoadModel->getModelFile());
 		vm->setModelFile(dlgLoadModel->getModelFile());
     }
 
@@ -169,60 +228,6 @@ void MainWindow::run()
 	ximage.setStandardInputFile("vel.out");
 	ximage.setWorkingDirectory( QDir::current().currentPath() );
 	ximage.start("ximage", args);	
-}
-
-void MainWindow::modelParams()
-{
-    textEdit->clear();
-	
-    if (!dlgModParams) {
-        dlgModParams = new ModelParams( this );
-    } else {
-        dlgModParams->show();
-    }
-	
-	dlgModParams->getParams(*vm);
-	
-    if (dlgModParams->exec()) {
-        setWindowModified(true);
-		
-		double distance  = (dlgModParams->sbDistance)->text().toDouble();
-		double depth = (dlgModParams->sbDepth)->text().toDouble();
-		
-		QString d1 = QString::number((depth/100.0));
-		QString d2 = QString::number((distance/100.0));
-				
-        vm->setN1("100");        
-        vm->setN2("100");        
-        vm->setD1(d1);        
-        vm->setD2(d2);        
-		
-		if ((dlgModParams->cbColor)->currentText() == "Color") {
-        	vm->setCmap("hue");        
-		}	else {
-			vm->setCmap("gray");
-		}		
-
-        if((dlgModParams->chkLeyenda)->isChecked()) {
-            vm->setLegend("1");        
-        } else {
-            vm->setLegend("0");        
-        }
-
-		vm->setMethod((dlgModParams->cbMethod)->currentText());
-
-        vm->setTitulo((dlgModParams->leTitulo)->text());        
-
-        textEdit->append( "n1:"      +   vm->getN1() 		);
-        textEdit->append( "n2:"      +   vm->getN2() 		);
-        textEdit->append( "d1:"      +   vm->getD1() 		);
-        textEdit->append( "d2:"      +   vm->getD2() 		);
-        textEdit->append( "cmap:"    +   vm->getCmap()   	);
-        textEdit->append( "legend:"  +   vm->getLegend()   	);
-        textEdit->append( "titulo:"  +   vm->getTitulo()   	);
-
-        tabWidget->setCurrentIndex(0);
-    }
 }
 
 void MainWindow::newFile()

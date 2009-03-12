@@ -16,22 +16,12 @@ Geometry::Geometry(QWidget *parent)
 }
 
 void Geometry::getParams(VelocityModel &vm) {
-	// sbN1->setValue(vm.getN1().toInt());			
-	// sbN2->setValue(vm.getN2().toInt());			
-	// sbD1->setValue(vm.getD1().toInt());			
-	// sbD2->setValue(vm.getD2().toInt());
-	// 
-	// if (vm.getCmap() == "hue") {
-	// 	cbColor->setCurrentIndex(0);
-	// } else {
-	// 	cbColor->setCurrentIndex(1);
-	// }
-	// 
-	// if (vm.getLegend() == "1") {
-	// 	chkLeyenda->setCheckState(Qt::Checked);
-	// } else {
-	// 	chkLeyenda->setCheckState(Qt::Unchecked);
-	// }
-	// 
-	// leTitulo->setText(vm.getTitulo());
+    sbWidth->setValue( vm.getWidth().toInt() );   
+    sbHeight->setValue(        vm.getHeight      ().toInt() );
+    sbWidthOff1->setValue(     vm.getWidthOff1   ().toInt() );
+    sbHeightOff1->setValue(    vm.getHeightOff1  ().toInt() );
+    sbWidthOff2->setValue(     vm.getWidthOff2   ().toInt() );
+    sbHeightOff2->setValue(    vm.getHeightOff2  ().toInt() );
 }
+
+
