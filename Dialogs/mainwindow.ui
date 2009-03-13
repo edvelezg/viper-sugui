@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>516</width>
-    <height>373</height>
+    <width>533</width>
+    <height>385</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -59,7 +59,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>516</width>
+     <width>533</width>
      <height>22</height>
     </rect>
    </property>
@@ -149,6 +149,9 @@
   <action name="actionSimParams" >
    <property name="text" >
     <string>&amp;Parametros de Simulacion</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+I</string>
    </property>
   </action>
   <action name="actionRun" >

@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>359</width>
-    <height>352</height>
+    <width>302</width>
+    <height>110</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -14,78 +14,6 @@
   </property>
   <layout class="QGridLayout" name="gridLayout" >
    <item row="0" column="0" >
-    <widget class="QGroupBox" name="groupBox" >
-     <property name="title" >
-      <string>Ubicacion del Foco</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_4" >
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout" >
-        <item>
-         <widget class="QLabel" name="label" >
-          <property name="text" >
-           <string>&amp;Distancia</string>
-          </property>
-          <property name="buddy" >
-           <cstring>xsSpinBox</cstring>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="xsSpinBox" >
-          <property name="maximum" >
-           <number>1000</number>
-          </property>
-          <property name="singleStep" >
-           <number>100</number>
-          </property>
-          <property name="value" >
-           <number>200</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_2" >
-          <property name="text" >
-           <string>&amp;Profundidad</string>
-          </property>
-          <property name="buddy" >
-           <cstring>zsSpinBox</cstring>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="zsSpinBox" >
-          <property name="maximum" >
-           <number>1000</number>
-          </property>
-          <property name="singleStep" >
-           <number>100</number>
-          </property>
-          <property name="value" >
-           <number>200</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer" >
-          <property name="orientation" >
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0" >
-           <size>
-            <width>413</width>
-            <height>17</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="1" column="0" >
     <widget class="QGroupBox" name="groupBox_3" >
      <property name="title" >
       <string>&amp;Modelo de Velocidad</string>
@@ -130,10 +58,7 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="0" >
-    <widget class="QTextEdit" name="propagationModelTextEdit" />
-   </item>
-   <item row="3" column="0" >
+   <item row="1" column="0" >
     <widget class="QDialogButtonBox" name="propagationModelButtonBox" >
      <property name="standardButtons" >
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>

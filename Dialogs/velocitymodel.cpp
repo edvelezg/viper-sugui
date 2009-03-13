@@ -22,6 +22,16 @@ VelocityModel::VelocityModel() {
         this->titulo        = "Modelo de Velocidad" ;
         this->method        = "spline"              ;
         this->modelFile     = ""                    ;
+
+        this->distance      = "250"  ;
+        this->depth         = "20"  ;
+        this->fpeak         = "35"  ;
+        this->fmax          = "40"  ;
+        this->windowTitle   = "Random Title"  ;
+        this->title         = "Another Title"  ;
+        this->tMax          = "0.40"  ;
+        this->loop          = "1"  ;
+        this->clip          = "1.0"  ;
 }
 
 QString VelocityModel::getWidth	     ()					        { 	return width	 ;				}
@@ -40,6 +50,17 @@ QString VelocityModel::getLegend()   		                    {   return legend;   
 QString VelocityModel::getTitulo()   		                    {   return titulo;      		    } 
 QString VelocityModel::getMethod()				                { 	return method;					}
 QString VelocityModel::getModelFile()				            { 	return modelFile;				}
+
+QString VelocityModel::getDistance    ()                        {   return distance    ;            }
+QString VelocityModel::getDepth       ()                        {   return depth       ;            }
+QString VelocityModel::getFpeak       ()                        {   return fpeak       ;            }
+QString VelocityModel::getFmax        ()                        {   return fmax        ;            }
+QString VelocityModel::getWindowTitle ()                        {   return windowTitle ;            }
+QString VelocityModel::getTitle       ()                        {   return title       ;            }
+QString VelocityModel::getTMax        ()                        {   return tMax        ;            }
+QString VelocityModel::getLoop        ()                        {   return loop        ;            }
+QString VelocityModel::getClip        ()                        {   return clip        ;            }
+
 QVector<QString> VelocityModel::getVelocities()				    { 	return velocities;				}
 
 void VelocityModel::setWidth	    (QString width	   )   		{	this->width	      = width	  ;	}
@@ -58,6 +79,17 @@ void VelocityModel::setLegend(QString legend)   		        {   this->legend = leg
 void VelocityModel::setTitulo(QString titulo)   		        {   this->titulo = titulo;          } 
 void VelocityModel::setMethod(QString method)	                {	this->method = method; 	        }
 void VelocityModel::setModelFile(QString modelFile)	            {	this->modelFile = modelFile; 	}
+
+void VelocityModel::setDistance    (QString distance   )        {   this->distance    =   distance   ; }
+void VelocityModel::setDepth       (QString depth      )        {   this->depth       =   depth      ; }
+void VelocityModel::setFpeak       (QString fpeak      )        {   this->fpeak       =   fpeak      ; }
+void VelocityModel::setFmax        (QString fmax       )        {   this->fmax        =   fmax       ; }
+void VelocityModel::setWindowTitle (QString windowTitle)        {   this->windowTitle =   windowTitle; }
+void VelocityModel::setTitle       (QString title      )        {   this->title       =   title      ; }
+void VelocityModel::setTMax        (QString tMax       )        {   this->tMax        =   tMax       ; }
+void VelocityModel::setLoop        (QString loop       )        {   this->loop        =   loop       ; }
+void VelocityModel::setClip        (QString clip       )        {   this->clip        =   clip       ; }
+
 void VelocityModel::setVelocities(QVector<QString> velocities)	{	this->velocities = velocities; 	}
 
 bool VelocityModel::writeFile(const QString &fileName)
@@ -90,6 +122,16 @@ bool VelocityModel::writeFile(const QString &fileName)
     out << qPrintable(QString("%1").arg(method)) << endl; 
     out << qPrintable(QString("%1").arg(modelFile)) << endl; 
 
+	out << qPrintable(QString("%1").arg( distance    )) << endl;
+	out << qPrintable(QString("%1").arg( depth       )) << endl;
+	out << qPrintable(QString("%1").arg( fpeak       )) << endl;
+	out << qPrintable(QString("%1").arg( fmax        )) << endl;
+	out << qPrintable(QString("%1").arg( windowTitle )) << endl;
+	out << qPrintable(QString("%1").arg( title       )) << endl;
+	out << qPrintable(QString("%1").arg( tMax        )) << endl;
+	out << qPrintable(QString("%1").arg( loop        )) << endl;
+	out << qPrintable(QString("%1").arg( clip        )) << endl;
+
     return true;
 }
 
@@ -114,15 +156,25 @@ bool VelocityModel::readFile(const QString &fileName)
     widthoff2       	=     in.readLine().simplified(); 
     heightoff2      	=     in.readLine().simplified(); 
 
-	n1			=     in.readLine().simplified(); 
-    n2      	=     in.readLine().simplified(); 
-    d1      	=     in.readLine().simplified(); 
-    d2      	=     in.readLine().simplified(); 
-    cmap    	=     in.readLine().simplified(); 
-    legend  	=     in.readLine().simplified(); 
-	titulo      = 	  in.readLine().simplified(); 
-	method      = 	  in.readLine().simplified(); 
-	modelFile   = 	  in.readLine().simplified(); 
+	n1			        =     in.readLine().simplified(); 
+    n2      	        =     in.readLine().simplified(); 
+    d1      	        =     in.readLine().simplified(); 
+    d2      	        =     in.readLine().simplified(); 
+    cmap    	        =     in.readLine().simplified(); 
+    legend  	        =     in.readLine().simplified(); 
+	titulo              = 	  in.readLine().simplified(); 
+	method              = 	  in.readLine().simplified(); 
+	modelFile           = 	  in.readLine().simplified(); 
+
+	distance            =     in.readLine().simplified();
+	depth               =     in.readLine().simplified();
+	fpeak               =     in.readLine().simplified();
+	fmax                =     in.readLine().simplified();
+	windowTitle         =     in.readLine().simplified();
+	title               =     in.readLine().simplified();
+	tMax                =     in.readLine().simplified();
+	loop                =     in.readLine().simplified();
+	clip                =     in.readLine().simplified();
 	
     return true;
 }
@@ -144,4 +196,14 @@ void VelocityModel::clear() {
     this->titulo        = "Modelo de Velocidad" ;
     this->method        = "spline"              ;
     this->modelFile     = ""                    ;
+
+    this->distance      = "250"  ;
+    this->depth         = "20"  ;
+    this->fpeak         = "35"  ;
+    this->fmax          = "40"  ;
+    this->windowTitle   = "Random Title"  ;
+    this->title         = "Another Title"  ;
+    this->tMax          = "0.40"  ;
+    this->loop          = "1"  ;
+    this->clip          = "1.0"  ;
 }

@@ -91,10 +91,34 @@ void MainWindow::simParams()
 	dlgSimParams->getParams(*vm);
 
     if (dlgSimParams->exec()) {
-	    setWindowModified(true);
+
+        setWindowModified(true);
+        vm->setDistance    ( (dlgSimParams->sbDistance)->text()     );
+        vm->setDepth       ( (dlgSimParams->sbDepth)->text()        );
+        vm->setFpeak       ( (dlgSimParams->sbFpeak)->text()        );
+        vm->setFmax        ( (dlgSimParams->sbFmax)->text()         );
+        vm->setWindowTitle ( (dlgSimParams->leWindowTitle)->text()  );
+        vm->setTitle       ( (dlgSimParams->leTitle)->text()        );
+        vm->setTMax        ( (dlgSimParams->sbTMax)->text()         );
+
+        if((dlgSimParams->chkLoop)->isChecked()) {
+            vm->setLoop("1");        
+        } else {
+            vm->setLoop("0");        
+        }
+
+        vm->setClip        ( (dlgSimParams->sbClip)->text()         ) ;
+
+        textEdit->append( "distance   :" + vm->getDistance    () ) ;
+        textEdit->append( "depth      :" + vm->getDepth       () ) ;
+        textEdit->append( "fpeak      :" + vm->getFpeak       () ) ;
+        textEdit->append( "fmax       :" + vm->getFmax        () ) ;
+        textEdit->append( "windowTitle:" + vm->getWindowTitle () ) ;
+        textEdit->append( "title      :" + vm->getTitle       () ) ;
+        textEdit->append( "tMax       :" + vm->getTMax        () ) ;
+        textEdit->append( "clip       :" + vm->getClip        () ) ;
 
     }
-
     tabWidget->setCurrentIndex(0);
 }
 
@@ -274,20 +298,20 @@ void MainWindow::run()
 	
     QStringList argsSufdmod2;
 	
-	args	<< "nz="	 	+ vm->getN1() 
-         	<< "nx=" 		+ vm->getN2()
-         	<< "dz=" 		+ vm->getD1()
-         	<< "dx=" 		+ vm->getD2()
-			<< "fpeak=35" 	
-			<< "fmax=40" 	
-		    << "xs=250" 	
-    	    << "zs=50" 		
+	args	<< "nz="	 	                    + vm->getN1() 
+         	<< "nx=" 		                    + vm->getN2()
+         	<< "dz=" 		                    + vm->getD1()
+         	<< "dx=" 		                    + vm->getD2()
+			<< "fpeak=" 	                    + vm->getFpeak()
+			<< "fmax=" 	                        + vm->getFmax()
+		    << "xs=" 	                        + vm->getDistance()
+    	    << "zs=" 		                    + vm->getDepth()
     	    << "hsz=60" 	
     	    << "vsx=250" 	
     	    << "hsfile=hseis.out" 	
     	    << "vsfile=vseis.out" 	
     	    << "ssfile=sseis.out" 	
-    	    << "tmax=0.4" 	
+    	    << "tmax="                          + vm->getTMax() 	
     	    << "abs=1,1,1,1"
     	    << "mt=5" 		
     	    << "verbose=2"  
@@ -303,17 +327,17 @@ void MainWindow::run()
 	// Process suxmovie. 
 
 	argsMovie	<< "clip=1.0"	 	
-				<< "title='Acoustic Finite-Differencing'"
-				<< "windowtitle='Movie'" 	
-				<< "label1='Depth (m)'" 	
-				<< "label2='Distance (m)'" 	
-				<< "n1="	 	+ vm->getN1() 
-				<< "n2=" 		+ vm->getN2()
-	         	<< "d1=" 		+ vm->getD1()
-	         	<< "d2=" 		+ vm->getD2()
-			    << "f1=0.0" 	
-			    << "f2=0.0" 		
-	    	    << "loop=1" 	
+				<< "title='"                                    + vm->getTitle()        + "'"
+				<< "windowtitle='" 	                            + vm->getWindowTitle()  + "'"
+				<< "label1='Profundidad (m)'" 	
+				<< "label2='Distancia (m)'" 	
+				<< "n1="	 	                                + vm->getN1() 
+				<< "n2=" 		                                + vm->getN2()
+	         	<< "d1=" 		                                + vm->getD1()
+	         	<< "d2=" 		                                + vm->getD2()
+			    << "f1=0.0" 	                                
+			    << "f2=0.0" 	                                
+	    	    << "loop=" 	                                    + vm->getLoop()
 	    	    << "cmap=gray" 	
 	    	    << "-geometry"
 				<< "450x450+530+50" 	

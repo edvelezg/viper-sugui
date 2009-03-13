@@ -22,7 +22,6 @@ private slots:
 
 private:
     QString modelFile;
-    QProcess ximage;
 
 };
 
