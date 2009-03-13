@@ -27,6 +27,7 @@ private slots:
     bool saveAs();
     void about();
     void run();
+    void preview();
     void sizeSettings();
     void modelParams();
     void loadModel();
@@ -43,6 +44,9 @@ private:
 
     QProcess unif2;
     QProcess ximage;
+    QProcess sufdmod2;
+    QProcess suxmovie;
+
     QString curFile;
 
     QToolBar *fileToolBar;

@@ -134,6 +134,9 @@
    <property name="text" >
     <string>&amp;Vista Previa</string>
    </property>
+   <property name="shortcut" >
+    <string>Ctrl+P</string>
+   </property>
   </action>
   <action name="actionEditModel" >
    <property name="text" >
