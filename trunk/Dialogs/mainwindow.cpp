@@ -46,6 +46,9 @@ void MainWindow::createActions()
     actionLoadModel->setStatusTip(tr("Carcar Modelo de Velocidad"));
     connect(actionLoadModel, SIGNAL(triggered()), this, SLOT(loadModel()));
 
+    actionPreview->setStatusTip(tr("Vista Previa del Modelo de Velocidad"));
+    connect(actionPreview, SIGNAL(triggered()), this, SLOT(preview()));
+
     connect(actionSizeSettings, SIGNAL(triggered()),
             this, SLOT(sizeSettings()));
     connect(actionModelParams, SIGNAL(triggered()),
@@ -300,6 +303,71 @@ void MainWindow::run()
 	
 }
 
+void MainWindow::preview()
+{
+	textEdit->clear();
+	// Setting the Environment for Seismic Unix
+	QStringList env = QProcess::systemEnvironment();
+ 	env << "CWPROOT=/opt/SU";
+ 	env << "PATH=$PATH:/opt/SU/bin";
+ 	ximage.setEnvironment(env);
+	unif2.setEnvironment(env);
+ 	sufdmod2.setEnvironment(env);
+	suxmovie.setEnvironment(env);
+
+
+    QStringList args;
+    if (vm->getModelFile() == "") {
+        args << "tfile=model.out";
+        vm->setModelFile("model.out");
+		unif2.start("unif2", args);
+		unif2.waitForFinished();
+		args.clear();
+    }
+
+	// Process unif2.
+	args 	<< "n1=" 		+ vm->getN1()
+	       	<< "n2=" 		+ vm->getN2()
+			<< "method=" 	+ vm->getMethod()
+	        ;
+	
+	// print it out
+	for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
+		textEdit->append(*it); 
+	}
+
+    
+	unif2.setStandardInputFile(vm->getModelFile());
+	unif2.setStandardOutputFile("vel.out");
+	unif2.setWorkingDirectory( QDir::current().currentPath() );
+	unif2.start("unif2", args);
+	// unif2.waitForFinished();
+	
+	args.clear();
+	
+    // Process ximage.
+	args	<< "n1="	 	+ vm->getN1() 
+         	<< "n2=" 		+ vm->getN2()
+         	<< "d1=" 		+ vm->getD1()
+         	<< "d2=" 		+ vm->getD2()
+			<< "legend=" 	+ vm->getLegend()
+			<< "cmap=" 		+ vm->getCmap()
+		    << "title=" 	+ vm->getTitulo()
+    	    << "method=" 	+ vm->getMethod()
+    	    << "wbox=" 		+ vm->getWidth()
+    	    << "hbox=" 		+ vm->getHeight()
+    	    << "xbox=" 		+ vm->getWidthOff2()
+    	    << "ybox=" 		+ vm->getHeightOff2()
+			;
+			
+	for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
+        textEdit->append(*it); 
+	}
+
+	ximage.setStandardInputFile("vel.out");
+	ximage.setWorkingDirectory( QDir::current().currentPath() );
+	ximage.start("ximage", args);	
+}
 void MainWindow::newFile()
 {
     if (okToContinue()) {
