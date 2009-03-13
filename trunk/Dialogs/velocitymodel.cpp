@@ -6,13 +6,12 @@
 #include "velocitymodel.h"
 
 VelocityModel::VelocityModel() {
-
         this->width         = "450"                 ;
         this->height        = "450"                 ;
-        this->widthoff1     = "10"                  ;
-        this->heightoff1    = "500"                 ;
+        this->widthoff1     = "530"                  ;
+        this->heightoff1    = "50"                 ;
         this->widthoff2     = "50"                  ;
-        this->heightoff2    = "530"                 ;
+        this->heightoff2    = "50"                 ;
                                                     ;
         this->n1            = "100"                 ;
         this->n2            = "100"                 ;
@@ -131,10 +130,10 @@ bool VelocityModel::readFile(const QString &fileName)
 void VelocityModel::clear() {
     this->width         = "450"                 ;
     this->height        = "450"                 ;
-    this->widthoff1     = "10"                  ;
-    this->heightoff1    = "500"                 ;
+    this->widthoff1     = "530"                  ;
+    this->heightoff1    = "50"                 ;
     this->widthoff2     = "50"                  ;
-    this->heightoff2    = "530"                 ;
+    this->heightoff2    = "50"                 ;
                                                 ;
     this->n1            = "100"                 ;
     this->n2            = "100"                 ;
