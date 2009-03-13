@@ -4,6 +4,7 @@
 #include "modelparams.h"
 #include "velocitymodel.h"
 #include "loadmodel.h"
+#include "simulparams.h"
 
 MainWindow::MainWindow() {
     setupUi( this );   
@@ -12,6 +13,7 @@ MainWindow::MainWindow() {
     dlgGeometry  = 0;
     dlgModParams = 0;
 	dlgLoadModel = 0;
+	dlgSimParams = 0;
     createActions() ;
     createToolBars();
 
@@ -49,6 +51,9 @@ void MainWindow::createActions()
     actionPreview->setStatusTip(tr("Vista Previa del Modelo de Velocidad"));
     connect(actionPreview, SIGNAL(triggered()), this, SLOT(preview()));
 
+    actionSimParams->setStatusTip(tr("Cambiar Parametros de Simulacion"));
+    connect(actionSimParams, SIGNAL(triggered()), this, SLOT(simParams()));
+
     connect(actionSizeSettings, SIGNAL(triggered()),
             this, SLOT(sizeSettings()));
     connect(actionModelParams, SIGNAL(triggered()),
@@ -72,6 +77,25 @@ void MainWindow::createToolBars()
     fileToolBar->addAction(actionNew);
     fileToolBar->addAction(actionSave);
     fileToolBar->addAction(actionOpen);
+}
+
+void MainWindow::simParams()
+{
+    textEdit->clear();
+    if (!dlgSimParams) {
+        dlgSimParams = new SimulParams ( this );
+    } else {
+        dlgSimParams->show();
+    }
+
+	dlgSimParams->getParams(*vm);
+
+    if (dlgSimParams->exec()) {
+	    setWindowModified(true);
+
+    }
+
+    tabWidget->setCurrentIndex(0);
 }
 
 void MainWindow::sizeSettings()
@@ -105,7 +129,6 @@ void MainWindow::sizeSettings()
 
     tabWidget->setCurrentIndex(0);
 }
-
 
 void MainWindow::modelParams()
 {

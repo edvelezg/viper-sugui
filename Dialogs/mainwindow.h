@@ -9,6 +9,7 @@ class Geometry;
 class ModelParams;
 class VelocityModel;
 class LoadModel;
+class SimulParams;
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -31,6 +32,7 @@ private slots:
     void sizeSettings();
     void modelParams();
     void loadModel();
+    void simParams();
 
 private:
     void createActions();
@@ -51,9 +53,11 @@ private:
 
     QToolBar *fileToolBar;
 
-    Geometry *dlgGeometry;
-	LoadModel *dlgLoadModel;
+    Geometry 	*dlgGeometry;
+	LoadModel 	*dlgLoadModel;
     ModelParams *dlgModParams;
+	SimulParams *dlgSimParams;
+	
     VelocityModel *vm;
 };
 

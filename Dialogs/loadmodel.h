@@ -1,5 +1,5 @@
-#ifndef LOADMODEL_H
-#define LOADMODEL_H
+#ifndef _LOADMODEL_H_
+#define _LOADMODEL_H_
 
 #include <QProcess>
 #include <QDialog>
@@ -26,4 +26,4 @@ private:
 
 };
 
-#endif
+#endif /* _LOADMODEL_H_ */
