@@ -185,6 +185,8 @@ void MainWindow::run()
  	env << "PATH=$PATH:/opt/SU/bin";
  	ximage.setEnvironment(env);
 	unif2.setEnvironment(env);
+ 	sufdmod2.setEnvironment(env);
+	suxmovie.setEnvironment(env);
 
 
     QStringList args;
@@ -212,7 +214,7 @@ void MainWindow::run()
 	unif2.setStandardOutputFile("vel.out");
 	unif2.setWorkingDirectory( QDir::current().currentPath() );
 	unif2.start("unif2", args);
-	unif2.waitForFinished();
+	// unif2.waitForFinished();
 	
 	args.clear();
 	
@@ -238,6 +240,64 @@ void MainWindow::run()
 	ximage.setStandardInputFile("vel.out");
 	ximage.setWorkingDirectory( QDir::current().currentPath() );
 	ximage.start("ximage", args);	
+	// ximage.waitForFinished();
+	
+	args.clear();
+	
+	// Process sufdmod2. 
+	
+    QStringList argsSufdmod2;
+	
+	args	<< "nz="	 	+ vm->getN1() 
+         	<< "nx=" 		+ vm->getN2()
+         	<< "dz=" 		+ vm->getD1()
+         	<< "dx=" 		+ vm->getD2()
+			<< "fpeak=35" 	
+			<< "fmax=40" 	
+		    << "xs=250" 	
+    	    << "zs=50" 		
+    	    << "hsz=60" 	
+    	    << "vsx=250" 	
+    	    << "hsfile=hseis.out" 	
+    	    << "vsfile=vseis.out" 	
+    	    << "ssfile=sseis.out" 	
+    	    << "tmax=0.4" 	
+    	    << "abs=1,1,1,1"
+    	    << "mt=5" 		
+    	    << "verbose=2"  
+			;
+	
+	sufdmod2.setStandardInputFile("vel.out");
+	sufdmod2.setWorkingDirectory( QDir::current().currentPath() );
+	sufdmod2.setStandardOutputProcess(&suxmovie);
+	// sufdmod2.waitForFinished();
+
+
+	QStringList argsMovie;
+	// Process suxmovie. 
+
+	argsMovie	<< "clip=1.0"	 	
+				<< "title='Acoustic Finite-Differencing'"
+				<< "windowtitle='Movie'" 	
+				<< "label1='Depth (m)'" 	
+				<< "label2='Distance (m)'" 	
+				<< "n1="	 	+ vm->getN1() 
+				<< "n2=" 		+ vm->getN2()
+	         	<< "d1=" 		+ vm->getD1()
+	         	<< "d2=" 		+ vm->getD2()
+			    << "f1=0.0" 	
+			    << "f2=0.0" 		
+	    	    << "loop=1" 	
+	    	    << "cmap=gray" 	
+	    	    << "-geometry"
+				<< "450x450+530+50" 	
+				;
+	
+	suxmovie.setWorkingDirectory( QDir::current().currentPath() );
+
+	sufdmod2.start("sufdmod2", args);	
+	suxmovie.start("suxmovie", argsMovie);	
+	
 }
 
 void MainWindow::newFile()
