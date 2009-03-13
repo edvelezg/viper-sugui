@@ -28,6 +28,16 @@ public:
 	QString getModelFile();
 	QVector<QString> getVelocities();
 
+	QString getDistance    ();
+	QString getDepth       ();
+	QString getFpeak       ();
+	QString getFmax        ();
+	QString getWindowTitle ();
+	QString getTitle       ();
+	QString getTMax        ();
+	QString getLoop        ();
+	QString getClip        ();
+
 	void setWidth	 (QString);
 	void setHeight	 (QString);	
 	void setWidthOff1 (QString);	
@@ -46,29 +56,49 @@ public:
 	void setModelFile(QString);
 	void setVelocities(QVector<QString>);
 
-    bool writeFile(const QString &fileName);
-    bool readFile(const QString &fileName);
+	void setDistance    (QString);
+	void setDepth       (QString);
+	void setFpeak       (QString);
+	void setFmax        (QString);
+	void setWindowTitle (QString);
+	void setTitle       (QString);
+	void setTMax        (QString);
+	void setLoop        (QString);
+	void setClip        (QString);
+
+	bool writeFile(const QString &fileName);
+	bool readFile(const QString &fileName);
 
 	void clear();
 		
 private:
-	QString width		;			// Tamaño de ventana
-	QString height		;         // Tamaño de ventana
-	QString widthoff1	;      // Tamaño de ventana
-	QString heightoff1	;     // Tamaño de ventana
-	QString widthoff2	;      // Tamaño de ventana
-	QString heightoff2	;     // Tamaño de ventana
+	QString width		;	
+	QString height		;   
+	QString widthoff1	;   
+	QString heightoff1	;   
+	QString widthoff2	;   
+	QString heightoff2	;   
 
-	QString n1			;				// Parametros de Velocidad
-	QString n2			;             // Parametros de Velocidad
-	QString d1			;             // Parametros de Velocidad
-	QString d2			;             // Parametros de Velocidad
-	QString cmap		;           // Parametros de Velocidad
-	QString legend		;         // Parametros de Velocidad
-	QString titulo		;         // Parametros de Velocidad
-	QString method		;         // Parametros de Velocidad
-	QString modelFile	;      // Parametros de Velocidad
-	
+	QString n1			;	
+	QString n2			;   
+	QString d1			;   
+	QString d2			;   
+	QString cmap		;   
+	QString legend		;   
+	QString titulo		;   
+	QString method		;   
+	QString modelFile	;   
+
+	QString distance    ;
+	QString depth       ;
+	QString fpeak       ;
+	QString fmax        ;
+	QString windowTitle ;
+	QString title       ;
+	QString tMax        ;
+	QString loop        ;
+	QString clip        ;
+
 	QVector<QString> velocities;
 };
 
