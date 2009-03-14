@@ -5,20 +5,45 @@
 #include "velocitymodel.h"
 #include "loadmodel.h"
 #include "simulparams.h"
+#include "getenv.h"
 
 MainWindow::MainWindow() {
     setupUi( this );   
 
-    vm = new VelocityModel();
-    dlgGeometry  = 0;
-    dlgModParams = 0;
-	dlgLoadModel = 0;
-	dlgSimParams = 0;
-    createActions() ;
-    createToolBars();
+    vm           	= new VelocityModel();
+    dlgGeometry  	= 0;
+    dlgModParams 	= 0;
+	dlgLoadModel    = 0;
+	dlgSimParams    = 0;
+	dlgEnvironment  = 0;
+    createActions()    ;
+    createToolBars()   ;
+
+    readSettings();
 
     setWindowIcon(QIcon(":/images/icon.png"));
     setCurrentFile( "" );
+}
+
+void MainWindow::readSettings()
+{
+    QSettings settings("Software Inc.", "Viper Sims");
+    environment = settings.value("environment").toString();
+
+	// if (environment.isEmpty()) {
+		dlgEnvironment = new GetEnv(this);
+		
+		if (dlgEnvironment->exec()) {
+			environment = dlgEnvironment->getEnvironment();
+			textEdit->append( "environment:" + environment) ;
+		}
+	// }
+}
+
+void MainWindow::writeSettings()
+{
+    QSettings settings("Software Inc.", "Viper Sims");
+    settings.setValue("environment", environment);
 }
 
 void MainWindow::createActions()
@@ -64,7 +89,7 @@ void MainWindow::createActions()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (okToContinue()) {
-//      writeSettings();
+     	writeSettings();
         event->accept();
     } else {
         event->ignore();
@@ -231,8 +256,8 @@ void MainWindow::run()
 	textEdit->clear();
 	// Setting the Environment for Seismic Unix
 	QStringList env = QProcess::systemEnvironment();
- 	env << "CWPROOT=/opt/SU";
- 	env << "PATH=$PATH:/opt/SU/bin";
+ 	env << "CWPROOT=" + environment;
+ 	env << "PATH=$PATH:" + environment + "/bin";
  	ximage.setEnvironment(env);
 	unif2.setEnvironment(env);
  	sufdmod2.setEnvironment(env);
@@ -513,9 +538,6 @@ void MainWindow::setCurrentFile(const QString &fileName)
     QString shownName = tr("Untitled");
     if (!curFile.isEmpty()) {
         shownName = strippedName(curFile);
-//      recentFiles.removeAll(curFile);
-//      recentFiles.prepend(curFile);
-//      updateRecentFileActions();
     }
     setWindowTitle(tr("%1[*] - %2").arg(shownName)
                                    .arg(tr("Simulacion")));
