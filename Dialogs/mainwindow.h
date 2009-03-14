@@ -10,6 +10,7 @@ class ModelParams;
 class VelocityModel;
 class LoadModel;
 class SimulParams;
+class GetEnv;
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -38,6 +39,8 @@ private:
     void createActions();
     void createToolBars();
     bool okToContinue();
+    void readSettings();
+    void writeSettings();
     bool saveFile(const QString &fileName);
     bool loadFile(const QString &fileName);
     void setCurrentFile(const QString &fileName);
@@ -50,6 +53,7 @@ private:
     QProcess suxmovie;
 
     QString curFile;
+	QString environment;
 
     QToolBar *fileToolBar;
 
@@ -57,6 +61,7 @@ private:
 	LoadModel 	*dlgLoadModel;
     ModelParams *dlgModParams;
 	SimulParams *dlgSimParams;
+	GetEnv 		*dlgEnvironment;
 	
     VelocityModel *vm;
 };

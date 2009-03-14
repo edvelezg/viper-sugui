@@ -8,6 +8,10 @@ LoadModel::LoadModel(QWidget *parent)
 {
     setupUi(this);
 
+    QPushButton *loadButton =
+            propagationModelButtonBox->button(QDialogButtonBox::Ok);
+    loadButton->setEnabled(false);
+
     connect(propagationModelButtonBox->button(QDialogButtonBox::Ok), SIGNAL(clicked()), this, SLOT(accept()));
     connect(propagationModelButtonBox->button(QDialogButtonBox::Cancel), SIGNAL(clicked()), this, SLOT(reject()));
 }
@@ -19,7 +23,8 @@ void LoadModel::on_browseButton_clicked()
         initialName = QDir::homePath();
     QString fileName =
             QFileDialog::getOpenFileName(this, tr("Choose File"),
-                                         initialName);
+                                         initialName,
+										 tr("Model Files (*.out)"));
     fileName = QDir::toNativeSeparators(fileName);
     if (!fileName.isEmpty()) {
         sourceFileEdit->setText(fileName);
