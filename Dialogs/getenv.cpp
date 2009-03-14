@@ -1,6 +1,6 @@
 #include <QtGui>
 
-#include "GetEnv.h"
+#include "getenv.h"
 
 GetEnv::GetEnv(QWidget *parent)
     : QDialog(parent)
