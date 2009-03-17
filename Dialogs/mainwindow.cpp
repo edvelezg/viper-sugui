@@ -257,13 +257,19 @@ void MainWindow::run()
 	// Setting the Environment for Seismic Unix
 	QStringList env = QProcess::systemEnvironment();
  	env << "CWPROOT=" + environment;
- 	env << "PATH=$PATH:" + environment + "/bin";
+ 	// env << "PATH=$PATH:" + environment + "/bin";
+	env.replaceInStrings(QRegExp("^PATH=(.*)", Qt::CaseInsensitive), "PATH=/1:/bin:" + environment + "/bin");
  	ximage.setEnvironment(env);
 	unif2.setEnvironment(env);
  	sufdmod2.setEnvironment(env);
 	suxmovie.setEnvironment(env);
+	
+	QStringList showme = ximage.environment();
 
-
+	for ( QStringList::Iterator it = showme.begin(); it != showme.end(); ++it ) {
+		textEdit->append(*it); 
+	}
+	
     QStringList args;
     if (vm->getModelFile() == "") {
         args << "tfile=model.out";
@@ -280,10 +286,6 @@ void MainWindow::run()
 	        ;
 	
 	// print it out
-	for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
-		textEdit->append(*it); 
-	}
-
     
 	unif2.setStandardInputFile(vm->getModelFile());
 	unif2.setStandardOutputFile("vel.out");
