@@ -1,4 +1,5 @@
 #include <QtGui>
+#include <QtDebug>
 #include "mainwindow.h"
 #include "geometry.h"
 #include "modelparams.h"
@@ -265,9 +266,10 @@ void MainWindow::run()
 	suxmovie.setEnvironment(env);
 	
 	QStringList showme = ximage.environment();
+	qDebug() << "very worried" << " ";
 
 	for ( QStringList::Iterator it = showme.begin(); it != showme.end(); ++it ) {
-		textEdit->append(*it); 
+		qDebug() << "*it I'm getting worried" << " ";
 	}
 	
     QStringList args;
