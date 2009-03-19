@@ -59,9 +59,7 @@ public:
     ClassWizard(QWidget *parent = 0);
     void accept();
 };
-//! [0]
 
-//! [1]
 class IntroPage : public QWizardPage
 {
     Q_OBJECT
@@ -72,9 +70,7 @@ public:
 private:
     QLabel *label;
 };
-//! [1]
 
-//! [2]
 class ClassInfoPage : public QWizardPage
 {
     Q_OBJECT
@@ -102,26 +98,6 @@ protected:
 private:
 	QVector<QSpinBox*> sbVelocities; 
 	QVector<QLabel*> lblVelocities; 
-};
-//! [3]
-
-class OutputFilesPage : public QWizardPage
-{
-    Q_OBJECT
-
-public:    
-    OutputFilesPage(QWidget *parent = 0);
-
-protected:
-    void initializePage();
-
-private:
-    QLabel *outputDirLabel;
-    QLabel *headerLabel;
-    QLabel *implementationLabel;
-    QLineEdit *outputDirLineEdit;
-    QLineEdit *headerLineEdit;
-    QLineEdit *implementationLineEdit;
 };
 
 class ConclusionPage : public QWizardPage
