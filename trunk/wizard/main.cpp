@@ -39,6 +39,7 @@
 #include <QTranslator>
 #include <QLocale>
 #include <QLibraryInfo>
+#include <QtDebug>
 
 #include "classwizard.h"
 
@@ -47,6 +48,7 @@ int main(int argc, char *argv[])
     Q_INIT_RESOURCE(classwizard);
     
     QApplication app(argc, argv);
+	qDebug() << "I'm really testing this";
 
     QString translatorFileName = QLatin1String("qt_");
     translatorFileName += QLocale::system().name();

@@ -266,10 +266,9 @@ void MainWindow::run()
 	suxmovie.setEnvironment(env);
 	
 	QStringList showme = ximage.environment();
-	qDebug() << "very worried" << " ";
 
 	for ( QStringList::Iterator it = showme.begin(); it != showme.end(); ++it ) {
-		qDebug() << "*it I'm getting worried" << " ";
+		qDebug() << *it;
 	}
 	
     QStringList args;
