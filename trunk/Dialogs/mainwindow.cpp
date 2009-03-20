@@ -42,12 +42,16 @@ void MainWindow::readSettings()
 		if (dlgEnvironment->exec()) {
 			environment = dlgEnvironment->getEnvironment();
 			textEdit->append( "environment: " + environment) ;
-            this->shows = true;
+			this->shows = true;
+		} else {
+			this->shows = false;
 		}
-        else {
-            this->shows = false;
-        }
 //  }
+}
+
+bool MainWindow::wantsToShow()
+{
+	return shows;
 }
 
 void MainWindow::writeSettings()
