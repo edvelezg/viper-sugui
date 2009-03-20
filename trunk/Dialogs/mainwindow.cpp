@@ -7,6 +7,7 @@
 #include "loadmodel.h"
 #include "simulparams.h"
 #include "getenv.h"
+#include "wizard.h"
 
 MainWindow::MainWindow() {
     setupUi( this );   
@@ -26,19 +27,27 @@ MainWindow::MainWindow() {
     setCurrentFile( "" );
 }
 
+bool MainWindow::wantsToShow() {
+    return shows;
+}
+
 void MainWindow::readSettings()
 {
     QSettings settings("Software Inc.", "Viper Sims");
     environment = settings.value("environment").toString();
 
-	// if (environment.isEmpty()) {
+//  if   (environment.isEmpty()) {
 		dlgEnvironment = new GetEnv(this);
 		
 		if (dlgEnvironment->exec()) {
 			environment = dlgEnvironment->getEnvironment();
-			textEdit->append( "environment:" + environment) ;
+			textEdit->append( "environment: " + environment) ;
+            this->shows = true;
 		}
-	// }
+        else {
+            this->shows = false;
+        }
+//  }
 }
 
 void MainWindow::writeSettings()
@@ -79,6 +88,9 @@ void MainWindow::createActions()
 
     actionSimParams->setStatusTip(tr("Cambiar Parametros de Simulacion"));
     connect(actionSimParams, SIGNAL(triggered()), this, SLOT(simParams()));
+
+    actionCreateModel->setStatusTip( tr("Crear un Modelo de Velocidad" ) );
+    connect(actionCreateModel, SIGNAL(triggered()), this, SLOT(createModel()));
 
     connect(actionSizeSettings, SIGNAL(triggered()),
             this, SLOT(sizeSettings()));
@@ -234,6 +246,12 @@ void MainWindow::modelParams()
     }
 }
 
+void MainWindow::createModel()
+{
+    ClassWizard *wizard = new ClassWizard( this );
+    wizard->show();
+}
+
 void MainWindow::loadModel()
 {
     textEdit_2->clear();
@@ -266,9 +284,10 @@ void MainWindow::run()
 	suxmovie.setEnvironment(env);
 	
 	QStringList showme = ximage.environment();
+	qDebug() << "very worried" << " ";
 
 	for ( QStringList::Iterator it = showme.begin(); it != showme.end(); ++it ) {
-		qDebug() << *it;
+		qDebug() << "*it I'm getting worried" << " ";
 	}
 	
     QStringList args;

@@ -18,6 +18,7 @@ class MainWindow : public QMainWindow, private Ui::MainWindow
 
 public:
     MainWindow();
+    bool wantsToShow();
 
 protected:
     void closeEvent(QCloseEvent *event);
@@ -34,6 +35,7 @@ private slots:
     void modelParams();
     void loadModel();
     void simParams();
+    void createModel();
 
 private:
     void createActions();
@@ -64,6 +66,7 @@ private:
 	GetEnv 		*dlgEnvironment;
 	
     VelocityModel *vm;
+    bool shows;
 };
 
 #endif
