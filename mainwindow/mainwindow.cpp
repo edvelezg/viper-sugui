@@ -214,14 +214,8 @@ void MainWindow::runXimage()
 	process.start("ximage", args);
 }
 
-bool MainWindow::save()
-{
-    if (curFile.isEmpty()) {
-        return saveAs();
-    } else {
-        return saveFile(curFile);
-    }
-}
+bool MainWindow::save() { if (curFile.isEmpty()) { return saveAs(); } else { 
+return saveFile(curFile); } } 
 
 
 bool MainWindow::saveAs()

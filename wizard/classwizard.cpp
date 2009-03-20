@@ -1,119 +1,67 @@
 #include <QtGui>
-#include <iostream>
 #include "classwizard.h"
 
-using namespace std;
-
-//! [0] //! [1]
 ClassWizard::ClassWizard(QWidget *parent)
     : QWizard(parent)
 {
-    addPage(new IntroPage);
-    addPage(new ClassInfoPage);
-    addPage(new CodeStylePage);
-    addPage(new ConclusionPage);
+    addPage(new NumObjectsPage);
+    addPage(new ObjectsPage);
 
-    setPixmap(QWizard::BannerPixmap, QPixmap(":/images/banner.png"));
-    setPixmap(QWizard::BackgroundPixmap, QPixmap(":/images/background.png"));
-
-	setWindowTitle(tr("Velocity Model Wizard"));
+	setWindowTitle(tr("Wizard"));
 }
 
-void ClassWizard::accept()
-{
-    QString numLayers = field("numLayers").toString();
 
-    QDialog::accept();
-}
-//! [6]
-
-//! [7]
-IntroPage::IntroPage(QWidget *parent)
+NumObjectsPage::NumObjectsPage(QWidget *parent)
     : QWizardPage(parent)
 {
-    setTitle(tr("Introduccion"));
-    setPixmap(QWizard::WatermarkPixmap, QPixmap(":/images/watermark1.png"));
+    lblNumObjs = new QLabel(tr("Number of Objects:"));
+    leNumObjs = new QSpinBox();
+    lblNumObjs->setBuddy(leNumObjs);
 
-    label = new QLabel(tr("Este wizard le ayudara a crear su modelo de velocidad "
-                          "Usted simplemente debe especificar algunos parametros. "
-                          ));
-    label->setWordWrap(true);
-
-    QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(label);
-    setLayout(layout);
-}
-
-ClassInfoPage::ClassInfoPage(QWidget *parent)
-    : QWizardPage(parent)
-{
-    setTitle(tr("Numero de Capas"));
-    setSubTitle(tr("Especifique el numero de Capas que quiere en su Modelo de Velocidad ") );
-    setPixmap(QWizard::LogoPixmap, QPixmap(":/images/logo1.png"));
-
-    lblNumLayers = new QLabel(tr("&Numero de Interfaces:"));
-    leNumLayers = new QSpinBox();
-    lblNumLayers->setBuddy(leNumLayers);
-
-    registerField("numLayers*", leNumLayers);
+    registerField("numObjs*", leNumObjs);
 
     QGridLayout *layout = new QGridLayout;
-    layout->addWidget(lblNumLayers, 0, 0);
-    layout->addWidget(leNumLayers, 0, 1);
+    layout->addWidget(lblNumObjs, 0, 0);
+    layout->addWidget(leNumObjs, 0, 1);
 
     setLayout(layout);
 }
 
-CodeStylePage::CodeStylePage(QWidget *parent)
+ObjectsPage::ObjectsPage(QWidget *parent)
     : QWizardPage(parent)
 {
-    setTitle(tr("Velocidades de la Capas"));
-    setSubTitle(tr("Aqui debe definir las Velocidades de cada Capa que escogio."));
-    setPixmap(QWizard::LogoPixmap, QPixmap(":/images/logo2.png"));
-
 }
 
-void CodeStylePage::initializePage()
+void ObjectsPage::cleanupPage()
 {
-    QGridLayout *layout	   = new QGridLayout;
+	for (int i = 0; i < sbObjs.size(); ++i) {
+        delete (sbObjs[i]);
+        delete (lblObjs[i]);
+    }
+    delete layout;
+    sbObjs.clear();
+    lblObjs.clear();
+}
+
+void ObjectsPage::initializePage()
+{
+    layout	               = new QGridLayout;
 	QSpinBox* sbVel        = NULL;
 	QLabel* lblVel         = NULL;
 	
-    QString numLayers = field("numLayers").toString();
-	int num                = numLayers.toInt();
+    QString numLayers = field("numObjs").toString();
+	int num           = numLayers.toInt();
 
 	for (int i = 0; i < num; ++i) {
 		sbVel = new QSpinBox();
 		lblVel = new QLabel;
 		lblVel->setText("Capa " + QString::number(i+1));
-		sbVelocities.push_back(sbVel);
-		lblVelocities.push_back(lblVel);
+		sbObjs.push_back(sbVel);
+		lblObjs.push_back(lblVel);
 	    layout->addWidget(lblVel, i, 0);
 	    layout->addWidget(sbVel, i, 1);
 	}
 	
 	setLayout(layout);
     
-}
-
-ConclusionPage::ConclusionPage(QWidget *parent)
-    : QWizardPage(parent)
-{
-    setTitle(tr("Conclusion"));
-    setPixmap(QWizard::WatermarkPixmap, QPixmap(":/images/watermark2.png"));
-
-    label = new QLabel;
-    label->setWordWrap(true);
-
-    QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(label);
-    setLayout(layout);
-}
-
-void ConclusionPage::initializePage()
-{
-    QString finishText = wizard()->buttonText(QWizard::FinishButton);
-    finishText.remove('&');
-    label->setText(tr("Click %1 to generate the class skeleton.")
-                   .arg(finishText));
 }

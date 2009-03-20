@@ -6,6 +6,11 @@ int main (int argc, char *argv[])
 {
     QApplication app( argc,  argv );
     MainWindow main;
-    main.show();
+    if( main.wantsToShow() ) {
+        main.show();
+        qDebug() << "Program starts!";
+    } else {
+        return 0;
+    }
     return app.exec();
 }
