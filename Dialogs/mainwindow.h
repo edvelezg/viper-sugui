@@ -11,6 +11,7 @@ class VelocityModel;
 class LoadModel;
 class SimulParams;
 class GetEnv;
+class ListDialog;
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -64,6 +65,7 @@ private:
     ModelParams *dlgModParams;
 	SimulParams *dlgSimParams;
 	GetEnv 		*dlgEnvironment;
+    ListDialog  *dlgList;
 	
     VelocityModel *vm;
     bool shows;

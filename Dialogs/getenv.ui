@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>445</width>
-    <height>154</height>
+    <width>375</width>
+    <height>132</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -42,7 +42,7 @@
              </sizepolicy>
             </property>
             <property name="text" >
-             <string>&amp;Browse</string>
+             <string>&amp;Examinar</string>
             </property>
             <property name="shortcut" >
              <string>Alt+B</string>
@@ -57,37 +57,11 @@
     </widget>
    </item>
    <item row="1" column="0" >
-    <spacer name="horizontalSpacer_2" >
-     <property name="orientation" >
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0" >
-      <size>
-       <width>125</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="1" column="1" >
     <widget class="QDialogButtonBox" name="buttonBox" >
      <property name="standardButtons" >
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
-   </item>
-   <item row="1" column="2" >
-    <spacer name="horizontalSpacer" >
-     <property name="orientation" >
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0" >
-      <size>
-       <width>124</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
