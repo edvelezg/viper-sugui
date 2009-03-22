@@ -8,6 +8,7 @@
 #include "simulparams.h"
 #include "getenv.h"
 #include "wizard.h"
+#include "listdialog.h"
 
 MainWindow::MainWindow() {
     setupUi( this );   
@@ -18,6 +19,7 @@ MainWindow::MainWindow() {
 	dlgLoadModel    = 0;
 	dlgSimParams    = 0;
 	dlgEnvironment  = 0;
+	dlgList         = 0;
     createActions()    ;
     createToolBars()   ;
 
@@ -187,8 +189,8 @@ void MainWindow::sizeSettings()
 	                                                              	
 		textEdit->append	( "width: "      + vm->getWidth	 	()	);
         textEdit->append	( "height: "     + vm->getHeight	()	); 
-        textEdit->append	( "widthoff1: "  + vm->getWidthOff1 ()	); 
-        textEdit->append	( "widthoff1: "  + vm->getHeightOff1()	); 
+        textEdit->append	( "widthoff1:  " + vm->getWidthOff1 ()	); 
+        textEdit->append	( "widthoff1:  " + vm->getHeightOff1()	); 
         textEdit->append	( "heightoff1: " + vm->getWidthOff2 ()	); 
         textEdit->append	( "heightoff2: " + vm->getHeightOff2()	); 
     }
@@ -247,13 +249,25 @@ void MainWindow::modelParams()
         textEdit_2->append( "titulo:"  +   vm->getTitulo()   	);
 
         tabWidget->setCurrentIndex(1);
-    }
+     }
 }
 
 void MainWindow::createModel()
 {
-    ClassWizard *wizard = new ClassWizard( this );
-    wizard->show();
+    textEdit_2->clear();
+    if (!dlgList) {
+        dlgList = new ListDialog( this );
+    } else {
+        dlgList->show();
+    }
+
+      if( dlgList->exec() ) {
+          setWindowModified(true);
+          vm->setModelFile(dlgList->currentLocation());
+          textEdit_2->append("Archivo de Modelo: " + vm->getModelFile());
+
+          tabWidget->setCurrentIndex(1);
+      }
 }
 
 void MainWindow::loadModel()
@@ -271,7 +285,6 @@ void MainWindow::loadModel()
 		textEdit_2->append("source file:" + dlgLoadModel->getModelFile());
 		vm->setModelFile(dlgLoadModel->getModelFile());
     }
-
 }
 
 void MainWindow::run()
@@ -288,10 +301,9 @@ void MainWindow::run()
 	suxmovie.setEnvironment(env);
 	
 	QStringList showme = ximage.environment();
-	qDebug() << "very worried" << " ";
 
 	for ( QStringList::Iterator it = showme.begin(); it != showme.end(); ++it ) {
-		qDebug() << "*it I'm getting worried" << " ";
+		qDebug() << *it;
 	}
 	
     QStringList args;
