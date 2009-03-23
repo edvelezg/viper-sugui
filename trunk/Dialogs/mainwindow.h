@@ -36,7 +36,6 @@ private slots:
     void modelParams();
     void loadModel();
     void simParams();
-    void createModel();
 
 private:
     void createActions();

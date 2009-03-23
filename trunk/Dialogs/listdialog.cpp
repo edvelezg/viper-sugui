@@ -33,6 +33,7 @@
 
 #include "listdialog.h"
 #include "editdialog.h"
+#include "wizard.h"
 
 ListDialog::ListDialog( QWidget *parent ) : QDialog( parent )
 {
@@ -44,16 +45,21 @@ ListDialog::ListDialog( QWidget *parent ) : QDialog( parent )
   connect( ui.deleteButton, SIGNAL(clicked()), this, SLOT(deleteItem()) );
   connect( ui.list, SIGNAL(currentTextChanged ( const QString &)), this, SLOT(enableButton()) );
 
-  ui.list->addItem ( "Modelo Basico -- model.out");
-  ui.list->addItem ( "Modelo de 3 Capas -- model2.out");
+  ui.list->addItem ( "Modelo 1 -- model.out");
+  ui.list->addItem ( "Modelo 2 -- model2.out");
+  ui.list->addItem ( "Modelo 3 -- model3.out");
+  ui.list->addItem ( "Modelo 4 -- model4.out");
+
 }
 
 void ListDialog::addItem()
 {
-  EditDialog dlg( this );
-  
-  if( dlg.exec() == Accepted )
-    ui.list->addItem( dlg.modelName() + " -- " + dlg.modelLocation() );
+	ClassWizard *wizard = new ClassWizard( this );
+	    wizard->show();
+  // EditDialog dlg( this );
+  // 
+  // if( dlg.exec() == Accepted )
+  // 	ui.list->addItem( dlg.modelName() + " -- " + dlg.modelLocation() );
 }
 
 void ListDialog::editItem()
@@ -64,8 +70,8 @@ void ListDialog::editItem()
   QStringList parts = ui.list->currentItem()->text().split( "--" );
   
   EditDialog dlg( this );
-  dlg.setModelName( parts[0].trimmed() );
-  dlg.setModelLocation( parts[1].trimmed() );
+  dlg.setModelName		( parts[0].trimmed() );
+  dlg.setModelLocation	( parts[1].trimmed() );
   
   if( dlg.exec() == Accepted )
     ui.list->currentItem()->setText( dlg.modelName() + " -- " + dlg.modelLocation() );

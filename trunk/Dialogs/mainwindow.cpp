@@ -51,11 +51,6 @@ void MainWindow::readSettings()
 //  }
 }
 
-bool MainWindow::wantsToShow()
-{
-	return shows;
-}
-
 void MainWindow::writeSettings()
 {
     QSettings settings("Software Inc.", "Viper Sims");
@@ -95,8 +90,8 @@ void MainWindow::createActions()
     actionSimParams->setStatusTip(tr("Cambiar Parametros de Simulacion"));
     connect(actionSimParams, SIGNAL(triggered()), this, SLOT(simParams()));
 
-    actionCreateModel->setStatusTip( tr("Crear un Modelo de Velocidad" ) );
-    connect(actionCreateModel, SIGNAL(triggered()), this, SLOT(createModel()));
+    // actionCreateModel->setStatusTip( tr("Crear un Modelo de Velocidad" ) );
+    // connect(actionCreateModel, SIGNAL(triggered()), this, SLOT(createModel()));
 
     connect(actionSizeSettings, SIGNAL(triggered()),
             this, SLOT(sizeSettings()));
@@ -182,17 +177,21 @@ void MainWindow::sizeSettings()
 
 		vm->setWidth	 	( (dlgGeometry->sbWidth)->text()      	);
 		vm->setHeight	 	( (dlgGeometry->sbHeight)->text()     	);
+		vm->setWidth_2	 	( (dlgGeometry->sbWidth_2)->text()      );
+		vm->setHeight_2	 	( (dlgGeometry->sbHeight_2)->text()    	);
 		vm->setWidthOff1 	( (dlgGeometry->sbWidthOff1)->text()  	);
 		vm->setHeightOff1	( (dlgGeometry->sbHeightOff1)->text()  	);
 		vm->setWidthOff2 	( (dlgGeometry->sbWidthOff2)->text() 	);
 		vm->setHeightOff2	( (dlgGeometry->sbHeightOff2)->text() 	);
 	                                                              	
-		textEdit->append	( "width: "      + vm->getWidth	 	()	);
-        textEdit->append	( "height: "     + vm->getHeight	()	); 
-        textEdit->append	( "widthoff1:  " + vm->getWidthOff1 ()	); 
-        textEdit->append	( "widthoff1:  " + vm->getHeightOff1()	); 
-        textEdit->append	( "heightoff1: " + vm->getWidthOff2 ()	); 
-        textEdit->append	( "heightoff2: " + vm->getHeightOff2()	); 
+		textEdit->append	( "Model width: "      + vm->getWidth	 	()	);
+        textEdit->append	( "Model height: "     + vm->getHeight	()	); 
+		textEdit->append	( "Movie width: "      + vm->getWidth	 	()	);
+        textEdit->append	( "Movie height: "     + vm->getHeight	()	); 
+        textEdit->append	( "Cord. X Modelo: " + vm->getWidthOff2 ()	); 
+        textEdit->append	( "Cord. Y Modelo: " + vm->getHeightOff2()	); 
+        textEdit->append	( "Cord. X Pelicula: "  + vm->getWidthOff1 ()	); 
+        textEdit->append	( "Cord. Y Pelicula: "  + vm->getHeightOff1()	); 
     }
 
     tabWidget->setCurrentIndex(0);
@@ -252,7 +251,7 @@ void MainWindow::modelParams()
      }
 }
 
-void MainWindow::createModel()
+void MainWindow::loadModel()
 {
     textEdit_2->clear();
     if (!dlgList) {
@@ -270,22 +269,22 @@ void MainWindow::createModel()
       }
 }
 
-void MainWindow::loadModel()
-{
-    textEdit_2->clear();
-    if (!dlgLoadModel) {
-        dlgLoadModel = new LoadModel( this );
-    } else {
-        dlgLoadModel->show();
-    }
-
-    dlgLoadModel->getParams( *vm );
-    if (dlgLoadModel->exec()) {
-	    setWindowModified(true);
-		textEdit_2->append("source file:" + dlgLoadModel->getModelFile());
-		vm->setModelFile(dlgLoadModel->getModelFile());
-    }
-}
+// void MainWindow::loadModel()
+// {
+//     textEdit_2->clear();
+//     if (!dlgLoadModel) {
+//         dlgLoadModel = new LoadModel( this );
+//     } else {
+//         dlgLoadModel->show();
+//     }
+// 
+//     dlgLoadModel->getParams( *vm );
+//     if (dlgLoadModel->exec()) {
+// 	    setWindowModified(true);
+// 		textEdit_2->append("source file:" + dlgLoadModel->getModelFile());
+// 		vm->setModelFile(dlgLoadModel->getModelFile());
+//     }
+// }
 
 void MainWindow::run()
 {
@@ -403,9 +402,13 @@ void MainWindow::run()
 	    	    << "loop=" 	                                    + vm->getLoop()
 	    	    << "cmap=gray" 	
 	    	    << "-geometry"
-				<< "450x450+530+50" 	
+				<< vm->getWidth_2()	+ "x" + vm->getHeight_2() + "+" + vm->getWidthOff1() + "+" + vm->getHeightOff1()
 				;
-	
+				
+	for ( QStringList::Iterator it = argsMovie.begin(); it != argsMovie.end(); ++it ) {
+	    textEdit->append(*it); 
+	}
+				
 	suxmovie.setWorkingDirectory( QDir::current().currentPath() );
 
 	sufdmod2.start("sufdmod2", args);	

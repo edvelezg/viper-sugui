@@ -8,10 +8,12 @@
 VelocityModel::VelocityModel() {
         this->width         = "450"                 ;
         this->height        = "450"                 ;
-        this->widthoff1     = "530"                  ;
-        this->heightoff1    = "50"                 ;
+        this->width_2       = "450"                 ;
+        this->height_2      = "450"                 ;
+        this->widthoff1     = "530"                 ;
+        this->heightoff1    = "50"                  ;
         this->widthoff2     = "50"                  ;
-        this->heightoff2    = "50"                 ;
+        this->heightoff2    = "50"                  ;
                                                     ;
         this->n1            = "100"                 ;
         this->n2            = "100"                 ;
@@ -36,6 +38,8 @@ VelocityModel::VelocityModel() {
 
 QString VelocityModel::getWidth	     ()					        { 	return width	 ;				}
 QString VelocityModel::getHeight	 ()					        { 	return height	 ;				}	
+QString VelocityModel::getWidth_2	     ()					        { 	return width_2	 ;				}
+QString VelocityModel::getHeight_2	 ()					        { 	return height_2	 ;				}	
 QString VelocityModel::getWidthOff1  ()					        { 	return widthoff1 ;				}	
 QString VelocityModel::getHeightOff1 ()					        { 	return heightoff1;				}
 QString VelocityModel::getWidthOff2  ()					        { 	return widthoff2 ;				}
@@ -65,6 +69,8 @@ QVector<QString> VelocityModel::getVelocities()				    { 	return velocities;				
 
 void VelocityModel::setWidth	    (QString width	   )   		{	this->width	      = width	  ;	}
 void VelocityModel::setHeight	    (QString height	   )   		{	this->height	  = height	  ;	}	
+void VelocityModel::setWidth_2	    (QString width_2	   )   		{	this->width_2	      = width_2	  ;	}
+void VelocityModel::setHeight_2	    (QString height_2	   )   		{	this->height_2	  = height_2	  ;	}	
 void VelocityModel::setWidthOff1    (QString widthoff1 )   		{	this->widthoff1   = widthoff1 ;	}	
 void VelocityModel::setHeightOff1   (QString heightoff1)   		{	this->heightoff1  = heightoff1;	}
 void VelocityModel::setWidthOff2    (QString widthoff2 )   		{	this->widthoff2   = widthoff2 ;	}
@@ -107,6 +113,8 @@ bool VelocityModel::writeFile(const QString &fileName)
 
     out << qPrintable(QString("%1").arg(width		)) << endl;
     out << qPrintable(QString("%1").arg(height		)) << endl; 
+    out << qPrintable(QString("%1").arg(width_2		)) << endl;
+    out << qPrintable(QString("%1").arg(height_2	)) << endl; 
     out << qPrintable(QString("%1").arg(widthoff1	)) << endl; 
     out << qPrintable(QString("%1").arg(heightoff1	)) << endl; 
     out << qPrintable(QString("%1").arg(widthoff2	)) << endl; 
@@ -151,6 +159,8 @@ bool VelocityModel::readFile(const QString &fileName)
 
 	width	  			=     in.readLine().simplified(); 
     height	        	=     in.readLine().simplified(); 
+	width_2	  			=     in.readLine().simplified(); 
+    height_2        	=     in.readLine().simplified(); 
     widthoff1       	=     in.readLine().simplified(); 
     heightoff1      	=     in.readLine().simplified(); 
     widthoff2       	=     in.readLine().simplified(); 
@@ -182,6 +192,8 @@ bool VelocityModel::readFile(const QString &fileName)
 void VelocityModel::clear() {
     this->width         = "450"                 ;
     this->height        = "450"                 ;
+    this->width_2       = "450"                 ;
+    this->height_2      = "450"                 ;
     this->widthoff1     = "530"                  ;
     this->heightoff1    = "50"                 ;
     this->widthoff2     = "50"                  ;
