@@ -26,6 +26,8 @@ private:
     void createMenus();
     void createToolBars();
 
+	bool shows;
+
     QMenu *fileMenu;
     QToolBar *fileToolBar;
     QAction *exitAction;
