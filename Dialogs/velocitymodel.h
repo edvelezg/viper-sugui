@@ -12,6 +12,8 @@ public:
 
 	QString getWidth	 ();
 	QString getHeight	 ();	
+	QString getWidth_2	 ();
+	QString getHeight_2	 ();	
 	QString getWidthOff1 ();	
 	QString getHeightOff1();
 	QString getWidthOff2 ();
@@ -40,6 +42,8 @@ public:
 
 	void setWidth	 (QString);
 	void setHeight	 (QString);	
+	void setWidth_2	 (QString);
+	void setHeight_2	 (QString);	
 	void setWidthOff1 (QString);	
 	void setHeightOff1(QString);
 	void setWidthOff2 (QString);
@@ -74,6 +78,8 @@ public:
 private:
 	QString width		;	
 	QString height		;   
+	QString width_2		;	
+	QString height_2	;   
 	QString widthoff1	;   
 	QString heightoff1	;   
 	QString widthoff2	;   

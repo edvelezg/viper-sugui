@@ -17,7 +17,7 @@ public:
 	QString getModelFile();
 	void getParams(VelocityModel &vm);
 
-private slots:
+public slots:
     void on_browseButton_clicked();
 
 private:

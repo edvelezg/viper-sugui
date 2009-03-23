@@ -16,12 +16,14 @@ Geometry::Geometry(QWidget *parent)
 }
 
 void Geometry::getParams(VelocityModel &vm) {
-    sbWidth->setValue( vm.getWidth().toInt() );   
-    sbHeight->setValue(        vm.getHeight      ().toInt() );
-    sbWidthOff1->setValue(     vm.getWidthOff1   ().toInt() );
-    sbHeightOff1->setValue(    vm.getHeightOff1  ().toInt() );
-    sbWidthOff2->setValue(     vm.getWidthOff2   ().toInt() );
-    sbHeightOff2->setValue(    vm.getHeightOff2  ().toInt() );
+	sbWidth->setValue		(      vm.getWidth().toInt() );   
+    sbHeight->setValue		(     vm.getHeight().toInt() );
+    sbWidth_2->setValue		(    vm.getWidth_2().toInt() );   
+    sbHeight_2->setValue	(   vm.getHeight_2().toInt() );
+    sbWidthOff1->setValue	(  vm.getWidthOff1().toInt() );
+    sbHeightOff1->setValue	( vm.getHeightOff1().toInt() );
+    sbWidthOff2->setValue	(  vm.getWidthOff2().toInt() );
+    sbHeightOff2->setValue	( vm.getHeightOff2().toInt() );
 }
 
 
