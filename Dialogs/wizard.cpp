@@ -54,6 +54,11 @@ void ObjectsPage::initializePage()
 
 	for (int i = 0; i < num; ++i) {
 		sbVel = new QSpinBox();
+        sbVel->setMinimum(500);
+        sbVel->setMaximum(20000);
+        sbVel->setSingleStep(500);
+        sbVel->setValue((i+1)*500);
+
 		lblVel = new QLabel;
 		lblVel->setText("Capa " + QString::number(i+1));
 		sbObjs.push_back(sbVel);
