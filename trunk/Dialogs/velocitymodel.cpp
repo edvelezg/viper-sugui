@@ -14,7 +14,7 @@ VelocityModel::VelocityModel() {
         this->heightoff1    = "50"                  ;
         this->widthoff2     = "50"                  ;
         this->heightoff2    = "50"                  ;
-                                                    ;
+
         this->n1            = "100"                 ;
         this->n2            = "100"                 ;
         this->d1            = "5"                   ;
@@ -25,20 +25,20 @@ VelocityModel::VelocityModel() {
         this->method        = "spline"              ;
         this->modelFile     = ""                    ;
 
-        this->distance      = "250"  ;
-        this->depth         = "20"  ;
-        this->fpeak         = "35"  ;
-        this->fmax          = "40"  ;
-        this->windowTitle   = "Random Title"  ;
-        this->title         = "Another Title"  ;
-        this->tMax          = "0.40"  ;
-        this->loop          = "1"  ;
-        this->clip          = "1.0"  ;
+        this->distance      = "250"                 ;
+        this->depth         = "20"                  ;
+        this->fpeak         = "35"                  ;
+        this->fmax          = "40"                  ;
+        this->windowTitle   = "Random Title"        ;
+        this->title         = "Another Title"       ;
+        this->tMax          = "0.40"                ;
+        this->loop          = "1"                   ;
+        this->clip          = "1.0"                 ;
 }
 
 QString VelocityModel::getWidth	     ()					        { 	return width	 ;				}
 QString VelocityModel::getHeight	 ()					        { 	return height	 ;				}	
-QString VelocityModel::getWidth_2	     ()					        { 	return width_2	 ;				}
+QString VelocityModel::getWidth_2	     ()					    { 	return width_2	 ;				}
 QString VelocityModel::getHeight_2	 ()					        { 	return height_2	 ;				}	
 QString VelocityModel::getWidthOff1  ()					        { 	return widthoff1 ;				}	
 QString VelocityModel::getHeightOff1 ()					        { 	return heightoff1;				}
@@ -65,7 +65,7 @@ QString VelocityModel::getTMax        ()                        {   return tMax 
 QString VelocityModel::getLoop        ()                        {   return loop        ;            }
 QString VelocityModel::getClip        ()                        {   return clip        ;            }
 
-QVector<QString> VelocityModel::getVelocities()				    { 	return velocities;				}
+QString VelocityModel::getVelocities()				            { 	return velocities;				}
 
 void VelocityModel::setWidth	    (QString width	   )   		{	this->width	      = width	  ;	}
 void VelocityModel::setHeight	    (QString height	   )   		{	this->height	  = height	  ;	}	
@@ -96,7 +96,7 @@ void VelocityModel::setTMax        (QString tMax       )        {   this->tMax  
 void VelocityModel::setLoop        (QString loop       )        {   this->loop        =   loop       ; }
 void VelocityModel::setClip        (QString clip       )        {   this->clip        =   clip       ; }
 
-void VelocityModel::setVelocities(QVector<QString> velocities)	{	this->velocities = velocities; 	}
+void VelocityModel::setVelocities(QString velocities)	        {	this->velocities = velocities; 	}
 
 bool VelocityModel::writeFile(const QString &fileName)
 {

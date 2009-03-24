@@ -265,6 +265,15 @@ void MainWindow::loadModel()
           vm->setModelFile(dlgList->currentLocation());
           textEdit_2->append("Archivo de Modelo: " + vm->getModelFile());
 
+          QString text;
+          foreach( text, dlgList->velocities() )
+            qDebug() << "LOL :D " + text;
+
+          QString all = dlgList->velocities().join(",");
+          vm->setVelocities( "v00=" + all );
+
+          qDebug() << vm->getVelocities();
+
           tabWidget->setCurrentIndex(1);
       }
 }
@@ -335,6 +344,7 @@ void MainWindow::run()
          	<< "n2=" 		+ vm->getN2()
          	<< "d1=" 		+ vm->getD1()
          	<< "d2=" 		+ vm->getD2()
+         	<< vm->getVelocities()
 			<< "legend=" 	+ vm->getLegend()
 			<< "cmap=" 		+ vm->getCmap()
 		    << "title=" 	+ vm->getTitulo()
