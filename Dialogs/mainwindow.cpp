@@ -326,6 +326,7 @@ void MainWindow::run()
 	// Process unif2.
 	args 	<< "n1=" 		+ vm->getN1()
 	       	<< "n2=" 		+ vm->getN2()
+	     	<< vm->getVelocities()
 			<< "method=" 	+ vm->getMethod()
 	        ;
 	
@@ -344,7 +345,6 @@ void MainWindow::run()
          	<< "n2=" 		+ vm->getN2()
          	<< "d1=" 		+ vm->getD1()
          	<< "d2=" 		+ vm->getD2()
-         	<< vm->getVelocities()
 			<< "legend=" 	+ vm->getLegend()
 			<< "cmap=" 		+ vm->getCmap()
 		    << "title=" 	+ vm->getTitulo()
