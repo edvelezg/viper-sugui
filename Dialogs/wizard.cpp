@@ -60,8 +60,8 @@ void ObjectsPage::initializePage()
 		lblObjs.push_back(lblVel);
 	    layout->addWidget(lblVel, i, 0);
 	    layout->addWidget(sbVel, i, 1);
+        registerField("sbVel" + QString::number(i), sbObjs[i]);
 	}
-	
-	setLayout(layout);
-    
+
+    setLayout(layout);
 }

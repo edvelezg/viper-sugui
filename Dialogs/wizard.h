@@ -2,6 +2,7 @@
 #define CLASSWIZARD_H
 
 #include <QWizard>
+#include <QStringList>
 
 QT_BEGIN_NAMESPACE
 class QCheckBox;
@@ -12,6 +13,7 @@ class QLineEdit;
 class QRadioButton;
 class QVector<QLineEdit>;
 class QGridLayout;
+class QStringList;
 QT_END_NAMESPACE
 
 //! [0]
@@ -48,6 +50,7 @@ protected:
 
 private:
     QGridLayout *layout;
+    QStringList velocities;
 	QVector<QSpinBox*> sbObjs; 
 	QVector<QLabel*> lblObjs; 
 };

@@ -28,7 +28,7 @@ public:
 	QString getTitulo();
 	QString getMethod();
 	QString getModelFile();
-	QVector<QString> getVelocities();
+	QString getVelocities();
 
 	QString getDistance    ();
 	QString getDepth       ();
@@ -58,7 +58,7 @@ public:
 	void setTitulo(QString);
 	void setMethod(QString);
 	void setModelFile(QString);
-	void setVelocities(QVector<QString>);
+	void setVelocities(QString);
 
 	void setDistance    (QString);
 	void setDepth       (QString);
@@ -104,8 +104,7 @@ private:
 	QString tMax        ;
 	QString loop        ;
 	QString clip        ;
-
-	QVector<QString> velocities;
+	QString velocities  ;
 };
 
 
