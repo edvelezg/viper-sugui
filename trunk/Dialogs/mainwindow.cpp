@@ -278,23 +278,6 @@ void MainWindow::loadModel()
       }
 }
 
-// void MainWindow::loadModel()
-// {
-//     textEdit_2->clear();
-//     if (!dlgLoadModel) {
-//         dlgLoadModel = new LoadModel( this );
-//     } else {
-//         dlgLoadModel->show();
-//     }
-// 
-//     dlgLoadModel->getParams( *vm );
-//     if (dlgLoadModel->exec()) {
-// 	    setWindowModified(true);
-// 		textEdit_2->append("source file:" + dlgLoadModel->getModelFile());
-// 		vm->setModelFile(dlgLoadModel->getModelFile());
-//     }
-// }
-
 void MainWindow::run()
 {
 	textEdit->clear();
