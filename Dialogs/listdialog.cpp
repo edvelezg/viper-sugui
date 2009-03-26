@@ -12,7 +12,7 @@ ListDialog::ListDialog( QWidget *parent ) : QDialog( parent )
     connect( ui.editButton, SIGNAL(clicked()), this, SLOT(editItem()) );
     connect( ui.deleteButton, SIGNAL(clicked()), this, SLOT(deleteItem()) );
     connect( ui.list, SIGNAL(currentTextChanged ( const QString &)), this, SLOT(enableButton()) );
-
+    
     ui.list->addItem ( "Modelo 1 -- model.out");
     ui.list->addItem ( "Modelo 2 -- model2.out");
     ui.list->addItem ( "Modelo 3 -- model3.out");

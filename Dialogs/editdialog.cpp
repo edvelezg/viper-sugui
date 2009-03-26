@@ -52,10 +52,9 @@ void EditDialog::setVelocities()
             qDebug() << "velocity "  + QString::number(i) << strVel;
             vels << strVel;
         }
-//        vm->setModelFile(dlgList->currentLocation());
+        buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
     } else {
-
-        qDebug() << "Cancelled Crap";
+		qDebug() << "cancelled action";
     }
 }
 
