@@ -519,9 +519,13 @@ bool MainWindow::save()
 
 bool MainWindow::saveAs()
 {
-    QString fileName = QFileDialog::getSaveFileName(this,
-                               tr("Guardar Simulacion"), ".",
-                               tr("Viper Simulation File (*.vsf)"));
+	QString fileName = QFileDialog::getSaveFileName(this,
+        tr("Guardar Simulacion"), "",
+        tr("Address Book (*.vsf);;All Files (*)"));
+    
+    // QString fileName = QFileDialog::getSaveFileName(this,
+    //                            tr("Guardar Simulacion"), ".",
+    //                            tr("Viper Simulation File (*.vsf)"));
     if (fileName.isEmpty())
         return false;
 
