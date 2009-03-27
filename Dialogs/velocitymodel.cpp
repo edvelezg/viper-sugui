@@ -29,8 +29,8 @@ VelocityModel::VelocityModel() {
         this->depth         = "20"                  ;
         this->fpeak         = "35"                  ;
         this->fmax          = "40"                  ;
-        this->windowTitle   = "Random Title"        ;
-        this->title         = "Another Title"       ;
+        this->windowTitle   = "Propagacion de Onda" ;
+        this->title         = "Onda Sismica P"      ;
         this->tMax          = "0.40"                ;
         this->loop          = "1"                   ;
         this->clip          = "1.0"                 ;
