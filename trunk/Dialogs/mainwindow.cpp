@@ -265,12 +265,9 @@ void MainWindow::loadModel()
           vm->setModelFile(dlgList->currentLocation());
           textEdit_2->append("Archivo de Modelo: " + vm->getModelFile());
 
-          QString text;
-          foreach( text, dlgList->velocities() )
-            qDebug() << "LOL :D " + text;
-
           QString all = dlgList->velocities().join(",");
-          vm->setVelocities( "v00=" + all );
+		  if (all != "")
+          	vm->setVelocities( "v00=" + all );
 
           qDebug() << vm->getVelocities();
 
@@ -313,6 +310,9 @@ void MainWindow::run()
 			<< "method=" 	+ vm->getMethod()
 	        ;
 	
+	textEdit_2->append("Archivo de Modelo: " + vm->getModelFile());
+	textEdit_2->append("Velocidades del Modelo: " + vm->getVelocities());
+    
 	// print it out
     
 	unif2.setStandardInputFile(vm->getModelFile());
@@ -397,11 +397,7 @@ void MainWindow::run()
 	    	    << "-geometry"
 				<< vm->getWidth_2()	+ "x" + vm->getHeight_2() + "+" + vm->getWidthOff1() + "+" + vm->getHeightOff1()
 				;
-				
-	for ( QStringList::Iterator it = argsMovie.begin(); it != argsMovie.end(); ++it ) {
-	    textEdit->append(*it); 
-	}
-				
+
 	suxmovie.setWorkingDirectory( QDir::current().currentPath() );
 
 	sufdmod2.start("sufdmod2", args);	
