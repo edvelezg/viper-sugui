@@ -34,6 +34,7 @@ VelocityModel::VelocityModel() {
         this->tMax          = "0.40"                ;
         this->loop          = "1"                   ;
         this->clip          = "1.0"                 ;
+		this->velocities	= ""					;
 }
 
 QString VelocityModel::getWidth	     ()					        { 	return width	 ;				}
@@ -139,6 +140,7 @@ bool VelocityModel::writeFile(const QString &fileName)
 	out << qPrintable(QString("%1").arg( tMax        )) << endl;
 	out << qPrintable(QString("%1").arg( loop        )) << endl;
 	out << qPrintable(QString("%1").arg( clip        )) << endl;
+	out << qPrintable(QString("%1").arg( velocities  )) << endl;
 
     return true;
 }
@@ -185,6 +187,7 @@ bool VelocityModel::readFile(const QString &fileName)
 	tMax                =     in.readLine().simplified();
 	loop                =     in.readLine().simplified();
 	clip                =     in.readLine().simplified();
+	velocities			= 	  in.readLine().simplified();
 	
     return true;
 }
@@ -218,4 +221,6 @@ void VelocityModel::clear() {
     this->tMax          = "0.40"  ;
     this->loop          = "1"  ;
     this->clip          = "1.0"  ;
+	this->velocities	= ""					;
+
 }
