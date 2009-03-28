@@ -27,6 +27,14 @@ MainWindow::MainWindow() {
 
     setWindowIcon(QIcon(":/images/icon.png"));
     setCurrentFile( "" );
+
+    connect(&suxwigb, SIGNAL(readyReadStandardError()),
+            this, SLOT(updateOutputTextEdit()));
+    connect(&suxwigb, SIGNAL(finished(int, QProcess::ExitStatus)),
+            this, SLOT(processFinished(int, QProcess::ExitStatus)));
+    connect(&suxwigb, SIGNAL(error(QProcess::ProcessError)),
+            this, SLOT(processError(QProcess::ProcessError)));
+
 }
 
 bool MainWindow::wantsToShow() {
@@ -90,8 +98,8 @@ void MainWindow::createActions()
     actionSimParams->setStatusTip(tr("Cambiar Parametros de Simulacion"));
     connect(actionSimParams, SIGNAL(triggered()), this, SLOT(simParams()));
 
-    // actionCreateModel->setStatusTip( tr("Crear un Modelo de Velocidad" ) );
-    // connect(actionCreateModel, SIGNAL(triggered()), this, SLOT(createModel()));
+    actionViewTraces->setStatusTip( tr("Ver Registro" ) );
+    connect(actionViewTraces, SIGNAL(triggered()), this, SLOT(viewTraces()));
 
     connect(actionSizeSettings, SIGNAL(triggered()),
             this, SLOT(sizeSettings()));
@@ -275,6 +283,26 @@ void MainWindow::loadModel()
       }
 }
 
+void MainWindow::viewTraces()
+{
+	textEdit_2->clear();
+	// Setting the Environment for Seismic Unix
+	QStringList env = QProcess::systemEnvironment();
+ 	env << "CWPROOT=" + environment;
+ 	suxwigb.setEnvironment(env);
+	
+	QStringList args;
+	
+	args	<< "clip=1.0"	 	
+    		;
+	
+	suxwigb.setStandardInputFile("hseis.out");
+	suxwigb.setWorkingDirectory( QDir::current().currentPath() );
+	suxwigb.start("suxwigb", args);	
+	
+	qDebug() << suxwigb.errorString();
+}
+
 void MainWindow::run()
 {
 	textEdit->clear();
@@ -287,6 +315,7 @@ void MainWindow::run()
 	unif2.setEnvironment(env);
  	sufdmod2.setEnvironment(env);
 	suxmovie.setEnvironment(env);
+	suxwigb.setEnvironment(env);
 	
 	QStringList showme = ximage.environment();
 
@@ -402,9 +431,7 @@ void MainWindow::run()
 
 	sufdmod2.start("sufdmod2", args);	
 	suxmovie.start("suxmovie", argsMovie);	
-	
 }
-
 void MainWindow::preview()
 {
 	textEdit->clear();
@@ -483,7 +510,7 @@ void MainWindow::open()
 {
     if (okToContinue()) {
         QString fileName = QFileDialog::getOpenFileName(this,
-                                   tr("Open Simulation"), ".",
+                                   tr("Open Simulation"), "",
                                    tr("Viper Simulation File(*.vsf)"));
      if (!fileName.isEmpty())
          loadFile(fileName);
@@ -521,11 +548,8 @@ bool MainWindow::saveAs()
 {
 	QString fileName = QFileDialog::getSaveFileName(this,
         tr("Guardar Simulacion"), "",
-        tr("Address Book (*.vsf);;All Files (*)"));
+		tr("Viper Simulation File (*.vsf);;"));
     
-    // QString fileName = QFileDialog::getSaveFileName(this,
-    //                            tr("Guardar Simulacion"), ".",
-    //                            tr("Viper Simulation File (*.vsf)"));
     if (fileName.isEmpty())
         return false;
 
@@ -591,3 +615,33 @@ void MainWindow::about()
                "elaboracion de simulaciones de propagacion de Ondas Sismicas P"
                "utilizando un modelo de velocidad. "));
 }
+
+
+void MainWindow::processFinished(int exitCode,
+                                    QProcess::ExitStatus exitStatus)
+{
+    if (exitStatus == QProcess::CrashExit) {
+        textEdit->append(tr("Conversion program crashed"));
+    } else if (exitCode != 0) {
+        textEdit->append(tr("Suxwigb failed"));
+	    textEdit->append(suxwigb.errorString());
+    } else {
+        textEdit->append(tr("File %1 created").arg(curFile));
+    }
+}
+
+void MainWindow::processError(QProcess::ProcessError error)
+{
+    if (error == QProcess::FailedToStart) {
+        textEdit->append(tr("Conversion program not found"));
+    }
+}
+
+void MainWindow::updateOutputTextEdit()
+{
+    QByteArray newData = suxwigb.readAllStandardError();
+    QString text = textEdit->toPlainText()
+                   + QString::fromLocal8Bit(newData);
+    textEdit->append(text);
+}
+

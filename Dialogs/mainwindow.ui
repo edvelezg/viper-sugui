@@ -83,9 +83,7 @@
     <property name="title" >
      <string>&amp;Modelo de Velocidad</string>
     </property>
-    <addaction name="actionCreateModel" />
     <addaction name="actionLoadModel" />
-    <addaction name="actionEditModel" />
     <addaction name="actionModelParams" />
     <addaction name="actionPreview" />
    </widget>
@@ -101,6 +99,7 @@
     </property>
     <addaction name="actionSimParams" />
     <addaction name="actionRun" />
+    <addaction name="actionViewTraces" />
    </widget>
    <addaction name="menuFile" />
    <addaction name="menuPreferences" />
@@ -207,6 +206,14 @@
    </property>
    <property name="shortcut" >
     <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionViewTraces" >
+   <property name="text" >
+    <string>Ver &amp;Registro</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+L</string>
    </property>
   </action>
  </widget>

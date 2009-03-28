@@ -36,6 +36,10 @@ private slots:
     void modelParams();
     void loadModel();
     void simParams();
+	void viewTraces();
+	void processFinished(int exitCode, QProcess::ExitStatus exitStatus);
+	void updateOutputTextEdit();
+	void processError(QProcess::ProcessError error);
 
 private:
     void createActions();
@@ -53,6 +57,7 @@ private:
     QProcess ximage;
     QProcess sufdmod2;
     QProcess suxmovie;
+    QProcess suxwigb;
 
     QString curFile;
 	QString environment;
