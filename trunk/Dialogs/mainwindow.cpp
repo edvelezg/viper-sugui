@@ -299,8 +299,6 @@ void MainWindow::viewTraces()
 	suxwigb.setStandardInputFile("hseis.out");
 	suxwigb.setWorkingDirectory( QDir::current().currentPath() );
 	suxwigb.start("suxwigb", args);	
-	
-	qDebug() << suxwigb.errorString();
 }
 
 void MainWindow::run()
@@ -348,6 +346,7 @@ void MainWindow::run()
 	unif2.setStandardOutputFile("vel.out");
 	unif2.setWorkingDirectory( QDir::current().currentPath() );
 	unif2.start("unif2", args);
+	unif2.waitForStarted();
 	// unif2.waitForFinished();
 	
 	args.clear();
@@ -374,7 +373,7 @@ void MainWindow::run()
 	ximage.setStandardInputFile("vel.out");
 	ximage.setWorkingDirectory( QDir::current().currentPath() );
 	ximage.start("ximage", args);	
-	// ximage.waitForFinished();
+	ximage.waitForStarted();
 	
 	args.clear();
 	
