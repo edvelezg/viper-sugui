@@ -8,8 +8,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>271</width>
-    <height>279</height>
+    <width>309</width>
+    <height>344</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -28,7 +28,7 @@
          <string>Distancia</string>
         </property>
         <property name="buddy" >
-         <cstring>zsSpinBox</cstring>
+         <cstring>sbDistance</cstring>
         </property>
        </widget>
       </item>
@@ -76,7 +76,7 @@
          <string>Profundidad</string>
         </property>
         <property name="buddy" >
-         <cstring>zsSpinBox</cstring>
+         <cstring>sbDepth</cstring>
         </property>
        </widget>
       </item>
@@ -230,11 +230,6 @@
     </widget>
    </item>
   </layout>
-  <zorder>groupBox_2</zorder>
-  <zorder>groupBox_4</zorder>
-  <zorder>groupBox_3</zorder>
-  <zorder>buttonBox</zorder>
-  <zorder>verticalSpacer</zorder>
  </widget>
  <resources/>
  <connections/>
