@@ -9,6 +9,7 @@
 #include "getenv.h"
 #include "wizard.h"
 #include "listdialog.h"
+#include <cstdlib>
 
 MainWindow::MainWindow() {
     setupUi( this );   
@@ -305,10 +306,14 @@ void MainWindow::run()
 {
 	textEdit->clear();
 	// Setting the Environment for Seismic Unix
+	QString sysPath = ::getenv("PATH");
+	sysPath = sysPath + ":/opt/SU/bin";
+	::setenv("PATH", sysPath.toStdString().c_str(), 1);
 	QStringList env = QProcess::systemEnvironment();
- 	env << "CWPROOT=" + environment;
+	env << "CWPROOT=" + environment;
+ 	// env = "PATH=" + environment;
  	// env << "PATH=$PATH:" + environment + "/bin";
-	env.replaceInStrings(QRegExp("^PATH=(.*)", Qt::CaseInsensitive), "PATH=/1:/bin:" + environment + "/bin");
+	// env.replaceInStrings(QRegExp("^PATH=(.*)", Qt::CaseInsensitive), "PATH=/1:/bin:" + environment + "/bin");
  	ximage.setEnvironment(env);
 	unif2.setEnvironment(env);
  	sufdmod2.setEnvironment(env);

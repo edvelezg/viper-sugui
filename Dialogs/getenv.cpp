@@ -15,6 +15,8 @@ GetEnv::GetEnv(QWidget *parent)
 }
 
 void GetEnv::enableOkButton() {
+	QString dirName = leEnvironment->text();
+	environment = dirName;
 	buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
 }
 
