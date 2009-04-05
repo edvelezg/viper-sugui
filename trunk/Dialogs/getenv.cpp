@@ -26,7 +26,7 @@ void GetEnv::on_browseButton_clicked()
     if (initialName.isEmpty())
         initialName = QDir::homePath();
     QString dirName =
-            QFileDialog::getExistingDirectory(this, tr("Choose Directory"),
+            QFileDialog::getExistingDirectory(this, tr("Escoja un Directorio"),
                                          initialName);
     dirName = QDir::toNativeSeparators(dirName);
     if (!dirName.isEmpty()) {
