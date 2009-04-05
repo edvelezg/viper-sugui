@@ -46,18 +46,35 @@ void MainWindow::readSettings()
 {
     QSettings settings("Software Inc.", "Viper Sims");
     environment = settings.value("environment").toString();
+ 	
+	if  (!environment.isEmpty()) {
+		if (QFile::exists(environment + "/bin/ximage"	 ) &&
+			QFile::exists(environment + "/bin/unif2"	 ) &&
+			QFile::exists(environment + "/bin/sufdmod2"	 ) &&
+			QFile::exists(environment + "/bin/suxmovie"	 )    ) {
+			this->shows = true;		       
+			return;
+		}	
+	}
 
-//  if   (environment.isEmpty()) {
-		dlgEnvironment = new GetEnv(this);
-		
-		if (dlgEnvironment->exec()) {
-			environment = dlgEnvironment->getEnvironment();
-			textEdit->append( "environment: " + environment) ;
-			this->shows = true;
+	dlgEnvironment = new GetEnv(this);
+	
+	if (dlgEnvironment->exec()) {
+		environment = dlgEnvironment->getEnvironment();
+		textEdit->append( "environment: " + environment) ;
+		if (QFile::exists(environment + "/bin/ximage"	 ) &&
+			QFile::exists(environment + "/bin/unif2"	 ) &&
+			QFile::exists(environment + "/bin/sufdmod2"	 ) &&
+			QFile::exists(environment + "/bin/suxmovie"	 )    ) {
+			this->shows = true;		       
 		} else {
+			QMessageBox::critical(this, tr("Simulacion"),
+	                            tr("Los programas para generar la Simulación no fueron encontrados."));
 			this->shows = false;
 		}
-//  }
+	} else {
+		this->shows = false;
+	}
 }
 
 void MainWindow::writeSettings()
@@ -307,7 +324,7 @@ void MainWindow::run()
 	textEdit->clear();
 	// Setting the Environment for Seismic Unix
 	QString sysPath = ::getenv("PATH");
-	sysPath = sysPath + ":/opt/SU/bin";
+	sysPath = sysPath + ":" + environment + "/bin";
 	::setenv("PATH", sysPath.toStdString().c_str(), 1);
 	QStringList env = QProcess::systemEnvironment();
 	env << "CWPROOT=" + environment;

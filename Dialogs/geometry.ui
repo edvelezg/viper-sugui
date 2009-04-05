@@ -8,9 +8,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>240</width>
-    <height>213</height>
+    <width>346</width>
+    <height>271</height>
    </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle" >
    <string>Geometria de Ventana</string>
