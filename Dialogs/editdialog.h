@@ -5,6 +5,7 @@
 #include "ui_editdialog.h"
 
 class ClassWizard;
+class CoordinateSetter;
 
 class EditDialog : public QDialog, public Ui::EditDialog
 {
@@ -26,8 +27,11 @@ public slots:
     void setVelocities();
 
 private:
-    ClassWizard *wizard;
+	CoordinateSetter *coordinateSetter;
     QStringList vels;
+    // ClassWizard *wizard;
+
 };
+
 
 #endif // _EDITDIALOG_H_

@@ -81,6 +81,7 @@ void MainWindow::writeSettings()
 {
     QSettings settings("Software Inc.", "Viper Sims");
     settings.setValue("environment", environment);
+	qDebug() << settings.fileName();
 }
 
 void MainWindow::createActions()
@@ -124,7 +125,6 @@ void MainWindow::createActions()
     connect(actionModelParams, SIGNAL(triggered()),
             this, SLOT(modelParams()));
 }
-
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
@@ -453,6 +453,7 @@ void MainWindow::run()
 	sufdmod2.start("sufdmod2", args);	
 	suxmovie.start("suxmovie", argsMovie);	
 }
+
 void MainWindow::preview()
 {
 	textEdit->clear();
@@ -518,6 +519,7 @@ void MainWindow::preview()
 	ximage.setWorkingDirectory( QDir::current().currentPath() );
 	ximage.start("ximage", args);	
 }
+
 void MainWindow::newFile()
 {
     if (okToContinue()) {
@@ -554,7 +556,6 @@ bool MainWindow::okToContinue()
     }
     return true;
 }
-
 
 bool MainWindow::save()
 {
@@ -636,7 +637,6 @@ void MainWindow::about()
                "elaboracion de simulaciones de propagacion de Ondas Sismicas P"
                "utilizando un modelo de velocidad. "));
 }
-
 
 void MainWindow::processFinished(int exitCode,
                                     QProcess::ExitStatus exitStatus)
