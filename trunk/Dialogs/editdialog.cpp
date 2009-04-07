@@ -4,13 +4,15 @@
 
 #include "editdialog.h"
 #include "wizard.h"
+#include "coordinatesetter.h"
 
 EditDialog::EditDialog( QWidget *parent ) : QDialog( parent )
 {
     setupUi( this );
     buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     connect(velocityButton, SIGNAL(clicked()), this, SLOT(setVelocities()));
-    wizard = 0;
+    // wizard = 0;
+	coordinateSetter = 0;
 }
 
 const QString EditDialog::modelName() const
@@ -35,27 +37,68 @@ void EditDialog::setModelLocation( const QString &modelLocation )
 
 void EditDialog::setVelocities()
 {
-    if (!wizard) {
-        wizard = new ClassWizard( this );
-    } else {
-        wizard->show();
-    }
+	QFile file(modelLocation());
+	
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+	//      QMessageBox::warning(this, tr("Simulation"),
+	//                           tr("Cannot read file %1:\n%2.")
+	//                           .arg(file.fileName())
+	//                           .arg(file.errorString()));
+	        return;
+	}
+	
+	// Counts the number of layers
+	QTextStream in(&file);
 
-    if ( wizard->exec() ) {
-        QString numObjs = wizard->field("numObjs").toString();
-
-        qDebug() << "number of objects: " << numObjs;
-
-        int num = numObjs.toInt();
-        for ( int i = 0; i < num; ++i ) {
-            QString strVel = wizard->field("sbVel" + QString::number(i)).toString();
-            qDebug() << "velocity "  + QString::number(i) << strVel;
-            vels << strVel;
+    int numLayers = 0;
+    QString word;
+    while (!in.atEnd()) {
+        in >> word;
+        if (word == "-99999") {
+            ++numLayers;
         }
-        buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
-    } else {
-		qDebug() << "cancelled action";
     }
+    double inc = 2500.0 / (numLayers - 1.0);
+
+    QList<double> coordinates;
+    for (int i = 0; i < numLayers - 1 ; ++i ) {
+        coordinates << 1500.0 + i*inc;
+    }
+	
+	if (!coordinateSetter) {
+        coordinateSetter = new CoordinateSetter(&coordinates, this);
+    } else {
+        coordinateSetter->show();
+    }
+
+    if (coordinateSetter->exec()) {
+        buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+		vels = coordinateSetter->velocities();
+    } else {
+	
+	}
+    
+    // if (!wizard) {
+    //        wizard = new ClassWizard( this );
+    //    } else {
+    //        wizard->show();
+    //    }
+    // 
+    //    if ( wizard->exec() ) {
+    //        QString numObjs = wizard->field("numObjs").toString();
+    // 
+    //        qDebug() << "number of objects: " << numObjs;
+    // 
+    //        int num = numObjs.toInt();
+    //        for ( int i = 0; i < num; ++i ) {
+    //            QString strVel = wizard->field("sbVel" + QString::number(i)).toString();
+    //            qDebug() << "velocity "  + QString::number(i) << strVel;
+    //            vels << strVel;
+    //        }
+    //        buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+    //    } else {
+    // 		qDebug() << "cancelled action";
+    //    }
 }
 
 void EditDialog::on_browseButton_clicked()
