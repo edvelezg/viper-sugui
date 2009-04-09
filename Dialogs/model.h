@@ -4,11 +4,11 @@
 #include <QString>
 #include <QVector>
 
-class VelocityModel
+class Model
 {
 
 public:
-	VelocityModel ();
+	Model ();
 
 	QString getWidth	 ();
 	QString getHeight	 ();	

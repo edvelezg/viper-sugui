@@ -3,7 +3,7 @@
 #include "mainwindow.h"
 #include "geometry.h"
 #include "modelparams.h"
-#include "velocitymodel.h"
+#include "model.h"
 #include "loadmodel.h"
 #include "simulparams.h"
 #include "getenv.h"
@@ -14,7 +14,7 @@
 MainWindow::MainWindow() {
     setupUi( this );   
 
-    vm           	= new VelocityModel();
+    vm           	= new Model();
     dlgGeometry  	= 0;
     dlgModParams 	= 0;
 	dlgLoadModel    = 0;

@@ -1,7 +1,7 @@
 #include <QtGui>
 
 #include "simulparams.h"
-#include "velocitymodel.h"
+#include "model.h"
 
 SimulParams::SimulParams(QWidget *parent)
     : QDialog(parent)
@@ -12,7 +12,7 @@ SimulParams::SimulParams(QWidget *parent)
     connect(buttonBox->button(QDialogButtonBox::Cancel), SIGNAL(clicked()), this, SLOT(reject()));
 }
 
-void SimulParams::getParams(VelocityModel &vm) {
+void SimulParams::getParams(Model &vm) {
 
     sbDistance->setValue    (   vm.getDistance    ().toDouble() );
     sbDepth->setValue       (   vm.getDepth       ().toDouble() );
