@@ -286,6 +286,8 @@ void MainWindow::loadModel()
         dlgList->show();
     }
 
+	dlgList->setVelocities(vm->getVelocities());
+
       if( dlgList->exec() ) {
           setWindowModified(true);
           vm->setModelFile(dlgList->currentLocation());

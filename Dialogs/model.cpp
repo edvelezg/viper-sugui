@@ -37,69 +37,69 @@ Model::Model() {
 		this->velocities	= ""					;
 }
 
-QString VelocityModel::getWidth	     ()					        { 	return width	 ;				}
-QString VelocityModel::getHeight	 ()					        { 	return height	 ;				}	
-QString VelocityModel::getWidth_2	     ()					    { 	return width_2	 ;				}
-QString VelocityModel::getHeight_2	 ()					        { 	return height_2	 ;				}	
-QString VelocityModel::getWidthOff1  ()					        { 	return widthoff1 ;				}	
-QString VelocityModel::getHeightOff1 ()					        { 	return heightoff1;				}
-QString VelocityModel::getWidthOff2  ()					        { 	return widthoff2 ;				}
-QString VelocityModel::getHeightOff2 ()					        { 	return heightoff2;				}
+QString Model::getWidth	     ()					        { 	return width	 ;				}
+QString Model::getHeight	 ()					        { 	return height	 ;				}	
+QString Model::getWidth_2	     ()					    { 	return width_2	 ;				}
+QString Model::getHeight_2	 ()					        { 	return height_2	 ;				}	
+QString Model::getWidthOff1  ()					        { 	return widthoff1 ;				}	
+QString Model::getHeightOff1 ()					        { 	return heightoff1;				}
+QString Model::getWidthOff2  ()					        { 	return widthoff2 ;				}
+QString Model::getHeightOff2 ()					        { 	return heightoff2;				}
 
-QString VelocityModel::getN1()					                { 	return n1;						}
-QString VelocityModel::getN2()					                { 	return n2;						}	
-QString VelocityModel::getD1()					                { 	return d1;					 	}	
-QString VelocityModel::getD2()					                { 	return d2;						}
-QString VelocityModel::getCmap()   		                        {   return cmap;        		    } 
-QString VelocityModel::getLegend()   		                    {   return legend;      		    } 
-QString VelocityModel::getTitulo()   		                    {   return titulo;      		    } 
-QString VelocityModel::getMethod()				                { 	return method;					}
-QString VelocityModel::getModelFile()				            { 	return modelFile;				}
+QString Model::getN1()					                { 	return n1;						}
+QString Model::getN2()					                { 	return n2;						}	
+QString Model::getD1()					                { 	return d1;					 	}	
+QString Model::getD2()					                { 	return d2;						}
+QString Model::getCmap()   		                        {   return cmap;        		    } 
+QString Model::getLegend()   		                    {   return legend;      		    } 
+QString Model::getTitulo()   		                    {   return titulo;      		    } 
+QString Model::getMethod()				                { 	return method;					}
+QString Model::getModelFile()				            { 	return modelFile;				}
 
-QString VelocityModel::getDistance    ()                        {   return distance    ;            }
-QString VelocityModel::getDepth       ()                        {   return depth       ;            }
-QString VelocityModel::getFpeak       ()                        {   return fpeak       ;            }
-QString VelocityModel::getFmax        ()                        {   return fmax        ;            }
-QString VelocityModel::getWindowTitle ()                        {   return windowTitle ;            }
-QString VelocityModel::getTitle       ()                        {   return title       ;            }
-QString VelocityModel::getTMax        ()                        {   return tMax        ;            }
-QString VelocityModel::getLoop        ()                        {   return loop        ;            }
-QString VelocityModel::getClip        ()                        {   return clip        ;            }
+QString Model::getDistance    ()                        {   return distance    ;            }
+QString Model::getDepth       ()                        {   return depth       ;            }
+QString Model::getFpeak       ()                        {   return fpeak       ;            }
+QString Model::getFmax        ()                        {   return fmax        ;            }
+QString Model::getWindowTitle ()                        {   return windowTitle ;            }
+QString Model::getTitle       ()                        {   return title       ;            }
+QString Model::getTMax        ()                        {   return tMax        ;            }
+QString Model::getLoop        ()                        {   return loop        ;            }
+QString Model::getClip        ()                        {   return clip        ;            }
 
-QString VelocityModel::getVelocities()				            { 	return velocities;				}
+QString Model::getVelocities()				            { 	return velocities;				}
 
-void VelocityModel::setWidth	    (QString width	   )   		{	this->width	      = width	  ;	}
-void VelocityModel::setHeight	    (QString height	   )   		{	this->height	  = height	  ;	}	
-void VelocityModel::setWidth_2	    (QString width_2	   )   		{	this->width_2	      = width_2	  ;	}
-void VelocityModel::setHeight_2	    (QString height_2	   )   		{	this->height_2	  = height_2	  ;	}	
-void VelocityModel::setWidthOff1    (QString widthoff1 )   		{	this->widthoff1   = widthoff1 ;	}	
-void VelocityModel::setHeightOff1   (QString heightoff1)   		{	this->heightoff1  = heightoff1;	}
-void VelocityModel::setWidthOff2    (QString widthoff2 )   		{	this->widthoff2   = widthoff2 ;	}
-void VelocityModel::setHeightOff2   (QString heightoff2)   		{	this->heightoff2  = heightoff2;	}
+void Model::setWidth	    (QString width	   )   		{	this->width	      = width	  ;	}
+void Model::setHeight	    (QString height	   )   		{	this->height	  = height	  ;	}	
+void Model::setWidth_2	    (QString width_2	   )   		{	this->width_2	      = width_2	  ;	}
+void Model::setHeight_2	    (QString height_2	   )   		{	this->height_2	  = height_2	  ;	}	
+void Model::setWidthOff1    (QString widthoff1 )   		{	this->widthoff1   = widthoff1 ;	}	
+void Model::setHeightOff1   (QString heightoff1)   		{	this->heightoff1  = heightoff1;	}
+void Model::setWidthOff2    (QString widthoff2 )   		{	this->widthoff2   = widthoff2 ;	}
+void Model::setHeightOff2   (QString heightoff2)   		{	this->heightoff2  = heightoff2;	}
                                         		
-void VelocityModel::setN1(QString n1)   		                {	this->n1 = n1;			        }
-void VelocityModel::setN2(QString n2)   		                {	this->n2 = n2;			        }	
-void VelocityModel::setD1(QString d1)   		                {	this->d1 = d1;			        }	
-void VelocityModel::setD2(QString d2)   		                {	this->d2 = d2;			        }
-void VelocityModel::setCmap(QString cmap)   		            {   this->cmap = cmap;              } 
-void VelocityModel::setLegend(QString legend)   		        {   this->legend = legend;          } 
-void VelocityModel::setTitulo(QString titulo)   		        {   this->titulo = titulo;          } 
-void VelocityModel::setMethod(QString method)	                {	this->method = method; 	        }
-void VelocityModel::setModelFile(QString modelFile)	            {	this->modelFile = modelFile; 	}
+void Model::setN1(QString n1)   		                {	this->n1 = n1;			        }
+void Model::setN2(QString n2)   		                {	this->n2 = n2;			        }	
+void Model::setD1(QString d1)   		                {	this->d1 = d1;			        }	
+void Model::setD2(QString d2)   		                {	this->d2 = d2;			        }
+void Model::setCmap(QString cmap)   		            {   this->cmap = cmap;              } 
+void Model::setLegend(QString legend)   		        {   this->legend = legend;          } 
+void Model::setTitulo(QString titulo)   		        {   this->titulo = titulo;          } 
+void Model::setMethod(QString method)	                {	this->method = method; 	        }
+void Model::setModelFile(QString modelFile)	            {	this->modelFile = modelFile; 	}
 
-void VelocityModel::setDistance    (QString distance   )        {   this->distance    =   distance   ; }
-void VelocityModel::setDepth       (QString depth      )        {   this->depth       =   depth      ; }
-void VelocityModel::setFpeak       (QString fpeak      )        {   this->fpeak       =   fpeak      ; }
-void VelocityModel::setFmax        (QString fmax       )        {   this->fmax        =   fmax       ; }
-void VelocityModel::setWindowTitle (QString windowTitle)        {   this->windowTitle =   windowTitle; }
-void VelocityModel::setTitle       (QString title      )        {   this->title       =   title      ; }
-void VelocityModel::setTMax        (QString tMax       )        {   this->tMax        =   tMax       ; }
-void VelocityModel::setLoop        (QString loop       )        {   this->loop        =   loop       ; }
-void VelocityModel::setClip        (QString clip       )        {   this->clip        =   clip       ; }
+void Model::setDistance    (QString distance   )        {   this->distance    =   distance   ; }
+void Model::setDepth       (QString depth      )        {   this->depth       =   depth      ; }
+void Model::setFpeak       (QString fpeak      )        {   this->fpeak       =   fpeak      ; }
+void Model::setFmax        (QString fmax       )        {   this->fmax        =   fmax       ; }
+void Model::setWindowTitle (QString windowTitle)        {   this->windowTitle =   windowTitle; }
+void Model::setTitle       (QString title      )        {   this->title       =   title      ; }
+void Model::setTMax        (QString tMax       )        {   this->tMax        =   tMax       ; }
+void Model::setLoop        (QString loop       )        {   this->loop        =   loop       ; }
+void Model::setClip        (QString clip       )        {   this->clip        =   clip       ; }
 
-void VelocityModel::setVelocities(QString velocities)	        {	this->velocities = velocities; 	}
+void Model::setVelocities(QString velocities)	        {	this->velocities = velocities; 	}
 
-bool VelocityModel::writeFile(const QString &fileName)
+bool Model::writeFile(const QString &fileName)
 {
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -145,7 +145,7 @@ bool VelocityModel::writeFile(const QString &fileName)
     return true;
 }
 
-bool VelocityModel::readFile(const QString &fileName)
+bool Model::readFile(const QString &fileName)
 {
     QVector<QString> vals;
     QFile file(fileName);
@@ -192,7 +192,7 @@ bool VelocityModel::readFile(const QString &fileName)
     return true;
 }
 
-void VelocityModel::clear() {
+void Model::clear() {
     this->width         = "450"                 ;
     this->height        = "450"                 ;
     this->width_2       = "450"                 ;
