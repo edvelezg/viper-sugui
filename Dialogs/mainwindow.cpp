@@ -8,13 +8,13 @@
 #include "simulparams.h"
 #include "getenv.h"
 #include "wizard.h"
-#include "listdialog.h"
+#include "velocitymodel.h"
 #include <cstdlib>
 
 MainWindow::MainWindow() {
     setupUi( this );   
 
-    vm           	= new Model();
+    model           	= new SimulationModel();
     dlgGeometry  	= 0;
     dlgModParams 	= 0;
 	dlgLoadModel    = 0;
@@ -153,35 +153,35 @@ void MainWindow::simParams()
         dlgSimParams->show();
     }
 
-	dlgSimParams->getParams(*vm);
+	dlgSimParams->getParams(*model);
 
     if (dlgSimParams->exec()) {
 
         setWindowModified(true);
-        vm->setDistance    ( (dlgSimParams->sbDistance)->text()     );
-        vm->setDepth       ( (dlgSimParams->sbDepth)->text()        );
-        vm->setFpeak       ( (dlgSimParams->sbFpeak)->text()        );
-        vm->setFmax        ( (dlgSimParams->sbFmax)->text()         );
-        vm->setWindowTitle ( (dlgSimParams->leWindowTitle)->text()  );
-        vm->setTitle       ( (dlgSimParams->leTitle)->text()        );
-        vm->setTMax        ( (dlgSimParams->sbTMax)->text()         );
+        model->setDistance    ( (dlgSimParams->sbDistance)->text()     );
+        model->setDepth       ( (dlgSimParams->sbDepth)->text()        );
+        model->setFpeak       ( (dlgSimParams->sbFpeak)->text()        );
+        model->setFmax        ( (dlgSimParams->sbFmax)->text()         );
+        model->setWindowTitle ( (dlgSimParams->leWindowTitle)->text()  );
+        model->setTitle       ( (dlgSimParams->leTitle)->text()        );
+        model->setTMax        ( (dlgSimParams->sbTMax)->text()         );
 
         if((dlgSimParams->chkLoop)->isChecked()) {
-            vm->setLoop("1");        
+            model->setLoop("1");        
         } else {
-            vm->setLoop("0");        
+            model->setLoop("0");        
         }
 
-        vm->setClip        ( (dlgSimParams->sbClip)->text()         ) ;
+        model->setClip        ( (dlgSimParams->sbClip)->text()         ) ;
 
-        textEdit->append( "distance   :" + vm->getDistance    () ) ;
-        textEdit->append( "depth      :" + vm->getDepth       () ) ;
-        textEdit->append( "fpeak      :" + vm->getFpeak       () ) ;
-        textEdit->append( "fmax       :" + vm->getFmax        () ) ;
-        textEdit->append( "windowTitle:" + vm->getWindowTitle () ) ;
-        textEdit->append( "title      :" + vm->getTitle       () ) ;
-        textEdit->append( "tMax       :" + vm->getTMax        () ) ;
-        textEdit->append( "clip       :" + vm->getClip        () ) ;
+        textEdit->append( "distance   :" + model->getDistance    () ) ;
+        textEdit->append( "depth      :" + model->getDepth       () ) ;
+        textEdit->append( "fpeak      :" + model->getFpeak       () ) ;
+        textEdit->append( "fmax       :" + model->getFmax        () ) ;
+        textEdit->append( "windowTitle:" + model->getWindowTitle () ) ;
+        textEdit->append( "title      :" + model->getTitle       () ) ;
+        textEdit->append( "tMax       :" + model->getTMax        () ) ;
+        textEdit->append( "clip       :" + model->getClip        () ) ;
 
     }
     tabWidget->setCurrentIndex(0);
@@ -196,28 +196,28 @@ void MainWindow::sizeSettings()
         dlgGeometry->show();
     }
 
-	dlgGeometry->getParams(*vm);
+	dlgGeometry->getParams(*model);
 
     if (dlgGeometry->exec()) {
 	    setWindowModified(true);
 
-		vm->setWidth	 	( (dlgGeometry->sbWidth)->text()      	);
-		vm->setHeight	 	( (dlgGeometry->sbHeight)->text()     	);
-		vm->setWidth_2	 	( (dlgGeometry->sbWidth_2)->text()      );
-		vm->setHeight_2	 	( (dlgGeometry->sbHeight_2)->text()    	);
-		vm->setWidthOff1 	( (dlgGeometry->sbWidthOff1)->text()  	);
-		vm->setHeightOff1	( (dlgGeometry->sbHeightOff1)->text()  	);
-		vm->setWidthOff2 	( (dlgGeometry->sbWidthOff2)->text() 	);
-		vm->setHeightOff2	( (dlgGeometry->sbHeightOff2)->text() 	);
+		model->setWidth	 	( (dlgGeometry->sbWidth)->text()      	);
+		model->setHeight	 	( (dlgGeometry->sbHeight)->text()     	);
+		model->setWidth_2	 	( (dlgGeometry->sbWidth_2)->text()      );
+		model->setHeight_2	 	( (dlgGeometry->sbHeight_2)->text()    	);
+		model->setWidthOff1 	( (dlgGeometry->sbWidthOff1)->text()  	);
+		model->setHeightOff1	( (dlgGeometry->sbHeightOff1)->text()  	);
+		model->setWidthOff2 	( (dlgGeometry->sbWidthOff2)->text() 	);
+		model->setHeightOff2	( (dlgGeometry->sbHeightOff2)->text() 	);
 	                                                              	
-		textEdit->append	( "Model width: "      + vm->getWidth	 	()	);
-        textEdit->append	( "Model height: "     + vm->getHeight	()	); 
-		textEdit->append	( "Movie width: "      + vm->getWidth	 	()	);
-        textEdit->append	( "Movie height: "     + vm->getHeight	()	); 
-        textEdit->append	( "Cord. X Modelo: " + vm->getWidthOff2 ()	); 
-        textEdit->append	( "Cord. Y Modelo: " + vm->getHeightOff2()	); 
-        textEdit->append	( "Cord. X Pelicula: "  + vm->getWidthOff1 ()	); 
-        textEdit->append	( "Cord. Y Pelicula: "  + vm->getHeightOff1()	); 
+		textEdit->append	( "Model width: "      + model->getWidth	 	()	);
+        textEdit->append	( "Model height: "     + model->getHeight	()	); 
+		textEdit->append	( "Movie width: "      + model->getWidth	 	()	);
+        textEdit->append	( "Movie height: "     + model->getHeight	()	); 
+        textEdit->append	( "Cord. X Modelo: " + model->getWidthOff2 ()	); 
+        textEdit->append	( "Cord. Y Modelo: " + model->getHeightOff2()	); 
+        textEdit->append	( "Cord. X Pelicula: "  + model->getWidthOff1 ()	); 
+        textEdit->append	( "Cord. Y Pelicula: "  + model->getHeightOff1()	); 
     }
 
     tabWidget->setCurrentIndex(0);
@@ -233,7 +233,7 @@ void MainWindow::modelParams()
         dlgModParams->show();
     }
 	
-	dlgModParams->getParams(*vm);
+	dlgModParams->getParams(*model);
 	
     if (dlgModParams->exec()) {
         setWindowModified(true);
@@ -244,34 +244,34 @@ void MainWindow::modelParams()
 		QString d1 = QString::number((depth/100.0));
 		QString d2 = QString::number((distance/100.0));
 				
-        vm->setN1("100");        
-        vm->setN2("100");        
-        vm->setD1(d1);        
-        vm->setD2(d2);        
+        model->setN1("100");        
+        model->setN2("100");        
+        model->setD1(d1);        
+        model->setD2(d2);        
 		
 		if ((dlgModParams->cbColor)->currentText() == "Color") {
-        	vm->setCmap("hue");        
+        	model->setCmap("hue");        
 		}	else {
-			vm->setCmap("gray");
+			model->setCmap("gray");
 		}		
 
         if((dlgModParams->chkLeyenda)->isChecked()) {
-            vm->setLegend("1");        
+            model->setLegend("1");        
         } else {
-            vm->setLegend("0");        
+            model->setLegend("0");        
         }
 
-		vm->setMethod((dlgModParams->cbMethod)->currentText());
+		model->setMethod((dlgModParams->cbMethod)->currentText());
 
-        vm->setTitulo((dlgModParams->leTitulo)->text());        
+        model->setTitulo((dlgModParams->leTitulo)->text());        
 
-        textEdit_2->append( "n1:"      +   vm->getN1() 		);
-        textEdit_2->append( "n2:"      +   vm->getN2() 		);
-        textEdit_2->append( "d1:"      +   vm->getD1() 		);
-        textEdit_2->append( "d2:"      +   vm->getD2() 		);
-        textEdit_2->append( "cmap:"    +   vm->getCmap()   	);
-        textEdit_2->append( "legend:"  +   vm->getLegend()   	);
-        textEdit_2->append( "titulo:"  +   vm->getTitulo()   	);
+        textEdit_2->append( "n1:"      +   model->getN1() 		);
+        textEdit_2->append( "n2:"      +   model->getN2() 		);
+        textEdit_2->append( "d1:"      +   model->getD1() 		);
+        textEdit_2->append( "d2:"      +   model->getD2() 		);
+        textEdit_2->append( "cmap:"    +   model->getCmap()   	);
+        textEdit_2->append( "legend:"  +   model->getLegend()   	);
+        textEdit_2->append( "titulo:"  +   model->getTitulo()   	);
 
         tabWidget->setCurrentIndex(1);
      }
@@ -286,18 +286,18 @@ void MainWindow::loadModel()
         dlgList->show();
     }
 
-	dlgList->setVelocities(vm->getVelocities());
+	dlgList->setVelocities(model->getVelocities());
 
       if( dlgList->exec() ) {
           setWindowModified(true);
-          vm->setModelFile(dlgList->currentLocation());
-          textEdit_2->append("Archivo de Modelo: " + vm->getModelFile());
+          model->setModelFile(dlgList->currentLocation());
+          textEdit_2->append("Archivo de Modelo: " + model->getModelFile());
 
           QString all = dlgList->velocities().join(",");
 		  if (all != "")
-          	vm->setVelocities( "v00=" + all );
+          	model->setVelocities( "v00=" + all );
 
-          qDebug() << vm->getVelocities();
+          qDebug() << model->getVelocities();
 
           tabWidget->setCurrentIndex(1);
       }
@@ -327,7 +327,7 @@ void MainWindow::run()
 	// Setting the Environment for Seismic Unix
 	QString sysPath = ::getenv("PATH");
 	sysPath = sysPath + ":" + environment + "/bin";
-	::setenv("PATH", sysPath.toStdString().c_str(), 1);
+//  ::setenv("PATH", sysPath.toStdString().c_str(), 1);
 	QStringList env = QProcess::systemEnvironment();
 	env << "CWPROOT=" + environment;
  	// env = "PATH=" + environment;
@@ -346,27 +346,27 @@ void MainWindow::run()
 	}
 	
     QStringList args;
-    if (vm->getModelFile() == "") {
+    if (model->getModelFile() == "") {
         args << "tfile=model.out";
-        vm->setModelFile("model.out");
+        model->setModelFile("model.out");
 		unif2.start("unif2", args);
 		unif2.waitForFinished();
 		args.clear();
     }
 
 	// Process unif2.
-	args 	<< "n1=" 		+ vm->getN1()
-	       	<< "n2=" 		+ vm->getN2()
-	     	<< vm->getVelocities()
-			<< "method=" 	+ vm->getMethod()
+	args 	<< "n1=" 		+ model->getN1()
+	       	<< "n2=" 		+ model->getN2()
+	     	<< model->getVelocities()
+			<< "method=" 	+ model->getMethod()
 	        ;
 	
-	textEdit_2->append("Archivo de Modelo: " + vm->getModelFile());
-	textEdit_2->append("Velocidades del Modelo: " + vm->getVelocities());
+	textEdit_2->append("Archivo de Modelo: " + model->getModelFile());
+	textEdit_2->append("Velocidades del Modelo: " + model->getVelocities());
     
 	// print it out
     
-	unif2.setStandardInputFile(vm->getModelFile());
+	unif2.setStandardInputFile(model->getModelFile());
 	unif2.setStandardOutputFile("vel.out");
 	unif2.setWorkingDirectory( QDir::current().currentPath() );
 	unif2.start("unif2", args);
@@ -376,18 +376,18 @@ void MainWindow::run()
 	args.clear();
 	
     // Process ximage.
-	args	<< "n1="	 	+ vm->getN1() 
-         	<< "n2=" 		+ vm->getN2()
-         	<< "d1=" 		+ vm->getD1()
-         	<< "d2=" 		+ vm->getD2()
-			<< "legend=" 	+ vm->getLegend()
-			<< "cmap=" 		+ vm->getCmap()
-		    << "title=" 	+ vm->getTitulo()
-    	    << "method=" 	+ vm->getMethod()
-    	    << "wbox=" 		+ vm->getWidth()
-    	    << "hbox=" 		+ vm->getHeight()
-    	    << "xbox=" 		+ vm->getWidthOff2()
-    	    << "ybox=" 		+ vm->getHeightOff2()
+	args	<< "n1="	 	+ model->getN1() 
+         	<< "n2=" 		+ model->getN2()
+         	<< "d1=" 		+ model->getD1()
+         	<< "d2=" 		+ model->getD2()
+			<< "legend=" 	+ model->getLegend()
+			<< "cmap=" 		+ model->getCmap()
+		    << "title=" 	+ model->getTitulo()
+    	    << "method=" 	+ model->getMethod()
+    	    << "wbox=" 		+ model->getWidth()
+    	    << "hbox=" 		+ model->getHeight()
+    	    << "xbox=" 		+ model->getWidthOff2()
+    	    << "ybox=" 		+ model->getHeightOff2()
 			;
 			
 	for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
@@ -405,20 +405,20 @@ void MainWindow::run()
 	
     QStringList argsSufdmod2;
 	
-	args	<< "nz="	 	                    + vm->getN1() 
-         	<< "nx=" 		                    + vm->getN2()
-         	<< "dz=" 		                    + vm->getD1()
-         	<< "dx=" 		                    + vm->getD2()
-			<< "fpeak=" 	                    + vm->getFpeak()
-			<< "fmax=" 	                        + vm->getFmax()
-		    << "xs=" 	                        + vm->getDistance()
-    	    << "zs=" 		                    + vm->getDepth()
+	args	<< "nz="	 	                    + model->getN1() 
+         	<< "nx=" 		                    + model->getN2()
+         	<< "dz=" 		                    + model->getD1()
+         	<< "dx=" 		                    + model->getD2()
+			<< "fpeak=" 	                    + model->getFpeak()
+			<< "fmax=" 	                        + model->getFmax()
+		    << "xs=" 	                        + model->getDistance()
+    	    << "zs=" 		                    + model->getDepth()
     	    << "hsz=60" 	
     	    << "vsx=250" 	
     	    << "hsfile=hseis.out" 	
     	    << "vsfile=vseis.out" 	
     	    << "ssfile=sseis.out" 	
-    	    << "tmax="                          + vm->getTMax() 	
+    	    << "tmax="                          + model->getTMax() 	
     	    << "abs=1,1,1,1"
     	    << "mt=5" 		
     	    << "verbose=2"  
@@ -434,20 +434,20 @@ void MainWindow::run()
 	// Process suxmovie. 
 
 	argsMovie	<< "clip=1.0"	 	
-				<< "title='"                                    + vm->getTitle()        + "'"
-				<< "windowtitle='" 	                            + vm->getWindowTitle()  + "'"
+				<< "title='"                                    + model->getTitle()        + "'"
+				<< "windowtitle='" 	                            + model->getWindowTitle()  + "'"
 				<< "label1='Profundidad (m)'" 	
 				<< "label2='Distancia (m)'" 	
-				<< "n1="	 	                                + vm->getN1() 
-				<< "n2=" 		                                + vm->getN2()
-	         	<< "d1=" 		                                + vm->getD1()
-	         	<< "d2=" 		                                + vm->getD2()
+				<< "n1="	 	                                + model->getN1() 
+				<< "n2=" 		                                + model->getN2()
+	         	<< "d1=" 		                                + model->getD1()
+	         	<< "d2=" 		                                + model->getD2()
 			    << "f1=0.0" 	                                
 			    << "f2=0.0" 	                                
-	    	    << "loop=" 	                                    + vm->getLoop()
+	    	    << "loop=" 	                                    + model->getLoop()
 	    	    << "cmap=gray" 	
 	    	    << "-geometry"
-				<< vm->getWidth_2()	+ "x" + vm->getHeight_2() + "+" + vm->getWidthOff1() + "+" + vm->getHeightOff1()
+				<< model->getWidth_2()	+ "x" + model->getHeight_2() + "+" + model->getWidthOff1() + "+" + model->getHeightOff1()
 				;
 
 	suxmovie.setWorkingDirectory( QDir::current().currentPath() );
@@ -470,18 +470,18 @@ void MainWindow::preview()
 
 
     QStringList args;
-    if (vm->getModelFile() == "") {
+    if (model->getModelFile() == "") {
         args << "tfile=model.out";
-        vm->setModelFile("model.out");
+        model->setModelFile("model.out");
 		unif2.start("unif2", args);
 		unif2.waitForFinished();
 		args.clear();
     }
 
 	// Process unif2.
-	args 	<< "n1=" 		+ vm->getN1()
-	       	<< "n2=" 		+ vm->getN2()
-			<< "method=" 	+ vm->getMethod()
+	args 	<< "n1=" 		+ model->getN1()
+	       	<< "n2=" 		+ model->getN2()
+			<< "method=" 	+ model->getMethod()
 	        ;
 	
 	// print it out
@@ -490,7 +490,7 @@ void MainWindow::preview()
 	}
 
     
-	unif2.setStandardInputFile(vm->getModelFile());
+	unif2.setStandardInputFile(model->getModelFile());
 	unif2.setStandardOutputFile("vel.out");
 	unif2.setWorkingDirectory( QDir::current().currentPath() );
 	unif2.start("unif2", args);
@@ -499,18 +499,18 @@ void MainWindow::preview()
 	args.clear();
 	
     // Process ximage.
-	args	<< "n1="	 	+ vm->getN1() 
-         	<< "n2=" 		+ vm->getN2()
-         	<< "d1=" 		+ vm->getD1()
-         	<< "d2=" 		+ vm->getD2()
-			<< "legend=" 	+ vm->getLegend()
-			<< "cmap=" 		+ vm->getCmap()
-		    << "title=" 	+ vm->getTitulo()
-    	    << "method=" 	+ vm->getMethod()
-    	    << "wbox=" 		+ vm->getWidth()
-    	    << "hbox=" 		+ vm->getHeight()
-    	    << "xbox=" 		+ vm->getWidthOff2()
-    	    << "ybox=" 		+ vm->getHeightOff2()
+	args	<< "n1="	 	+ model->getN1() 
+         	<< "n2=" 		+ model->getN2()
+         	<< "d1=" 		+ model->getD1()
+         	<< "d2=" 		+ model->getD2()
+			<< "legend=" 	+ model->getLegend()
+			<< "cmap=" 		+ model->getCmap()
+		    << "title=" 	+ model->getTitulo()
+    	    << "method=" 	+ model->getMethod()
+    	    << "wbox=" 		+ model->getWidth()
+    	    << "hbox=" 		+ model->getHeight()
+    	    << "xbox=" 		+ model->getWidthOff2()
+    	    << "ybox=" 		+ model->getHeightOff2()
 			;
 			
 	for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
@@ -525,7 +525,7 @@ void MainWindow::preview()
 void MainWindow::newFile()
 {
     if (okToContinue()) {
-        vm->clear();
+        model->clear();
         setCurrentFile("");
         textEdit->clear();
     }
@@ -591,7 +591,7 @@ bool MainWindow::saveFile(const QString &fileName)
        return false;
    }
    setCurrentFile( fileName );
-   vm->writeFile( fileName );
+   model->writeFile( fileName );
 
    return true;
 }
@@ -607,7 +607,7 @@ bool MainWindow::loadFile(const QString &fileName)
        return false;
    }
    setCurrentFile( fileName );
-   vm->readFile( fileName );
+   model->readFile( fileName );
 
    return true;
 }

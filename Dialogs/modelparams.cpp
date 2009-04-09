@@ -14,7 +14,7 @@ ModelParams::ModelParams(QWidget *parent)
     connect(buttonBox->button(QDialogButtonBox::Cancel), SIGNAL(clicked()), this, SLOT(reject()));
 }
 
-void ModelParams::getParams(Model &vm) {
+void ModelParams::getParams(SimulationModel &vm) {
 
 	double n1 = vm.getN1().toDouble();
 	double n2 =	vm.getN2().toDouble();

@@ -1,14 +1,11 @@
-#ifndef _VELOCITYMODEL_H_
-#define _VELOCITYMODEL_H_
-
 #include <QString>
 #include <QVector>
 
-class Model
+class SimulationModel
 {
 
 public:
-	Model ();
+	SimulationModel ();
 
 	QString getWidth	 ();
 	QString getHeight	 ();	
@@ -106,6 +103,3 @@ private:
 	QString clip        ;
 	QString velocities  ;
 };
-
-
-#endif /* _VELOCITYMODEL_H_ */

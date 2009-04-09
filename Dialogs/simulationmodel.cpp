@@ -5,7 +5,7 @@
 #include <QMessageBox>
 #include "model.h"
 
-Model::Model() {
+SimulationModel::SimulationModel() {
         this->width         = "450"                 ;
         this->height        = "450"                 ;
         this->width_2       = "450"                 ;
@@ -37,69 +37,69 @@ Model::Model() {
 		this->velocities	= ""					;
 }
 
-QString Model::getWidth	     ()					        { 	return width	 ;				}
-QString Model::getHeight	 ()					        { 	return height	 ;				}	
-QString Model::getWidth_2	     ()					    { 	return width_2	 ;				}
-QString Model::getHeight_2	 ()					        { 	return height_2	 ;				}	
-QString Model::getWidthOff1  ()					        { 	return widthoff1 ;				}	
-QString Model::getHeightOff1 ()					        { 	return heightoff1;				}
-QString Model::getWidthOff2  ()					        { 	return widthoff2 ;				}
-QString Model::getHeightOff2 ()					        { 	return heightoff2;				}
+QString SimulationModel::getWidth	     ()					        { 	return width	 ;				}
+QString SimulationModel::getHeight	 ()					        { 	return height	 ;				}	
+QString SimulationModel::getWidth_2	     ()					    { 	return width_2	 ;				}
+QString SimulationModel::getHeight_2	 ()					        { 	return height_2	 ;				}	
+QString SimulationModel::getWidthOff1  ()					        { 	return widthoff1 ;				}	
+QString SimulationModel::getHeightOff1 ()					        { 	return heightoff1;				}
+QString SimulationModel::getWidthOff2  ()					        { 	return widthoff2 ;				}
+QString SimulationModel::getHeightOff2 ()					        { 	return heightoff2;				}
 
-QString Model::getN1()					                { 	return n1;						}
-QString Model::getN2()					                { 	return n2;						}	
-QString Model::getD1()					                { 	return d1;					 	}	
-QString Model::getD2()					                { 	return d2;						}
-QString Model::getCmap()   		                        {   return cmap;        		    } 
-QString Model::getLegend()   		                    {   return legend;      		    } 
-QString Model::getTitulo()   		                    {   return titulo;      		    } 
-QString Model::getMethod()				                { 	return method;					}
-QString Model::getModelFile()				            { 	return modelFile;				}
+QString SimulationModel::getN1()					                { 	return n1;						}
+QString SimulationModel::getN2()					                { 	return n2;						}	
+QString SimulationModel::getD1()					                { 	return d1;					 	}	
+QString SimulationModel::getD2()					                { 	return d2;						}
+QString SimulationModel::getCmap()   		                        {   return cmap;        		    } 
+QString SimulationModel::getLegend()   		                    {   return legend;      		    } 
+QString SimulationModel::getTitulo()   		                    {   return titulo;      		    } 
+QString SimulationModel::getMethod()				                { 	return method;					}
+QString SimulationModel::getModelFile()				            { 	return modelFile;				}
 
-QString Model::getDistance    ()                        {   return distance    ;            }
-QString Model::getDepth       ()                        {   return depth       ;            }
-QString Model::getFpeak       ()                        {   return fpeak       ;            }
-QString Model::getFmax        ()                        {   return fmax        ;            }
-QString Model::getWindowTitle ()                        {   return windowTitle ;            }
-QString Model::getTitle       ()                        {   return title       ;            }
-QString Model::getTMax        ()                        {   return tMax        ;            }
-QString Model::getLoop        ()                        {   return loop        ;            }
-QString Model::getClip        ()                        {   return clip        ;            }
+QString SimulationModel::getDistance    ()                        {   return distance    ;            }
+QString SimulationModel::getDepth       ()                        {   return depth       ;            }
+QString SimulationModel::getFpeak       ()                        {   return fpeak       ;            }
+QString SimulationModel::getFmax        ()                        {   return fmax        ;            }
+QString SimulationModel::getWindowTitle ()                        {   return windowTitle ;            }
+QString SimulationModel::getTitle       ()                        {   return title       ;            }
+QString SimulationModel::getTMax        ()                        {   return tMax        ;            }
+QString SimulationModel::getLoop        ()                        {   return loop        ;            }
+QString SimulationModel::getClip        ()                        {   return clip        ;            }
 
-QString Model::getVelocities()				            { 	return velocities;				}
+QString SimulationModel::getVelocities()				            { 	return velocities;				}
 
-void Model::setWidth	    (QString width	   )   		{	this->width	      = width	  ;	}
-void Model::setHeight	    (QString height	   )   		{	this->height	  = height	  ;	}	
-void Model::setWidth_2	    (QString width_2	   )   		{	this->width_2	      = width_2	  ;	}
-void Model::setHeight_2	    (QString height_2	   )   		{	this->height_2	  = height_2	  ;	}	
-void Model::setWidthOff1    (QString widthoff1 )   		{	this->widthoff1   = widthoff1 ;	}	
-void Model::setHeightOff1   (QString heightoff1)   		{	this->heightoff1  = heightoff1;	}
-void Model::setWidthOff2    (QString widthoff2 )   		{	this->widthoff2   = widthoff2 ;	}
-void Model::setHeightOff2   (QString heightoff2)   		{	this->heightoff2  = heightoff2;	}
+void SimulationModel::setWidth	    (QString width	   )   		{	this->width	      = width	  ;	}
+void SimulationModel::setHeight	    (QString height	   )   		{	this->height	  = height	  ;	}	
+void SimulationModel::setWidth_2	    (QString width_2	   )   		{	this->width_2	      = width_2	  ;	}
+void SimulationModel::setHeight_2	    (QString height_2	   )   		{	this->height_2	  = height_2	  ;	}	
+void SimulationModel::setWidthOff1    (QString widthoff1 )   		{	this->widthoff1   = widthoff1 ;	}	
+void SimulationModel::setHeightOff1   (QString heightoff1)   		{	this->heightoff1  = heightoff1;	}
+void SimulationModel::setWidthOff2    (QString widthoff2 )   		{	this->widthoff2   = widthoff2 ;	}
+void SimulationModel::setHeightOff2   (QString heightoff2)   		{	this->heightoff2  = heightoff2;	}
                                         		
-void Model::setN1(QString n1)   		                {	this->n1 = n1;			        }
-void Model::setN2(QString n2)   		                {	this->n2 = n2;			        }	
-void Model::setD1(QString d1)   		                {	this->d1 = d1;			        }	
-void Model::setD2(QString d2)   		                {	this->d2 = d2;			        }
-void Model::setCmap(QString cmap)   		            {   this->cmap = cmap;              } 
-void Model::setLegend(QString legend)   		        {   this->legend = legend;          } 
-void Model::setTitulo(QString titulo)   		        {   this->titulo = titulo;          } 
-void Model::setMethod(QString method)	                {	this->method = method; 	        }
-void Model::setModelFile(QString modelFile)	            {	this->modelFile = modelFile; 	}
+void SimulationModel::setN1(QString n1)   		                {	this->n1 = n1;			        }
+void SimulationModel::setN2(QString n2)   		                {	this->n2 = n2;			        }	
+void SimulationModel::setD1(QString d1)   		                {	this->d1 = d1;			        }	
+void SimulationModel::setD2(QString d2)   		                {	this->d2 = d2;			        }
+void SimulationModel::setCmap(QString cmap)   		            {   this->cmap = cmap;              } 
+void SimulationModel::setLegend(QString legend)   		        {   this->legend = legend;          } 
+void SimulationModel::setTitulo(QString titulo)   		        {   this->titulo = titulo;          } 
+void SimulationModel::setMethod(QString method)	                {	this->method = method; 	        }
+void SimulationModel::setModelFile(QString modelFile)	            {	this->modelFile = modelFile; 	}
 
-void Model::setDistance    (QString distance   )        {   this->distance    =   distance   ; }
-void Model::setDepth       (QString depth      )        {   this->depth       =   depth      ; }
-void Model::setFpeak       (QString fpeak      )        {   this->fpeak       =   fpeak      ; }
-void Model::setFmax        (QString fmax       )        {   this->fmax        =   fmax       ; }
-void Model::setWindowTitle (QString windowTitle)        {   this->windowTitle =   windowTitle; }
-void Model::setTitle       (QString title      )        {   this->title       =   title      ; }
-void Model::setTMax        (QString tMax       )        {   this->tMax        =   tMax       ; }
-void Model::setLoop        (QString loop       )        {   this->loop        =   loop       ; }
-void Model::setClip        (QString clip       )        {   this->clip        =   clip       ; }
+void SimulationModel::setDistance    (QString distance   )        {   this->distance    =   distance   ; }
+void SimulationModel::setDepth       (QString depth      )        {   this->depth       =   depth      ; }
+void SimulationModel::setFpeak       (QString fpeak      )        {   this->fpeak       =   fpeak      ; }
+void SimulationModel::setFmax        (QString fmax       )        {   this->fmax        =   fmax       ; }
+void SimulationModel::setWindowTitle (QString windowTitle)        {   this->windowTitle =   windowTitle; }
+void SimulationModel::setTitle       (QString title      )        {   this->title       =   title      ; }
+void SimulationModel::setTMax        (QString tMax       )        {   this->tMax        =   tMax       ; }
+void SimulationModel::setLoop        (QString loop       )        {   this->loop        =   loop       ; }
+void SimulationModel::setClip        (QString clip       )        {   this->clip        =   clip       ; }
 
-void Model::setVelocities(QString velocities)	        {	this->velocities = velocities; 	}
+void SimulationModel::setVelocities(QString velocities)	        {	this->velocities = velocities; 	}
 
-bool Model::writeFile(const QString &fileName)
+bool SimulationModel::writeFile(const QString &fileName)
 {
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -145,7 +145,7 @@ bool Model::writeFile(const QString &fileName)
     return true;
 }
 
-bool Model::readFile(const QString &fileName)
+bool SimulationModel::readFile(const QString &fileName)
 {
     QVector<QString> vals;
     QFile file(fileName);
@@ -192,7 +192,7 @@ bool Model::readFile(const QString &fileName)
     return true;
 }
 
-void Model::clear() {
+void SimulationModel::clear() {
     this->width         = "450"                 ;
     this->height        = "450"                 ;
     this->width_2       = "450"                 ;

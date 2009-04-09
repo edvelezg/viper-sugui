@@ -6,7 +6,7 @@
 
 #include "ui_simulparams.h"
 
-class Model;
+class SimulationModel;
 
 class SimulParams : public QDialog, public Ui::SimulParams
 {
@@ -14,7 +14,7 @@ class SimulParams : public QDialog, public Ui::SimulParams
 
 public:
     SimulParams(QWidget *parent = 0);
-	void getParams(Model &vm);
+	void getParams(SimulationModel &vm);
 
 };
 

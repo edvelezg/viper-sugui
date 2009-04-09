@@ -6,7 +6,7 @@
 
 #include "ui_modelparams.h"
 
-class Model;
+class SimulationModel;
 
 class ModelParams : public QDialog, public Ui::ModelDialog
 {
@@ -14,7 +14,7 @@ class ModelParams : public QDialog, public Ui::ModelDialog
 
 public:
     ModelParams(QWidget *parent = 0);
-	void getParams(Model &vm);
+	void getParams(SimulationModel &vm);
 };
 
 #endif

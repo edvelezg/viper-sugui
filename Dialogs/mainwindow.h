@@ -4,14 +4,14 @@
 #include <QMainWindow>
 #include <QProcess>
 #include "ui_mainwindow.h"
+#include "listdialog.h"
+#include "model.h"
 
 class Geometry;
 class ModelParams;
-class Model;
 class LoadModel;
 class SimulParams;
 class GetEnv;
-class ListDialog;
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -71,7 +71,7 @@ private:
 	GetEnv 		*dlgEnvironment;
     ListDialog  *dlgList;
 	
-    Model *vm;
+    SimulationModel *model;
     bool shows;
 };
 

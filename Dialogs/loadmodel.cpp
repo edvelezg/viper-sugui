@@ -33,7 +33,7 @@ void LoadModel::on_browseButton_clicked()
     }
 }
 
-void LoadModel::getParams(Model &vm) {
+void LoadModel::getParams(SimulationModel &vm) {
     sourceFileEdit->setText( vm.getModelFile() );
 }
 
