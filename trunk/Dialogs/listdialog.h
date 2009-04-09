@@ -2,8 +2,8 @@
 #define LISTDIALOG_H
 
 #include <QDialog>
-#include <QStringList>
 #include "ui_listdialog.h"
+#include "velocitymodel.h"
 
 class ListDialog : public QDialog
 {
@@ -24,8 +24,10 @@ private slots:
 
 private:
   Ui::ListDialog ui;
+  QMap<QString, VelocityModel> vmMap;
+  QStringList mVels;
   QString modelFile;
-  QStringList vels;
+
 };
 
 #endif // LISTDIALOG_H

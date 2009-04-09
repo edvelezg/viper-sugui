@@ -5,7 +5,7 @@
 
 #include "ui_geometry.h"
 
-class Model;
+class SimulationModel;
 
 class Geometry : public QDialog, public Ui::GeoDialog
 {
@@ -13,7 +13,7 @@ class Geometry : public QDialog, public Ui::GeoDialog
 
 public:
     Geometry(QWidget *parent = 0);
-	void getParams(Model &vm);
+	void getParams(SimulationModel &vm);
 };
 
 #endif

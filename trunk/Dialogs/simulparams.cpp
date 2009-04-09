@@ -12,7 +12,7 @@ SimulParams::SimulParams(QWidget *parent)
     connect(buttonBox->button(QDialogButtonBox::Cancel), SIGNAL(clicked()), this, SLOT(reject()));
 }
 
-void SimulParams::getParams(Model &vm) {
+void SimulParams::getParams(SimulationModel &vm) {
 
     sbDistance->setValue    (   vm.getDistance    ().toDouble() );
     sbDepth->setValue       (   vm.getDepth       ().toDouble() );

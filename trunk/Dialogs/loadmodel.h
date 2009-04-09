@@ -6,7 +6,7 @@
 
 #include "ui_loadmodel.h"
 
-class Model;
+class SimulationModel;
 
 class LoadModel : public QDialog, public Ui::LoadModel
 {
@@ -15,7 +15,7 @@ class LoadModel : public QDialog, public Ui::LoadModel
 public:
     LoadModel(QWidget *parent = 0);
 	QString getModelFile();
-	void getParams(Model &vm);
+	void getParams(SimulationModel &vm);
 
 public slots:
     void on_browseButton_clicked();
