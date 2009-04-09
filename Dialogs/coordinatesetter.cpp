@@ -45,11 +45,11 @@ CoordinateSetter::CoordinateSetter(QList<double> *coords,
 void CoordinateSetter::done(int result)
 {
     if (result == QDialog::Accepted) {
+		qDebug() << coordinates->size();
         coordinates->clear();
         for (int row = 0; row < tableWidget->rowCount(); ++row) {
             double x = tableWidget->item(row, 0)->text().toDouble();
             coordinates->append(x);
-            vels << tableWidget->item(row, 0)->text();
         }
     }
     QDialog::done(result);
@@ -65,13 +65,15 @@ void CoordinateSetter::addRow()
     item0->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
     tableWidget->setItem(row, 0, item0);
 
-    QTableWidgetItem *item1 = new QTableWidgetItem;
-    item1->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    tableWidget->setItem(row, 1, item1);
-
     tableWidget->setCurrentItem(item0);
 }
 
 const QStringList CoordinateSetter::velocities() const {
-    return vels;
+
+	QStringList vels;
+	for (int i = 0; i < coordinates->size(); ++i) {
+		vels << QString::number(coordinates->at(i));
+		qDebug() << QString::number(coordinates->at(i));
+	 }
+	return vels;
 }

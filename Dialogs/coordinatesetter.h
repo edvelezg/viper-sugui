@@ -24,7 +24,6 @@ public:
       QTableWidget *tableWidget;
       QDialogButtonBox *buttonBox;
       QList<double> *coordinates;
-      QStringList vels;
     };
 
 #endif
