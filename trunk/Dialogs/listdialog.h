@@ -13,12 +13,14 @@ public:
   ListDialog( QWidget *parent = 0 );
   const QString currentLocation() const;
   const QStringList velocities() const;
+  void setVelocities(QString vels);
+
   
 private slots:
   void addItem();
   void editItem();
   void deleteItem();
-  void enableButton();
+  void modelChanged();
 
 private:
   Ui::ListDialog ui;

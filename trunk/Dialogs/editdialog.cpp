@@ -35,6 +35,10 @@ void EditDialog::setModelLocation( const QString &modelLocation )
     sourceFileEdit->setText( modelLocation );
 }
 
+void EditDialog::setVelocities( const QStringList &vels ) {
+	this->vels = vels;
+}
+
 void EditDialog::setVelocities()
 {
 	QFile file(modelLocation());
@@ -58,12 +62,22 @@ void EditDialog::setVelocities()
             ++numLayers;
         }
     }
-    double inc = 2500.0 / (numLayers - 1.0);
 
     QList<double> coordinates;
-    for (int i = 0; i < numLayers - 1 ; ++i ) {
-        coordinates << 1500.0 + i*inc;
-    }
+	if (vels.size() == (numLayers - 1))
+	{
+		QString text;
+		foreach( text, vels ) {
+			coordinates << text.toDouble();
+		}
+	} 
+	else {
+    	double inc = 2500.0 / (numLayers - 1.0);
+
+	    for (int i = 0; i < numLayers - 1 ; ++i ) {
+	        coordinates << 1500.0 + i*inc;
+	    }
+	} 
 	
 	if (!coordinateSetter) {
         coordinateSetter = new CoordinateSetter(&coordinates, this);

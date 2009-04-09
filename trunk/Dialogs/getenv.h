@@ -12,7 +12,7 @@ class GetEnv : public QDialog, public Ui::GetEnv
 public:
     GetEnv(QWidget *parent = 0);
 	QString getEnvironment();
-	// void getParams(VelocityModel &vm);
+	// void getParams(Model &vm);
 
 private slots:
     void on_browseButton_clicked();

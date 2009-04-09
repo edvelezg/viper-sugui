@@ -15,7 +15,6 @@ class ModelParams : public QDialog, public Ui::ModelDialog
 public:
     ModelParams(QWidget *parent = 0);
 	void getParams(Model &vm);
-
 };
 
 #endif

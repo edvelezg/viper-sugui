@@ -21,6 +21,7 @@ public:
   void setModelLocation( const QString& );
 
   const QStringList velocities() const;
+  void setVelocities( const QStringList& );
 
 public slots:
     void on_browseButton_clicked();
