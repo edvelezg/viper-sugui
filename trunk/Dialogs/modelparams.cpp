@@ -1,6 +1,6 @@
 #include <QtGui>
 #include "modelparams.h"
-#include "model.h"
+#include "simulationmodel.h"
 
 ModelParams::ModelParams(QWidget *parent)
     : QDialog(parent)

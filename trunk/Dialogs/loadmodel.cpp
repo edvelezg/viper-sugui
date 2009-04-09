@@ -1,7 +1,7 @@
 #include <QtGui>
 
 #include "loadmodel.h"
-#include "model.h"
+#include "simulationmodel.h"
 
 LoadModel::LoadModel(QWidget *parent)
     : QDialog(parent)

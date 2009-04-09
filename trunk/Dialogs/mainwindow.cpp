@@ -3,7 +3,7 @@
 #include "mainwindow.h"
 #include "geometry.h"
 #include "modelparams.h"
-#include "model.h"
+#include "simulationmodel.h"
 #include "loadmodel.h"
 #include "simulparams.h"
 #include "getenv.h"

@@ -1,3 +1,7 @@
+
+#ifndef SIMULATIONMODEL_H
+#define SIMULATIONMODEL_H
+
 #include <QString>
 #include <QVector>
 
@@ -103,3 +107,5 @@ private:
 	QString clip        ;
 	QString velocities  ;
 };
+
+#endif /* SIMULATIONMODEL_H */
