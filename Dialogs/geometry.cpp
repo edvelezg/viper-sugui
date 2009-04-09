@@ -1,7 +1,7 @@
 #include <QtGui>
 
 #include "geometry.h"
-#include "model.h"
+#include "simulationmodel.h"
 
 Geometry::Geometry(QWidget *parent)
     : QDialog(parent)

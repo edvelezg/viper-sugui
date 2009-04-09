@@ -1,7 +1,7 @@
 #include <QtGui>
 
 #include "simulparams.h"
-#include "model.h"
+#include "simulationmodel.h"
 
 SimulParams::SimulParams(QWidget *parent)
     : QDialog(parent)

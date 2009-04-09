@@ -5,7 +5,7 @@
 #include <QProcess>
 #include "ui_mainwindow.h"
 #include "listdialog.h"
-#include "model.h"
+#include "simulationmodel.h"
 
 class Geometry;
 class ModelParams;

@@ -3,7 +3,7 @@
 #include <QFile>
 #include <QString>
 #include <QMessageBox>
-#include "model.h"
+#include "simulationmodel.h"
 
 SimulationModel::SimulationModel() {
         this->width         = "450"                 ;
