@@ -7,7 +7,7 @@
 
 class Geometry;
 class ModelParams;
-class VelocityModel;
+class Model;
 class LoadModel;
 class SimulParams;
 class GetEnv;
@@ -71,7 +71,7 @@ private:
 	GetEnv 		*dlgEnvironment;
     ListDialog  *dlgList;
 	
-    VelocityModel *vm;
+    Model *vm;
     bool shows;
 };
 

@@ -1,7 +1,7 @@
 #include <QtGui>
 
 #include "loadmodel.h"
-#include "velocitymodel.h"
+#include "model.h"
 
 LoadModel::LoadModel(QWidget *parent)
     : QDialog(parent)
@@ -33,7 +33,7 @@ void LoadModel::on_browseButton_clicked()
     }
 }
 
-void LoadModel::getParams(VelocityModel &vm) {
+void LoadModel::getParams(Model &vm) {
     sourceFileEdit->setText( vm.getModelFile() );
 }
 

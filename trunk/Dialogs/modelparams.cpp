@@ -1,6 +1,6 @@
 #include <QtGui>
 #include "modelparams.h"
-#include "velocitymodel.h"
+#include "model.h"
 
 ModelParams::ModelParams(QWidget *parent)
     : QDialog(parent)
@@ -14,7 +14,7 @@ ModelParams::ModelParams(QWidget *parent)
     connect(buttonBox->button(QDialogButtonBox::Cancel), SIGNAL(clicked()), this, SLOT(reject()));
 }
 
-void ModelParams::getParams(VelocityModel &vm) {
+void ModelParams::getParams(Model &vm) {
 
 	double n1 = vm.getN1().toDouble();
 	double n2 =	vm.getN2().toDouble();

@@ -1,7 +1,7 @@
 #include <QtGui>
 
 #include "geometry.h"
-#include "velocitymodel.h"
+#include "model.h"
 
 Geometry::Geometry(QWidget *parent)
     : QDialog(parent)
@@ -15,7 +15,7 @@ Geometry::Geometry(QWidget *parent)
     connect(buttonBox->button(QDialogButtonBox::Cancel), SIGNAL(clicked()), this, SLOT(reject()));
 }
 
-void Geometry::getParams(VelocityModel &vm) {
+void Geometry::getParams(Model &vm) {
 	sbWidth->setValue		(      vm.getWidth().toInt() );   
     sbHeight->setValue		(     vm.getHeight().toInt() );
     sbWidth_2->setValue		(    vm.getWidth_2().toInt() );   

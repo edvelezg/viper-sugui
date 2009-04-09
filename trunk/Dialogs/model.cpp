@@ -3,9 +3,9 @@
 #include <QFile>
 #include <QString>
 #include <QMessageBox>
-#include "velocitymodel.h"
+#include "model.h"
 
-VelocityModel::VelocityModel() {
+Model::Model() {
         this->width         = "450"                 ;
         this->height        = "450"                 ;
         this->width_2       = "450"                 ;
