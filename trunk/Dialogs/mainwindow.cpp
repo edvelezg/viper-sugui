@@ -296,6 +296,8 @@ void MainWindow::loadModel()
           QString all = dlgList->velocities().join(",");
 		  if (all != "")
           	model->setVelocities( "v00=" + all );
+		  else 
+			model->setVelocities("");
 
           qDebug() << model->getVelocities();
 
@@ -327,7 +329,7 @@ void MainWindow::run()
 	// Setting the Environment for Seismic Unix
 	QString sysPath = ::getenv("PATH");
 	sysPath = sysPath + ":" + environment + "/bin";
-//  ::setenv("PATH", sysPath.toStdString().c_str(), 1);
+	::setenv("PATH", sysPath.toStdString().c_str(), 1);
 	QStringList env = QProcess::systemEnvironment();
 	env << "CWPROOT=" + environment;
  	// env = "PATH=" + environment;

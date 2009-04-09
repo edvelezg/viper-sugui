@@ -2,6 +2,8 @@
 
 #include "listdialog.h"
 #include "editdialog.h"
+#include "coordinatesetter.h"
+#include <QtDebug>
 //#include "wizard.h"
 
 ListDialog::ListDialog( QWidget *parent ) : QDialog( parent ) 
@@ -12,13 +14,15 @@ ListDialog::ListDialog( QWidget *parent ) : QDialog( parent )
     connect( ui.editButton, SIGNAL(clicked()), this, SLOT(editItem()) );
     connect( ui.deleteButton, SIGNAL(clicked()), this, SLOT(deleteItem()) );
     connect( ui.list, SIGNAL(itemSelectionChanged ()), this, SLOT(modelChanged()) );
+    connect( ui.velocityButton, SIGNAL(clicked()), this, SLOT(setVelocities()));
+
 
     ui.buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 	    
-    ui.list->addItem ( "Modelo 1 -- model.out");
-    ui.list->addItem ( "Modelo 2 -- model2.out");
-    ui.list->addItem ( "Modelo 3 -- model3.out");
-    ui.list->addItem ( "Modelo 4 -- model4.out");
+    // ui.list->addItem ( "model.out");
+    // ui.list->addItem ( "model2.out");
+    // ui.list->addItem ( "model3.out");
+    // ui.list->addItem ( "model4.out");
 }
 
 void ListDialog::addItem()
@@ -28,7 +32,7 @@ void ListDialog::addItem()
     EditDialog dlgEdit( this );
 	
     if ( dlgEdit.exec() == Accepted ) {
-        if ( vmMap.contains( dlgEdit.modelName() ) ) {
+        if ( !vmMap.contains( dlgEdit.modelName() ) ) {
             VelocityModel vm( dlgEdit.modelName(), dlgEdit.modelLocation() );
             vmMap.insert( dlgEdit.modelName(), vm );
             ui.list->addItem( dlgEdit.modelName() );
@@ -85,6 +89,8 @@ void ListDialog::editItem()
             }
         } else {
             vel.setModelFile( dlgEdit.modelLocation() );
+			vel.clearVelocities();
+			mVels = vel.velocities();
             vmMap[key] = vel;
             ui.list->currentItem()->setText( dlgEdit.modelName() );
         }
@@ -107,14 +113,24 @@ void ListDialog::deleteItem()
 
 void ListDialog::modelChanged()
 {
-	mVels.clear();
+	if ( !ui.list->currentItem() )
+        return;
+    
+	QString key = ui.list->currentItem()->text();
+    VelocityModel vel = vmMap.value(key);
+	mVels = vel.velocities();
 	ui.buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
 }
 
 const QString ListDialog::currentLocation() const
 {
-    QStringList parts = ui.list->currentItem()->text().split( "--" );
-    return parts[1].trimmed();
+	if ( !ui.list->currentItem() )
+        return "";
+	
+    QString key = ui.list->currentItem()->text();
+    VelocityModel vel = vmMap.value(key);
+
+	return vel.modelFile();
 }
 
 const QStringList ListDialog::velocities() const {
@@ -125,6 +141,75 @@ void ListDialog::setVelocities(QString vels) {
 	if (vels == "") {
 	} else {
 		vels.remove(0, 4);
-		this->mVels = vels.split(",");
+		mVels = vels.split(",");
 	}
+}
+
+void ListDialog::setVelocities( const QStringList &vels ) {
+	mVels = vels;
+}
+
+void ListDialog::setVelocities()
+{
+	if ( !ui.list->currentItem() )
+        return;
+	
+	QString key = ui.list->currentItem()->text();
+    VelocityModel vel = vmMap.value(key);
+	int numLayers = vel.numLayers();
+	
+	QList<double> coordinates;
+	if (mVels.size() == 0) {
+		double inc = 2500.0 / (numLayers - 1.0);
+	    for (int i = 0; i < numLayers - 1 ; ++i ) {
+	        coordinates << 1500.0 + i*inc;
+	    }
+	}
+	
+	QString text;
+	foreach( text, mVels ) {
+		coordinates << text.toDouble();
+		qDebug() << text;
+	}
+	
+	CoordinateSetter coordinateSetter(&coordinates, this);
+	coordinateSetter.show();
+
+	// CoordinateSetter *coordinateSetter = 0;
+	//   
+	// if (!coordinateSetter) {
+	//         coordinateSetter = new CoordinateSetter(&coordinates, this);
+	//     } else {
+	//         coordinateSetter->show();
+	//     }
+
+    if (coordinateSetter.exec()) {
+		mVels = coordinateSetter.velocities();
+		vel.setVelocities(mVels);
+		vmMap[key] = vel;
+    } else {
+	
+	}
+    
+    // if (!wizard) {
+    //        wizard = new ClassWizard( this );
+    //    } else {
+    //        wizard->show();
+    //    }
+    // 
+    //    if ( wizard->exec() ) {
+    //        QString numObjs = wizard->field("numObjs").toString();
+    // 
+    //        qDebug() << "number of objects: " << numObjs;
+    // 
+    //        int num = numObjs.toInt();
+    //        for ( int i = 0; i < num; ++i ) {
+    //            QString strVel = wizard->field("sbVel" + QString::number(i)).toString();
+    //            qDebug() << "velocity "  + QString::number(i) << strVel;
+    //            vels << strVel;
+    //        }
+    //        buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+    //    } else {
+    // 		qDebug() << "cancelled action";
+    //    }
 }

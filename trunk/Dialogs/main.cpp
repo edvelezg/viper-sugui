@@ -1,6 +1,5 @@
 #include <QApplication>
 #include "mainwindow.h"
-#include <QtDebug>
 
 int main (int argc, char *argv[])
 {
@@ -8,7 +7,6 @@ int main (int argc, char *argv[])
     MainWindow main;
     if( main.wantsToShow() ) {
         main.show();
-        qDebug() << "Program starts!";
     } else {
         return 0;
     }
