@@ -18,11 +18,23 @@ ListDialog::ListDialog( QWidget *parent ) : QDialog( parent )
 
 
     ui.buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
-	    
-    // ui.list->addItem ( "model.out");
-    // ui.list->addItem ( "model2.out");
-    // ui.list->addItem ( "model3.out");
-    // ui.list->addItem ( "model4.out");
+
+    VelocityModel vm1( "Modelo 1", QDir::currentPath() + "/model.out"  );
+	vmMap.insert( "Modelo 1", vm1 );
+    ui.list->addItem ( "Modelo 1");
+
+    VelocityModel vm2( "Modelo 2", QDir::currentPath() + "/model2.out" );
+	vmMap.insert( "Modelo 2", vm2 );
+    ui.list->addItem ( "Modelo 2");
+
+    VelocityModel vm3( "Modelo 3", QDir::currentPath() + "/model3.out" );
+	vmMap.insert( "Modelo 3", vm3 );
+    ui.list->addItem ( "Modelo 3");
+
+    VelocityModel vm4( "Modelo 4", QDir::currentPath() + "/model4.out" );
+	vmMap.insert( "Modelo 4", vm4 );
+    ui.list->addItem ( "Modelo 4");
+
 }
 
 void ListDialog::addItem()
