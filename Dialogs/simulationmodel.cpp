@@ -33,7 +33,7 @@ SimulationModel::SimulationModel() {
         this->title         = "Onda Sismica P"      ;
         this->tMax          = "0.40"                ;
         this->loop          = "1"                   ;
-        this->clip          = "1.0"                 ;
+        this->sstrength     = "1.0"                 ;
 		this->velocities	= ""					;
 }
 
@@ -64,7 +64,7 @@ QString SimulationModel::getWindowTitle ()                        {   return win
 QString SimulationModel::getTitle       ()                        {   return title       ;            }
 QString SimulationModel::getTMax        ()                        {   return tMax        ;            }
 QString SimulationModel::getLoop        ()                        {   return loop        ;            }
-QString SimulationModel::getClip        ()                        {   return clip        ;            }
+QString SimulationModel::getSstrength        ()                        {   return sstrength        ;            }
 
 QString SimulationModel::getVelocities()				            { 	return velocities;				}
 
@@ -95,7 +95,7 @@ void SimulationModel::setWindowTitle (QString windowTitle)        {   this->wind
 void SimulationModel::setTitle       (QString title      )        {   this->title       =   title      ; }
 void SimulationModel::setTMax        (QString tMax       )        {   this->tMax        =   tMax       ; }
 void SimulationModel::setLoop        (QString loop       )        {   this->loop        =   loop       ; }
-void SimulationModel::setClip        (QString clip       )        {   this->clip        =   clip       ; }
+void SimulationModel::setSstrength        (QString sstrength       )        {   this->sstrength        =   sstrength       ; }
 
 void SimulationModel::setVelocities(QString velocities)	        {	this->velocities = velocities; 	}
 
@@ -139,7 +139,7 @@ bool SimulationModel::writeFile(const QString &fileName)
 	out << qPrintable(QString("%1").arg( title       )) << endl;
 	out << qPrintable(QString("%1").arg( tMax        )) << endl;
 	out << qPrintable(QString("%1").arg( loop        )) << endl;
-	out << qPrintable(QString("%1").arg( clip        )) << endl;
+	out << qPrintable(QString("%1").arg( sstrength   )) << endl;
 	out << qPrintable(QString("%1").arg( velocities  )) << endl;
 
     return true;
@@ -186,7 +186,7 @@ bool SimulationModel::readFile(const QString &fileName)
 	title               =     in.readLine().simplified();
 	tMax                =     in.readLine().simplified();
 	loop                =     in.readLine().simplified();
-	clip                =     in.readLine().simplified();
+	sstrength           =     in.readLine().simplified();
 	velocities			= 	  in.readLine().simplified();
 	
     return true;
@@ -220,7 +220,7 @@ void SimulationModel::clear() {
     this->title         = "Another Title"  ;
     this->tMax          = "0.40"  ;
     this->loop          = "1"  ;
-    this->clip          = "1.0"  ;
+    this->sstrength     = "1.0"  ;
 	this->velocities	= ""					;
 
 }

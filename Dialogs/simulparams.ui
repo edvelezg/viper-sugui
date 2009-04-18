@@ -5,20 +5,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>429</width>
-    <height>412</height>
+    <width>435</width>
+    <height>463</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Parametros de Simulacion</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" >
-   <item>
+  <layout class="QGridLayout" name="gridLayout_2" >
+   <item row="0" column="0" colspan="2" >
     <widget class="QGroupBox" name="groupBox" >
      <property name="title" >
       <string>&amp;Ubicacion del Foco</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2" >
+     <layout class="QGridLayout" name="gridLayout_4" >
       <item row="0" column="0" >
        <widget class="QLabel" name="label_5" >
         <property name="text" >
@@ -31,15 +31,31 @@
       </item>
       <item row="0" column="1" >
        <widget class="QDoubleSpinBox" name="sbDistance" >
+        <property name="minimum" >
+         <double>0.000000000000000</double>
+        </property>
         <property name="maximum" >
          <double>999999.989999999990687</double>
         </property>
         <property name="singleStep" >
          <double>10.000000000000000</double>
         </property>
+        <property name="value" >
+         <double>250.000000000000000</double>
+        </property>
        </widget>
       </item>
-      <item row="0" column="3" >
+      <item row="2" column="0" >
+       <widget class="QLabel" name="label_9" >
+        <property name="text" >
+         <string>Factor de Intensidad</string>
+        </property>
+        <property name="buddy" >
+         <cstring>sbFpeak</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
        <widget class="QLabel" name="label_6" >
         <property name="text" >
          <string>&amp;Profundidad</string>
@@ -49,33 +65,36 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="4" >
+      <item row="1" column="1" >
        <widget class="QDoubleSpinBox" name="sbDepth" >
+        <property name="decimals" >
+         <number>2</number>
+        </property>
+        <property name="minimum" >
+         <double>0.000000000000000</double>
+        </property>
         <property name="maximum" >
-         <double>999999.989999999990687</double>
+         <double>1000000.000000000000000</double>
         </property>
         <property name="singleStep" >
          <double>10.000000000000000</double>
         </property>
+        <property name="value" >
+         <double>10.000000000000000</double>
+        </property>
        </widget>
       </item>
-      <item row="0" column="2" >
-       <spacer name="horizontalSpacer" >
-        <property name="orientation" >
-         <enum>Qt::Horizontal</enum>
+      <item row="2" column="1" >
+       <widget class="QDoubleSpinBox" name="sbSstrength" >
+        <property name="value" >
+         <double>1.000000000000000</double>
         </property>
-        <property name="sizeHint" stdset="0" >
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
+       </widget>
       </item>
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="1" column="0" colspan="2" >
     <widget class="QGroupBox" name="groupBox_2" >
      <property name="title" >
       <string>Parametros</string>
@@ -84,7 +103,7 @@
       <item row="0" column="0" >
        <widget class="QLabel" name="label_7" >
         <property name="text" >
-         <string>&amp;Fpeak     </string>
+         <string>Frecuencia Pico </string>
         </property>
         <property name="buddy" >
          <cstring>sbFpeak</cstring>
@@ -97,7 +116,7 @@
       <item row="0" column="3" >
        <widget class="QLabel" name="label_8" >
         <property name="text" >
-         <string>Fm&amp;ax</string>
+         <string>Frecuencia Maxima</string>
         </property>
         <property name="buddy" >
          <cstring>sbFmax</cstring>
@@ -106,40 +125,6 @@
       </item>
       <item row="0" column="4" >
        <widget class="QSpinBox" name="sbFmax" />
-      </item>
-      <item row="1" column="0" >
-       <widget class="QLabel" name="label_9" >
-        <property name="text" >
-         <string>f&amp;1</string>
-        </property>
-        <property name="buddy" >
-         <cstring>sbDistance_2</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1" >
-       <widget class="QDoubleSpinBox" name="sbDistance_2" >
-        <property name="maximum" >
-         <double>999.990000000000009</double>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3" >
-       <widget class="QLabel" name="label_10" >
-        <property name="text" >
-         <string>f&amp;2</string>
-        </property>
-        <property name="buddy" >
-         <cstring>sbDepth_2</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="4" >
-       <widget class="QDoubleSpinBox" name="sbDepth_2" >
-        <property name="maximum" >
-         <double>999.990000000000009</double>
-        </property>
-       </widget>
       </item>
       <item row="0" column="2" >
        <spacer name="horizontalSpacer_2" >
@@ -157,33 +142,29 @@
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="2" column="0" colspan="2" >
     <widget class="QGroupBox" name="groupBox_3" >
      <property name="title" >
       <string>&amp;Opciones</string>
      </property>
      <layout class="QGridLayout" name="gridLayout" >
-      <item row="0" column="0" colspan="2" >
+      <item row="2" column="0" colspan="2" >
        <widget class="QLabel" name="label" >
         <property name="text" >
-         <string>Tiempo de &amp;Simulacion</string>
+         <string>Tiempo de &amp;Simulacion (segs)</string>
         </property>
         <property name="buddy" >
          <cstring>sbTMax</cstring>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" >
-       <widget class="QLabel" name="label_4" >
-        <property name="text" >
-         <string>&amp;Clip</string>
-        </property>
-        <property name="buddy" >
-         <cstring>sbClip</cstring>
-        </property>
-       </widget>
+      <item row="2" column="2" >
+       <widget class="QDoubleSpinBox" name="sbTMax" />
       </item>
-      <item row="2" column="0" colspan="2" >
+      <item row="1" column="2" >
+       <widget class="QLineEdit" name="leWindowTitle" />
+      </item>
+      <item row="1" column="0" >
        <widget class="QLabel" name="label_3" >
         <property name="text" >
          <string>Titulo de &amp;Ventana</string>
@@ -193,10 +174,7 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="2" colspan="2" >
-       <widget class="QLineEdit" name="leWindowTitle" />
-      </item>
-      <item row="3" column="0" colspan="2" >
+      <item row="0" column="0" >
        <widget class="QLabel" name="label_2" >
         <property name="text" >
          <string>&amp;Titulo</string>
@@ -206,26 +184,33 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="2" colspan="2" >
-       <widget class="QLineEdit" name="leTitle" />
-      </item>
       <item row="0" column="2" >
-       <widget class="QDoubleSpinBox" name="sbTMax" />
-      </item>
-      <item row="0" column="3" >
-       <widget class="QCheckBox" name="chkLoop" >
-        <property name="text" >
-         <string>&amp;Repetir</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2" >
-       <widget class="QDoubleSpinBox" name="sbClip" />
+       <widget class="QLineEdit" name="leTitle" />
       </item>
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="3" column="0" >
+    <spacer name="horizontalSpacer_3" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>265</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="1" >
+    <widget class="QCheckBox" name="chkLoop" >
+     <property name="text" >
+      <string>&amp;Repetir Simulacion</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2" >
     <widget class="QDialogButtonBox" name="buttonBox" >
      <property name="standardButtons" >
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>

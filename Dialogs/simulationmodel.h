@@ -39,7 +39,7 @@ public:
 	QString getTitle       ();
 	QString getTMax        ();
 	QString getLoop        ();
-	QString getClip        ();
+	QString getSstrength   ();
 
 	void setWidth	 (QString);
 	void setHeight	 (QString);	
@@ -69,7 +69,7 @@ public:
 	void setTitle       (QString);
 	void setTMax        (QString);
 	void setLoop        (QString);
-	void setClip        (QString);
+	void setSstrength   (QString);
 
 	bool writeFile(const QString &fileName);
 	bool readFile(const QString &fileName);
@@ -104,7 +104,7 @@ private:
 	QString title       ;
 	QString tMax        ;
 	QString loop        ;
-	QString clip        ;
+	QString sstrength   ;
 	QString velocities  ;
 };
 

@@ -165,14 +165,14 @@ void MainWindow::simParams()
         model->setWindowTitle ( (dlgSimParams->leWindowTitle)->text()  );
         model->setTitle       ( (dlgSimParams->leTitle)->text()        );
         model->setTMax        ( (dlgSimParams->sbTMax)->text()         );
+        model->setSstrength   ( (dlgSimParams->sbSstrength)->text()         );
+
 
         if((dlgSimParams->chkLoop)->isChecked()) {
             model->setLoop("1");        
         } else {
             model->setLoop("0");        
         }
-
-        model->setClip        ( (dlgSimParams->sbClip)->text()         ) ;
 
         textEdit->append( "distance   :" + model->getDistance    () ) ;
         textEdit->append( "depth      :" + model->getDepth       () ) ;
@@ -181,7 +181,7 @@ void MainWindow::simParams()
         textEdit->append( "windowTitle:" + model->getWindowTitle () ) ;
         textEdit->append( "title      :" + model->getTitle       () ) ;
         textEdit->append( "tMax       :" + model->getTMax        () ) ;
-        textEdit->append( "clip       :" + model->getClip        () ) ;
+        textEdit->append( "sstrength  :" + model->getSstrength        () ) ;
 
     }
     tabWidget->setCurrentIndex(0);
@@ -245,7 +245,7 @@ void MainWindow::modelParams()
 		QString d2 = QString::number((distance/100.0));
 				
         model->setN1("100");        
-        model->setN2("100");        
+		model->setN2("100");        
         model->setD1(d1);        
         model->setD2(d2);        
 		
@@ -320,7 +320,7 @@ void MainWindow::viewTraces()
 	
 	suxwigb.setStandardInputFile("hseis.out");
 	suxwigb.setWorkingDirectory( QDir::current().currentPath() );
-	suxwigb.start("suxwigb", args);	
+	suxwigb.start("suximage", args);	
 }
 
 void MainWindow::run()
@@ -357,8 +357,8 @@ void MainWindow::run()
     }
 
 	// Process unif2.
-	args 	<< "n1=" 		+ model->getN1()
-	       	<< "n2=" 		+ model->getN2()
+	args 	<< "nz=" 		+ model->getN1()
+	       	<< "nx=" 		+ model->getN2()
 	     	<< model->getVelocities()
 			<< "method=" 	+ model->getMethod()
 	        ;
@@ -400,7 +400,7 @@ void MainWindow::run()
 	ximage.setWorkingDirectory( QDir::current().currentPath() );
 	ximage.start("ximage", args);	
 	ximage.waitForStarted();
-	
+
 	args.clear();
 	
 	// Process sufdmod2. 
@@ -415,6 +415,7 @@ void MainWindow::run()
 			<< "fmax=" 	                        + model->getFmax()
 		    << "xs=" 	                        + model->getDistance()
     	    << "zs=" 		                    + model->getDepth()
+    	    << "sstrength=" 		            + model->getSstrength()
     	    << "hsz=60" 	
     	    << "vsx=250" 	
     	    << "hsfile=hseis.out" 	
