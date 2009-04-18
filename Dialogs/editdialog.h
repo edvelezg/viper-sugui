@@ -24,3 +24,4 @@ public slots:
 
 
 #endif // _EDITDIALOG_H_
+
