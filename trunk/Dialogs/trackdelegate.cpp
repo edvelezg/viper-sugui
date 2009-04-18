@@ -33,7 +33,7 @@ QWidget *TrackDelegate::createEditor(QWidget *parent,
 {
     if (index.column() == durationColumn) {
         QDoubleSpinBox *timeEdit = new QDoubleSpinBox(parent);
-        timeEdit->setMinimum(500.00);
+        timeEdit->setMinimum(1500.00);
         timeEdit->setMaximum(10000.00);
         connect(timeEdit, SIGNAL(editingFinished()),
                 this, SLOT(commitAndCloseEditor()));

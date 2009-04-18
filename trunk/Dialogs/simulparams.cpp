@@ -27,5 +27,5 @@ void SimulParams::getParams(SimulationModel &vm) {
 	} else {
 		chkLoop->setCheckState(Qt::Unchecked);
 	}
-    sbClip->setValue        (   vm.getClip        ().toDouble() );
+    sbSstrength->setValue        (   vm.getSstrength        ().toDouble() );
 }
