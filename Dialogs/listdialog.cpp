@@ -35,6 +35,9 @@ ListDialog::ListDialog( QWidget *parent ) : QDialog( parent )
 	vmMap.insert( "Modelo 4", vm4 );
     ui.list->addItem ( "Modelo 4");
 
+    VelocityModel vm5( "Modelo 5", QDir::currentPath() + "/model5.out" );
+	vmMap.insert( "Modelo 5", vm5 );
+    ui.list->addItem ( "Modelo 5");
 }
 
 void ListDialog::addItem()
