@@ -24,8 +24,8 @@ void ModelParams::getParams(SimulationModel &vm) {
 	double depth    = d1 * n1;
 	double distance = d2 * n2;
 		
-	sbDepth->setValue(depth);			
-	sbDistance->setValue(distance);			
+	sbDepth->setValue(static_cast<int>( depth ));			
+	sbDistance->setValue(static_cast<int>( distance ));			
 
 	if (vm.getCmap() == "hue") {
 		cbColor->setCurrentIndex(0);

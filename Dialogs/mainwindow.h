@@ -57,7 +57,7 @@ private:
     QProcess ximage;
     QProcess sufdmod2;
     QProcess suxmovie;
-    QProcess suxwigb;
+    QProcess suximage;
 
     QString curFile;
 	QString environment;
