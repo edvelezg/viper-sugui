@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>533</width>
-    <height>385</height>
+    <width>461</width>
+    <height>380</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -16,22 +16,125 @@
    <layout class="QGridLayout" name="gridLayout_3" >
     <item row="0" column="0" >
      <widget class="QTabWidget" name="tabWidget" >
+      <property name="sizePolicy" >
+       <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="currentIndex" >
        <number>1</number>
       </property>
-      <widget class="QWidget" name="tab" >
+      <widget class="QWidget" name="tab_3" >
        <attribute name="title" >
-        <string>Parametros Ventana</string>
+        <string>Geometria de Ventana</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_2" >
+       <layout class="QGridLayout" name="gridLayout_4" >
         <item row="0" column="0" >
-         <widget class="QTextEdit" name="textEdit" >
-          <property name="readOnly" >
+         <widget class="QTableWidget" name="tableWidget_3" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="editTriggers" >
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="tabKeyNavigation" >
+           <bool>false</bool>
+          </property>
+          <property name="alternatingRowColors" >
            <bool>true</bool>
           </property>
-          <property name="textInteractionFlags" >
-           <set>Qt::TextSelectableByMouse</set>
+          <property name="showGrid" >
+           <bool>true</bool>
           </property>
+          <row>
+           <property name="text" >
+            <string>Ancho de Modelo</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Altura de Modelo</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Cord. X Modelo</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Cord. Y Modelo</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Ancho</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Altura</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Cord. X</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Cord. Y</string>
+           </property>
+          </row>
+          <column>
+           <property name="text" >
+            <string>Valor</string>
+           </property>
+          </column>
+          <item row="0" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="1" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="2" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="3" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="4" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="5" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="6" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="7" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
          </widget>
         </item>
        </layout>
@@ -42,10 +145,186 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout" >
         <item row="0" column="0" >
-         <widget class="QTextEdit" name="textEdit_2" >
-          <property name="textInteractionFlags" >
-           <set>Qt::TextSelectableByMouse</set>
+         <widget class="QTableWidget" name="tableWidget_2" >
+          <property name="editTriggers" >
+           <set>QAbstractItemView::NoEditTriggers</set>
           </property>
+          <property name="tabKeyNavigation" >
+           <bool>false</bool>
+          </property>
+          <property name="alternatingRowColors" >
+           <bool>true</bool>
+          </property>
+          <row>
+           <property name="text" >
+            <string>Cobertura en Distancia</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Cobertura en Profundidad</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Color</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Leyenda</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Titulo</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Modelo</string>
+           </property>
+          </row>
+          <column>
+           <property name="text" >
+            <string>Valor</string>
+           </property>
+          </column>
+          <item row="0" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="1" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="2" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="3" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="4" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="5" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab" >
+       <attribute name="title" >
+        <string>Parametros de Simulacion</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2" >
+        <item row="0" column="0" >
+         <widget class="QTableWidget" name="tableWidget" >
+          <property name="enabled" >
+           <bool>true</bool>
+          </property>
+          <property name="editTriggers" >
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="alternatingRowColors" >
+           <bool>true</bool>
+          </property>
+          <row>
+           <property name="text" >
+            <string>Distancia</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Profundidad</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Frecuencia Pico</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Frecuencia Maxima</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Titulo de Ventana</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Titula</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Tiempo (segs)</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
+            <string>Factor de Intensidad</string>
+           </property>
+          </row>
+          <column>
+           <property name="text" >
+            <string>Valor</string>
+           </property>
+          </column>
+          <item row="0" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="1" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="2" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="3" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="4" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="5" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="6" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="7" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
          </widget>
         </item>
        </layout>
@@ -59,7 +338,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>533</width>
+     <width>461</width>
      <height>22</height>
     </rect>
    </property>
