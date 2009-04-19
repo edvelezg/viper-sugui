@@ -36,6 +36,31 @@ MainWindow::MainWindow() {
     connect(&suximage, SIGNAL(error(QProcess::ProcessError)),
             this, SLOT(processError(QProcess::ProcessError)));
 
+    tableWidget->item(0, 0)->setText(   model->getDistance    ()   );
+    tableWidget->item(1, 0)->setText(   model->getDepth       ()   );
+    tableWidget->item(2, 0)->setText(   model->getFpeak       ()   );
+    tableWidget->item(3, 0)->setText(   model->getFmax        ()   );
+    tableWidget->item(4, 0)->setText(   model->getWindowTitle ()   );
+    tableWidget->item(5, 0)->setText(   model->getTitle       ()   );
+    tableWidget->item(6, 0)->setText(   model->getTMax        ()   );
+    tableWidget->item(7, 0)->setText(   model->getSstrength   ()   );
+
+    tableWidget_2->item(0, 0)->setText(   QString::number( model->getD2().toDouble()*100 )   );
+    tableWidget_2->item(1, 0)->setText(   QString::number( model->getD1().toDouble()*100 )   );
+    tableWidget_2->item(2, 0)->setText(   model->getCmap  ()                                 );
+    tableWidget_2->item(3, 0)->setText(   model->getLegend()                                 );
+    tableWidget_2->item(4, 0)->setText(   model->getTitulo()                                 );
+    tableWidget_2->item(5, 0)->setText(   model->getModelFile()                             );
+
+    tableWidget_3->item(0, 0)->setText(   model->getWidth     ()  );
+    tableWidget_3->item(1, 0)->setText(   model->getHeight    ()  );
+    tableWidget_3->item(2, 0)->setText(   model->getWidth     ()  );
+    tableWidget_3->item(3, 0)->setText(   model->getHeight    ()  );
+    tableWidget_3->item(4, 0)->setText(   model->getWidthOff2 ()  );
+    tableWidget_3->item(5, 0)->setText(   model->getHeightOff2()  );
+    tableWidget_3->item(6, 0)->setText(   model->getWidthOff1 ()  );
+    tableWidget_3->item(7, 0)->setText(   model->getHeightOff1()  );
+
 }
 
 bool MainWindow::wantsToShow() {
@@ -270,7 +295,6 @@ void MainWindow::modelParams()
         tableWidget_2->item(2, 0)->setText(   model->getCmap  ()                                 );
         tableWidget_2->item(3, 0)->setText(   model->getLegend()                                 );
         tableWidget_2->item(4, 0)->setText(   model->getTitulo()                                 );
-        tableWidget_2->item(5, 0)->setText(   model->getHeightOff2()                             );
 
         tabWidget->setCurrentIndex(1);
     }
@@ -278,7 +302,6 @@ void MainWindow::modelParams()
 
 void MainWindow::loadModel()
 {
-//  textEdit_2->clear();
     if (!dlgList) {
         dlgList = new ListDialog( this );
     } else {
@@ -291,6 +314,7 @@ void MainWindow::loadModel()
         setWindowModified(true);
         model->setModelFile(dlgList->currentLocation());
 //      textEdit_2->append("Archivo de Modelo: " + model->getModelFile());
+        tableWidget_2->item(5, 0)->setText( model->getModelFile() );
 
         QString all = dlgList->velocities().join(",");
         if (all != "")
@@ -298,7 +322,7 @@ void MainWindow::loadModel()
         else
             model->setVelocities("");
 
-        qDebug() << model->getVelocities();
+        // qDebug() << model->getVelocities();
 
         tabWidget->setCurrentIndex(1);
     }

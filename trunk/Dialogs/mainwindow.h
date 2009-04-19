@@ -40,7 +40,7 @@ private slots:
 	void processFinished(int exitCode, QProcess::ExitStatus exitStatus);
 	void updateOutputTextEdit();
 	void processError(QProcess::ProcessError error);
-
+	
 private:
     void createActions();
     void createToolBars();
