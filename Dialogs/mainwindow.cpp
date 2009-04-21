@@ -99,7 +99,6 @@ void MainWindow::readSettings()
     } else {
         this->shows = false;
     }
-    this->shows = true;
 }
 
 void MainWindow::writeSettings()

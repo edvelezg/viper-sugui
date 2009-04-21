@@ -27,7 +27,7 @@
       </property>
       <widget class="QWidget" name="tab_3" >
        <attribute name="title" >
-        <string>Geometria de Ventana</string>
+        <string>Geometria</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4" >
         <item row="0" column="0" >
@@ -141,7 +141,7 @@
       </widget>
       <widget class="QWidget" name="tab_2" >
        <attribute name="title" >
-        <string>Modelo de Velocidad</string>
+        <string>Modelo</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout" >
         <item row="0" column="0" >
@@ -226,7 +226,7 @@
       </widget>
       <widget class="QWidget" name="tab" >
        <attribute name="title" >
-        <string>Parametros de Simulacion</string>
+        <string>Simulacion</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2" >
         <item row="0" column="0" >
