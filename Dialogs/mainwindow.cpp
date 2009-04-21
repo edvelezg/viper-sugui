@@ -119,7 +119,7 @@ void MainWindow::createActions()
     connect(actionSave, SIGNAL(triggered()), this, SLOT(save()));
 
     actionOpen->setIcon(QIcon(":/images/open.png"));
-    actionOpen->setStatusTip(tr("Open an existing spreadsheet file"));
+    actionOpen->setStatusTip(tr("Abrir una Simulacion"));
     connect(actionOpen, SIGNAL(triggered()), this, SLOT(open()));
 
     actionSaveAs->setStatusTip(tr("Guardar la simulacion actual bajo un nuevo "
@@ -132,7 +132,7 @@ void MainWindow::createActions()
     actionRun->setStatusTip(tr("Correr una Simulacion"));
     connect(actionRun, SIGNAL(triggered()), this, SLOT(run()));
 
-    actionLoadModel->setStatusTip(tr("Carcar Modelo de Velocidad"));
+    actionLoadModel->setStatusTip(tr("Cargar un Modelo de Velocidad"));
     connect(actionLoadModel, SIGNAL(triggered()), this, SLOT(loadModel()));
 
     actionPreview->setStatusTip(tr("Vista Previa del Modelo de Velocidad"));
@@ -141,7 +141,7 @@ void MainWindow::createActions()
     actionSimParams->setStatusTip(tr("Cambiar Parametros de Simulacion"));
     connect(actionSimParams, SIGNAL(triggered()), this, SLOT(simParams()));
 
-    actionViewTraces->setStatusTip( tr("Ver Registro" ) );
+    actionViewTraces->setStatusTip( tr("Ver Registro Sismico" ) );
     connect(actionViewTraces, SIGNAL(triggered()), this, SLOT(viewTraces()));
 
     connect(actionSizeSettings, SIGNAL(triggered()),
