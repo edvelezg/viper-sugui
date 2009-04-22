@@ -21,7 +21,7 @@ SimulationModel::SimulationModel() {
         this->d2            = "5"                   ;
         this->cmap          = "gray"                ;
         this->legend        = "0"                   ;
-        this->titulo        = "Modelo de Velocidad" ;
+        this->titulo        = "Ondas Sismicas P" ;
         this->method        = "spline"              ;
         this->modelFile     = ""                    ;
 
@@ -30,7 +30,7 @@ SimulationModel::SimulationModel() {
         this->fpeak         = "35"                  ;
         this->fmax          = "40"                  ;
         this->windowTitle   = "Propagacion de Onda" ;
-        this->title         = "Onda Sismica P"      ;
+        this->title         = "Ondas Sismicas P"      ;
         this->tMax          = "0.40"                ;
         this->loop          = "1"                   ;
         this->sstrength     = "1.0"                 ;
