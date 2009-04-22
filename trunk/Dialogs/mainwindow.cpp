@@ -338,6 +338,10 @@ void MainWindow::viewTraces()
     QStringList args;
 
     args    << "clip=1.0"       
+		    << "label2='Distancia (m)'"   
+		    << "label1='Tiempo (s)'" 
+		    << "windowtitle=Registro Sismico"
+			<< "title=Ondas Sismicas P"
     ;
 
     suximage.setStandardInputFile("hseis.out");
@@ -401,17 +405,20 @@ void MainWindow::run()
 
     // Process ximage.
     args    << "n1="        + model->getN1() 
-    << "n2="        + model->getN2()
-    << "d1="        + model->getD1()
-    << "d2="        + model->getD2()
-    << "legend="    + model->getLegend()
-    << "cmap="      + model->getCmap()
-    << "title="     + model->getTitulo()
-    << "method="    + model->getMethod()
-    << "wbox="      + model->getWidth()
-    << "hbox="      + model->getHeight()
-    << "xbox="      + model->getWidthOff2()
-    << "ybox="      + model->getHeightOff2()
+		    << "n2="       		 	+ model->getN2()
+		    << "d1="       		 	+ model->getD1()
+		    << "d2="       		 	+ model->getD2()
+		    << "legend="   		 	+ model->getLegend()
+		    << "cmap="     		 	+ model->getCmap()
+		    << "label1='Profundidad (m)'"   
+		    << "label2='Distancia (m)'"     
+			<< "title="				+ model->getTitulo()
+		    << "windowtitle=Modelo de Velocidad"
+		    << "method="    		+ model->getMethod()    
+		    << "wbox="      		+ model->getWidth()     
+		    << "hbox="      		+ model->getHeight()    
+		    << "xbox="      		+ model->getWidthOff2() 
+		    << "ybox="      		+ model->getHeightOff2()
     ;
 
 //  for ( QStringList::Iterator it = args.begin(); it != args.end(); ++it ) {
@@ -430,23 +437,23 @@ void MainWindow::run()
     QStringList argsSufdmod2;
 
     args    << "nz="                            + model->getN1() 
-    << "nx="                            + model->getN2()
-    << "dz="                            + model->getD1()
-    << "dx="                            + model->getD2()
-    << "fpeak="                         + model->getFpeak()
-    << "fmax="                          + model->getFmax()
-    << "xs="                            + model->getDistance()
-    << "zs="                            + model->getDepth()
-    << "sstrength="                     + model->getSstrength()
-    << "hsz=60"     
-    << "vsx=250"    
-    << "hsfile=hseis.out"   
-    << "vsfile=vseis.out"   
-    << "ssfile=sseis.out"   
-    << "tmax="                          + model->getTMax()  
-    << "abs=1,1,1,1"
-    << "mt=5"       
-    << "verbose=2"  
+		    << "nx="                            + model->getN2()
+		    << "dz="                            + model->getD1()
+		    << "dx="                            + model->getD2()
+		    << "fpeak="                         + model->getFpeak()
+		    << "fmax="                          + model->getFmax()
+		    << "xs="                            + model->getDistance()
+		    << "zs="                            + model->getDepth()
+		    << "sstrength="                     + model->getSstrength()
+		    << "hsz=60"     
+		    << "vsx=250"    
+		    << "hsfile=hseis.out"   
+		    << "vsfile=vseis.out"   
+		    << "ssfile=sseis.out"   
+		    << "tmax="                          + model->getTMax()  
+		    << "abs=1,1,1,1"
+		    << "mt=5"       
+		    << "verbose=2"  
     ;
 
     sufdmod2.setStandardInputFile("vel.out");
@@ -459,8 +466,8 @@ void MainWindow::run()
     // Process suxmovie. 
 
     argsMovie   << "clip=1.0"       
-    << "title='"                                    + model->getTitle()        + "'"
-    << "windowtitle='"                              + model->getWindowTitle()  + "'"
+    << "title="                                    + model->getTitle()        
+    << "windowtitle="                              + model->getWindowTitle()  
     << "label1='Profundidad (m)'"   
     << "label2='Distancia (m)'"     
     << "n1="                                        + model->getN1() 
