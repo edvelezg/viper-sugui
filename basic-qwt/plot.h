@@ -7,7 +7,7 @@ class Plot: public QwtPlot
 {
     Q_OBJECT
 public:
-    Plot(int, int, QWidget *parent = NULL);
+    Plot(int, QVector<int> &numPoints, QWidget *parent = NULL);
     // virtual bool eventFilter(QObject *, QEvent *);
 
 public slots:

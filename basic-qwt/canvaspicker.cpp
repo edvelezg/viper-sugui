@@ -381,7 +381,7 @@ bool CanvasPicker::saveFile(const QString &fileName) {
 bool CanvasPicker::saveAs()
 {
 	QString fileName = QFileDialog::getSaveFileName(0,
-        tr("Guardar Simulacion"), "",
+        tr("Guardar Simulacion"), QDir::homePath(),
 		tr("Model File (*.out);;"));
     
     if (fileName.isEmpty())
