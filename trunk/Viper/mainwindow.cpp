@@ -26,7 +26,7 @@ MainWindow::MainWindow() {
 
     readSettings();
 
-    setWindowIcon(QIcon(":/images/icon.png"));
+    // setWindowIcon(QIcon(":/images/icon.png"));
     setCurrentFile( "" );
 
     connect(&suximage, SIGNAL(readyReadStandardError()),
@@ -61,6 +61,13 @@ MainWindow::MainWindow() {
     tableWidget_3->item(6, 0)->setText(   model->getWidthOff1 ()  );
     tableWidget_3->item(7, 0)->setText(   model->getHeightOff1()  );
 
+	tableWidget->horizontalHeader()->stretchLastSection();
+	tableWidget_2->horizontalHeader()->stretchLastSection();
+	tableWidget_3->horizontalHeader()->stretchLastSection();
+
+	tableWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+	tableWidget_2->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+	tableWidget_3->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 }
 
 bool MainWindow::wantsToShow() {
