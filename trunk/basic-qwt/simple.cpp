@@ -36,15 +36,17 @@ int main (int argc, char **argv)
 	if ( wizard->exec() ) {
 		
 		QString numObjs = wizard->field("numObjs").toString();
-		qDebug() << "number of objects: " << numObjs;
-		
+				
 		int num = numObjs.toInt();
+		
+		QVector<int> numPoints(num);
         for ( int i = 0; i < num; ++i ) {
             QString strVel = wizard->field("sbVel" + QString::number(i)).toString();
-            qDebug() << "velocity "  + QString::number(i) << strVel;
+			numPoints[i] = strVel.toInt();
+            // qDebug() << "velocity "  + QString::number(i) << strVel;
         }
                 
-	    Plot *plot = new Plot(num, 10, &mainWindow);
+	    Plot *plot = new Plot(num, numPoints, &mainWindow);
    
 	    // The canvas picker handles all mouse and key
 	    // events on the plot canvas

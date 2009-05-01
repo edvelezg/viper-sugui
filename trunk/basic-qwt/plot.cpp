@@ -14,7 +14,7 @@
 
 #include <QtDebug>
 
-Plot::Plot( int numCurves, int numPoints, QWidget *parent ):
+Plot::Plot( int numCurves, QVector<int> &numPoints, QWidget *parent ):
     QwtPlot(parent)
 {
     setTitle("Modelo de Velocidad");
@@ -42,7 +42,7 @@ Plot::Plot( int numCurves, int numPoints, QWidget *parent ):
 	double inc = 800.0 / numCurves;
 	
 	for (int i = (numCurves - 1); i >= 0; --i) {
-		insertCurve(Qt::Horizontal, Qt::blue, (i+1)*inc, numPoints);
+		insertCurve(Qt::Horizontal, Qt::blue, (i+1)*inc, numPoints[i]);
 	}
 	    
 // 

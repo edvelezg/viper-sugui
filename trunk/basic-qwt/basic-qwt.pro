@@ -4,9 +4,9 @@
 
 TEMPLATE = app
 TARGET = 
-DEPENDPATH += /opt/qwt-5.1/src
-INCLUDEPATH += /opt/qwt-5.1/src
-LIBS        += -L/opt/qwt-5.1/lib -lqwt
+DEPENDPATH += /opt/qwt-5.2/src
+INCLUDEPATH += /opt/qwt-5.2/src
+LIBS        += -L/opt/qwt-5.2/lib -lqwt
 
 # Input
 HEADERS += canvaspicker.h plot.h wizard.h
