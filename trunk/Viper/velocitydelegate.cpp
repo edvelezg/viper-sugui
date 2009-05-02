@@ -1,6 +1,6 @@
 #include <QtGui>
 
-#include "trackdelegate.h"
+#include "velocitydelegate.h"
 
 VelocityDelegate::VelocityDelegate(int durationColumn, QObject *parent)
     : QItemDelegate(parent)

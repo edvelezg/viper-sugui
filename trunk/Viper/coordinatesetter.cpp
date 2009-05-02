@@ -1,7 +1,7 @@
 #include <QtGui>
 
 #include "coordinatesetter.h"
-#include "trackdelegate.h"
+#include "velocitydelegate.h"
 
 VelocitySetter::VelocitySetter(QList<double> *coords,
                                    QWidget *parent)
