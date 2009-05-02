@@ -16,8 +16,11 @@ public:
   const QString currentLocation() const;
 
   const QStringList velocities() const;
+  const QVector<VelocityModel> getModels() const;
+
   void setVelocities( const QStringList& );
   void setVelocities( QString );
+  void setModels( const QVector<VelocityModel>& );
 
   
 private slots:

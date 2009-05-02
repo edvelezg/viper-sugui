@@ -35,6 +35,12 @@ SimulationModel::SimulationModel() {
         this->loop          = "1"                   ;
         this->sstrength     = "1.0"                 ;
 		this->velocities	= ""					;
+
+        models.push_back(VelocityModel("Modelo 1", QDir::currentPath() + "/model.out"));
+        models.push_back(VelocityModel("Modelo 2", QDir::currentPath() + "/model2.out"));
+        models.push_back(VelocityModel("Modelo 3", QDir::currentPath() + "/model3.out"));
+        models.push_back(VelocityModel("Modelo 4", QDir::currentPath() + "/model4.out"));
+        models.push_back(VelocityModel("Modelo 5", QDir::currentPath() + "/model5.out"));
 }
 
 QString SimulationModel::getWidth	     ()					        { 	return width	 ;				}
@@ -67,6 +73,7 @@ QString SimulationModel::getLoop        ()                        {   return loo
 QString SimulationModel::getSstrength        ()                        {   return sstrength        ;            }
 
 QString SimulationModel::getVelocities()				            { 	return velocities;				}
+QVector<VelocityModel> SimulationModel::getModelsVector()				            { 	return models;				}
 
 void SimulationModel::setWidth	    (QString width	   )   		{	this->width	      = width	  ;	}
 void SimulationModel::setHeight	    (QString height	   )   		{	this->height	  = height	  ;	}	
@@ -98,6 +105,7 @@ void SimulationModel::setLoop        (QString loop       )        {   this->loop
 void SimulationModel::setSstrength        (QString sstrength       )        {   this->sstrength        =   sstrength       ; }
 
 void SimulationModel::setVelocities(QString velocities)	        {	this->velocities = velocities; 	}
+void SimulationModel::setModelsVector(QVector<VelocityModel> models) { this->models = models; }
 
 bool SimulationModel::writeFile(const QString &fileName)
 {
@@ -142,11 +150,19 @@ bool SimulationModel::writeFile(const QString &fileName)
 	out << qPrintable(QString("%1").arg( sstrength   )) << endl;
 	out << qPrintable(QString("%1").arg( velocities  )) << endl;
 
+    out << qPrintable(QString("%1").arg(models.size())) << endl;
+
+    for ( int i = 0; i < models.size(); ++i ) {
+        out << models[i].modelName() << " = " 
+            << models[i].modelFile() << endl;
+    }
+
     return true;
 }
 
 bool SimulationModel::readFile(const QString &fileName)
 {
+    models.clear();
     QVector<QString> vals;
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -188,6 +204,15 @@ bool SimulationModel::readFile(const QString &fileName)
 	loop                =     in.readLine().simplified();
 	sstrength           =     in.readLine().simplified();
 	velocities			= 	  in.readLine().simplified();
+
+    int num  = in.readLine().simplified().toInt();
+
+    QString word;
+    for (int i = 0; i < num ; ++i ) {
+        QString item  = in.readLine().simplified();
+        QStringList parts = item.split(" = ");
+        models.push_back(VelocityModel(parts[0], parts[1]));
+    }
 	
     return true;
 }
@@ -222,18 +247,11 @@ void SimulationModel::clear() {
    this->loop          = "1"                   ;
    this->sstrength     = "1.0"                 ;
    this->velocities	= ""					   ;
+
+   models.clear();
+   models.push_back(VelocityModel("Modelo 1", QDir::currentPath() + "/model.out"));
+   models.push_back(VelocityModel("Modelo 2", QDir::currentPath() + "/model2.out"));
+   models.push_back(VelocityModel("Modelo 3", QDir::currentPath() + "/model3.out"));
+   models.push_back(VelocityModel("Modelo 4", QDir::currentPath() + "/model4.out"));
+   models.push_back(VelocityModel("Modelo 5", QDir::currentPath() + "/model5.out"));
 }
-
-
-//void saveMapToFile(std::vector<std::map<int,uint32_t> > & answer,
-//                std::ostream & out) {
-//        for (std::vector<std::map<int,uint32_t> >::const_iterator i = answer.begin(); i
-//                        != answer.end(); ++i) {
-//                const std::map<int,uint32_t> & myhisto = *i;
-//                for (std::map<int,uint32_t>::const_iterator iter = myhisto.begin(); iter
-//                                != myhisto.end(); iter++) {
-//                        out << iter->first << "\t" << iter->second << std::endl;
-//                }
-//                out << std::endl;
-//        }
-//}

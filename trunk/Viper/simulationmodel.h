@@ -4,6 +4,7 @@
 
 #include <QString>
 #include <QVector>
+#include "velocitymodel.h"
 
 class SimulationModel
 {
@@ -40,6 +41,7 @@ public:
 	QString getTMax        ();
 	QString getLoop        ();
 	QString getSstrength   ();
+    QVector<VelocityModel> getModelsVector();
 
 	void setWidth	 (QString);
 	void setHeight	 (QString);	
@@ -60,6 +62,7 @@ public:
 	void setMethod(QString);
 	void setModelFile(QString);
 	void setVelocities(QString);
+	void setModelsVector(QVector<VelocityModel>);
 
 	void setDistance    (QString);
 	void setDepth       (QString);
@@ -106,6 +109,7 @@ private:
 	QString loop        ;
 	QString sstrength   ;
 	QString velocities  ;
+	QVector<VelocityModel> models  ;
 };
 
 #endif /* SIMULATIONMODEL_H */

@@ -18,26 +18,6 @@ ListDialog::ListDialog( QWidget *parent ) : QDialog( parent )
 
 
     ui.buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
-
-    VelocityModel vm1( "Modelo 1", QDir::currentPath() + "/model.out"  );
-	vmMap.insert( "Modelo 1", vm1 );
-    ui.list->addItem ( "Modelo 1");
-
-    VelocityModel vm2( "Modelo 2", QDir::currentPath() + "/model2.out" );
-	vmMap.insert( "Modelo 2", vm2 );
-    ui.list->addItem ( "Modelo 2");
-
-    VelocityModel vm3( "Modelo 3", QDir::currentPath() + "/model3.out" );
-	vmMap.insert( "Modelo 3", vm3 );
-    ui.list->addItem ( "Modelo 3");
-
-    VelocityModel vm4( "Modelo 4", QDir::currentPath() + "/model4.out" );
-	vmMap.insert( "Modelo 4", vm4 );
-    ui.list->addItem ( "Modelo 4");
-
-    VelocityModel vm5( "Modelo 5", QDir::currentPath() + "/model5.out" );
-	vmMap.insert( "Modelo 5", vm5 );
-    ui.list->addItem ( "Modelo 5");
 }
 
 void ListDialog::addItem()
@@ -123,7 +103,13 @@ void ListDialog::editItem()
 
 void ListDialog::deleteItem()
 {
+	if ( !ui.list->currentItem() )
+        return;
+
+	QString key = ui.list->currentItem()->text();
+
     delete ui.list->currentItem();
+    vmMap.remove(key);
 }
 
 void ListDialog::modelChanged()
@@ -148,6 +134,18 @@ const QString ListDialog::currentLocation() const
 	return vel.modelFile();
 }
 
+
+const QVector<VelocityModel> ListDialog::getModels() const
+{
+    QVector<VelocityModel> modelVector;
+    QMap<QString, VelocityModel>::ConstIterator ii;
+    for ( ii = vmMap.constBegin(); ii != vmMap.constEnd(); ++ii ) {
+        ii.value();
+        modelVector.push_back(ii.value());
+    }
+    return modelVector;
+}
+
 const QStringList ListDialog::velocities() const {
     return mVels;
 }
@@ -160,6 +158,13 @@ void ListDialog::setVelocities(QString vels) {
 	}
 }
 
+void ListDialog::setModels(const QVector<VelocityModel> &models) {
+    ui.list->clear();
+    for ( int i = 0; i < models.size(); ++i ) {
+        vmMap.insert( models[i].modelName(), models[i] );
+        ui.list->addItem( models[i].modelName() );
+    }
+}
 void ListDialog::setVelocities( const QStringList &vels ) {
 	mVels = vels;
 }
@@ -187,11 +192,11 @@ void ListDialog::setVelocities()
 		qDebug() << text;
 	}
 	
-	VelocitySetter coordinateSetter(&coordinates, this);
-	coordinateSetter.show();
+	VelocitySetter velocitySetter(&coordinates, this);
+	velocitySetter.show();
 
-    if (coordinateSetter.exec()) {
-		mVels = coordinateSetter.velocities();
+    if (velocitySetter.exec()) {
+		mVels = velocitySetter.velocities();
 		vel.setVelocities(mVels);
 		vmMap[key] = vel;
     } else {

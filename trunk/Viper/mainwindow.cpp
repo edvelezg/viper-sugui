@@ -99,7 +99,7 @@ void MainWindow::readSettings()
             QFile::exists(environment + "/bin/suxmovie"	 )    ) {
             this->shows = true;
         } else {
-            QMessageBox::critical(this, tr("Simulacion"),
+            QMessageBox::critical(this, tr("Viper Sims"),
                                 tr("Los programas para generar la Simulación no fueron encontrados."));
 //          this->shows = false;
             this->shows = true;
@@ -316,11 +316,13 @@ void MainWindow::loadModel()
         dlgList->show();
     }
 
+    dlgList->setModels(model->getModelsVector());
     dlgList->setVelocities(model->getVelocities());
 
     if ( dlgList->exec() ) {
         setWindowModified(true);
         model->setModelFile(dlgList->currentLocation());
+        model->setModelsVector(dlgList->getModels());
 //      textEdit_2->append("Archivo de Modelo: " + model->getModelFile());
         tableWidget_2->item(5, 0)->setText( model->getModelFile() );
 
@@ -658,12 +660,12 @@ void MainWindow::setCurrentFile(const QString &fileName)
     curFile = fileName;
     setWindowModified(false);
 
-    QString shownName = tr("Untitled");
+    QString shownName = tr("Simulación sin Titulo");
     if (!curFile.isEmpty()) {
         shownName = strippedName(curFile);
     }
     setWindowTitle(tr("%1[*] - %2").arg(shownName)
-                   .arg(tr("Simulacion")));
+                   .arg(tr("Simulación")));
 }
 
 QString MainWindow::strippedName(const QString &fullFileName)
@@ -676,9 +678,9 @@ void MainWindow::about()
     QMessageBox::about(this, tr("Sobre Viper SUGUI"),
                        tr("<h2>Viper SuGui 1.1</h2>"
                           "<p>Copyright &copy; 2009 Eduardo Gutarra."
-                          "<p>Viper es una pequeña aplicacion que ayuda en la "
-                          "elaboracion de simulaciones de propagacion de Ondas Sismicas P "
-                          "utilizando un modelo de velocidad. "));
+                          "<p>Viper es una pequeña aplicación que ayuda en la "
+                          "elaboración de simulaciones de propagacion de Ondas "
+                          "Sismicas P utilizando un modelo de velocidad. "));
 }
 
 void MainWindow::processFinished(int exitCode,
