@@ -2,13 +2,13 @@
 
 #include "trackdelegate.h"
 
-TrackDelegate::TrackDelegate(int durationColumn, QObject *parent)
+VelocityDelegate::VelocityDelegate(int durationColumn, QObject *parent)
     : QItemDelegate(parent)
 {
     this->durationColumn = durationColumn;
 }
 
-void TrackDelegate::paint(QPainter *painter,
+void VelocityDelegate::paint(QPainter *painter,
                           const QStyleOptionViewItem &option,
                           const QModelIndex &index) const
 {
@@ -27,35 +27,35 @@ void TrackDelegate::paint(QPainter *painter,
     }
 }
 
-QWidget *TrackDelegate::createEditor(QWidget *parent,
+QWidget *VelocityDelegate::createEditor(QWidget *parent,
         const QStyleOptionViewItem &option,
         const QModelIndex &index) const
 {
     if (index.column() == durationColumn) {
-        QDoubleSpinBox *timeEdit = new QDoubleSpinBox(parent);
-        timeEdit->setMinimum(1500.00);
-        timeEdit->setMaximum(10000.00);
-        connect(timeEdit, SIGNAL(editingFinished()),
+        QDoubleSpinBox *velEdit = new QDoubleSpinBox(parent);
+        velEdit->setMinimum(1500.00);
+        velEdit->setMaximum(10000.00);
+        connect(velEdit, SIGNAL(editingFinished()),
                 this, SLOT(commitAndCloseEditor()));
-        return timeEdit;
+        return velEdit;
     } else {
         return QItemDelegate::createEditor(parent, option, index);
     }
 }
 
-void TrackDelegate::setEditorData(QWidget *editor,
+void VelocityDelegate::setEditorData(QWidget *editor,
                                   const QModelIndex &index) const
 {
     if (index.column() == durationColumn) {
         int secs = index.model()->data(index, Qt::DisplayRole).toInt();
-        QDoubleSpinBox *timeEdit = qobject_cast<QDoubleSpinBox *>(editor);
-        timeEdit->setValue(secs);
+        QDoubleSpinBox *velEdit = qobject_cast<QDoubleSpinBox *>(editor);
+        velEdit->setValue(secs);
     } else {
         QItemDelegate::setEditorData(editor, index);
     }
 }
 
-void TrackDelegate::setModelData(QWidget *editor,
+void VelocityDelegate::setModelData(QWidget *editor,
                                  QAbstractItemModel *model,
                                  const QModelIndex &index) const
 {
@@ -70,7 +70,7 @@ void TrackDelegate::setModelData(QWidget *editor,
     }
 }
 
-void TrackDelegate::commitAndCloseEditor()
+void VelocityDelegate::commitAndCloseEditor()
 {
     QSpinBox *editor = qobject_cast<QSpinBox *>(sender());
     emit commitData(editor);

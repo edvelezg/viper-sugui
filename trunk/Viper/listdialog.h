@@ -5,7 +5,7 @@
 #include "ui_listdialog.h"
 #include "velocitymodel.h"
 
-class CoordinateSetter;
+class VelocitySetter;
 
 class ListDialog : public QDialog
 {

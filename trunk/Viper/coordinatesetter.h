@@ -8,12 +8,12 @@
 class QDialogButtonBox;
 class QTableWidget;
 
-class CoordinateSetter : public QDialog
+class VelocitySetter : public QDialog
 {
     Q_OBJECT
 
 public:
-    CoordinateSetter(QList<double> *coords, QWidget *parent = 0);
+    VelocitySetter(QList<double> *coords, QWidget *parent = 0);
     void done(int result);
     const QStringList velocities() const;
 

@@ -187,16 +187,8 @@ void ListDialog::setVelocities()
 		qDebug() << text;
 	}
 	
-	CoordinateSetter coordinateSetter(&coordinates, this);
+	VelocitySetter coordinateSetter(&coordinates, this);
 	coordinateSetter.show();
-
-	// CoordinateSetter *coordinateSetter = 0;
-	//   
-	// if (!coordinateSetter) {
-	//         coordinateSetter = new CoordinateSetter(&coordinates, this);
-	//     } else {
-	//         coordinateSetter->show();
-	//     }
 
     if (coordinateSetter.exec()) {
 		mVels = coordinateSetter.velocities();
@@ -205,26 +197,4 @@ void ListDialog::setVelocities()
     } else {
 	
 	}
-    
-    // if (!wizard) {
-    //        wizard = new ClassWizard( this );
-    //    } else {
-    //        wizard->show();
-    //    }
-    // 
-    //    if ( wizard->exec() ) {
-    //        QString numObjs = wizard->field("numObjs").toString();
-    // 
-    //        qDebug() << "number of objects: " << numObjs;
-    // 
-    //        int num = numObjs.toInt();
-    //        for ( int i = 0; i < num; ++i ) {
-    //            QString strVel = wizard->field("sbVel" + QString::number(i)).toString();
-    //            qDebug() << "velocity "  + QString::number(i) << strVel;
-    //            vels << strVel;
-    //        }
-    //        buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
-    //    } else {
-    // 		qDebug() << "cancelled action";
-    //    }
 }

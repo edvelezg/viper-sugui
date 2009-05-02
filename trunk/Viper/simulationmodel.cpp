@@ -224,3 +224,17 @@ void SimulationModel::clear() {
 	this->velocities	= ""					;
 
 }
+
+
+//void saveMapToFile(std::vector<std::map<int,uint32_t> > & answer,
+//                std::ostream & out) {
+//        for (std::vector<std::map<int,uint32_t> >::const_iterator i = answer.begin(); i
+//                        != answer.end(); ++i) {
+//                const std::map<int,uint32_t> & myhisto = *i;
+//                for (std::map<int,uint32_t>::const_iterator iter = myhisto.begin(); iter
+//                                != myhisto.end(); iter++) {
+//                        out << iter->first << "\t" << iter->second << std::endl;
+//                }
+//                out << std::endl;
+//        }
+//}

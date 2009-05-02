@@ -48,7 +48,7 @@ void VelocityModel::clearVelocities() {
 	
 	// Counts the number of layers
 	QTextStream in(&file);
-	
+
 	mNumLayers = 0;
     QString word;
     while (!in.atEnd()) {
