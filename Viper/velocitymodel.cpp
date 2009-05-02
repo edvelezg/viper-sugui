@@ -60,4 +60,3 @@ void VelocityModel::clearVelocities() {
 	
 	mVels.clear(); 
 }
-
