@@ -3,14 +3,14 @@
 #include "coordinatesetter.h"
 #include "trackdelegate.h"
 
-CoordinateSetter::CoordinateSetter(QList<double> *coords,
+VelocitySetter::VelocitySetter(QList<double> *coords,
                                    QWidget *parent)
     : QDialog(parent)
 {
     coordinates = coords;
 
     tableWidget = new QTableWidget(coords->count(), 1);
-	tableWidget->setItemDelegate(new TrackDelegate(0));
+	tableWidget->setItemDelegate(new VelocityDelegate(0));
     tableWidget->setHorizontalHeaderLabels(
             QStringList() << tr("Velocidades") );
 
@@ -42,7 +42,7 @@ CoordinateSetter::CoordinateSetter(QList<double> *coords,
     setWindowTitle(tr("Editor de Velocidades"));
 }
 
-void CoordinateSetter::done(int result)
+void VelocitySetter::done(int result)
 {
     if (result == QDialog::Accepted) {
 		qDebug() << coordinates->size();
@@ -55,7 +55,7 @@ void CoordinateSetter::done(int result)
     QDialog::done(result);
 }
 
-void CoordinateSetter::addRow()
+void VelocitySetter::addRow()
 {
     int row = tableWidget->rowCount();
 
@@ -68,7 +68,7 @@ void CoordinateSetter::addRow()
     tableWidget->setCurrentItem(item0);
 }
 
-const QStringList CoordinateSetter::velocities() const {
+const QStringList VelocitySetter::velocities() const {
 
 	QStringList vels;
 	for (int i = 0; i < coordinates->size(); ++i) {

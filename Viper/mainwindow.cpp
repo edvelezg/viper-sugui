@@ -101,10 +101,12 @@ void MainWindow::readSettings()
         } else {
             QMessageBox::critical(this, tr("Simulacion"),
                                 tr("Los programas para generar la Simulación no fueron encontrados."));
-            this->shows = false;
+//          this->shows = false;
+            this->shows = true;
         }
     } else {
-        this->shows = false;
+//      this->shows = false;
+        this->shows = true;
     }
 }
 
@@ -362,7 +364,7 @@ void MainWindow::run()
     // Setting the Environment for Seismic Unix
     QString sysPath = ::getenv("PATH");
     sysPath = sysPath + ":" + environment + "/bin";
-    ::setenv("PATH", sysPath.toStdString().c_str(), 1);
+//  ::setenv("PATH", sysPath.toStdString().c_str(), 1);
     QStringList env = QProcess::systemEnvironment();
     env << "CWPROOT=" + environment;
     // env = "PATH=" + environment;
@@ -675,7 +677,7 @@ void MainWindow::about()
                        tr("<h2>Viper SuGui 1.1</h2>"
                           "<p>Copyright &copy; 2009 Eduardo Gutarra."
                           "<p>Viper es una pequeña aplicacion que ayuda en la "
-                          "elaboracion de simulaciones de propagacion de Ondas Sismicas P"
+                          "elaboracion de simulaciones de propagacion de Ondas Sismicas P "
                           "utilizando un modelo de velocidad. "));
 }
 

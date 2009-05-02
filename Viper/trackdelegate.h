@@ -3,12 +3,12 @@
 
 #include <QItemDelegate>
 
-class TrackDelegate : public QItemDelegate
+class VelocityDelegate : public QItemDelegate
 {
     Q_OBJECT
 
 public:
-    TrackDelegate(int durationColumn, QObject *parent = 0);
+    VelocityDelegate(int durationColumn, QObject *parent = 0);
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option,
                const QModelIndex &index) const;
