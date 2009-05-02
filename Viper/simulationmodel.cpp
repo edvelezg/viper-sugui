@@ -193,36 +193,35 @@ bool SimulationModel::readFile(const QString &fileName)
 }
 
 void SimulationModel::clear() {
-    this->width         = "450"                 ;
-    this->height        = "450"                 ;
-    this->width_2       = "450"                 ;
-    this->height_2      = "450"                 ;
-    this->widthoff1     = "530"                  ;
-    this->heightoff1    = "50"                 ;
-    this->widthoff2     = "50"                  ;
-    this->heightoff2    = "50"                 ;
-                                                ;
-    this->n1            = "100"                 ;
-    this->n2            = "100"                 ;
-    this->d1            = "5"                   ;
-    this->d2            = "5"                   ;
-    this->cmap          = "gray"                ;
-    this->legend        = "0"                   ;
-    this->titulo        = "Modelo de Velocidad" ;
-    this->method        = "spline"              ;
-    this->modelFile     = ""                    ;
+   this->width         = "450"                 ;
+   this->height        = "450"                 ;
+   this->width_2       = "450"                 ;
+   this->height_2      = "450"                 ;
+   this->widthoff1     = "530"                 ;
+   this->heightoff1    = "50"                  ;
+   this->widthoff2     = "50"                  ;
+   this->heightoff2    = "50"                  ;
 
-    this->distance      = "250"  ;
-    this->depth         = "20"  ;
-    this->fpeak         = "35"  ;
-    this->fmax          = "40"  ;
-    this->windowTitle   = "Random Title"  ;
-    this->title         = "Another Title"  ;
-    this->tMax          = "0.40"  ;
-    this->loop          = "1"  ;
-    this->sstrength     = "1.0"  ;
-	this->velocities	= ""					;
+   this->n1            = "100"                 ;
+   this->n2            = "100"                 ;
+   this->d1            = "5"                   ;
+   this->d2            = "5"                   ;
+   this->cmap          = "gray"                ;
+   this->legend        = "0"                   ;
+   this->titulo        = "Ondas Sismicas P"    ;
+   this->method        = "spline"              ;
+   this->modelFile     = ""                    ;
 
+   this->distance      = "250"                 ;
+   this->depth         = "20"                  ;
+   this->fpeak         = "35"                  ;
+   this->fmax          = "40"                  ;
+   this->windowTitle   = "Propagacion de Onda" ;
+   this->title         = "Ondas Sismicas P"    ;
+   this->tMax          = "0.40"                ;
+   this->loop          = "1"                   ;
+   this->sstrength     = "1.0"                 ;
+   this->velocities	= ""					   ;
 }
 
 
