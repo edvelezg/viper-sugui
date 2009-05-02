@@ -20,7 +20,11 @@ public:
 
   void setVelocities( const QStringList& );
   void setVelocities( QString );
+  void setCurrentModel( int );
   void setModels( const QVector<VelocityModel>& );
+
+
+  int getCurrentModel();
 
   
 private slots:
@@ -29,6 +33,7 @@ private slots:
   void deleteItem();
   void modelChanged();
   void setVelocities();
+  void setVelocities(QListWidgetItem * item);
 
 private:
   Ui::ListDialog ui;

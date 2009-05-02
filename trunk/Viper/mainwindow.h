@@ -61,6 +61,7 @@ private:
 
     QString curFile;
 	QString environment;
+    int currentRow;
 
     QToolBar *fileToolBar;
 
@@ -72,6 +73,7 @@ private:
     ListDialog  *dlgList;
 	
     SimulationModel *model;
+    
     bool shows;
 };
 

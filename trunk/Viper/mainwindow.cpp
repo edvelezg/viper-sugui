@@ -68,6 +68,8 @@ MainWindow::MainWindow() {
 	tableWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 	tableWidget_2->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 	tableWidget_3->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+
+    currentRow = -1;
 }
 
 bool MainWindow::wantsToShow() {
@@ -318,11 +320,13 @@ void MainWindow::loadModel()
 
     dlgList->setModels(model->getModelsVector());
     dlgList->setVelocities(model->getVelocities());
+    dlgList->setCurrentModel(currentRow);
 
     if ( dlgList->exec() ) {
         setWindowModified(true);
         model->setModelFile(dlgList->currentLocation());
         model->setModelsVector(dlgList->getModels());
+        currentRow = dlgList->getCurrentModel();
 //      textEdit_2->append("Archivo de Modelo: " + model->getModelFile());
         tableWidget_2->item(5, 0)->setText( model->getModelFile() );
 
@@ -571,6 +575,7 @@ void MainWindow::newFile()
         model->clear();
         setCurrentFile("");
 //      textEdit->clear();
+        currentRow = -1;
     }
 }
 
@@ -578,10 +583,12 @@ void MainWindow::open()
 {
     if (okToContinue()) {
         QString fileName = QFileDialog::getOpenFileName(this,
-                                                        tr("Open Simulation"), "",
+                                                        tr("Open Simulation"), QDir::homePath(),
                                                         tr("Viper Simulation File(*.vsf)"));
-        if (!fileName.isEmpty())
+        if (!fileName.isEmpty()) {
             loadFile(fileName);
+            currentRow = -1;
+        }
     }
 }
 

@@ -7,12 +7,11 @@
 EditDialog::EditDialog( QWidget *parent ) : QDialog( parent )
 {
     setupUi( this );
-    buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 }
 
 const QString EditDialog::modelName() const
 {
-    return nameEdit->text().replace("--","").trimmed();
+    return nameEdit->text().replace("=","").trimmed();
 }
 
 void EditDialog::setModelName( const QString &modelName )
@@ -22,7 +21,7 @@ void EditDialog::setModelName( const QString &modelName )
 
 const QString EditDialog::modelLocation() const
 {
-    return sourceFileEdit->text().replace("--","").trimmed();
+    return sourceFileEdit->text().replace("=","").trimmed();
 }
 
 void EditDialog::setModelLocation( const QString &modelLocation )
@@ -42,6 +41,5 @@ void EditDialog::on_browseButton_clicked()
     fileName = QDir::toNativeSeparators(fileName);
     if (!fileName.isEmpty()) {
         sourceFileEdit->setText(fileName);
-        buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
     }
 }
