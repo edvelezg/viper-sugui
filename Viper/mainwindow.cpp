@@ -104,11 +104,9 @@ void MainWindow::readSettings()
             QMessageBox::critical(this, tr("Viper Sims"),
                                 tr("Los programas para generar la Simulación no fueron encontrados."));
          this->shows = false;
-            // this->shows = true;
         }
     } else {
      	this->shows = false;
-        // this->shows = true;
     }
 }
 
@@ -148,6 +146,7 @@ void MainWindow::createActions()
     actionLoadModel->setStatusTip(tr("Cargar un Modelo de Velocidad"));
     connect(actionLoadModel, SIGNAL(triggered()), this, SLOT(loadModel()));
 
+    actionPreview->setIcon(QIcon(":/images/preview.png"));
     actionPreview->setStatusTip(tr("Vista Previa del Modelo de Velocidad"));
     connect(actionPreview, SIGNAL(triggered()), this, SLOT(preview()));
 
@@ -180,6 +179,7 @@ void MainWindow::createToolBars()
     fileToolBar->addAction(actionSave);
     fileToolBar->addAction(actionOpen);
     fileToolBar->addAction(actionLoadModel);
+    fileToolBar->addAction(actionPreview);
     fileToolBar->addAction(actionRun);
 
 }
@@ -713,13 +713,13 @@ void MainWindow::processFinished(int exitCode,
     if (exitStatus == QProcess::CrashExit) {
         QMessageBox::critical(this, tr("Viper Sims"),
                             tr("El programa ximage no pudo correr correctamente. "));
-    } else if (exitCode != 1) {
+    } else if (exitCode != 0) {
 
     } else {
-	    QMessageBox::critical(this, tr("Viper Sims"),
-	                        tr("Hubo un error al generar el Modelo de Velocidad. "
-	    								"Asegursese que no hayan capas que intersecten al "
-	    								"interpolar %1.").arg(exitCode));
+	    // QMessageBox::critical(this, tr("Viper Sims"),
+	    //                     tr("Hubo un error al generar el Modelo de Velocidad. "
+	    // 								"Asegursese que no hayan capas que intersecten al "
+	    // 								"interpolar %1.").arg(exitCode));
     }
     // QMessageBox::critical(this, tr("Viper Sims"),
     //                     tr("Hubo un error al generar el Modelo de Velocidad. "
