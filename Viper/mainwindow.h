@@ -37,9 +37,10 @@ private slots:
     void loadModel();
     void simParams();
 	void viewTraces();
-	void processFinished(int exitCode, QProcess::ExitStatus exitStatus);
 	void updateOutputTextEdit();
-	void processError(QProcess::ProcessError error);
+	void processFinished(int exitCode, QProcess::ExitStatus exitStatus);
+    void processError(QProcess::ProcessError error);
+    
 	
 private:
     void createActions();
