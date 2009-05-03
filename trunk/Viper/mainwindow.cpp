@@ -26,7 +26,7 @@ MainWindow::MainWindow() {
 
     readSettings();
 
-    // setWindowIcon(QIcon(":/images/icon.png"));
+    setWindowIcon(QIcon(":/images/icon.png"));
     setCurrentFile( "" );
 
     connect(&suximage, SIGNAL(readyReadStandardError()),
@@ -103,12 +103,12 @@ void MainWindow::readSettings()
         } else {
             QMessageBox::critical(this, tr("Viper Sims"),
                                 tr("Los programas para generar la Simulación no fueron encontrados."));
-//          this->shows = false;
-            this->shows = true;
+         this->shows = false;
+            // this->shows = true;
         }
     } else {
-//      this->shows = false;
-        this->shows = true;
+     	this->shows = false;
+        // this->shows = true;
     }
 }
 
@@ -140,9 +140,11 @@ void MainWindow::createActions()
     actionAbout->setStatusTip(tr("Sobre este programa"));
     connect(actionAbout, SIGNAL(triggered()), this, SLOT(about()));
 
+    actionRun->setIcon(QIcon(":/images/run2.png"));
     actionRun->setStatusTip(tr("Correr una Simulacion"));
     connect(actionRun, SIGNAL(triggered()), this, SLOT(run()));
 
+    actionLoadModel->setIcon(QIcon(":/images/models.png"));
     actionLoadModel->setStatusTip(tr("Cargar un Modelo de Velocidad"));
     connect(actionLoadModel, SIGNAL(triggered()), this, SLOT(loadModel()));
 
@@ -177,6 +179,9 @@ void MainWindow::createToolBars()
     fileToolBar->addAction(actionNew);
     fileToolBar->addAction(actionSave);
     fileToolBar->addAction(actionOpen);
+    fileToolBar->addAction(actionLoadModel);
+    fileToolBar->addAction(actionRun);
+
 }
 
 void MainWindow::simParams()
