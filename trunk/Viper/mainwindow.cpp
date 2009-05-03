@@ -695,31 +695,48 @@ void MainWindow::about()
                           "Sismicas P utilizando un modelo de velocidad. "));
 }
 
+void MainWindow::updateOutputTextEdit()
+{
+    QByteArray newData = suximage.readAllStandardError();
+    // QString text = outputTextEdit->toPlainText()
+    //                + QString::fromLocal8Bit(newData);
+    QMessageBox::critical(this, tr("Viper Sims"),
+                        tr("Hubo un error al generar el Modelo de Velocidad. "
+				"Asegursese que no hayan capas que intersecten al "
+				"interpolar este."));
+}
+
 void MainWindow::processFinished(int exitCode,
                                  QProcess::ExitStatus exitStatus)
 {
     if (exitStatus == QProcess::CrashExit) {
-//      textEdit->append(tr("Conversion program crashed"));
+        QMessageBox::critical(this, tr("Viper Sims"),
+                            tr("Hubo un error al generar el Modelo de Velocidad. "
+								"Asegursese que no hayan capas que intersecten al "
+								"interpolar este."));
     } else if (exitCode != 0) {
-//      textEdit->append(tr("Suxwigb failed"));
-//      textEdit->append(suxwigb.errorString());
+        QMessageBox::critical(this, tr("Viper Sims"),
+                            tr("Hubo un error al generar el Modelo de Velocidad. "
+								"Asegursese que no hayan capas que intersecten al "
+								"interpolar este."));
     } else {
-//      textEdit->append(tr("File %1 created").arg(curFile));
+	    QMessageBox::critical(this, tr("Viper Sims"),
+	                        tr("Hubo un error al generar el Modelo de Velocidad. "
+								"Asegursese que no hayan capas que intersecten al "
+								"interpolar este."));
     }
+    QMessageBox::critical(this, tr("Viper Sims"),
+                        tr("Hubo un error al generar el Modelo de Velocidad. "
+							"Asegursese que no hayan capas que intersecten al "
+							"interpolar este."));
 }
 
 void MainWindow::processError(QProcess::ProcessError error)
 {
     if (error == QProcess::FailedToStart) {
-//      textEdit->append(tr("Conversion program not found"));
+        QMessageBox::critical(this, tr("Viper Sims"),
+                            tr("Hubo un error al generar el Modelo de Velocidad. "
+								"Asegursese que no hayan capas que intersecten al "
+								"interpolar este."));
     }
 }
-
-void MainWindow::updateOutputTextEdit()
-{
-    QByteArray newData = suximage.readAllStandardError();
-//  QString text = textEdit->toPlainText()
-//                 + QString::fromLocal8Bit(newData);
-//  textEdit->append(text);
-}
-
