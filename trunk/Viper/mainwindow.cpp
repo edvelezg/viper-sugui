@@ -29,11 +29,11 @@ MainWindow::MainWindow() {
     setWindowIcon(QIcon(":/images/icon.png"));
     setCurrentFile( "" );
 
-    connect(&suximage, SIGNAL(readyReadStandardError()),
+    connect(&ximage, SIGNAL(readyReadStandardError()),
             this, SLOT(updateOutputTextEdit()));
-    connect(&suximage, SIGNAL(finished(int, QProcess::ExitStatus)),
+    connect(&ximage, SIGNAL(finished(int, QProcess::ExitStatus)),
             this, SLOT(processFinished(int, QProcess::ExitStatus)));
-    connect(&suximage, SIGNAL(error(QProcess::ProcessError)),
+    connect(&ximage, SIGNAL(error(QProcess::ProcessError)),
             this, SLOT(processError(QProcess::ProcessError)));
 
     tableWidget->item(0, 0)->setText(   model->getDistance    ()   );
@@ -697,13 +697,14 @@ void MainWindow::about()
 
 void MainWindow::updateOutputTextEdit()
 {
-    QByteArray newData = suximage.readAllStandardError();
-    // QString text = outputTextEdit->toPlainText()
-    //                + QString::fromLocal8Bit(newData);
-    QMessageBox::critical(this, tr("Viper Sims"),
-                        tr("Hubo un error al generar el Modelo de Velocidad. "
-				"Asegursese que no hayan capas que intersecten al "
-				"interpolar este."));
+    QByteArray newData = ximage.readAllStandardError();
+    QString text = QString::fromLocal8Bit(newData.simplified());
+	if (text == "/opt/SU/bin/ximage: error reading input file") {
+        QMessageBox::critical(this, tr("Viper Sims"),
+                            tr("Hubo un error al generar el Modelo de Velocidad. "
+        						"Asegursese que no hayan capas que intersecten al "
+        						"interpolarlo."));
+	}
 }
 
 void MainWindow::processFinished(int exitCode,
@@ -711,32 +712,25 @@ void MainWindow::processFinished(int exitCode,
 {
     if (exitStatus == QProcess::CrashExit) {
         QMessageBox::critical(this, tr("Viper Sims"),
-                            tr("Hubo un error al generar el Modelo de Velocidad. "
-								"Asegursese que no hayan capas que intersecten al "
-								"interpolar este."));
-    } else if (exitCode != 0) {
-        QMessageBox::critical(this, tr("Viper Sims"),
-                            tr("Hubo un error al generar el Modelo de Velocidad. "
-								"Asegursese que no hayan capas que intersecten al "
-								"interpolar este."));
+                            tr("El programa ximage no pudo correr correctamente. "));
+    } else if (exitCode != 1) {
+
     } else {
 	    QMessageBox::critical(this, tr("Viper Sims"),
 	                        tr("Hubo un error al generar el Modelo de Velocidad. "
-								"Asegursese que no hayan capas que intersecten al "
-								"interpolar este."));
+	    								"Asegursese que no hayan capas que intersecten al "
+	    								"interpolar %1.").arg(exitCode));
     }
-    QMessageBox::critical(this, tr("Viper Sims"),
-                        tr("Hubo un error al generar el Modelo de Velocidad. "
-							"Asegursese que no hayan capas que intersecten al "
-							"interpolar este."));
+    // QMessageBox::critical(this, tr("Viper Sims"),
+    //                     tr("Hubo un error al generar el Modelo de Velocidad. "
+    // 							"Asegursese que no hayan capas que intersecten al "
+    // 							"interpolar este."));
 }
 
 void MainWindow::processError(QProcess::ProcessError error)
 {
     if (error == QProcess::FailedToStart) {
-        QMessageBox::critical(this, tr("Viper Sims"),
-                            tr("Hubo un error al generar el Modelo de Velocidad. "
-								"Asegursese que no hayan capas que intersecten al "
-								"interpolar este."));
+	    QMessageBox::critical(this, tr("Viper Sims"),
+                            tr("No se puede encuentrar el programa ximage. "));
     }
 }
