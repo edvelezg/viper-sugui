@@ -162,6 +162,9 @@ bool MainWindow::saveAs()
         tr("Guardar Simulacion"), QDir::homePath(),
 		tr("Model File (*.out);;All Files (*)"));
     
+	if (fileName.rightRef(4) != ".out") {
+		fileName += ".out";
+	}
     if (fileName.isEmpty())
         return false;
 
