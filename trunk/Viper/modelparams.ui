@@ -8,8 +8,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>302</width>
-    <height>279</height>
+    <width>309</width>
+    <height>344</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -197,22 +197,22 @@
          <widget class="QComboBox" name="cbMethod" >
           <item>
            <property name="text" >
-            <string>spline</string>
+            <string>Spline</string>
            </property>
           </item>
           <item>
            <property name="text" >
-            <string>linear</string>
+            <string>Lineal</string>
            </property>
           </item>
           <item>
            <property name="text" >
-            <string>mono</string>
+            <string>Mono</string>
            </property>
           </item>
           <item>
            <property name="text" >
-            <string>akima</string>
+            <string>Akima</string>
            </property>
           </item>
          </widget>

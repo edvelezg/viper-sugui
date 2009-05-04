@@ -60,7 +60,21 @@ MainWindow::MainWindow() {
 	}                                                            
                                                                  
     tableWidget_2->item(4, 0)->setText(   model->getTitulo()     );
-    tableWidget_2->item(5, 0)->setText(   model->getMethod()     );
+	
+	if (model->getMethod() == "spline") {
+	    tableWidget_2->item(5, 0)->setText(   "Spline"     );
+	} 
+	else if (model->getMethod() == "linear") {
+	    tableWidget_2->item(5, 0)->setText(   "Lineal"     );
+	} 
+	else if (model->getMethod() == "mono") {
+	    tableWidget_2->item(5, 0)->setText(   "Mono"       );
+	} 
+	else {
+	    tableWidget_2->item(5, 0)->setText(   "Akima"      );
+	}
+
+
     tableWidget_2->item(6, 0)->setText(   "Ninguno"              );
 
     tableWidget_3->item(0, 0)->setText(   model->getWidth     ()  );
@@ -321,7 +335,16 @@ void MainWindow::modelParams()
             model->setLegend("0");        
         }
 
-        model->setMethod((dlgModParams->cbMethod)->currentText());
+        if ((dlgModParams->cbMethod)->currentIndex() == 0) {
+            model->setMethod("spline");        
+        } else if ((dlgModParams->cbMethod)->currentIndex() == 1) {
+            model->setMethod("linear");        
+		} else if ((dlgModParams->cbMethod)->currentIndex() == 2) {
+			model->setMethod("mono");        
+	    } else {
+			model->setMethod("akima");        
+        }
+
         model->setTitulo((dlgModParams->leTitulo)->text());        
 
         tableWidget_2->item(0, 0)->setText(   QString("%1 metros").arg( model->getD2().toDouble()*100 )   );
@@ -340,7 +363,18 @@ void MainWindow::modelParams()
 		}                                                            
                                                                      
 	    tableWidget_2->item(4, 0)->setText(   model->getTitulo()     );
-	    tableWidget_2->item(5, 0)->setText(   model->getMethod()     );
+		if (model->getMethod() == "spline") {
+		    tableWidget_2->item(5, 0)->setText(   "Spline"     );
+		} 
+		else if (model->getMethod() == "linear") {
+		    tableWidget_2->item(5, 0)->setText(   "Lineal"     );
+		} 
+		else if (model->getMethod() == "mono") {
+		    tableWidget_2->item(5, 0)->setText(   "Mono"       );
+		} 
+		else {
+		    tableWidget_2->item(5, 0)->setText(   "Akima"      );
+		}
                                                                      
         tabWidget->setCurrentIndex(1);                               
     }
@@ -649,7 +683,20 @@ void MainWindow::open()
 			}                                                            
 
 		    tableWidget_2->item(4, 0)->setText(   model->getTitulo()     );
-		    tableWidget_2->item(5, 0)->setText(   model->getMethod()     );
+
+			if (model->getMethod() == "spline") {
+			    tableWidget_2->item(5, 0)->setText(   "Spline"     );
+			} 
+			else if (model->getMethod() == "linear") {
+			    tableWidget_2->item(5, 0)->setText(   "Lineal"     );
+			} 
+			else if (model->getMethod() == "mono") {
+			    tableWidget_2->item(5, 0)->setText(   "Mono"       );
+			} 
+			else {
+			    tableWidget_2->item(5, 0)->setText(   "Akima"      );
+			}
+
 		    tableWidget_2->item(6, 0)->setText(   "Ninguno"              );
 
 		    tableWidget_3->item(0, 0)->setText(   model->getWidth     ()  );
