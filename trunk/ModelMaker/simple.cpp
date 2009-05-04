@@ -40,8 +40,8 @@ int main (int argc, char **argv)
 		int num = numObjs.toInt();
 		
 		QVector<int> numPoints(num);
-        for ( int i = 0; i < num; ++i ) {
-            QString strVel = wizard->field("sbVel" + QString::number(i)).toString();
+        for ( int i = num-1; i >= 0; --i) {
+            QString strVel = wizard->field("sbVel" + QString::number(num-1-i)).toString();
 			numPoints[i] = strVel.toInt();
             // qDebug() << "velocity "  + QString::number(i) << strVel;
         }
@@ -59,7 +59,7 @@ int main (int argc, char **argv)
 	    a.setMainWidget(&mainWindow);
 	#endif
 	} else {
-		qDebug() << "Cancelled Crap";
+		qDebug() << "Cancelled";
 	}
     // The scale picker translates mouse clicks
     // int o clicked() signals

@@ -16,6 +16,9 @@ NumObjectsPage::NumObjectsPage(QWidget *parent)
 {
     lblNumObjs = new QLabel(tr("Numero de Interfaces:"));
     leNumObjs = new QSpinBox();
+    leNumObjs->setMinimum(0);
+    leNumObjs->setMaximum(10);
+
     lblNumObjs->setBuddy(leNumObjs);
 
     registerField("numObjs*", leNumObjs);
@@ -54,8 +57,10 @@ void ObjectsPage::initializePage()
 
 	for (int i = 0; i < num; ++i) {
 		sbVel = new QSpinBox();
+		sbVel->setMinimum(2);
+	    sbVel->setMaximum(50);
 		lblVel = new QLabel;
-		lblVel->setText("Numero de Puntos " + QString::number(i+1));
+		lblVel->setText("Numero de Puntos Capa " + QString::number(i+1));
 		sbObjs.push_back(sbVel);
 		lblObjs.push_back(lblVel);
 	    layout->addWidget(lblVel, i, 0);
