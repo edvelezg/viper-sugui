@@ -23,7 +23,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex" >
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_3" >
        <attribute name="title" >
@@ -237,6 +237,11 @@
           </row>
           <row>
            <property name="text" >
+            <string>Metodo de Interpolación</string>
+           </property>
+          </row>
+          <row>
+           <property name="text" >
             <string>Modelo</string>
            </property>
           </row>
@@ -271,6 +276,11 @@
            </property>
           </item>
           <item row="5" column="0" >
+           <property name="text" >
+            <string>-</string>
+           </property>
+          </item>
+          <item row="6" column="0" >
            <property name="text" >
             <string>-</string>
            </property>
@@ -414,7 +424,6 @@
      </widget>
     </item>
    </layout>
-   <zorder>tabWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar" >
    <property name="geometry" >
