@@ -240,7 +240,7 @@ void CanvasPicker::moveBy(int dx, int dy)
 
 // Move the selected point
 void CanvasPicker::move(const QPoint &pos)
-{
+{	
     if ( !d_selectedCurve )
         return;
 
@@ -264,6 +264,7 @@ void CanvasPicker::move(const QPoint &pos)
 
     plot()->replot();
     showCursor(true);
+	emit modified();
 }
 
 void CanvasPicker::shiftCurveCursor(bool up)
@@ -330,16 +331,7 @@ void CanvasPicker::shiftPointCursor(bool up)
     }
 }
 
-bool CanvasPicker::save()
-{
-    if (curFile.isEmpty()) {
-        return saveAs();
-    } else {
-        return saveFile(curFile);
-    }
-}
-
-bool CanvasPicker::saveFile(const QString &fileName) {
+bool CanvasPicker::writeFile(const QString &fileName) {
 
 	QFile file(fileName);
    if (!file.open(QIODevice::WriteOnly)) {
@@ -350,7 +342,7 @@ bool CanvasPicker::saveFile(const QString &fileName) {
        return false;
    }
 
-	// Stuff to write to the script
+	// Stuff to write to the model file
 	QTextStream out(&file);
 	
 	out << 0 << "\t\t" << 0 << endl;
@@ -374,23 +366,7 @@ bool CanvasPicker::saveFile(const QString &fileName) {
 	out << 0 << "\t\t" << 1000 << endl;
 	out << 1000 << "\t\t" << 1000 << endl;
 	out << 1	 << "\t\t" << -99999 << endl; 
-
+	
+	// setCurrentFile( fileName );
 	return true;
-}
-
-bool CanvasPicker::saveAs()
-{
-	QString fileName = QFileDialog::getSaveFileName(0,
-        tr("Guardar Simulacion"), QDir::homePath(),
-		tr("Model File (*.out);;"));
-    
-    if (fileName.isEmpty())
-        return false;
-
-    return saveFile(fileName);
-}
-
-void CanvasPicker::setCurrentFile(const QString &fileName)
-{
-    curFile = fileName;
 }

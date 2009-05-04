@@ -10,21 +10,21 @@ class CanvasPicker: public QObject
     Q_OBJECT
 
 public slots:
-	bool save();
-    bool saveAs();
 
 public:
     CanvasPicker(QwtPlot *plot);
     virtual bool eventFilter(QObject *, QEvent *);
-    
+    bool writeFile(const QString &fileName);
     virtual bool event(QEvent *);
+
+signals:
+	void modified();
 
 private:
     void select(const QPoint &);
     void move(const QPoint &);
     void moveBy(int dx, int dy);
     void setCurrentFile(const QString &fileName);
-    bool saveFile(const QString &fileName);
 
     
     // void release();
