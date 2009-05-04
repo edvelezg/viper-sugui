@@ -36,39 +36,59 @@ MainWindow::MainWindow() {
     connect(&ximage, SIGNAL(error(QProcess::ProcessError)),
             this, SLOT(processError(QProcess::ProcessError)));
 
-    tableWidget->item(0, 0)->setText(   model->getDistance    ()   );
-    tableWidget->item(1, 0)->setText(   model->getDepth       ()   );
+    tableWidget->item(0, 0)->setText(   QString("%1 metros").arg( model->getDistance    () )  );
+    tableWidget->item(1, 0)->setText(   QString("%1 metros").arg( model->getDepth       () )  );
     tableWidget->item(2, 0)->setText(   model->getFpeak       ()   );
     tableWidget->item(3, 0)->setText(   model->getFmax        ()   );
-    tableWidget->item(4, 0)->setText(   model->getWindowTitle ()   );
-    tableWidget->item(5, 0)->setText(   model->getTitle       ()   );
-    tableWidget->item(6, 0)->setText(   model->getTMax        ()   );
-    tableWidget->item(7, 0)->setText(   model->getSstrength   ()   );
+    tableWidget->item(4, 0)->setText(   model->getTitle       ()   );
+    tableWidget->item(5, 0)->setText(   QString("%1 segundos").arg( model->getTMax        () )  );
+    tableWidget->item(6, 0)->setText(   model->getSstrength   ()   );
 
-    tableWidget_2->item(0, 0)->setText(   QString::number( model->getD2().toDouble()*100 )   );
-    tableWidget_2->item(1, 0)->setText(   QString::number( model->getD1().toDouble()*100 )   );
-    tableWidget_2->item(2, 0)->setText(   model->getCmap  ()                                 );
-    tableWidget_2->item(3, 0)->setText(   model->getLegend()                                 );
-    tableWidget_2->item(4, 0)->setText(   model->getTitulo()                                 );
-    tableWidget_2->item(5, 0)->setText(   model->getModelFile()                             );
+    tableWidget_2->item(0, 0)->setText(   QString("%1 metros").arg( model->getD2().toDouble()*100 )   );
+    tableWidget_2->item(1, 0)->setText(   QString("%1 metros").arg( model->getD1().toDouble()*100 )   );
+
+    if (model->getCmap() == "hue") {
+        tableWidget_2->item(2, 0)->setText(   "Capas a Color"    );
+    } else {                                                   
+        tableWidget_2->item(2, 0)->setText(   "Capas a Grises"   );
+    }                                                            
+                                                                 
+	if (model->getLegend() == "1") {                           
+        tableWidget_2->item(3, 0)->setText(   "Si"               );
+	} else {                                                   
+        tableWidget_2->item(3, 0)->setText(   "No"               );
+	}                                                            
+                                                                 
+    tableWidget_2->item(4, 0)->setText(   model->getTitulo()     );
+    tableWidget_2->item(5, 0)->setText(   "Ninguno"              );
 
     tableWidget_3->item(0, 0)->setText(   model->getWidth     ()  );
     tableWidget_3->item(1, 0)->setText(   model->getHeight    ()  );
-    tableWidget_3->item(2, 0)->setText(   model->getWidth     ()  );
-    tableWidget_3->item(3, 0)->setText(   model->getHeight    ()  );
-    tableWidget_3->item(4, 0)->setText(   model->getWidthOff2 ()  );
-    tableWidget_3->item(5, 0)->setText(   model->getHeightOff2()  );
-    tableWidget_3->item(6, 0)->setText(   model->getWidthOff1 ()  );
-    tableWidget_3->item(7, 0)->setText(   model->getHeightOff1()  );
+    tableWidget_3->item(2, 0)->setText(   model->getWidthOff2 ()  );	 
+    tableWidget_3->item(3, 0)->setText(   model->getHeightOff2()  );     
+    tableWidget_4->item(0, 0)->setText(   model->getWidth_2   ()  );
+    tableWidget_4->item(1, 0)->setText(   model->getHeight_2  ()  );
+    tableWidget_4->item(2, 0)->setText(   model->getWidthOff1 ()  );
+    tableWidget_4->item(3, 0)->setText(   model->getHeightOff1()  );
 
-	tableWidget->horizontalHeader()->stretchLastSection();
-	tableWidget_2->horizontalHeader()->stretchLastSection();
-	tableWidget_3->horizontalHeader()->stretchLastSection();
-
-	tableWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
-	tableWidget_2->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
-	tableWidget_3->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
-
+	// tableWidget->horizontalHeader()->stretchLastSection();
+	// tableWidget_2->horizontalHeader()->stretchLastSection();
+	// tableWidget_3->horizontalHeader()->stretchLastSection();
+	
+	tableWidget->horizontalHeader()->  setMinimumSectionSize(200);
+	tableWidget_2->horizontalHeader()->setMinimumSectionSize(200);
+	tableWidget_3->horizontalHeader()->setMinimumSectionSize(100);
+	tableWidget_4->horizontalHeader()->setMinimumSectionSize(100);
+	
+	tableWidget->horizontalHeader()->  resizeSection(0,200);
+	tableWidget_2->horizontalHeader()->resizeSection(0,200);
+	tableWidget_3->horizontalHeader()->resizeSection(0,100);
+	tableWidget_4->horizontalHeader()->resizeSection(0,100);
+	
+	tableWidget->horizontalHeader()->setResizeMode  ( QHeaderView::Interactive );
+	tableWidget_2->horizontalHeader()->setResizeMode( QHeaderView::Interactive );
+	tableWidget_3->horizontalHeader()->setResizeMode( QHeaderView::Interactive );
+	
     currentRow = -1;
 }
 
@@ -202,7 +222,6 @@ void MainWindow::simParams()
         model->setDepth       ( (dlgSimParams->sbDepth)->text()        );
         model->setFpeak       ( (dlgSimParams->sbFpeak)->text()        );
         model->setFmax        ( (dlgSimParams->sbFmax)->text()         );
-        model->setWindowTitle ( (dlgSimParams->leWindowTitle)->text()  );
         model->setTitle       ( (dlgSimParams->leTitle)->text()        );
         model->setTMax        ( (dlgSimParams->sbTMax)->text()         );
         model->setSstrength   ( (dlgSimParams->sbSstrength)->text()         );
@@ -214,14 +233,13 @@ void MainWindow::simParams()
             model->setLoop("0");        
         }
 
-        tableWidget->item(0, 0)->setText(   model->getDistance    ()   );
-        tableWidget->item(1, 0)->setText(   model->getDepth       ()   );
+        tableWidget->item(0, 0)->setText(   QString("%1 metros").arg( model->getDistance    () )  );
+        tableWidget->item(1, 0)->setText(   QString("%1 metros").arg( model->getDepth       () )  );
         tableWidget->item(2, 0)->setText(   model->getFpeak       ()   );
         tableWidget->item(3, 0)->setText(   model->getFmax        ()   );
-        tableWidget->item(4, 0)->setText(   model->getWindowTitle ()   );
-        tableWidget->item(5, 0)->setText(   model->getTitle       ()   );
-        tableWidget->item(6, 0)->setText(   model->getTMax        ()   );
-        tableWidget->item(7, 0)->setText(   model->getSstrength   ()   );
+        tableWidget->item(4, 0)->setText(   model->getTitle       ()   );
+        tableWidget->item(5, 0)->setText(   QString("%1 segundos").arg( model->getTMax        () )  );
+        tableWidget->item(6, 0)->setText(   model->getSstrength   ()   );
     }
 
     tabWidget->setCurrentIndex(2);
@@ -251,14 +269,14 @@ void MainWindow::sizeSettings()
         model->setHeightOff2    ( (dlgGeometry->sbHeightOff2)->text()   );
 
 
-        tableWidget_3->item(0, 0)->setText(   model->getWidth     ()  );
-        tableWidget_3->item(1, 0)->setText(   model->getHeight    ()  );
-        tableWidget_3->item(2, 0)->setText(   model->getWidth     ()  );
-        tableWidget_3->item(3, 0)->setText(   model->getHeight    ()  );
-        tableWidget_3->item(4, 0)->setText(   model->getWidthOff2 ()  );
-        tableWidget_3->item(5, 0)->setText(   model->getHeightOff2()  );
-        tableWidget_3->item(6, 0)->setText(   model->getWidthOff1 ()  );
-        tableWidget_3->item(7, 0)->setText(   model->getHeightOff1()  );
+	    tableWidget_3->item(0, 0)->setText(   model->getWidth     ()  );
+	    tableWidget_3->item(1, 0)->setText(   model->getHeight    ()  );
+	    tableWidget_3->item(2, 0)->setText(   model->getWidthOff2 ()  );	 
+	    tableWidget_3->item(3, 0)->setText(   model->getHeightOff2()  );     
+	    tableWidget_4->item(0, 0)->setText(   model->getWidth_2   ()  );
+	    tableWidget_4->item(1, 0)->setText(   model->getHeight_2  ()  );
+	    tableWidget_4->item(2, 0)->setText(   model->getWidthOff1 ()  );
+	    tableWidget_4->item(3, 0)->setText(   model->getHeightOff1()  );
     }
 
     tabWidget->setCurrentIndex(0);
@@ -305,13 +323,24 @@ void MainWindow::modelParams()
         model->setMethod((dlgModParams->cbMethod)->currentText());
         model->setTitulo((dlgModParams->leTitulo)->text());        
 
-        tableWidget_2->item(0, 0)->setText(   QString::number( model->getD2().toDouble()*100 )   );
-        tableWidget_2->item(1, 0)->setText(   QString::number( model->getD1().toDouble()*100 )   );
-        tableWidget_2->item(2, 0)->setText(   model->getCmap  ()                                 );
-        tableWidget_2->item(3, 0)->setText(   model->getLegend()                                 );
-        tableWidget_2->item(4, 0)->setText(   model->getTitulo()                                 );
+        tableWidget_2->item(0, 0)->setText(   QString("%1 metros").arg( model->getD2().toDouble()*100 )   );
+        tableWidget_2->item(1, 0)->setText(   QString("%1 metros").arg( model->getD1().toDouble()*100 )   );
 
-        tabWidget->setCurrentIndex(1);
+        if (model->getCmap() == "hue") {
+	        tableWidget_2->item(2, 0)->setText(   "Capas a Color"    );
+        } else {                                                   
+	        tableWidget_2->item(2, 0)->setText(   "Capas a Grises"   );
+        }                                                            
+                                                                     
+		if (model->getLegend() == "1") {                           
+	        tableWidget_2->item(3, 0)->setText(   "Si"               );
+		} else {                                                   
+	        tableWidget_2->item(3, 0)->setText(   "No"               );
+		}                                                            
+                                                                     
+        tableWidget_2->item(4, 0)->setText(   model->getTitulo()     );
+                                                                     
+        tabWidget->setCurrentIndex(1);                               
     }
 }
 
@@ -487,7 +516,7 @@ void MainWindow::run()
 
     argsMovie   << "clip=1.0"       
     << "title="                                    + model->getTitle()        
-    << "windowtitle="                              + model->getWindowTitle()  
+    << "windowtitle=Propagacion de Onda"
     << "label1='Profundidad (m)'"   
     << "label2='Distancia (m)'"     
     << "n1="                                        + model->getN1() 
@@ -593,6 +622,41 @@ void MainWindow::open()
         if (!fileName.isEmpty()) {
             loadFile(fileName);
             currentRow = -1;
+
+		    tableWidget->item(0, 0)->setText(   QString("%1 metros").arg( model->getDistance    () )  );
+		    tableWidget->item(1, 0)->setText(   QString("%1 metros").arg( model->getDepth       () )  );
+		    tableWidget->item(2, 0)->setText(   model->getFpeak       ()   );
+		    tableWidget->item(3, 0)->setText(   model->getFmax        ()   );
+		    tableWidget->item(4, 0)->setText(   model->getTitle       ()   );
+		    tableWidget->item(5, 0)->setText(   QString("%1 segundos").arg( model->getTMax        () )  );
+		    tableWidget->item(6, 0)->setText(   model->getSstrength   ()   );
+
+		    tableWidget_2->item(0, 0)->setText(   QString("%1 metros").arg( model->getD2().toDouble()*100 )   );
+		    tableWidget_2->item(1, 0)->setText(   QString("%1 metros").arg( model->getD1().toDouble()*100 )   );
+
+		    if (model->getCmap() == "hue") {
+		        tableWidget_2->item(2, 0)->setText(   "Capas a Color"    );
+		    } else {                                                   
+		        tableWidget_2->item(2, 0)->setText(   "Capas a Grises"   );
+		    }                                                            
+
+			if (model->getLegend() == "1") {                           
+		        tableWidget_2->item(3, 0)->setText(   "Si"               );
+			} else {                                                   
+		        tableWidget_2->item(3, 0)->setText(   "No"               );
+			}                                                            
+
+		    tableWidget_2->item(4, 0)->setText(   model->getTitulo()     );
+		    tableWidget_2->item(5, 0)->setText(   model->getModelFile()	 );
+
+		    tableWidget_3->item(0, 0)->setText(   model->getWidth     ()  );
+		    tableWidget_3->item(1, 0)->setText(   model->getHeight    ()  );
+		    tableWidget_3->item(2, 0)->setText(   model->getWidthOff2 ()  );	 
+		    tableWidget_3->item(3, 0)->setText(   model->getHeightOff2()  );     
+		    tableWidget_4->item(0, 0)->setText(   model->getWidth_2   ()  );
+		    tableWidget_4->item(1, 0)->setText(   model->getHeight_2  ()  );
+		    tableWidget_4->item(2, 0)->setText(   model->getWidthOff1 ()  );
+		    tableWidget_4->item(3, 0)->setText(   model->getHeightOff1()  );
         }
     }
 }

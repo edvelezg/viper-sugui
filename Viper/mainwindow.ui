@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>577</width>
-    <height>412</height>
+    <height>387</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -31,114 +31,154 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4" >
         <item row="0" column="0" >
-         <widget class="QTableWidget" name="tableWidget_3" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="editTriggers" >
-           <set>QAbstractItemView::NoEditTriggers</set>
-          </property>
-          <property name="tabKeyNavigation" >
-           <bool>false</bool>
-          </property>
-          <property name="alternatingRowColors" >
-           <bool>false</bool>
-          </property>
-          <property name="selectionMode" >
-           <enum>QAbstractItemView::NoSelection</enum>
-          </property>
-          <property name="showGrid" >
-           <bool>true</bool>
-          </property>
-          <row>
-           <property name="text" >
-            <string>Ancho de Modelo</string>
-           </property>
-          </row>
-          <row>
-           <property name="text" >
-            <string>Altura de Modelo</string>
-           </property>
-          </row>
-          <row>
-           <property name="text" >
-            <string>Cord. X Modelo</string>
-           </property>
-          </row>
-          <row>
-           <property name="text" >
-            <string>Cord. Y Modelo</string>
-           </property>
-          </row>
-          <row>
-           <property name="text" >
-            <string>Ancho</string>
-           </property>
-          </row>
-          <row>
-           <property name="text" >
-            <string>Altura</string>
-           </property>
-          </row>
-          <row>
-           <property name="text" >
-            <string>Cord. X</string>
-           </property>
-          </row>
-          <row>
-           <property name="text" >
-            <string>Cord. Y</string>
-           </property>
-          </row>
-          <column>
-           <property name="text" >
-            <string>Valor</string>
-           </property>
-          </column>
-          <item row="0" column="0" >
-           <property name="text" >
-            <string>-</string>
-           </property>
+         <layout class="QVBoxLayout" name="verticalLayout" >
+          <item>
+           <widget class="QLabel" name="label" >
+            <property name="text" >
+             <string>Modelo de Velocidad</string>
+            </property>
+           </widget>
           </item>
-          <item row="1" column="0" >
-           <property name="text" >
-            <string>-</string>
-           </property>
+          <item>
+           <widget class="QTableWidget" name="tableWidget_3" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="editTriggers" >
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="tabKeyNavigation" >
+             <bool>false</bool>
+            </property>
+            <property name="alternatingRowColors" >
+             <bool>false</bool>
+            </property>
+            <property name="selectionMode" >
+             <enum>QAbstractItemView::NoSelection</enum>
+            </property>
+            <property name="showGrid" >
+             <bool>true</bool>
+            </property>
+            <property name="gridStyle" >
+             <enum>Qt::DashLine</enum>
+            </property>
+            <row>
+             <property name="text" >
+              <string>Ancho</string>
+             </property>
+            </row>
+            <row>
+             <property name="text" >
+              <string>Altura</string>
+             </property>
+            </row>
+            <row>
+             <property name="text" >
+              <string>Cord. X</string>
+             </property>
+            </row>
+            <row>
+             <property name="text" >
+              <string>Cord. Y</string>
+             </property>
+            </row>
+            <column>
+             <property name="text" >
+              <string>Valor</string>
+             </property>
+            </column>
+            <item row="0" column="0" >
+             <property name="text" >
+              <string>-</string>
+             </property>
+            </item>
+            <item row="1" column="0" >
+             <property name="text" >
+              <string>-</string>
+             </property>
+            </item>
+            <item row="2" column="0" >
+             <property name="text" >
+              <string>-</string>
+             </property>
+            </item>
+            <item row="3" column="0" >
+             <property name="text" >
+              <string>-</string>
+             </property>
+            </item>
+           </widget>
           </item>
-          <item row="2" column="0" >
-           <property name="text" >
-            <string>-</string>
-           </property>
+         </layout>
+        </item>
+        <item row="0" column="1" >
+         <layout class="QVBoxLayout" name="verticalLayout_2" >
+          <item>
+           <widget class="QLabel" name="label_2" >
+            <property name="text" >
+             <string>Propagación de la Onda</string>
+            </property>
+           </widget>
           </item>
-          <item row="3" column="0" >
-           <property name="text" >
-            <string>-</string>
-           </property>
+          <item>
+           <widget class="QTableWidget" name="tableWidget_4" >
+            <property name="editTriggers" >
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="gridStyle" >
+             <enum>Qt::DashLine</enum>
+            </property>
+            <row>
+             <property name="text" >
+              <string>Ancho</string>
+             </property>
+            </row>
+            <row>
+             <property name="text" >
+              <string>Altura</string>
+             </property>
+            </row>
+            <row>
+             <property name="text" >
+              <string>Cord. X</string>
+             </property>
+            </row>
+            <row>
+             <property name="text" >
+              <string>Cord. Y</string>
+             </property>
+            </row>
+            <column>
+             <property name="text" >
+              <string>Valor</string>
+             </property>
+            </column>
+            <item row="0" column="0" >
+             <property name="text" >
+              <string>-</string>
+             </property>
+            </item>
+            <item row="1" column="0" >
+             <property name="text" >
+              <string>-</string>
+             </property>
+            </item>
+            <item row="2" column="0" >
+             <property name="text" >
+              <string>-</string>
+             </property>
+            </item>
+            <item row="3" column="0" >
+             <property name="text" >
+              <string>-</string>
+             </property>
+            </item>
+           </widget>
           </item>
-          <item row="4" column="0" >
-           <property name="text" >
-            <string>-</string>
-           </property>
-          </item>
-          <item row="5" column="0" >
-           <property name="text" >
-            <string>-</string>
-           </property>
-          </item>
-          <item row="6" column="0" >
-           <property name="text" >
-            <string>-</string>
-           </property>
-          </item>
-          <item row="7" column="0" >
-           <property name="text" >
-            <string>-</string>
-           </property>
-          </item>
-         </widget>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -149,6 +189,9 @@
        <layout class="QGridLayout" name="gridLayout" >
         <item row="0" column="0" >
          <widget class="QTableWidget" name="tableWidget_2" >
+          <property name="autoScroll" >
+           <bool>true</bool>
+          </property>
           <property name="editTriggers" >
            <set>QAbstractItemView::NoEditTriggers</set>
           </property>
@@ -160,6 +203,12 @@
           </property>
           <property name="selectionMode" >
            <enum>QAbstractItemView::NoSelection</enum>
+          </property>
+          <property name="gridStyle" >
+           <enum>Qt::DashLine</enum>
+          </property>
+          <property name="cornerButtonEnabled" >
+           <bool>false</bool>
           </property>
           <row>
            <property name="text" >
@@ -225,6 +274,10 @@
            <property name="text" >
             <string>-</string>
            </property>
+           <property name="icon" >
+            <iconset resource="Viper.qrc" >
+             <normaloff>:/images/models.png</normaloff>:/images/models.png</iconset>
+           </property>
           </item>
          </widget>
         </item>
@@ -240,6 +293,18 @@
           <property name="enabled" >
            <bool>true</bool>
           </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font" >
+           <font>
+            <pointsize>13</pointsize>
+            <italic>false</italic>
+           </font>
+          </property>
           <property name="editTriggers" >
            <set>QAbstractItemView::NoEditTriggers</set>
           </property>
@@ -248,6 +313,24 @@
           </property>
           <property name="selectionMode" >
            <enum>QAbstractItemView::NoSelection</enum>
+          </property>
+          <property name="verticalScrollMode" >
+           <enum>QAbstractItemView::ScrollPerItem</enum>
+          </property>
+          <property name="showGrid" >
+           <bool>true</bool>
+          </property>
+          <property name="gridStyle" >
+           <enum>Qt::DashLine</enum>
+          </property>
+          <property name="sortingEnabled" >
+           <bool>false</bool>
+          </property>
+          <property name="wordWrap" >
+           <bool>false</bool>
+          </property>
+          <property name="cornerButtonEnabled" >
+           <bool>false</bool>
           </property>
           <row>
            <property name="text" >
@@ -271,12 +354,7 @@
           </row>
           <row>
            <property name="text" >
-            <string>Titulo de Ventana</string>
-           </property>
-          </row>
-          <row>
-           <property name="text" >
-            <string>Titula</string>
+            <string>Titulo</string>
            </property>
           </row>
           <row>
@@ -329,11 +407,6 @@
             <string>-</string>
            </property>
           </item>
-          <item row="7" column="0" >
-           <property name="text" >
-            <string>-</string>
-           </property>
-          </item>
          </widget>
         </item>
        </layout>
@@ -341,6 +414,7 @@
      </widget>
     </item>
    </layout>
+   <zorder>tabWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar" >
    <property name="geometry" >
@@ -505,7 +579,9 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Viper.qrc" />
+ </resources>
  <connections>
   <connection>
    <sender>actionExit</sender>
