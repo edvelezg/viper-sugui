@@ -29,7 +29,6 @@ SimulationModel::SimulationModel() {
         this->depth         = "20"                  ;
         this->fpeak         = "35"                  ;
         this->fmax          = "40"                  ;
-        this->windowTitle   = "Propagacion de Onda" ;
         this->title         = "Ondas Sismicas P"      ;
         this->tMax          = "0.40"                ;
         this->loop          = "1"                   ;
@@ -66,7 +65,6 @@ QString SimulationModel::getDistance    ()                        {   return dis
 QString SimulationModel::getDepth       ()                        {   return depth       ;            }
 QString SimulationModel::getFpeak       ()                        {   return fpeak       ;            }
 QString SimulationModel::getFmax        ()                        {   return fmax        ;            }
-QString SimulationModel::getWindowTitle ()                        {   return windowTitle ;            }
 QString SimulationModel::getTitle       ()                        {   return title       ;            }
 QString SimulationModel::getTMax        ()                        {   return tMax        ;            }
 QString SimulationModel::getLoop        ()                        {   return loop        ;            }
@@ -98,7 +96,6 @@ void SimulationModel::setDistance    (QString distance   )        {   this->dist
 void SimulationModel::setDepth       (QString depth      )        {   this->depth       =   depth      ; }
 void SimulationModel::setFpeak       (QString fpeak      )        {   this->fpeak       =   fpeak      ; }
 void SimulationModel::setFmax        (QString fmax       )        {   this->fmax        =   fmax       ; }
-void SimulationModel::setWindowTitle (QString windowTitle)        {   this->windowTitle =   windowTitle; }
 void SimulationModel::setTitle       (QString title      )        {   this->title       =   title      ; }
 void SimulationModel::setTMax        (QString tMax       )        {   this->tMax        =   tMax       ; }
 void SimulationModel::setLoop        (QString loop       )        {   this->loop        =   loop       ; }
@@ -143,7 +140,6 @@ bool SimulationModel::writeFile(const QString &fileName)
 	out << qPrintable(QString("%1").arg( depth       )) << endl;
 	out << qPrintable(QString("%1").arg( fpeak       )) << endl;
 	out << qPrintable(QString("%1").arg( fmax        )) << endl;
-	out << qPrintable(QString("%1").arg( windowTitle )) << endl;
 	out << qPrintable(QString("%1").arg( title       )) << endl;
 	out << qPrintable(QString("%1").arg( tMax        )) << endl;
 	out << qPrintable(QString("%1").arg( loop        )) << endl;
@@ -198,7 +194,6 @@ bool SimulationModel::readFile(const QString &fileName)
 	depth               =     in.readLine().simplified();
 	fpeak               =     in.readLine().simplified();
 	fmax                =     in.readLine().simplified();
-	windowTitle         =     in.readLine().simplified();
 	title               =     in.readLine().simplified();
 	tMax                =     in.readLine().simplified();
 	loop                =     in.readLine().simplified();
@@ -241,7 +236,6 @@ void SimulationModel::clear() {
    this->depth         = "20"                  ;
    this->fpeak         = "35"                  ;
    this->fmax          = "40"                  ;
-   this->windowTitle   = "Propagacion de Onda" ;
    this->title         = "Ondas Sismicas P"    ;
    this->tMax          = "0.40"                ;
    this->loop          = "1"                   ;

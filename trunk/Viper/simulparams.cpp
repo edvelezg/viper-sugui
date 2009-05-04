@@ -18,7 +18,6 @@ void SimulParams::getParams(SimulationModel &vm) {
     sbDepth->setValue       (   vm.getDepth       ().toDouble() );
     sbFpeak->setValue       (   vm.getFpeak       ().toInt()    );
     sbFmax->setValue        (   vm.getFmax        ().toInt()    );
-    leWindowTitle->setText  (   vm.getWindowTitle ()            );
     leTitle->setText        (   vm.getTitle       ()            );
     sbTMax->setValue        (   vm.getTMax        ().toDouble() );
 

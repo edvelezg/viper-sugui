@@ -36,7 +36,6 @@ public:
 	QString getDepth       ();
 	QString getFpeak       ();
 	QString getFmax        ();
-	QString getWindowTitle ();
 	QString getTitle       ();
 	QString getTMax        ();
 	QString getLoop        ();
@@ -68,7 +67,6 @@ public:
 	void setDepth       (QString);
 	void setFpeak       (QString);
 	void setFmax        (QString);
-	void setWindowTitle (QString);
 	void setTitle       (QString);
 	void setTMax        (QString);
 	void setLoop        (QString);
@@ -103,7 +101,6 @@ private:
 	QString depth       ;
 	QString fpeak       ;
 	QString fmax        ;
-	QString windowTitle ;
 	QString title       ;
 	QString tMax        ;
 	QString loop        ;
