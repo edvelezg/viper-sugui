@@ -202,7 +202,6 @@ bool SimulationModel::readFile(const QString &fileName)
 
     int num  = in.readLine().simplified().toInt();
 
-    QString word;
     for (int i = 0; i < num ; ++i ) {
         QString item  = in.readLine().simplified();
         QStringList parts = item.split(" = ");

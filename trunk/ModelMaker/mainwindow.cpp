@@ -160,7 +160,7 @@ bool MainWindow::saveAs()
 {
 	QString fileName = QFileDialog::getSaveFileName(0,
         tr("Guardar Simulacion"), QDir::homePath(),
-		tr("Model File (*.out);;"));
+		tr("Model File (*.out);;All Files (*)"));
     
     if (fileName.isEmpty())
         return false;

@@ -33,7 +33,7 @@ QWidget *VelocityDelegate::createEditor(QWidget *parent,
 {
     if (index.column() == durationColumn) {
         QDoubleSpinBox *velEdit = new QDoubleSpinBox(parent);
-        velEdit->setMinimum(1500.00);
+        velEdit->setMinimum(1500.000);
         velEdit->setMaximum(10000.00);
         connect(velEdit, SIGNAL(editingFinished()),
                 this, SLOT(commitAndCloseEditor()));
