@@ -123,7 +123,7 @@ void MainWindow::open()
     if (okToContinue()) {
         QString fileName = QFileDialog::getOpenFileName(this,
                                                         tr("Abrir modelo de velocidad"), QDir::homePath(),
-                                                        tr("Model File (*.out)"));
+														tr("Model File (*.out);;All Files (*)"));
         if (!fileName.isEmpty()) {
             loadFile(fileName);
         }
@@ -158,7 +158,7 @@ bool MainWindow::save()
 
 bool MainWindow::saveAs()
 {
-	QString fileName = QFileDialog::getSaveFileName(0,
+	QString fileName = QFileDialog::getSaveFileName(this,
         tr("Guardar Simulacion"), QDir::homePath(),
 		tr("Model File (*.out);;All Files (*)"));
     
