@@ -60,7 +60,8 @@ MainWindow::MainWindow() {
 	}                                                            
                                                                  
     tableWidget_2->item(4, 0)->setText(   model->getTitulo()     );
-    tableWidget_2->item(5, 0)->setText(   "Ninguno"              );
+    tableWidget_2->item(5, 0)->setText(   model->getMethod()     );
+    tableWidget_2->item(6, 0)->setText(   "Ninguno"              );
 
     tableWidget_3->item(0, 0)->setText(   model->getWidth     ()  );
     tableWidget_3->item(1, 0)->setText(   model->getHeight    ()  );
@@ -338,7 +339,8 @@ void MainWindow::modelParams()
 	        tableWidget_2->item(3, 0)->setText(   "No"               );
 		}                                                            
                                                                      
-        tableWidget_2->item(4, 0)->setText(   model->getTitulo()     );
+	    tableWidget_2->item(4, 0)->setText(   model->getTitulo()     );
+	    tableWidget_2->item(5, 0)->setText(   model->getMethod()     );
                                                                      
         tabWidget->setCurrentIndex(1);                               
     }
@@ -362,7 +364,7 @@ void MainWindow::loadModel()
         model->setModelsVector(dlgList->getModels());
         currentRow = dlgList->getCurrentModel();
 //      textEdit_2->append("Archivo de Modelo: " + model->getModelFile());
-        tableWidget_2->item(5, 0)->setText( model->getModelFile() );
+        tableWidget_2->item(6, 0)->setText( model->getModelFile() );
 
         QString all = dlgList->velocities().join(",");
         if (all != "")
@@ -647,7 +649,8 @@ void MainWindow::open()
 			}                                                            
 
 		    tableWidget_2->item(4, 0)->setText(   model->getTitulo()     );
-		    tableWidget_2->item(5, 0)->setText(   model->getModelFile()	 );
+		    tableWidget_2->item(5, 0)->setText(   model->getMethod()     );
+		    tableWidget_2->item(6, 0)->setText(   "Ninguno"              );
 
 		    tableWidget_3->item(0, 0)->setText(   model->getWidth     ()  );
 		    tableWidget_3->item(1, 0)->setText(   model->getHeight    ()  );
