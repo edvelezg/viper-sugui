@@ -654,7 +654,7 @@ void MainWindow::open()
     if (okToContinue()) {
         QString fileName = QFileDialog::getOpenFileName(this,
                                                         tr("Open Simulation"), QDir::homePath(),
-                                                        tr("Viper Simulation File(*.vsf)"));
+														tr("Viper Simulation File(*.vsf);;All Files (*)"));
         if (!fileName.isEmpty()) {
             loadFile(fileName);
             currentRow = -1;
@@ -742,6 +742,10 @@ bool MainWindow::saveAs()
     QString fileName = QFileDialog::getSaveFileName(this,
                                                     tr("Guardar Simulacion"), QDir::homePath(),
                                                     tr("Viper Simulation File (*.vsf);;All Files (*)"));
+
+	if (fileName.rightRef(4) != ".vsf") {
+		fileName += ".vsf";
+	}
 
     if (fileName.isEmpty())
         return false;
