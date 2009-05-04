@@ -370,3 +370,4 @@ bool CanvasPicker::writeFile(const QString &fileName) {
 	// setCurrentFile( fileName );
 	return true;
 }
+
