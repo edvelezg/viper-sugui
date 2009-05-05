@@ -14,7 +14,7 @@ ListDialog::ListDialog( QWidget *parent ) : QDialog( parent )
     connect( ui.editButton, SIGNAL(clicked()), this, SLOT(editItem()) );
     connect( ui.deleteButton, SIGNAL(clicked()), this, SLOT(deleteItem()) );
     connect( ui.list, SIGNAL(itemSelectionChanged ()), this, SLOT(modelChanged()) );
-    connect( ui.list, SIGNAL(itemDoubleClicked (QListWidgetItem * item)), this, SLOT(accept()));
+//  connect( ui.list, SIGNAL(itemDoubleClicked (QListWidgetItem * item)), this, SLOT(velocities(QListWidgetItem * item)));
     connect( ui.velocityButton, SIGNAL(clicked()), this, SLOT(setVelocities()));
 
 
