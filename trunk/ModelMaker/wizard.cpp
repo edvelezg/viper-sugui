@@ -60,7 +60,7 @@ void ObjectsPage::initializePage()
 		sbVel->setMinimum(2);
 	    sbVel->setMaximum(50);
 		lblVel = new QLabel;
-		lblVel->setText("Numero de Puntos Capa " + QString::number(i+1));
+		lblVel->setText("Numero de Puntos Interfaz " + QString::number(i+1));
 		sbObjs.push_back(sbVel);
 		lblObjs.push_back(lblVel);
 	    layout->addWidget(lblVel, i, 0);
