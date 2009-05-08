@@ -440,7 +440,7 @@ void MainWindow::run()
     // Setting the Environment for Seismic Unix
     QString sysPath = ::getenv("PATH");
     sysPath = sysPath + ":" + environment + "/bin";
-//  ::setenv("PATH", sysPath.toStdString().c_str(), 1);
+ 	::setenv("PATH", sysPath.toStdString().c_str(), 1);
     QStringList env = QProcess::systemEnvironment();
     env << "CWPROOT=" + environment;
     // env = "PATH=" + environment;
