@@ -15,14 +15,14 @@ MainWindow::MainWindow() {
     setupUi( this );   
 
     model               = new SimulationModel();
-    dlgGeometry     = 0;
-    dlgModParams    = 0;
-    dlgLoadModel    = 0;
-    dlgSimParams    = 0;
-    dlgEnvironment  = 0;
-    dlgList         = 0;
-    createActions()    ;
-    createToolBars()   ;
+    dlgGeometry     	= 0;
+    dlgModParams    	= 0;
+    dlgLoadModel    	= 0;
+    dlgSimParams    	= 0;
+    dlgEnvironment  	= 0;
+    dlgList         	= 0;
+    createActions();
+    createToolBars();
 
     readSettings();
 
@@ -36,11 +36,11 @@ MainWindow::MainWindow() {
     connect(&ximage, SIGNAL(error(QProcess::ProcessError)),
             this, SLOT(processError(QProcess::ProcessError)));
 
-    tableWidget->item(0, 0)->setText(   QString("%1 metros").arg( model->getDistance    () )  );
-    tableWidget->item(1, 0)->setText(   QString("%1 metros").arg( model->getDepth       () )  );
-    tableWidget->item(2, 0)->setText(   model->getFpeak       ()   );
-    tableWidget->item(3, 0)->setText(   model->getFmax        ()   );
-    tableWidget->item(4, 0)->setText(   model->getTitle       ()   );
+    tableWidget->item(0, 0)->setText(   QString("%1 metros").arg( 	model->getDistance    () )  );
+    tableWidget->item(1, 0)->setText(   QString("%1 metros").arg( 	model->getDepth       () )  );
+    tableWidget->item(2, 0)->setText(   model->getFpeak       ()   								);
+    tableWidget->item(3, 0)->setText(   model->getFmax        ()   								);
+    tableWidget->item(4, 0)->setText(   model->getTitle       ()   								);
     tableWidget->item(5, 0)->setText(   QString("%1 segundos").arg( model->getTMax        () )  );
     tableWidget->item(6, 0)->setText(   model->getSstrength   ()   );
 
@@ -86,10 +86,6 @@ MainWindow::MainWindow() {
     tableWidget_4->item(2, 0)->setText(   model->getWidthOff1 ()  );
     tableWidget_4->item(3, 0)->setText(   model->getHeightOff1()  );
 
-	// tableWidget->horizontalHeader()->stretchLastSection();
-	// tableWidget_2->horizontalHeader()->stretchLastSection();
-	// tableWidget_3->horizontalHeader()->stretchLastSection();
-	
 	tableWidget->horizontalHeader()->  setMinimumSectionSize(200);
 	tableWidget_2->horizontalHeader()->setMinimumSectionSize(200);
 	tableWidget_3->horizontalHeader()->setMinimumSectionSize(100);
@@ -241,11 +237,34 @@ void MainWindow::simParams()
         model->setTMax        ( (dlgSimParams->sbTMax)->text()         );
         model->setSstrength   ( (dlgSimParams->sbSstrength)->text()         );
 
-
         if ((dlgSimParams->chkLoop)->isChecked()) {
             model->setLoop("1");        
         } else {
             model->setLoop("0");        
+        }
+
+        if ((dlgSimParams->chkTop)->isChecked()) {
+			model->setTopBound("0");    
+        } else {
+			model->setTopBound("1");    
+        }
+
+        if ((dlgSimParams->chkBottom)->isChecked()) {
+            model->setBottomBound("0");        
+        } else {
+            model->setBottomBound("1");        
+        }
+
+        if ((dlgSimParams->chkRight)->isChecked()) {
+            model->setRightBound("0");        
+        } else {
+            model->setRightBound("1");        
+        }
+
+        if ((dlgSimParams->chkLeft)->isChecked()) {
+            model->setLeftBound("0");        
+        } else {
+            model->setLeftBound("1");        
         }
 
         tableWidget->item(0, 0)->setText(   QString("%1 metros").arg( model->getDistance    () )  );
@@ -536,7 +555,13 @@ void MainWindow::run()
 		    << "vsfile=vseis.out"   
 		    << "ssfile=sseis.out"   
 		    << "tmax="                          + model->getTMax()  
-		    << "abs=1,1,1,1"
+			<< "abs="							+ model->getTopBound	()
+												+ ","                   
+												+ model->getLeftBound ()
+												+ ","                   
+												+ model->getBottomBound  ()
+												+ ","                   
+												+ model->getRightBound   ()
 		    << "mt=5"       
 		    << "verbose=2"  
     ;
