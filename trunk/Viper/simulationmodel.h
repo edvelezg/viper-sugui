@@ -40,6 +40,11 @@ public:
 	QString getTMax        ();
 	QString getLoop        ();
 	QString getSstrength   ();
+	QString getRightBound  ();
+	QString getLeftBound   ();
+	QString getTopBound    ();
+	QString getBottomBound ();
+	
     QVector<VelocityModel> getModelsVector();
 
 	void setWidth	 (QString);
@@ -71,6 +76,11 @@ public:
 	void setTMax        (QString);
 	void setLoop        (QString);
 	void setSstrength   (QString);
+	void setRightBound 	(QString);
+	void setLeftBound  	(QString);    
+	void setTopBound   	(QString);    
+	void setBottomBound	(QString);    
+	
 
 	bool writeFile(const QString &fileName);
 	bool readFile(const QString &fileName);
@@ -105,6 +115,10 @@ private:
 	QString tMax        ;
 	QString loop        ;
 	QString sstrength   ;
+	QString rightBound  ;
+	QString leftBound   ;
+	QString topBound    ;
+	QString bottomBound ;   
 	QString velocities  ;
 	QVector<VelocityModel> models  ;
 };

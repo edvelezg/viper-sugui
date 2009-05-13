@@ -34,6 +34,11 @@ SimulationModel::SimulationModel() {
         this->loop          = "1"                   ;
         this->sstrength     = "1.0"                 ;
 		this->velocities	= ""					;
+		
+		this->rightBound 	= "1"	;
+		this->leftBound  	= "1"	;
+		this->topBound   	= "0"	;
+        this->bottomBound	= "1"	;
 
         models.push_back(VelocityModel("Modelo 1", QDir::currentPath() + "/model.out"));
         models.push_back(VelocityModel("Modelo 2", QDir::currentPath() + "/model2.out"));
@@ -59,16 +64,21 @@ QString SimulationModel::getCmap()   		                        {   return cmap; 
 QString SimulationModel::getLegend()   		                    {   return legend;      		    } 
 QString SimulationModel::getTitulo()   		                    {   return titulo;      		    } 
 QString SimulationModel::getMethod()				                { 	return method;					}
-QString SimulationModel::getModelFile()				            { 	return modelFile;				}
+QString SimulationModel::getModelFile()				            	{ 	return modelFile;				}
 
-QString SimulationModel::getDistance    ()                        {   return distance    ;            }
-QString SimulationModel::getDepth       ()                        {   return depth       ;            }
-QString SimulationModel::getFpeak       ()                        {   return fpeak       ;            }
-QString SimulationModel::getFmax        ()                        {   return fmax        ;            }
-QString SimulationModel::getTitle       ()                        {   return title       ;            }
-QString SimulationModel::getTMax        ()                        {   return tMax        ;            }
-QString SimulationModel::getLoop        ()                        {   return loop        ;            }
-QString SimulationModel::getSstrength        ()                        {   return sstrength        ;            }
+QString SimulationModel::getDistance    ()                        {   return distance   ;            }
+QString SimulationModel::getDepth       ()                        {   return depth      ;            }
+QString SimulationModel::getFpeak       ()                        {   return fpeak      ;            }
+QString SimulationModel::getFmax        ()                        {   return fmax       ;            }
+QString SimulationModel::getTitle       ()                        {   return title      ;            }
+QString SimulationModel::getTMax        ()                        {   return tMax       ;            }
+QString SimulationModel::getLoop        ()                        {   return loop       ;            }
+QString SimulationModel::getSstrength   ()                        {   return sstrength  ;            }
+QString SimulationModel::getRightBound  ()     					  {   return rightBound ; 			  }
+QString SimulationModel::getLeftBound   ()     					  {   return leftBound  ; 			  }
+QString SimulationModel::getTopBound    ()     					  {   return topBound   ; 			  }
+QString SimulationModel::getBottomBound ()     					  {   return bottomBound; 			  }
+
 
 QString SimulationModel::getVelocities()				            { 	return velocities;				}
 QVector<VelocityModel> SimulationModel::getModelsVector()				            { 	return models;				}
@@ -99,7 +109,12 @@ void SimulationModel::setFmax        (QString fmax       )        {   this->fmax
 void SimulationModel::setTitle       (QString title      )        {   this->title       =   title      ; }
 void SimulationModel::setTMax        (QString tMax       )        {   this->tMax        =   tMax       ; }
 void SimulationModel::setLoop        (QString loop       )        {   this->loop        =   loop       ; }
-void SimulationModel::setSstrength        (QString sstrength       )        {   this->sstrength        =   sstrength       ; }
+void SimulationModel::setSstrength        ( QString sstrength   )        {   this->sstrength        =   sstrength  ; }
+void SimulationModel::setRightBound       ( QString rightBound  )        {   this->rightBound       =   rightBound ; }
+void SimulationModel::setLeftBound        ( QString leftBound   )        {   this->leftBound        =   leftBound  ; }
+void SimulationModel::setTopBound         ( QString topBound    )        {   this->topBound         =   topBound   ; }
+void SimulationModel::setBottomBound      ( QString bottomBound )        {   this->bottomBound      =   bottomBound; }
+
 
 void SimulationModel::setVelocities(QString velocities)	        {	this->velocities = velocities; 	}
 void SimulationModel::setModelsVector(QVector<VelocityModel> models) { this->models = models; }
