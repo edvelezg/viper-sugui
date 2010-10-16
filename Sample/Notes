@@ -1,0 +1,12 @@
+How to setup Qt on SLickedit.
+
+1. Add the following to 
+
+Tools > Options > Languages > Application Languages > ANSI-C > C/C++ Preprocessing
+#define QT_END_NAMESPACE }
+#define QT_BEGIN_NAMESPACE namespace QT_NAMESPACE {
+
+Go to Tools > Tag Files
+Select Add Tag File
+C/C++ and check the Generate References textbox
+Click on OK and give it a name.
