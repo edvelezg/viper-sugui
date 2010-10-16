@@ -1,0 +1,39 @@
+[Global]
+CurrentProject=Sample.vpj
+[ProjectDates]
+Sample.vpj=20101016213726319
+[ActiveConfig]
+Sample.vpj=Debug
+[TreeExpansion2]
+- Sample.vpj
+  - Source Files
+    - main.cpp
+    - mainwindow.cpp
+  - Header Files
+    - mainwindow.h
+  - Resource Files
+  + Bitmaps
+  - Other Files
+    - mainwindow.ui
+    - Notes
+scroll:0
+[State]
+SCREEN: 1680 1050 882 0 840 708 0 0 M 0 0 0 0 1630 832 0
+CWD: ..\Sample
+FILEHIST: 9
+..\Viper\ui_mainwindow.h
+mainwindow.cpp
+\Qt\2010.05\qt\demos\undo\ui_mainwindow.h
+\Qt\2010.05\qt\include\QtGui\QMainWindow
+\Qt\2010.05\qt\demos\affine\tmp\rcc\release_shared\qrc_affine.cpp
+mainwindow.ui
+main.cpp
+Notes
+mainwindow.h
+DEBUG: 0 0 0 0 3 0 gdb
+printf
+strcpy
+std::*
+DEBUG2: 0
+PROJECT_CACHE: 0
+TBCLASS: 0 0
