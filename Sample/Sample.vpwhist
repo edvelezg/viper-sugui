@@ -1,7 +1,7 @@
 [Global]
 CurrentProject=Sample.vpj
 [ProjectDates]
-Sample.vpj=20101016213726319
+Sample.vpj=20101016230127028
 [ActiveConfig]
 Sample.vpj=Debug
 [TreeExpansion2]
@@ -15,25 +15,63 @@ Sample.vpj=Debug
   + Bitmaps
   - Other Files
     - mainwindow.ui
+    - Makefile
     - Notes
 scroll:0
 [State]
 SCREEN: 1680 1050 882 0 840 708 0 0 M 0 0 0 0 1630 832 0
 CWD: ..\Sample
+BUFFER: BN="\Qt\2010.05\qt\src\corelib\kernel\qobjectdefs.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=1 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=608 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU=
+VIEW: LN=.5327 CL=1 LE=0 CX=1 CY=1 WI=5 BI=18 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="\Qt\2010.05\qt\src\gui\kernel\qwidget.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=1 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=608 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU=
+VIEW: LN=.17066 CL=1 LE=0 CX=1 CY=0 WI=5 BI=16 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="main.cpp"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=1 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=608 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU=
+VIEW: LN=.31 CL=21 LE=0 CX=21 CY=1 WI=5 BI=12 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="mainwindow.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=1 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=608 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU=
+VIEW: LN=.116 CL=13 LE=0 CX=13 CY=9 WI=5 BI=14 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Notes"
+BI: MA=1 74 1  TABS=1 9  WWS=1 IWT=1 ST=0 IN=1 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=Plain Text	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=1 CL="" SC="" SCE= SCU=
+VIEW: LN=.0 CL=1 LE=0 CX=1 CY=0 WI=5 BI=17 HT=0 HN=0 HF=0 HC=4
+WINDOW: 80 92 1263 582 -1 -1 N  WF=0 WT=4 ",,,"
+BUFFER: BN="\Qt\2010.05\qt\src\corelib\kernel\qobjectdefs.h"
+VIEW: LN=.5327 CL=1 LE=0 CX=1 CY=18 WI=103 BI=18 HT=0 HN=0 HF=0 HC=4
+WINDOW: 40 46 1263 582 -1 -1 N  WF=0 WT=1 ",,,"
+BUFFER: BN="\Qt\2010.05\qt\src\gui\kernel\qwidget.h"
+VIEW: LN=.17066 CL=5 LE=0 CX=5 CY=23 WI=97 BI=16 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 1263 582 -1 -1 N  WF=0 WT=2 ",,,"
+BUFFER: BN="main.cpp"
+VIEW: LN=.31 CL=21 LE=0 CX=21 CY=1 WI=77 BI=12 HT=0 HN=0 HF=0 HC=4
+WINDOW: 60 69 1263 582 -1 -1 N  WF=0 WT=3 ",,,"
+BUFFER: BN="mainwindow.h"
+VIEW: LN=.116 CL=13 LE=0 CX=13 CY=9 WI=104 BI=14 HT=0 HN=0 HF=0 HC=4
+WINDOW: 100 115 1263 582 -1 -1 M  WF=0 WT=6 ",,,"
+BUFFER: BN="Notes"
+VIEW: LN=.722 CL=30 LE=0 CX=30 CY=19 WI=130 BI=17 HT=0 HN=0 HF=0 HC=4
 FILEHIST: 9
-..\Viper\ui_mainwindow.h
-mainwindow.cpp
-\Qt\2010.05\qt\demos\undo\ui_mainwindow.h
 \Qt\2010.05\qt\include\QtGui\QMainWindow
 \Qt\2010.05\qt\demos\affine\tmp\rcc\release_shared\qrc_affine.cpp
 mainwindow.ui
+\Cygwin\home\Viper\.bash_profile
+Makefile
 main.cpp
-Notes
+\Qt\2010.05\qt\include\QtGui\QApplication
 mainwindow.h
+Notes
 DEBUG: 0 0 0 0 3 0 gdb
 printf
 strcpy
 std::*
 DEBUG2: 0
-PROJECT_CACHE: 0
+PROJECT_CACHE: 1
+20101016230127028 6 C:\Users\Viper\viper-sugui\Sample\Sample.vpj
+main.cpp
+mainwindow.cpp
+mainwindow.h
+mainwindow.ui
+Makefile
+Notes
 TBCLASS: 0 0
