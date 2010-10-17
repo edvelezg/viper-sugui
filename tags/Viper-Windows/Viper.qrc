@@ -1,0 +1,11 @@
+<RCC>
+<qresource>
+    <file>images/new.png</file>
+    <file>images/save.png</file>
+    <file>images/open.png</file>
+    <file>images/icon.png</file>
+    <file>images/models.png</file>
+    <file>images/run2.png</file>
+    <file>images/preview.png</file>
+</qresource>
+</RCC>
