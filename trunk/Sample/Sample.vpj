@@ -41,7 +41,7 @@
 				Deletable="0"
 				SaveOption="SaveWorkspaceFiles"
 				RunFromDir="%rw">
-				<Exec CmdLine="make"/>
+				<Exec CmdLine="mingw32-make"/>
 			</Target>
 			<Target
 				Name="Rebuild"
@@ -134,7 +134,7 @@
 				Deletable="0"
 				SaveOption="SaveWorkspaceFiles"
 				RunFromDir="%rw">
-				<Exec CmdLine="make"/>
+				<Exec CmdLine="mingw32-make"/>
 			</Target>
 			<Target
 				Name="Rebuild"
@@ -212,6 +212,9 @@
 			Name="Other Files"
 			Filters="">
 			<F N="mainwindow.ui"/>
+			<F
+				N="Makefile"
+				Type="Makefile"/>
 			<F N="Notes"/>
 		</Folder>
 	</Files>
