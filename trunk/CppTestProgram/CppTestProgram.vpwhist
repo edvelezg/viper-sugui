@@ -1,12 +1,12 @@
 [Global]
 CurrentProject=CppTestProgram.vpj
 [ProjectDates]
-CppTestProgram.vpj=20101017163125851
+CppTestProgram.vpj=20101017174525903
 [ActiveConfig]
 CppTestProgram.vpj=Debug
 [TreeExpansion2]
 - CppTestProgram.vpj
-  + Source Files
+  - Source Files
     - CppTestProgram.cpp
   + Header Files
   + Resource Files
@@ -17,13 +17,12 @@ scroll:0
 SCREEN: 1680 1050 882 0 840 708 0 0 M 0 0 0 0 1630 832 0
 CWD: ..\CppTestProgram
 BUFFER: BN="CppTestProgram.cpp"
-BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=1 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=14746208 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=1 CL="" SC="" SCE= SCU=
-VIEW: LN=.47 CL=1 LE=0 CX=1 CY=0 WI=5 BI=19 HT=0 HN=0 HF=0 HC=4
-WINDOW: 20 23 1263 582 -1 -1 M  WF=0 WT=2 ",,,"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=1 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=10551904 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=1 CL="" SC="" SCE= SCU=
+VIEW: LN=.275 CL=1 LE=0 CX=1 CY=14 WI=5 BI=21 HT=0 HN=0 HF=0 HC=4
+WINDOW: 60 69 1263 582 -1 -1 M  WF=0 WT=1 ",,,"
 BUFFER: BN="CppTestProgram.cpp"
-VIEW: LN=.119 CL=2 LE=0 CX=2 CY=6 WI=226 BI=19 HT=0 HN=0 HF=0 HC=4
+VIEW: LN=.275 CL=1 LE=0 CX=1 CY=14 WI=220 BI=21 HT=0 HN=0 HF=0 HC=4
 FILEHIST: 9
-..\Viper\ui_mainwindow.h
 ..\Viper\velocitydelegate.h
 ..\Viper\coordinatesetter.h
 ..\Viper\Notes
@@ -31,6 +30,7 @@ FILEHIST: 9
 \Qt\2010.05\mingw\libexec\gcc\mingw32\4.4.0\install-tools\mkheaders
 ..\Viper\coordinatesetter.cpp
 ..\Viper\build_windows.sh
+..\Sample\Notes
 CppTestProgram.cpp
 DEBUG: 0 0 0 0 3 0 gdb
 printf
@@ -38,6 +38,6 @@ strcpy
 std::*
 DEBUG2: 0
 PROJECT_CACHE: 1
-20101017160114172 1 C:\Users\Viper\viper-sugui\CppTestProgram\CppTestProgram.vpj
+20101017174525903 1 C:\Users\Viper\viper-sugui\CppTestProgram\CppTestProgram.vpj
 CppTestProgram.cpp
 TBCLASS: 0 0
