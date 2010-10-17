@@ -11,10 +11,11 @@ Select Add Tag File
 C/C++ and check the Generate References textbox
 Click on OK and give it a name.
 
-A living hell can be experience when your tools aren't setup correctly.
-I had trouble fixing Qt, because the default cygwin make was not compatible
-with the makefile that was being generated, so I had to remove all cygwin from
-the path in order for it to work. It took forever.
+A living hell can be experienced when your tools aren't setup correctly.  
+I had trouble fixing Qt, because the default cygwin make was not 
+compatible with the makefile that was being generated, so I had to remove 
+all cygwin from the path in order for it to work.  It took forever.  
 
 Also to run a qt a application on windows the line indicating where QT/bin dir
-is must be added to the path.
+is must be added to the path. There are some additional notes on the actual
+project page code.google.com/p/viper-sugui
