@@ -13,20 +13,22 @@
 #
 #I have also tried using qmake mingw32-make
 
-Ok I followed as you suggested and decided to use Qt Creator to do this, as 
-it has the right commands and it worked.  I was wondering though, I want 
-to be able to build other things using my own cygwin make in other projects, 
-and at the same time I want to be able to build using the mingw32-make for this 
-project without QtCreator.  I am not sure what to do, because if I have 
+Ok I followed as you suggested and decided to use Qt Creator to do this, as
+it has the right commands and it worked.  I was wondering though, I want
+to be able to build other things using my own cygwin make in other projects,
+and at the same time I want to be able to build using the mingw32-make for this
+project without QtCreator.  I am not sure what to do, because if I have
 C:/Cygwin/bin in my path, mingw32-make calls the wrong g++, and I get all those
-ugly errors.
+ugly errors. What would you suggest for this?
+
+Ted
 
 
 
 # These are the build commands used by QtCreator
 
-mingw32-make.exe clean -w
-
-qmake.exe Viper.pro -r -spec win32-g++
-mingw32-make.exe -w
+    mingw32-make.exe clean -w
+    
+    qmake.exe Viper.pro -r -spec win32-g++
+    mingw32-make.exe -w
 
