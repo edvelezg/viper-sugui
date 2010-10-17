@@ -86,19 +86,19 @@ MainWindow::MainWindow() {
     tableWidget_4->item(2, 0)->setText(   model->getWidthOff1 ()  );
     tableWidget_4->item(3, 0)->setText(   model->getHeightOff1()  );
 
-	tableWidget->horizontalHeader()->  setMinimumSectionSize(200);
-	tableWidget_2->horizontalHeader()->setMinimumSectionSize(200);
-	tableWidget_3->horizontalHeader()->setMinimumSectionSize(100);
-	tableWidget_4->horizontalHeader()->setMinimumSectionSize(100);
-	
-	tableWidget->horizontalHeader()->  resizeSection(0,200);
-	tableWidget_2->horizontalHeader()->resizeSection(0,200);
-	tableWidget_3->horizontalHeader()->resizeSection(0,100);
-	tableWidget_4->horizontalHeader()->resizeSection(0,100);
-	
-	tableWidget->horizontalHeader()->setResizeMode  ( QHeaderView::Interactive );
-	tableWidget_2->horizontalHeader()->setResizeMode( QHeaderView::Interactive );
-	tableWidget_3->horizontalHeader()->setResizeMode( QHeaderView::Interactive );
+    tableWidget->horizontalHeader()->  setMinimumSectionSize(200);
+    tableWidget_2->horizontalHeader()->setMinimumSectionSize(200);
+    tableWidget_3->horizontalHeader()->setMinimumSectionSize(100);
+    tableWidget_4->horizontalHeader()->setMinimumSectionSize(100);
+
+    tableWidget->horizontalHeader()->  resizeSection(0,200);
+    tableWidget_2->horizontalHeader()->resizeSection(0,200);
+    tableWidget_3->horizontalHeader()->resizeSection(0,100);
+    tableWidget_4->horizontalHeader()->resizeSection(0,100);
+
+    tableWidget->horizontalHeader()->setResizeMode  ( QHeaderView::Interactive );
+    tableWidget_2->horizontalHeader()->setResizeMode( QHeaderView::Interactive );
+    tableWidget_3->horizontalHeader()->setResizeMode( QHeaderView::Interactive );
 	
     currentRow = -1;
 }
@@ -137,7 +137,7 @@ void MainWindow::readSettings()
          this->shows = false;
         }
     } else {
-     	this->shows = false;
+        this->shows = true;
     }
 }
 
@@ -458,8 +458,8 @@ void MainWindow::run()
 //  textEdit->clear();
     // Setting the Environment for Seismic Unix
     QString sysPath = ::getenv("PATH");
-    sysPath = sysPath + ":" + environment + "/bin";
- 	::setenv("PATH", sysPath.toStdString().c_str(), 1);
+    //sysPath = sysPath + ":" + environment + "/bin";
+        //::setenv("PATH", sysPath.toStdString().c_str(), 1);
     QStringList env = QProcess::systemEnvironment();
     env << "CWPROOT=" + environment;
     // env = "PATH=" + environment;
