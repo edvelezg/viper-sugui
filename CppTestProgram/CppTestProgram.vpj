@@ -39,11 +39,12 @@
 			<Target
 				Name="Build"
 				MenuCaption="&amp;Build"
-				CaptureOutputWith="ProcessBuffer"
 				Deletable="0"
 				SaveOption="SaveWorkspaceFiles"
 				RunFromDir="%rw"
-				Dialog="_gnuc_options_form Compile">
+				Dialog="_gnuc_options_form Compile"
+				ClearProcessBuffer="1"
+				CaptureOutputWith="ProcessBuffer">
 				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" build "%w" "%r"'/>
 			</Target>
 			<Target
@@ -71,8 +72,7 @@
 				Name="Execute"
 				MenuCaption="E&amp;xecute"
 				Dialog="_gnuc_options_form Run/Debug"
-				BuildFirst="1"
-				CaptureOutputWith="ProcessBuffer"
+				CaptureOutputWith="Redirection"
 				Deletable="0"
 				SaveOption="SaveWorkspaceFiles"
 				RunFromDir="%rw">
@@ -134,11 +134,12 @@
 			<Target
 				Name="Build"
 				MenuCaption="&amp;Build"
-				CaptureOutputWith="ProcessBuffer"
 				Deletable="0"
 				SaveOption="SaveWorkspaceFiles"
 				RunFromDir="%rw"
-				Dialog="_gnuc_options_form Compile">
+				Dialog="_gnuc_options_form Compile"
+				ClearProcessBuffer="1"
+				CaptureOutputWith="ProcessBuffer">
 				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" build "%w" "%r"'/>
 			</Target>
 			<Target
@@ -166,8 +167,7 @@
 				Name="Execute"
 				MenuCaption="E&amp;xecute"
 				Dialog="_gnuc_options_form Run/Debug"
-				BuildFirst="1"
-				CaptureOutputWith="ProcessBuffer"
+				CaptureOutputWith="Redirection"
 				Deletable="0"
 				SaveOption="SaveWorkspaceFiles"
 				RunFromDir="%rw">
