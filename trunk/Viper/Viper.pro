@@ -8,19 +8,19 @@ DEPENDPATH += .
 INCLUDEPATH += .
 
 # Input
-HEADERS += coordinatesetter.h \
-           editdialog.h \
-           geometry.h \
-           getenv.h \
-           listdialog.h \
-           loadmodel.h \
-           mainwindow.h \
-           modelparams.h \
-           simulationmodel.h \
-           simulparams.h \
-           velocitydelegate.h \
-           velocitymodel.h \
-           wizard.h
+HEADERS +=  coordinatesetter.h \
+                  editdialog.h \
+                    geometry.h \
+                      getenv.h \
+                  listdialog.h \
+                   loadmodel.h \
+                  mainwindow.h \
+                 modelparams.h \
+             simulationmodel.h \
+                 simulparams.h \
+            velocitydelegate.h \
+               velocitymodel.h \
+                      wizard.h
 FORMS += editdialog.ui \
          geometry.ui \
          getenv.ui \
