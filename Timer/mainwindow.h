@@ -2,14 +2,14 @@
 #define MAINWINDOW_H
 
 #include <QtGui/QMainWindow>
-#include <QThread>
+#include <QTimer>
 
 namespace Ui
 {
     class MainWindow;
 }
 
-class MainWindow : public QMainWindow, QThread
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
@@ -19,10 +19,11 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QTimer* iTimer;
+    QTimer *timer;
 
 private slots:
     void on_pushButton_clicked();
+    void update();
 };
 
 #endif // MAINWINDOW_H
