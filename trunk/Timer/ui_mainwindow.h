@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'mainwindow.ui'
 **
-** Created: Sat Jan 8 09:22:28 2011
+** Created: Sat Jan 8 10:02:09 2011
 **      by: Qt User Interface Compiler version 4.5.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -23,6 +23,7 @@
 #include <QtGui/QStatusBar>
 #include <QtGui/QTimeEdit>
 #include <QtGui/QToolBar>
+#include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -34,9 +35,10 @@ public:
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QTimeEdit *timeEdit;
+    QVBoxLayout *verticalLayout;
     QPushButton *btnStart;
-    QPushButton *btnReset;
     QPushButton *btnStop;
+    QPushButton *btnReset;
     QMenuBar *menuBar;
     QMenu *menu_File;
     QToolBar *mainToolBar;
@@ -46,7 +48,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(116, 208);
+        MainWindow->resize(169, 216);
         action_Close = new QAction(MainWindow);
         action_Close->setObjectName(QString::fromUtf8("action_Close"));
         centralWidget = new QWidget(MainWindow);
@@ -63,25 +65,31 @@ public:
 
         gridLayout->addWidget(timeEdit, 0, 0, 1, 1);
 
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(6);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         btnStart = new QPushButton(centralWidget);
         btnStart->setObjectName(QString::fromUtf8("btnStart"));
 
-        gridLayout->addWidget(btnStart, 1, 0, 1, 1);
-
-        btnReset = new QPushButton(centralWidget);
-        btnReset->setObjectName(QString::fromUtf8("btnReset"));
-
-        gridLayout->addWidget(btnReset, 4, 0, 1, 1);
+        verticalLayout->addWidget(btnStart);
 
         btnStop = new QPushButton(centralWidget);
         btnStop->setObjectName(QString::fromUtf8("btnStop"));
 
-        gridLayout->addWidget(btnStop, 2, 0, 1, 1);
+        verticalLayout->addWidget(btnStop);
+
+        btnReset = new QPushButton(centralWidget);
+        btnReset->setObjectName(QString::fromUtf8("btnReset"));
+
+        verticalLayout->addWidget(btnReset);
+
+
+        gridLayout->addLayout(verticalLayout, 1, 0, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 116, 22));
+        menuBar->setGeometry(QRect(0, 0, 169, 22));
         menu_File = new QMenu(menuBar);
         menu_File->setObjectName(QString::fromUtf8("menu_File"));
         MainWindow->setMenuBar(menuBar);
@@ -103,12 +111,12 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0, QApplication::UnicodeUTF8));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Timer", 0, QApplication::UnicodeUTF8));
         action_Close->setText(QApplication::translate("MainWindow", "&Close", 0, QApplication::UnicodeUTF8));
         timeEdit->setDisplayFormat(QApplication::translate("MainWindow", "hh:mm:ss", 0, QApplication::UnicodeUTF8));
         btnStart->setText(QApplication::translate("MainWindow", "&Start", 0, QApplication::UnicodeUTF8));
-        btnReset->setText(QApplication::translate("MainWindow", "&Reset", 0, QApplication::UnicodeUTF8));
         btnStop->setText(QApplication::translate("MainWindow", "S&top", 0, QApplication::UnicodeUTF8));
+        btnReset->setText(QApplication::translate("MainWindow", "&Reset", 0, QApplication::UnicodeUTF8));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
