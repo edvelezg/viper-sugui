@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>116</width>
-    <height>208</height>
+    <width>169</width>
+    <height>216</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Timer</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -43,25 +43,29 @@
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QPushButton" name="btnStart">
-      <property name="text">
-       <string>&amp;Start</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0">
-     <widget class="QPushButton" name="btnReset">
-      <property name="text">
-       <string>&amp;Reset</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QPushButton" name="btnStop">
-      <property name="text">
-       <string>S&amp;top</string>
-      </property>
-     </widget>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPushButton" name="btnStart">
+        <property name="text">
+         <string>&amp;Start</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnStop">
+        <property name="text">
+         <string>S&amp;top</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnReset">
+        <property name="text">
+         <string>&amp;Reset</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -70,7 +74,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>116</width>
+     <width>169</width>
      <height>22</height>
     </rect>
    </property>

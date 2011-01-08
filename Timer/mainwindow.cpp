@@ -13,12 +13,10 @@ MainWindow::MainWindow(QWidget *parent)
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
     timer->start(1000);
-    setWindowTitle(tr("Analog Clock"));
-    resize(200, 200);
-    //    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 
     ui->timeEdit->setTime(QTime(0, 1, 2));
     QMessageBox::information(this, "Hello", QDir::currentPath());
+    ui->btnStart->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -31,14 +29,12 @@ void MainWindow::update(){
     if (newTime == QTime(0, 0, 0))
     {
         QSound::play("../../../sounds/alarm-clock1.wav");
-        //        QMessageBox::information(this, "Hello", newTime.toString());
         endTimer();
     }
     else
     {
         newTime = newTime.addSecs( -1 ); // doh
         ui->timeEdit->setTime( newTime );
-        //      QMessageBox::information(this, "Hello", newTime.toString());
     }
 }
 
