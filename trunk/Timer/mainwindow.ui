@@ -6,61 +6,71 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>400</height>
+    <width>116</width>
+    <height>208</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTimeEdit" name="timeEdit">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>118</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="maximumTime">
-     <time>
-      <hour>23</hour>
-      <minute>59</minute>
-      <second>59</second>
-     </time>
-    </property>
-    <property name="displayFormat">
-     <string>hh:mm:ss</string>
-    </property>
-    <property name="time">
-     <time>
-      <hour>3</hour>
-      <minute>0</minute>
-      <second>0</second>
-     </time>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>60</y>
-      <width>113</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Start</string>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTimeEdit" name="timeEdit">
+      <property name="baseSize">
+       <size>
+        <width>10</width>
+        <height>10</height>
+       </size>
+      </property>
+      <property name="maximumTime">
+       <time>
+        <hour>23</hour>
+        <minute>59</minute>
+        <second>59</second>
+       </time>
+      </property>
+      <property name="displayFormat">
+       <string>hh:mm:ss</string>
+      </property>
+      <property name="time">
+       <time>
+        <hour>3</hour>
+        <minute>0</minute>
+        <second>0</second>
+       </time>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="btnStart">
+      <property name="text">
+       <string>&amp;Start</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QPushButton" name="btnReset">
+      <property name="text">
+       <string>&amp;Reset</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="btnStop">
+      <property name="text">
+       <string>S&amp;top</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>116</width>
      <height>22</height>
     </rect>
    </property>
