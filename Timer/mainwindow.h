@@ -22,8 +22,11 @@ private:
     QTimer *timer;
 
 private slots:
-    void on_pushButton_clicked();
+    void on_btnReset_clicked();
+    void on_btnStop_clicked();
+    void on_btnStart_clicked();
     void update();
+    void endTimer();
 };
 
 #endif // MAINWINDOW_H
