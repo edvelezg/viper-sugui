@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'mainwindow.ui'
 **
-** Created: Sat Jan 8 10:02:09 2011
+** Created: Sun Jan 9 17:22:33 2011
 **      by: Qt User Interface Compiler version 4.5.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -19,11 +19,7 @@
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
-#include <QtGui/QPushButton>
-#include <QtGui/QStatusBar>
 #include <QtGui/QTimeEdit>
-#include <QtGui/QToolBar>
-#include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -32,25 +28,49 @@ class Ui_MainWindow
 {
 public:
     QAction *action_Close;
+    QAction *action15_minutes;
+    QAction *action25_minutes;
+    QAction *action35_minutes;
+    QAction *action45_minutes;
+    QAction *action1_hour;
+    QAction *actionStart;
+    QAction *actionStop;
+    QAction *actionReset;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QTimeEdit *timeEdit;
-    QVBoxLayout *verticalLayout;
-    QPushButton *btnStart;
-    QPushButton *btnStop;
-    QPushButton *btnReset;
     QMenuBar *menuBar;
     QMenu *menu_File;
-    QToolBar *mainToolBar;
-    QStatusBar *statusBar;
+    QMenu *menuSet;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(169, 216);
+        MainWindow->resize(116, 71);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
+        MainWindow->setSizePolicy(sizePolicy);
         action_Close = new QAction(MainWindow);
         action_Close->setObjectName(QString::fromUtf8("action_Close"));
+        action15_minutes = new QAction(MainWindow);
+        action15_minutes->setObjectName(QString::fromUtf8("action15_minutes"));
+        action25_minutes = new QAction(MainWindow);
+        action25_minutes->setObjectName(QString::fromUtf8("action25_minutes"));
+        action35_minutes = new QAction(MainWindow);
+        action35_minutes->setObjectName(QString::fromUtf8("action35_minutes"));
+        action45_minutes = new QAction(MainWindow);
+        action45_minutes->setObjectName(QString::fromUtf8("action45_minutes"));
+        action1_hour = new QAction(MainWindow);
+        action1_hour->setObjectName(QString::fromUtf8("action1_hour"));
+        actionStart = new QAction(MainWindow);
+        actionStart->setObjectName(QString::fromUtf8("actionStart"));
+        actionStop = new QAction(MainWindow);
+        actionStop->setObjectName(QString::fromUtf8("actionStop"));
+        actionReset = new QAction(MainWindow);
+        actionReset->setObjectName(QString::fromUtf8("actionReset"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
@@ -61,47 +81,31 @@ public:
         timeEdit->setObjectName(QString::fromUtf8("timeEdit"));
         timeEdit->setBaseSize(QSize(10, 10));
         timeEdit->setMaximumTime(QTime(23, 59, 59));
-        timeEdit->setTime(QTime(3, 0, 0));
+        timeEdit->setTime(QTime(0, 1, 0));
 
         gridLayout->addWidget(timeEdit, 0, 0, 1, 1);
-
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setSpacing(6);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        btnStart = new QPushButton(centralWidget);
-        btnStart->setObjectName(QString::fromUtf8("btnStart"));
-
-        verticalLayout->addWidget(btnStart);
-
-        btnStop = new QPushButton(centralWidget);
-        btnStop->setObjectName(QString::fromUtf8("btnStop"));
-
-        verticalLayout->addWidget(btnStop);
-
-        btnReset = new QPushButton(centralWidget);
-        btnReset->setObjectName(QString::fromUtf8("btnReset"));
-
-        verticalLayout->addWidget(btnReset);
-
-
-        gridLayout->addLayout(verticalLayout, 1, 0, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 169, 22));
+        menuBar->setGeometry(QRect(0, 0, 116, 22));
         menu_File = new QMenu(menuBar);
         menu_File->setObjectName(QString::fromUtf8("menu_File"));
+        menuSet = new QMenu(menuBar);
+        menuSet->setObjectName(QString::fromUtf8("menuSet"));
         MainWindow->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(MainWindow);
-        mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QString::fromUtf8("statusBar"));
-        MainWindow->setStatusBar(statusBar);
 
         menuBar->addAction(menu_File->menuAction());
+        menuBar->addAction(menuSet->menuAction());
+        menu_File->addAction(actionStart);
+        menu_File->addAction(actionStop);
+        menu_File->addAction(actionReset);
         menu_File->addAction(action_Close);
+        menuSet->addAction(action15_minutes);
+        menuSet->addAction(action25_minutes);
+        menuSet->addAction(action35_minutes);
+        menuSet->addAction(action45_minutes);
+        menuSet->addAction(action1_hour);
 
         retranslateUi(MainWindow);
         QObject::connect(action_Close, SIGNAL(triggered()), MainWindow, SLOT(close()));
@@ -113,11 +117,25 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Timer", 0, QApplication::UnicodeUTF8));
         action_Close->setText(QApplication::translate("MainWindow", "&Close", 0, QApplication::UnicodeUTF8));
+        action15_minutes->setText(QApplication::translate("MainWindow", "15 minutes", 0, QApplication::UnicodeUTF8));
+        action15_minutes->setShortcut(QApplication::translate("MainWindow", "Ctrl+1", 0, QApplication::UnicodeUTF8));
+        action25_minutes->setText(QApplication::translate("MainWindow", "25 minutes", 0, QApplication::UnicodeUTF8));
+        action25_minutes->setShortcut(QApplication::translate("MainWindow", "Ctrl+2", 0, QApplication::UnicodeUTF8));
+        action35_minutes->setText(QApplication::translate("MainWindow", "35 minutes", 0, QApplication::UnicodeUTF8));
+        action35_minutes->setShortcut(QApplication::translate("MainWindow", "Ctrl+3", 0, QApplication::UnicodeUTF8));
+        action45_minutes->setText(QApplication::translate("MainWindow", "45 minutes", 0, QApplication::UnicodeUTF8));
+        action45_minutes->setShortcut(QApplication::translate("MainWindow", "Ctrl+4", 0, QApplication::UnicodeUTF8));
+        action1_hour->setText(QApplication::translate("MainWindow", "1 hour", 0, QApplication::UnicodeUTF8));
+        action1_hour->setShortcut(QApplication::translate("MainWindow", "Ctrl+5", 0, QApplication::UnicodeUTF8));
+        actionStart->setText(QApplication::translate("MainWindow", "&Start", 0, QApplication::UnicodeUTF8));
+        actionStart->setShortcut(QApplication::translate("MainWindow", "Ctrl+G", 0, QApplication::UnicodeUTF8));
+        actionStop->setText(QApplication::translate("MainWindow", "S&top", 0, QApplication::UnicodeUTF8));
+        actionStop->setShortcut(QApplication::translate("MainWindow", "Ctrl+S", 0, QApplication::UnicodeUTF8));
+        actionReset->setText(QApplication::translate("MainWindow", "&Reset", 0, QApplication::UnicodeUTF8));
+        actionReset->setShortcut(QApplication::translate("MainWindow", "Ctrl+R", 0, QApplication::UnicodeUTF8));
         timeEdit->setDisplayFormat(QApplication::translate("MainWindow", "hh:mm:ss", 0, QApplication::UnicodeUTF8));
-        btnStart->setText(QApplication::translate("MainWindow", "&Start", 0, QApplication::UnicodeUTF8));
-        btnStop->setText(QApplication::translate("MainWindow", "S&top", 0, QApplication::UnicodeUTF8));
-        btnReset->setText(QApplication::translate("MainWindow", "&Reset", 0, QApplication::UnicodeUTF8));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", 0, QApplication::UnicodeUTF8));
+        menuSet->setTitle(QApplication::translate("MainWindow", "Set", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

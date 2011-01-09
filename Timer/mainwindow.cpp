@@ -14,9 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
     timer->start(1000);
 
-    ui->timeEdit->setTime(QTime(0, 1, 2));
-    QMessageBox::information(this, "Hello", QDir::currentPath());
-    ui->btnStart->setEnabled(false);
+    QMessageBox::information(this, "Path of this app is:", QDir::currentPath());
+    ui->actionStart->setEnabled(false);
+    on_actionAlways_on_Top_triggered(1);
 }
 
 MainWindow::~MainWindow()
@@ -36,6 +36,33 @@ void MainWindow::update(){
         newTime = newTime.addSecs( -1 ); // doh
         ui->timeEdit->setTime( newTime );
     }
+}
+
+void MainWindow::on_actionAlways_on_Top_triggered(bool checked)
+{
+#ifdef Q_OS_WIN
+    // #include <windows.h>
+    if (checked)
+    {
+        SetWindowPos(this->winId(), HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+    }
+    else
+    {
+        SetWindowPos(this->winId(), HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+    }
+#else
+    Qt::WindowFlags flags = this->windowFlags();
+    if (checked)
+    {
+        this->setWindowFlags(flags | Qt::CustomizeWindowHint | Qt::WindowStaysOnTopHint);
+        this->show();
+    }
+    else
+    {
+        this->setWindowFlags(flags ^ (Qt::CustomizeWindowHint | Qt::WindowStaysOnTopHint));
+        this->show();
+    }
+#endif
 }
 
 //void MainWindow::on_pushButton_clicked()
@@ -76,22 +103,52 @@ void MainWindow::endTimer()
     if( timer->isActive() )
         timer->stop();
 
-    ui->btnStart->setEnabled(true);
+    ui->actionStart->setEnabled(true);
 }
 
-void MainWindow::on_btnStart_clicked()
+void MainWindow::on_actionStart_triggered()
 {
     timer->start(1000);
-    ui->btnStart->setEnabled(false);
+    ui->actionStart->setEnabled(false);
 }
 
-void MainWindow::on_btnStop_clicked()
+void MainWindow::on_actionStop_triggered()
 {
     endTimer();
 }
 
-void MainWindow::on_btnReset_clicked()
+void MainWindow::on_actionReset_triggered()
 {
     endTimer();
     ui->timeEdit->setTime( QTime( 0,0,0 ) );
+}
+
+void MainWindow::on_action15_minutes_activated()
+{
+    endTimer();
+    ui->timeEdit->setTime( QTime( 0,15,0 ) );
+}
+
+void MainWindow::on_action25_minutes_triggered()
+{
+    endTimer();
+    ui->timeEdit->setTime( QTime( 0,25,0 ) );
+}
+
+void MainWindow::on_action35_minutes_triggered()
+{
+    endTimer();
+    ui->timeEdit->setTime( QTime( 0,35,0 ) );
+}
+
+void MainWindow::on_action45_minutes_activated()
+{
+    endTimer();
+    ui->timeEdit->setTime( QTime( 0,45,0 ) );
+}
+
+void MainWindow::on_action1_hour_triggered()
+{
+    endTimer();
+    ui->timeEdit->setTime( QTime( 1,0,0 ) );
 }
