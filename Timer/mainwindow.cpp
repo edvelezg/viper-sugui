@@ -12,9 +12,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(1000);
-
-    QMessageBox::information(this, "Path of this app is:", QDir::currentPath());
     ui->actionStart->setEnabled(false);
     on_actionAlways_on_Top_triggered(1);
 }
@@ -28,7 +25,7 @@ void MainWindow::update(){
     QTime newTime( ui->timeEdit->time() );
     if (newTime == QTime(0, 0, 0))
     {
-        QSound::play("../../../sounds/alarm-clock1.wav");
+        QSound::play("sounds/alarm-clock1.wav");
         endTimer();
     }
     else
@@ -40,21 +37,11 @@ void MainWindow::update(){
 
 void MainWindow::on_actionAlways_on_Top_triggered(bool checked)
 {
-#ifdef Q_OS_WIN
-    // #include <windows.h>
-    if (checked)
-    {
-        SetWindowPos(this->winId(), HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
-    }
-    else
-    {
-        SetWindowPos(this->winId(), HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
-    }
-#else
     Qt::WindowFlags flags = this->windowFlags();
+    flags ^= Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint | Qt::WindowMaximizeButtonHint | Qt::FramelessWindowHint;
     if (checked)
     {
-        this->setWindowFlags(flags | Qt::CustomizeWindowHint | Qt::WindowStaysOnTopHint);
+        this->setWindowFlags(flags | Qt::CustomizeWindowHint | Qt::WindowStaysOnTopHint );
         this->show();
     }
     else
@@ -62,41 +49,7 @@ void MainWindow::on_actionAlways_on_Top_triggered(bool checked)
         this->setWindowFlags(flags ^ (Qt::CustomizeWindowHint | Qt::WindowStaysOnTopHint));
         this->show();
     }
-#endif
 }
-
-//void MainWindow::on_pushButton_clicked()
-//{
-//    timer->stop();
-////    QString timeText = ui->timeEdit->text();
-////    QStringList list = timeText.split(":");
-////    int hour = list[0].toInt();
-////    int min = list[1].toInt();
-////    int sec = list[2].toInt();
-//
-//
-////    QStringList::const_iterator constIterator;
-////     for (constIterator = list.constBegin(); constIterator != list.constEnd();
-////            ++constIterator)
-////         qDebug() << (*constIterator).toLocal8Bit().constData() << " ";
-//
-////    int duration = 3600*hour + 60*min + sec;
-//
-//
-//
-////    MainWindow::msleep(1000);
-////    ui->timeEdit->setTime(QTime(0, 1, 2));
-////    MainWindow::msleep(1000);
-////    ui->timeEdit->setTime(QTime(0, 2, 3));
-////    MainWindow::msleep(1000);
-////    ui->timeEdit->setTime(QTime(0, 1, 2));
-////    MainWindow::msleep(1000);
-////    ui->timeEdit->setTime(QTime(0, 2, 3));
-////    timer->start(1000);
-//
-////    QMessageBox::information(this, "Hello", QString::number(duration));
-//
-//}
 
 void MainWindow::endTimer()
 {
