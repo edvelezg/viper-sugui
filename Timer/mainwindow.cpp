@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    ui->actionStart->setEnabled(false);
+//    ui->actionStart->setEnabled(false);
     on_actionAlways_on_Top_triggered(1);
 }
 
