@@ -1,19 +1,20 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QMessageBox>
-#include <qDebug>
 #include <QTimer>
 #include <QSound>
-#include <QDir>
+#include <QSettings>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    readSettings();
     ui->setupUi(this);
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    soundfile = new QSound("sounds/alarm-clock1.wav", this);
 //    ui->actionStart->setEnabled(false);
-    on_actionAlways_on_Top_triggered(1);
+    alwaysOnTop(1);
 }
 
 MainWindow::~MainWindow()
@@ -21,11 +22,21 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::readSettings()
+{
+    QSettings settings("Software Inc", "Timer");
+    geometry = settings.value("geometry").toString();
+
+    if  (!geometry.isEmpty()) {
+        restoreGeometry(settings.value("geometry").toByteArray());
+    }
+}
+
 void MainWindow::update(){
     QTime newTime( ui->timeEdit->time() );
     if (newTime == QTime(0, 0, 0))
     {
-        QSound::play("sounds/alarm-clock1.wav");
+        soundfile->play();
         endTimer();
     }
     else
@@ -35,7 +46,7 @@ void MainWindow::update(){
     }
 }
 
-void MainWindow::on_actionAlways_on_Top_triggered(bool checked)
+void MainWindow::alwaysOnTop(bool checked)
 {
     Qt::WindowFlags flags = this->windowFlags();
     flags ^= Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint | Qt::WindowMaximizeButtonHint | Qt::FramelessWindowHint;
@@ -67,6 +78,9 @@ void MainWindow::on_actionStart_triggered()
 
 void MainWindow::on_actionStop_triggered()
 {
+    if( !soundfile->isFinished() )
+        soundfile->stop();
+
     endTimer();
 }
 
@@ -104,4 +118,16 @@ void MainWindow::on_action1_hour_triggered()
 {
     endTimer();
     ui->timeEdit->setTime( QTime( 1,0,0 ) );
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    writeSettings();
+}
+
+void MainWindow::writeSettings()
+{
+    QSettings settings("Software Inc", "Timer");
+    settings.setValue("geometry", saveGeometry());
+    qDebug() << settings.fileName();
 }

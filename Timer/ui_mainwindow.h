@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'mainwindow.ui'
 **
-** Created: Sun Jan 9 17:22:33 2011
+** Created: Sun Jan 9 22:38:47 2011
 **      by: Qt User Interface Compiler version 4.5.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -47,16 +47,21 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
+        MainWindow->setWindowModality(Qt::NonModal);
         MainWindow->resize(116, 71);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
+        MainWindow->setMouseTracking(false);
+        MainWindow->setWindowOpacity(1);
+        MainWindow->setDocumentMode(false);
         action_Close = new QAction(MainWindow);
         action_Close->setObjectName(QString::fromUtf8("action_Close"));
         action15_minutes = new QAction(MainWindow);
         action15_minutes->setObjectName(QString::fromUtf8("action15_minutes"));
+        action15_minutes->setIconVisibleInMenu(false);
         action25_minutes = new QAction(MainWindow);
         action25_minutes->setObjectName(QString::fromUtf8("action25_minutes"));
         action35_minutes = new QAction(MainWindow);
@@ -108,7 +113,6 @@ public:
         menuSet->addAction(action1_hour);
 
         retranslateUi(MainWindow);
-        QObject::connect(action_Close, SIGNAL(triggered()), MainWindow, SLOT(close()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -135,7 +139,7 @@ public:
         actionReset->setShortcut(QApplication::translate("MainWindow", "Ctrl+R", 0, QApplication::UnicodeUTF8));
         timeEdit->setDisplayFormat(QApplication::translate("MainWindow", "hh:mm:ss", 0, QApplication::UnicodeUTF8));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", 0, QApplication::UnicodeUTF8));
-        menuSet->setTitle(QApplication::translate("MainWindow", "Set", 0, QApplication::UnicodeUTF8));
+        menuSet->setTitle(QApplication::translate("MainWindow", "&Set", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
