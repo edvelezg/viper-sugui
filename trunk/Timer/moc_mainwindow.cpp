@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Sun Jan 9 17:20:46 2011
+** Created: Sun Jan 9 23:00:40 2011
 **      by: The Qt Meta Object Compiler version 61 (Qt 4.5.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        2,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   12, // methods
+      10,   12, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -39,7 +39,6 @@ static const uint qt_meta_data_MainWindow[] = {
      220,   11,   11,   11, 0x08,
      248,   11,   11,   11, 0x08,
      257,   11,   11,   11, 0x08,
-     276,  268,   11,   11, 0x08,
 
        0        // eod
 };
@@ -53,8 +52,7 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_action25_minutes_triggered()\0"
     "on_action45_minutes_activated()\0"
     "on_action1_hour_triggered()\0update()\0"
-    "endTimer()\0checked\0"
-    "on_actionAlways_on_Top_triggered(bool)\0"
+    "endTimer()\0"
 };
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -92,10 +90,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 7: on_action1_hour_triggered(); break;
         case 8: update(); break;
         case 9: endTimer(); break;
-        case 10: on_actionAlways_on_Top_triggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 11;
+        _id -= 10;
     }
     return _id;
 }

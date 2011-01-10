@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QtGui/QMainWindow>
-#include <QTimer>
+class QTimer;
+class QSound;
 
 namespace Ui
 {
@@ -16,9 +17,17 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void alwaysOnTop(bool checked);
+    void readSettings();
+    void writeSettings();
+
+protected:
+    void closeEvent(QCloseEvent *event);
 
 private:
     Ui::MainWindow *ui;
+    QString geometry;
+    QSound *soundfile;
     QTimer *timer;
 
 private slots:
@@ -32,7 +41,6 @@ private slots:
     void on_action1_hour_triggered();
     void update();
     void endTimer();
-    void on_actionAlways_on_Top_triggered(bool checked);
 };
 
 #endif // MAINWINDOW_H
