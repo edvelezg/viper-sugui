@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>116</width>
-    <height>71</height>
+    <width>89</width>
+    <height>59</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -16,8 +19,17 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
   <property name="windowTitle">
    <string>Timer</string>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -55,8 +67,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>116</width>
-     <height>22</height>
+     <width>89</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
@@ -70,7 +82,7 @@
    </widget>
    <widget class="QMenu" name="menuSet">
     <property name="title">
-     <string>Set</string>
+     <string>&amp;Set</string>
     </property>
     <addaction name="action15_minutes"/>
     <addaction name="action25_minutes"/>
@@ -92,6 +104,9 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+1</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>false</bool>
    </property>
   </action>
   <action name="action25_minutes">
