@@ -44,8 +44,9 @@
   <variable>buildConfiguration-Debug</variable>
   <valuemap type="QVariantMap" >
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
-   <value key="QtVersionId" type="int" >2</value>
+   <value key="QtVersionId" type="int" >0</value>
    <value key="addQDumper" type="" ></value>
+   <value key="buildDirectory" type="QString" >/Users/Naix/Documents/Tesis/viper/Timer</value>
   </valuemap>
  </data>
  <data>
@@ -61,11 +62,15 @@
     <value type="QString" >LOGNAME=Naix</value>
     <value type="QString" >PATH=/Developer/Tools/Qt:/usr/bin:/bin:/usr/sbin:/sbin</value>
     <value type="QString" >QTDIR=/usr</value>
+    <value type="QString" >SECURITYSESSIONID=5084a780</value>
     <value type="QString" >SHELL=/bin/bash</value>
     <value type="QString" >SSH_AUTH_SOCK=/tmp/launch-SYxYZ5/Listeners</value>
     <value type="QString" >TMPDIR=/var/folders/0p/0ptC8W1KG7e5jDsNU42DVE+++TI/-Tmp-/</value>
     <value type="QString" >USER=Naix</value>
     <value type="QString" >__CF_USER_TEXT_ENCODING=0x1F5:0:0</value>
+    <value type="QString" >com.adobe.versioncue.client.applocale=en_US</value>
+    <value type="QString" >com.adobe.versioncue.client.appname=AdobeDrive</value>
+    <value type="QString" >com.adobe.versioncue.client.appversion=1.0.0</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >
     <value type="QString" >/Users/Naix/Documents/Tesis/viper/Timer/Timer.pro</value>
@@ -92,11 +97,15 @@
     <value type="QString" >LOGNAME=Naix</value>
     <value type="QString" >PATH=/Developer/Tools/Qt:/usr/bin:/bin:/usr/sbin:/sbin</value>
     <value type="QString" >QTDIR=/usr</value>
+    <value type="QString" >SECURITYSESSIONID=5084a780</value>
     <value type="QString" >SHELL=/bin/bash</value>
     <value type="QString" >SSH_AUTH_SOCK=/tmp/launch-SYxYZ5/Listeners</value>
     <value type="QString" >TMPDIR=/var/folders/0p/0ptC8W1KG7e5jDsNU42DVE+++TI/-Tmp-/</value>
     <value type="QString" >USER=Naix</value>
     <value type="QString" >__CF_USER_TEXT_ENCODING=0x1F5:0:0</value>
+    <value type="QString" >com.adobe.versioncue.client.applocale=en_US</value>
+    <value type="QString" >com.adobe.versioncue.client.appname=AdobeDrive</value>
+    <value type="QString" >com.adobe.versioncue.client.appversion=1.0.0</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >
     <value type="QString" >-w</value>
@@ -119,11 +128,15 @@
     <value type="QString" >LOGNAME=Naix</value>
     <value type="QString" >PATH=/Developer/Tools/Qt:/usr/bin:/bin:/usr/sbin:/sbin</value>
     <value type="QString" >QTDIR=/usr</value>
+    <value type="QString" >SECURITYSESSIONID=5084a780</value>
     <value type="QString" >SHELL=/bin/bash</value>
     <value type="QString" >SSH_AUTH_SOCK=/tmp/launch-SYxYZ5/Listeners</value>
     <value type="QString" >TMPDIR=/var/folders/0p/0ptC8W1KG7e5jDsNU42DVE+++TI/-Tmp-/</value>
     <value type="QString" >USER=Naix</value>
     <value type="QString" >__CF_USER_TEXT_ENCODING=0x1F5:0:0</value>
+    <value type="QString" >com.adobe.versioncue.client.applocale=en_US</value>
+    <value type="QString" >com.adobe.versioncue.client.appname=AdobeDrive</value>
+    <value type="QString" >com.adobe.versioncue.client.appversion=1.0.0</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >
     <value type="QString" >clean</value>
