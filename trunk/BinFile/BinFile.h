@@ -1,14 +1,17 @@
+#include <vector>
+using namespace std;
+
 class BinFile
 {
     public:
         BinFile ();
         virtual ~BinFile ();
-        int Add();
-        void setX(int x);
-        void setY(int y);
-
+		void readfile();
+		int writefile();
+		
     private:
-        int x;                                    //Data member
-        int y;                                    // Data member
-		std::vector <int> mData(bufWidth*4);
+		uint32_t numcols;
+		int magic;
+		int version;
+		std::vector <int> *mData;
 };
