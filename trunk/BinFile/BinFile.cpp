@@ -13,10 +13,11 @@ using namespace std;
 //Constructor for the C++ tutorial
 BinFile::BinFile()
 {
-	magic      = 0x76;
-	version    = 1;
-	numcols    = 3;
-	// mData   = new std::vector<int>;
+    magic   = 0x76;
+    version = 1;
+    numcols = 0;
+    file = new std::ifstream("somefile.bin", ios_base::in | ios_base::binary);
+// mData    = new std::vector<int>;
 // bufWidth = 10;
 }
 
@@ -38,25 +39,13 @@ int BinFile::writefile()
         return 1;
     }
 
-	mData.push_back(magic);
-	mData.push_back(version);
-	mData.push_back(numcols);
+    mData.push_back(magic);
+    mData.push_back(version);
+    mData.push_back(numcols);
     mData.push_back(300);
     mData.push_back(301);
     mData.push_back(392);
-// mData.push_back(510);
-// mData.push_back(3);
-// mData.push_back(765);
-// mData.push_back(4);
-// mData.push_back(1020);
-// mData.push_back(5);
-// mData.push_back(1275);
 
-    cout << mData.size() << endl;
-    for (unsigned int i = 0; i < mData.size(); i++)
-    {
-        cout << mData[i] << endl;
-    }
     for (unsigned int i = 0; i < mData.size(); i++)
         fout.write( reinterpret_cast<char*>(&mData[i]), sizeof(uint32_t) );
 // fout.write((const char *) &mData[i], sizeof(uint32_t));
@@ -71,29 +60,35 @@ int BinFile::writefile()
     return 0;
 }
 
+int BinFile::readhdr()
+{
+	return 0;
+}
 
 void BinFile::readfile()
 {
-    std::ifstream file("somefile.bin",
-        ios_base::in | ios_base::binary);
+	uint32_t hdr_buf[3];
+    file->read(reinterpret_cast<char*>(hdr_buf), sizeof(hdr_buf));
+    magic   = hdr_buf[0];
+    version = hdr_buf[1];
+    numcols = hdr_buf[2];
+	
+    cout << ntohl(numcols) << endl;
 
-// uint32_t buf[3];
-// char buf[BUF_SIZE*3];
-    uint32_t buf[2];
-// file.read(reinterpret_cast<char*>(&buf[0]), sizeof(uint32_t))
+    std::vector<uint32_t> buf(numcols);
 
-    if(file.is_open())
+    if(file->is_open())
     {
-// // while (file.read(reinterpret_cast<char*>(&buf[0]), sizeof(uint32_t)))
-        while (file.read(reinterpret_cast<char*>(buf), sizeof(buf)))
+// while (file->read(reinterpret_cast<char*>(&buf[0]), sizeof(uint32_t)))
+        while (file->read(reinterpret_cast<char*>(&buf[0]), sizeof(buf)))
         {
-            // uint32_t *num = reinterpret_cast<uint32_t* >(&buf[0]);
+// uint32_t *num = reinterpret_cast<uint32_t* >(&buf[0]);
             std::cout << left << setw(10) << ntohl(buf[0]) << left << setw(10) << ntohl(buf[1]) << endl;
         }
         std::cout << endl;
     }
 
-    file.close();
+    file->close();
 }
 
 
