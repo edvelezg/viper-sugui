@@ -7,20 +7,16 @@
 
 const static int BUF_SIZE = 4;                    // 4 * num of ints
 
-// using std::ios_base;
 using namespace std;
 
-//Constructor for the C++ tutorial
 BinFile::BinFile()
 {
     magic   = 0x76;
     version = 1;
     numcols = 0;
-    file = new std::ifstream("somefile.bin", ios_base::in | ios_base::binary);
-// mData    = new std::vector<int>;
-// bufWidth = 10;
+    ifile   = new std::ifstream("out.dat", ios::in | ios::binary);
+    // ofile   = new std::ofstream("out.dat", ios::out | ios::binary);
 }
-
 
 BinFile::~BinFile()
 {
@@ -30,78 +26,119 @@ BinFile::~BinFile()
 
 int BinFile::writefile()
 {
-    std::vector <uint32_t> mData;
-
-    ofstream fout("InvDat.dat", ios::out | ios::binary);
-    if (!fout)
+    if (!ofile)
     {
         cout << "Cannot open file.\n";
         return 1;
     }
 
-    mData.push_back(magic);
-    mData.push_back(version);
-    mData.push_back(numcols);
-    mData.push_back(300);
-    mData.push_back(301);
-    mData.push_back(392);
+    uint32_t hdr_buf[3];
 
-    for (unsigned int i = 0; i < mData.size(); i++)
-        fout.write( reinterpret_cast<char*>(&mData[i]), sizeof(uint32_t) );
-// fout.write((const char *) &mData[i], sizeof(uint32_t));
+    hdr_buf[0] = magic;
+    hdr_buf[1] = version;
+    hdr_buf[2] = numcols;
 
-// fout.close();
+    ofile->write(reinterpret_cast<char*>(hdr_buf), sizeof(hdr_buf));
 
-    if (!fout.good())
+    cout << matrix.size() << endl;
+    for(size_t i = 0; i < matrix.size(); ++i)
+    {
+        ofile->write( reinterpret_cast<char*>(&matrix[i][0]), sizeof(matrix[i][0])*matrix[i].size() );
+        // for(size_t j = 0; j < numcols; ++j)
+        // {
+        //     std::cout << left << setw(10) << matrix[i][j];
+        //       
+        //     // ofile->write( reinterpret_cast<char*>(&matrix[i][j]), sizeof(uint32_t) );
+        // }
+        // cout << endl;
+    }
+
+    if (!ofile->good())
     {
         cout << "A file error occurred.";
         return 1;
     }
+    ofile->close();
+
     return 0;
 }
 
+
 int BinFile::readhdr()
 {
-	return 0;
+    return 0;
+}
+
+
+void BinFile::readfile_ntohl()
+{
+    uint32_t hdr_buf[3];
+
+    ifile->read(reinterpret_cast<char*>(hdr_buf), sizeof(hdr_buf));
+
+    magic   = ntohl(hdr_buf[0]);
+    version = ntohl(hdr_buf[1]);
+    numcols = ntohl(hdr_buf[2]);
+
+    vector<uint32_t> buf(numcols);
+    if(ifile->is_open())
+    {
+        while (ifile->read(reinterpret_cast<char*>(&buf[0]), sizeof(buf)))
+        {
+            for(size_t i = 0; i < numcols; ++i)
+            {
+                buf[i] = ntohl(buf[i]);
+                cout << left << setw(10) << buf[i];
+            }
+            matrix.push_back(buf);
+            cout << endl;
+        }
+    }
+    ifile->close();
 }
 
 void BinFile::readfile()
 {
-	uint32_t hdr_buf[3];
-    file->read(reinterpret_cast<char*>(hdr_buf), sizeof(hdr_buf));
+    uint32_t hdr_buf[3];
+
+    ifile->read(reinterpret_cast<char*>(hdr_buf), sizeof(hdr_buf));
+
     magic   = hdr_buf[0];
     version = hdr_buf[1];
     numcols = hdr_buf[2];
-	
-    cout << ntohl(numcols) << endl;
+    cout << numcols << endl;
 
-    std::vector<uint32_t> buf(numcols);
-
-    if(file->is_open())
+    vector<uint32_t> buf(numcols);
+    if(ifile->is_open())
     {
-// while (file->read(reinterpret_cast<char*>(&buf[0]), sizeof(uint32_t)))
-        while (file->read(reinterpret_cast<char*>(&buf[0]), sizeof(buf)))
+        while (ifile->read(reinterpret_cast<char*>(&buf[0]), sizeof(uint32_t)*numcols))
         {
-// uint32_t *num = reinterpret_cast<uint32_t* >(&buf[0]);
-            std::cout << left << setw(10) << ntohl(buf[0]) << left << setw(10) << ntohl(buf[1]) << endl;
+            for(size_t i = 0; i < numcols; ++i)
+            {
+                std::cout << left << setw(10) << buf[i];
+            }
+            // matrix.push_back(buf);
+            cout << endl;
         }
-        std::cout << endl;
     }
-
-    file->close();
+    ifile->close();
 }
 
+// vector< vector<uint32_t> > matrix;
+// 
+// for(size_t i = 0; i < matrix.size(); ++i) 
+//   ofile.write( (char*)&matrix[i][0], sizeof(matrix[i][0])*matrix[i].size() );
 
-//     string filename = "InvDat.dat";
+//     string ifilename = "InvDat.dat";
 //     // std::vector <int> mData(bufWidth*4);
-//     std::ifstream file(filename.c_str(), ios_base::in | ios_base::binary);
+//     std::ifstream ifile(ifilename.c_str(), ios_base::in | ios_base::binary);
 //
 // // ios_base::fmtflags flags = cout.flags( );
 //
 //     uint32_t width = 14;
-//     if(file.is_open())
+//     if(ifile.is_open())
 //     {
-//         while (file.read(reinterpret_cast<uint32_t*>(mData), bufWidth*4))
+//         while (ifile.read(reinterpret_cast<uint32_t*>(mData), bufWidth*4))
 //         {
 //             uint32_t *num = reinterpret_cast<uint32_t* >(mData);
 //             for (uint32_t i = 0; i < bufWidth; ++i)
@@ -110,5 +147,5 @@ void BinFile::readfile()
 //             }
 //             std::cout << std::endl;
 //         }
-//         file.close();
+//         ifile.close();
 //     }
