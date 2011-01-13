@@ -15,7 +15,7 @@ BinFile::BinFile()
     version = 1;
     numcols = 0;
     ifile   = new std::ifstream("out.dat", ios::in | ios::binary);
-    // ofile   = new std::ofstream("out.dat", ios::out | ios::binary);
+    ofile   = new std::ofstream("out2.dat", ios::out | ios::binary);
 }
 
 BinFile::~BinFile()
@@ -117,7 +117,7 @@ void BinFile::readfile()
             {
                 std::cout << left << setw(10) << buf[i];
             }
-            // matrix.push_back(buf);
+            matrix.push_back(buf);
             cout << endl;
         }
     }
