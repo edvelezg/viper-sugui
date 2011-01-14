@@ -68,7 +68,7 @@
      <x>0</x>
      <y>0</y>
      <width>116</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
@@ -146,7 +146,7 @@
     <string>&amp;Start</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+G</string>
+    <string>Ctrl+G, Ctrl+S</string>
    </property>
   </action>
   <action name="actionStop">
