@@ -5,9 +5,9 @@ using namespace std;
 
 int main (int argc, char const *argv[])
 {
-    BinFile bt("out.bin", "out.bin");
-    bt.writefile();
-    bt.readfile();
+    BinFile bf("out.bin", "out.bin");
+    bf.writefile();
+    bf.readfile();
 
 // bt.setX(1);
 // bt.setY(3);
