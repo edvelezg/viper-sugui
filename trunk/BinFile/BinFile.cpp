@@ -14,8 +14,8 @@ BinFile::BinFile()
     magic   = 0x76;
     version = 1;
     numcols = 0;
-    ifile   = new std::ifstream("out.dat", ios::in | ios::binary);
-    ofile   = new std::ofstream("out2.dat", ios::out | ios::binary);
+    ifile.open("out.dat", ios::in | ios::binary);
+    ofile.open("out2.dat", ios::out | ios::binary);
 }
 
 BinFile::~BinFile()
@@ -38,27 +38,27 @@ int BinFile::writefile()
     hdr_buf[1] = version;
     hdr_buf[2] = numcols;
 
-    ofile->write(reinterpret_cast<char*>(hdr_buf), sizeof(hdr_buf));
+    ofile.write(reinterpret_cast<char*>(hdr_buf), sizeof(hdr_buf));
 
     cout << matrix.size() << endl;
     for(size_t i = 0; i < matrix.size(); ++i)
     {
-        ofile->write( reinterpret_cast<char*>(&matrix[i][0]), sizeof(matrix[i][0])*matrix[i].size() );
+        ofile.write( reinterpret_cast<char*>(&matrix[i][0]), sizeof(matrix[i][0])*matrix[i].size() );
         // for(size_t j = 0; j < numcols; ++j)
         // {
         //     std::cout << left << setw(10) << matrix[i][j];
         //       
-        //     // ofile->write( reinterpret_cast<char*>(&matrix[i][j]), sizeof(uint32_t) );
+        //     // ofile.write( reinterpret_cast<char*>(&matrix[i][j]), sizeof(uint32_t) );
         // }
         // cout << endl;
     }
 
-    if (!ofile->good())
+    if (!ofile.good())
     {
         cout << "A file error occurred.";
         return 1;
     }
-    ofile->close();
+    ofile.close();
 
     return 0;
 }
@@ -74,16 +74,16 @@ void BinFile::readfile_ntohl()
 {
     uint32_t hdr_buf[3];
 
-    ifile->read(reinterpret_cast<char*>(hdr_buf), sizeof(hdr_buf));
+    ifile.read(reinterpret_cast<char*>(hdr_buf), sizeof(hdr_buf));
 
     magic   = ntohl(hdr_buf[0]);
     version = ntohl(hdr_buf[1]);
     numcols = ntohl(hdr_buf[2]);
 
     vector<uint32_t> buf(numcols);
-    if(ifile->is_open())
+    if(ifile.is_open())
     {
-        while (ifile->read(reinterpret_cast<char*>(&buf[0]), sizeof(buf)))
+        while (ifile.read(reinterpret_cast<char*>(&buf[0]), sizeof(buf)))
         {
             for(size_t i = 0; i < numcols; ++i)
             {
@@ -94,14 +94,14 @@ void BinFile::readfile_ntohl()
             cout << endl;
         }
     }
-    ifile->close();
+    ifile.close();
 }
 
 void BinFile::readfile()
 {
     uint32_t hdr_buf[3];
 
-    ifile->read(reinterpret_cast<char*>(hdr_buf), sizeof(hdr_buf));
+    ifile.read(reinterpret_cast<char*>(hdr_buf), sizeof(hdr_buf));
 
     magic   = hdr_buf[0];
     version = hdr_buf[1];
@@ -109,9 +109,9 @@ void BinFile::readfile()
     cout << numcols << endl;
 
     vector<uint32_t> buf(numcols);
-    if(ifile->is_open())
+    if(ifile.is_open())
     {
-        while (ifile->read(reinterpret_cast<char*>(&buf[0]), sizeof(uint32_t)*numcols))
+        while (ifile.read(reinterpret_cast<char*>(&buf[0]), sizeof(uint32_t)*numcols))
         {
             for(size_t i = 0; i < numcols; ++i)
             {
@@ -121,7 +121,7 @@ void BinFile::readfile()
             cout << endl;
         }
     }
-    ifile->close();
+    ifile.close();
 }
 
 // vector< vector<uint32_t> > matrix;
