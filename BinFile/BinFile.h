@@ -21,6 +21,6 @@ class BinFile
         int version;
         uint32_t numcols;
         vector< vector<uint32_t> > matrix;
-        std::ifstream *ifile;
-        std::ofstream *ofile;
+        std::ifstream ifile;
+        std::ofstream ofile;
 };
