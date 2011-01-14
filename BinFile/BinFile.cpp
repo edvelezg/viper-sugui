@@ -14,7 +14,7 @@ BinFile::BinFile(const string &inname, const string &outname)
 {
     magic   = 0x76;
     version = 1;
-    numcols = 0;
+    numcols = 2;
     ifile.open(inname.c_str(), ios::in | ios::binary);
     ofile.open(outname.c_str(), ios::out | ios::binary);
 }
@@ -26,6 +26,20 @@ BinFile::~BinFile()
 
 int BinFile::writefile()
 {
+    if (!ofile)
+    {
+        cout << "Cannot open file.\n";
+        return 1;
+    }
+
+    uint32_t hdr_buf[3];
+
+    hdr_buf[0] = magic;
+    hdr_buf[1] = version;
+    hdr_buf[2] = numcols;
+
+    ofile.write(reinterpret_cast<char*>(hdr_buf), sizeof(hdr_buf));
+    
     vector<uint32_t> a_row(2);
     a_row[0] = 1;
     a_row[1] = 2;
@@ -42,20 +56,7 @@ int BinFile::writefile()
     a_row[0] = 9;
     a_row[1] = 6;
     matrix.push_back(a_row);
-
-    if (!ofile)
-    {
-        cout << "Cannot open file.\n";
-        return 1;
-    }
-
-    uint32_t hdr_buf[3];
-
-    hdr_buf[0] = magic;
-    hdr_buf[1] = version;
-    hdr_buf[2] = numcols;
-
-    ofile.write(reinterpret_cast<char*>(hdr_buf), sizeof(hdr_buf));
+    
 
     cout << matrix.size() << endl;
     for(size_t i = 0; i < matrix.size(); ++i)

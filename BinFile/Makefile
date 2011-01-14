@@ -19,7 +19,7 @@ endif
 #
 ifeq "$(CFG)" "Debug"
 OUTDIR=Debug
-OUTFILE=$(OUTDIR)/BinFile.exe
+OUTFILE=$(OUTDIR)/BinFile
 CFG_INC=
 CFG_LIB=
 CFG_OBJ=
@@ -53,6 +53,8 @@ clean:
 
 # Clean this project and all dependencies
 cleanall: clean
+    
+.PHONY: all clean
 endif
 
 #
@@ -60,7 +62,7 @@ endif
 #
 ifeq "$(CFG)" "Release"
 OUTDIR=Release
-OUTFILE=$(OUTDIR)/BinFile.exe
+OUTFILE=$(OUTDIR)/BinFile
 CFG_INC=
 CFG_LIB=
 CFG_OBJ=
