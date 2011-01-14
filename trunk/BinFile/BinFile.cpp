@@ -4,28 +4,45 @@
 #include <iterator>
 #include <iomanip>
 #include <vector>
+#include <netinet/in.h>
 
 const static int BUF_SIZE = 4;                    // 4 * num of ints
 
 using namespace std;
 
-BinFile::BinFile()
+BinFile::BinFile(const string &inname, const string &outname)
 {
     magic   = 0x76;
     version = 1;
     numcols = 0;
-    ifile.open("out.dat", ios::in | ios::binary);
-    ofile.open("out2.dat", ios::out | ios::binary);
+    ifile.open(inname.c_str(), ios::in | ios::binary);
+    ofile.open(outname.c_str(), ios::out | ios::binary);
 }
 
 BinFile::~BinFile()
 {
-// delete mData;
 }
 
 
 int BinFile::writefile()
 {
+    vector<uint32_t> a_row(2);
+    a_row[0] = 1;
+    a_row[1] = 2;
+    matrix.push_back(a_row);
+    a_row[0] = 3;
+    a_row[1] = 2;
+    matrix.push_back(a_row);
+    a_row[0] = 5;
+    a_row[1] = 4;
+    matrix.push_back(a_row);
+    a_row[0] = 7;
+    a_row[1] = 4;
+    matrix.push_back(a_row);
+    a_row[0] = 9;
+    a_row[1] = 6;
+    matrix.push_back(a_row);
+
     if (!ofile)
     {
         cout << "Cannot open file.\n";
@@ -106,7 +123,9 @@ void BinFile::readfile()
     magic   = hdr_buf[0];
     version = hdr_buf[1];
     numcols = hdr_buf[2];
-    cout << numcols << endl;
+    cout << "magic: " << magic << endl;
+    cout << "version: " << version << endl;
+    cout << "numcols: " << numcols << endl;
 
     vector<uint32_t> buf(numcols);
     if(ifile.is_open())
