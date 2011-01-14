@@ -1,4 +1,5 @@
 #include <vector>
+#include <string>
 #include <fstream>
 // class std::vector<uint32_t>;
 // class std::fstream;
@@ -8,7 +9,7 @@ using namespace std;
 class BinFile
 {
     public:
-        BinFile();
+        BinFile(const string &, const string &);
         virtual ~BinFile();
         void readfile();
         void readfile_ntohl();
