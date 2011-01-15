@@ -26,7 +26,7 @@ void CSVFile::readfile()
             histo[i][row[i]]++;
         }
         joint[row]++;
-        cout << row[0] << " " << row[1] << endl;
+        // cout << row[0] << " " << row[1] << endl;
         
         while ( myfile.good() )
         {
@@ -40,7 +40,7 @@ void CSVFile::readfile()
                     histo[i][row[i]]++;
                 }
             }
-            cout << row[0] << " " << row[1] << endl;
+            // cout << row[0] << " " << row[1] << endl;
             joint[row]++;
         }
         
