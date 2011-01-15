@@ -10,7 +10,7 @@ using namespace std;
 void CSVFile::readfile()
 {
     string line;
-    uint32_t numcols = 0;
+    uint32_t numcols = 2;
     ifstream myfile ("example.csv");
 
     if (myfile.is_open())
@@ -18,40 +18,41 @@ void CSVFile::readfile()
         getline (myfile,line);
         vector<string> row( split(line, ",") );
         numcols = row.size();
-        cout << numcols << endl;
-
+        // 
         for (size_t i = 0; i < numcols; ++i)
         {
             map<string, uint32_t> a_map;
             histo.push_back(a_map);
+            histo[i][row[i]]++;
         }
-
+        joint[row]++;
+        cout << row[0] << " " << row[1] << endl;
+        
         while ( myfile.good() )
         {
-            for (size_t i = 0; i < numcols; ++i)
-            {
-                histo[i][row[i]]++;
-            }
-            joint[row]++;
             getline (myfile,line);
             vector<string> row( split(line, ",") );
+            
+            for (size_t i = 0; i < numcols; ++i)
+            {
+                if(!row[i].empty())
+                {
+                    histo[i][row[i]]++;
+                }
+            }
+            cout << row[0] << " " << row[1] << endl;
+            joint[row]++;
         }
-
-        for (map_vector::const_iterator i = histo.begin(); i!= histo.end(); ++i)
+        
+        for(size_t i = 0; i < histo.size(); ++i)
         {
-            const map<string, uint32_t> a_histo = *i;
-            cout << a_histo.size();
+            cout << "cardinality of column " << i << " is " << histo[i].size() << endl;
         }
-
+        cout << "joint cardinality is: " << joint.size() << endl;
+        
         myfile.close();
     }
     else cout << "Unable to open file"; 
-
-    for (map_vector::const_iterator i = histo.begin(); i!= histo.end(); ++i)
-    {
-        const map<string, uint32_t> a_histo = *i;
-        cout << a_histo.size();
-    }
 }
 
 inline vector<string> CSVFile::split( const string& s, const string& f ) {

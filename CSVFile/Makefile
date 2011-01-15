@@ -19,7 +19,7 @@ endif
 #
 ifeq "$(CFG)" "Debug"
 OUTDIR=Debug
-OUTFILE=$(OUTDIR)/CSVFile.exe
+OUTFILE=$(OUTDIR)/CSVFile
 CFG_INC=
 CFG_LIB=
 CFG_OBJ=
@@ -53,6 +53,8 @@ clean:
 
 # Clean this project and all dependencies
 cleanall: clean
+.PHONY: all clean
+    
 endif
 
 #
