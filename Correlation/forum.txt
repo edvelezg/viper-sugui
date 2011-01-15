@@ -1,0 +1,38 @@
+Hi everyone,
+
+I am reading a binary file completely, but I would like to restart reading the file, by moving to the beginning of the file again. I have tried using file.seekg(0, ios::beg); but it doesn't seem to work.
+
+In a readfile function I read the file once, and it works.
+
+[CODE]
+    vector<uint32_t> buf(numcols);
+
+    if(file.is_open())
+    {
+        while (file.read(reinterpret_cast<char*>(&buf[0]), sizeof(uint32_t)*numcols))
+        {
+            for(size_t i = 0; i < numcols; ++i)
+            {
+                freq[i][buf[i]]++;
+            }
+        }
+    } 
+
+    file.seekg(0, ios::beg);    // This supposedly brings the pointer to the beginning  of the file again.
+[/CODE]
+
+in another function I try:
+
+[CODE]
+ while (file.read(reinterpret_cast<char*>(&buf[0]), sizeof(uint32_t)*numcols))
+        {
+            for(size_t i = 0; i < numcols; ++i)
+            {
+                freq[i][buf[i]]++;
+            }
+        }
+[/CODE]
+
+but strange numbers indicate that it isn't actually reading the file from the beginning.
+
+Ted.
