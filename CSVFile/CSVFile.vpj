@@ -4,7 +4,8 @@
 	VendorName="SlickEdit"
 	WorkingDir="."
 	BuildSystem="automakefile"
-	BuildMakeFile="Makefile">
+	BuildMakeFile="Makefile"
+	VCSProject="Subversion:">
 	<Config
 		Name="Debug"
 		Type="gnuc"
