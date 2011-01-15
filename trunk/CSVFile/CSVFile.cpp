@@ -11,7 +11,7 @@ void CSVFile::readfile()
 {
     string line;
     uint32_t numcols = 2;
-    ifstream myfile ("example.csv");
+    ifstream myfile ("../example.csv");
 
     if (myfile.is_open())
     {
